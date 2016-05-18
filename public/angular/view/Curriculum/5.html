@@ -1,0 +1,78 @@
+<h5 style="text-align:center;padding-bottom:10px;">Cost Curriculum</h5>
+<form name="masterForm" ng-controller="curriculumCtrl as ctrl">
+<div layout="row" layout-xs="column">
+ <div flex>
+        <md-select placeholder="Select Curreny" ng-model="carrymodel.item" md-on-open="loadCurrency()" style="min-width: 200px;">
+      <md-option ng-value="item" ng-repeat="item in Currency">{{item.Currency_Name}}</md-option>
+    </md-select>
+ </div> 
+</div>
+<!-- <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedCurrency"
+          md-search-text-change="ctrl.searchCurrencyChange(ctrl.searchCurrency)"
+          md-search-text="ctrl.searchCurrency"
+          md-selected-item-change="ctrl.selectedCurrencyChange(item)"
+         md-items="item in ctrl.querySearchCurrency(ctrl.searchCurrency)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Currency">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCurrency" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Currency matching "{{ctrl.searchCurrency}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div> -->
+
+  <div layout="row" layout-xs="column">
+ <div flex>
+  
+        <md-radio-group ng-model="carrymodel.CourseCost">
+                      <label ng-repeat="individual_Cost_type in individual_Cost_type"> 
+            <md-radio-button name="cost" ng-value="individual_Cost_type" >{{individual_Cost_type}}
+                 </md-radio-button>
+               
+         </md-radio-group>
+ </div> 
+ <div flex>
+  <md-input-container class="md-block">
+        <label>Cost</label>
+        <input required name="cost" ng-model="carrymodel.sum_of_individual_course_cost">
+  
+      </md-input-container>
+ </div>
+</div>
+<div layout="row" layout-xs="column">
+ <div flex>
+        <md-radio-group ng-model="carrymodel.CourseCost">
+                      <label ng-repeat="flat_fixed_cost in flat_fixed_cost"> 
+            <md-radio-button name="cost" ng-value="flat_fixed_cost" >{{flat_fixed_cost}}
+                 </md-radio-button>
+               
+         </md-radio-group>
+ </div> 
+ <div flex>
+  <md-input-container class="md-block">
+        <label>Cost</label>
+        <input required name="cost" ng-model="carrymodel.flat_fixed_cost">
+  
+      </md-input-container>
+ </div>
+</div>
+<div style="padding-bottom:2%"></div>
+ <!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+          <!-- ng-disabled="!carrymodelForm.$valid" -->
+           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+<link href="assets/css/course.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">

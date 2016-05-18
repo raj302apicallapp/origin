@@ -1,0 +1,66 @@
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
+<form name="carrymodelForm" ng-controller="venueCtrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Venue Name</label>
+        <input required name="venue" ng-model="carrymodel.venue">
+        <div ng-messages="carrymodelForm.venue.$error">
+          <div ng-message="required">Venue Name is Mandatory.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+     <md-input-container class="md-block">
+        <label>Room Name</label>
+        <input required name="room" ng-model="carrymodel.room">
+        <div ng-messages="carrymodelForm.room.$error">
+          <div ng-message="required">Room Name is Mandatory.</div>
+        </div>
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+      	<label>Capacity</label>
+         <input ng-model="carrymodel.capacity" type="number" min="1" max="20" step="1" required name="capacity"/>
+         <div ng-messages="carrymodelForm.capacity.$error">
+          <div ng-message="required">Capacity is Mandatory.</div>
+           <div ng-message="max">Capacity not exceed 20.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+       <md-input-container class="md-block">
+       <label>Room Types</label>
+       <md-select ng-model="carrymodel.roomtype"  aria-label="Type" required name="roomtype">
+          <md-option ng-repeat="room in rooms" value="{{room}}">
+            {{room}}
+          </md-option>
+        </md-select>
+        <div ng-messages="carrymodelForm.roomtype.$error">
+          <div ng-message="required">Room Type is Mandatory.</div>
+        </div>
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+
+  <div style="padding-bottom:2%"></div>
+  <!-- ROW last Starts -->
+<div class="row">
+        
+          <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
+        
+           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+
+ 
+

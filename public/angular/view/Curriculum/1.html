@@ -1,0 +1,115 @@
+<h5 style="text-align:center;padding-bottom:10px;">Design Info</h5>
+<form name="carrymodelForm" ng-controller="curriculumCtrl">
+
+  
+      
+        <!-- class="responstable" -->
+ <table class="table_white" > 
+ <tr> 
+ <td> 
+  <div flex>
+    
+    <h6 style="padding:15%">Section</h6>
+    
+   </div>
+ </td>
+ <td>
+    <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click="addCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+      </md-input-container>
+  </div>
+</td>
+<td>
+  <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click="removeCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+      </md-input-container>
+  </div>
+   </td>
+   <td>
+    <div flex>
+      
+    <h6 style="padding:15%">Learning Activity</h6>
+  
+     </div>
+   </td>
+   <td>
+     <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+      </md-input-container>
+  </div>
+</td>
+<td>
+  <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+      </md-input-container>
+  </div>
+</td>
+</tr>
+</table>
+
+    <div ng-repeat="(parentIndex,ChildCourse_data) in carrymodel.selectCourse_data" ng-init="rowIndex = $index" >
+    <!-- <div style="padding-bottom:2%"></div>   -->
+     <div layout="row" layout-xs="column" > 
+    <div flex="20" >
+      
+       <h6>{{parentIndex+1}}/{{carrymodel.Section_number}}</h6>
+      </div>
+      <div flex="5"></div>
+      <div flex="60">
+          <md-input-container class="md-block" >
+            <label>Section Name</label>
+            <input ng-model="carrymodel.section_name[parentIndex]">
+          </md-input-container>
+        </div>
+        <div flex="5"></div>
+        <div flex="20" >
+       <h6>{{ (ChildCourse_data | filter :{Selected: true}).length}}/{{carrymodel.selectCourse_data[parentIndex].length}}</h6>
+
+      </div>
+      <!-- <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click="addSection(parentIndex)" style="float:right" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+      </md-input-container>
+  </div> -->
+      <div flex>
+     <md-input-container class="md-block" flex-gt-sm="">
+       <md-button  ng-click="removeSection(parentIndex)" style="float:right" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+      </md-input-container>
+  </div>
+</div>
+  <!-- class="responstable" -->
+  <table class="table_white" >
+  <tr ng-repeat='item in ChildCourse_data'  >
+     <!-- filter: {Selected: false} -->
+    <td>{{$index+1}}</td>
+    <td>{{item.course}}</td>
+    <td class="actionclass"><md-button ng-click="CourseMoveup(parentIndex,$index)" aria-label="Info"><md-icon class="material-icons">keyboard_arrow_up</md-icon></md-button></td>
+    <td class="actionclass"><md-button ng-click="CourseMovedown(parentIndex,$index)" aria-label="Info"><md-icon class="material-icons">keyboard_arrow_down</md-icon></md-button></td> 
+     <td >
+     <md-checkbox ng-model="item.Selected" aria-label="Checkbox 1">
+             Mandatory
+        </md-checkbox>  
+  </td>
+    <td class="actionclass"><md-button ng-click="removeCourse(parentIndex,$index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+
+</table>
+    </div>    
+  
+</div>
+</div>
+
+ <!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+          <!-- ng-disabled="!carrymodelForm.$valid" -->
+           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
