@@ -1,10 +1,10 @@
 var app=angular.module('app',['ngRoute','ngStorage','ngMaterial','ngMessages','angularUtils.directives.dirPagination','ngSanitize']);
 
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
-// $locationProvider.html5Mode({
-//   enabled: true,
-//   requireBase: false
-// });
+$locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
 $routeProvider.
 when('/',
 {
@@ -228,6 +228,13 @@ when('/editcourse',
 when('/managecourse',
 {
   templateUrl: 'angular/view/CourseManagement/managecourse/courselist.html', 
+  controller: 'dashctrl'
+}).
+
+//QuestionBank
+when('/addquestion',
+{
+  templateUrl: 'angular/view/QuestionBank/AddQuestion/addquestion.html', 
   controller: 'dashctrl'
 }).
 
