@@ -1,0 +1,91 @@
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
+<form name="carrymodelForm" ng-controller="addCourseCtrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Title</label>
+        <input required name="title" ng-model="carrymodel.title">
+        <div ng-messages="carrymodelForm.title.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Description</label>
+        <input md-maxlength="256" required md-no-asterisk name="description" ng-model="carrymodel.description">
+        <div ng-messages="carrymodelForm.description.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 256 characters long.</div>
+        </div>
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Duration</label>
+        <input type="number" required name="duration" ng-model="carrymodel.duration">
+        <div ng-messages="carrymodelForm.duration.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+      <md-input-container class="md-block" flex-gt-sm> 
+            <md-select ng-model="carrymodel.induration" aria-label="induration">
+            <md-option value="days">day(s)</md-option>
+              <md-option value="hrs">hrs</md-option>
+              <md-option selected value="min">min</md-option>
+            </md-select>
+          </md-input-container>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+<!-- ROW 3 Starts -->
+<div class="row">
+
+<choose-file layout="row">
+    <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
+    <md-input-container flex class="md-block">
+      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files">
+    </md-input-container>
+    <div>
+      <md-button ng-click="browseClick()" id="browsebtn" class="md-fab md-mini">
+        <md-icon class="material-icons">attach_file</md-icon>
+      </md-button>
+    </div>
+    <div>
+      &nbsp;
+    </div>
+    <div>
+      <md-button ng-click="uploadClick(carrymodel)" ng-disabled="false" id="uploadbtn" class="md-fab md-mini">
+        <md-icon class="material-icons">file_upload</md-icon>
+      </md-button>
+    </div>
+  </choose-file>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</div>
+  <!-- ROW 3 Ends -->
+  <div style="padding-bottom:2%"></div>
+  <!-- ROW last Starts -->
+<div class="row">
+        
+          <!-- <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button> -->
+        
+           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+<div id="progress" class="progress" value="50">
+      <div class="progress-bar progress-bar-success"></div>
+    </div>
+</form>
+
+ 
+

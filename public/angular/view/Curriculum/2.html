@@ -1,0 +1,288 @@
+<h5 style="text-align:center;padding-bottom:10px;">Target Audience</h5>
+<form name="carrymodelForm" ng-controller="curriculumCtrl as ctrl">
+	<!-- row 1 -->
+	<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_entity"
+           required md-input-name="entity"
+          md-selected-item="ctrl.selectedEntity"
+          md-search-text-change="ctrl.searchEntityChange(ctrl.searchEntity)"
+          md-search-text="ctrl.searchEntity"
+          md-selected-item-change="ctrl.selectedEntityChange(item)"
+         md-items="item in ctrl.querySearchEntity(ctrl.searchEntity)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Entity">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchEntity" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Entity matching "{{ctrl.searchEntity}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.entity.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+ <div style="width:2%"></div>
+  <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_group"
+            required md-input-name="group"
+          md-selected-item="ctrl.selectedGroup"
+          md-search-text-change="ctrl.searchGroupChange(ctrl.searchGroup)"
+          md-search-text="ctrl.searchGroup"
+          md-selected-item-change="ctrl.selectedGroupChange(item)"
+         md-items="item in ctrl.querySearchGroup(ctrl.searchGroup)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Group">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchGroup" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Group matching "{{ctrl.searchGroup}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.group.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- row 1 end -->
+<div style="padding-bottom:2%"></div>
+<!-- row 2 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_function"
+           required md-input-name="function"
+          md-selected-item="ctrl.selectedFunction"
+          md-search-text-change="ctrl.searchFunctionChange(ctrl.searchFunction)"
+          md-search-text="ctrl.searchFunction"
+          md-selected-item-change="ctrl.selectedFunctionChange(item)"
+         md-items="item in ctrl.querySearchFunction(ctrl.searchFunction)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Function">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchFunction" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Function matching "{{ctrl.searchFunction}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.function.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+
+  <div style="width:2%"></div>
+   
+     <div flex>
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_department"
+           required md-input-name="department"
+          md-selected-item="ctrl.selectedDepartment"
+          md-search-text-change="ctrl.searchDepartmentChange(ctrl.searchDepartment)"
+          md-search-text="ctrl.searchDepartment"
+          md-selected-item-change="ctrl.selectedDepartmentChange(item)"
+         md-items="item in ctrl.querySearchDepartment(ctrl.searchDepartment)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Department">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchDepartment" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Department matching "{{ctrl.searchDepartment}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.department.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+    </div>
+  
+</div>
+<!-- row 2 end -->
+
+<div style="padding-bottom:2%"></div>
+<!-- row 3 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           
+          md-selected-item="ctrl.selectedJob_Family"
+          md-search-text-change="ctrl.searchJob_FamilyChange(ctrl.searchJob_Family)"
+          md-search-text="ctrl.searchJob_Family"
+          md-selected-item-change="ctrl.selectedJob_FamilyChange(item)"
+         md-items="item in ctrl.querySearchJob_Family(ctrl.searchJob_Family)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Family">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJob_Family" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Job_Family matching "{{ctrl.searchJob_Family}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+
+  <div style="width:2%"></div>
+   
+     <div flex>
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_Job_Role"
+          md-selected-item="ctrl.selectedJob_Role"
+          md-search-text-change="ctrl.searchJob_RoleChange(ctrl.searchJob_Role)"
+          md-search-text="ctrl.searchJob_Role"
+          md-selected-item-change="ctrl.selectedJob_RoleChange(item)"
+         md-items="item in ctrl.querySearchJob_Role(ctrl.searchJob_Role)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Role">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJob_Role" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Job Role matching "{{ctrl.searchJob_Role}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+  
+</div>
+<!-- row 3 end -->
+<div style="padding-bottom:2%"></div>
+  
+<!-- row 4 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           required md-input-name="competency"
+          md-selected-item="ctrl.selectedCompetency"
+          md-search-text-change="ctrl.searchCompetencyChange(ctrl.searchCompetency)"
+          md-search-text="ctrl.searchCompetency"
+          md-selected-item-change="ctrl.selectedCompetencyChange(item)"
+         md-items="item in ctrl.querySearchCompetency(ctrl.searchCompetency)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Competency">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Competency matching "{{ctrl.searchCompetency}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.competency.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+
+  <div style="width:2%"></div>
+   
+     <div flex>
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_SubCompetency"
+           required md-input-name="sub_competency"
+          md-selected-item="ctrl.selectedSubCompetency"
+          md-search-text-change="ctrl.searchSubCompetencyChange(ctrl.searchSubCompetency)"
+          md-search-text="ctrl.searchSubCompetency"
+          md-selected-item-change="ctrl.selectedSubCompetencyChange(item)"
+         md-items="item in ctrl.querySearchSubCompetency(ctrl.searchSubCompetency)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Sub Competency">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSubCompetency" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Sub Competency matching "{{ctrl.searchSubCompetency}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.sub_competency.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+    </div>
+  
+</div>
+<!-- row 4 end -->
+<div style="padding-bottom:2%"></div>
+<!-- row 5 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_skills"
+          md-selected-item="ctrl.selectedSkills"
+          required md-input-name="skills"
+          md-search-text-change="ctrl.searchSkillsChange(ctrl.searchSkills)"
+          md-search-text="ctrl.searchSkills"
+          md-selected-item-change="ctrl.selectedSkillsChange(item)"
+         md-items="item in ctrl.querySearchSkills(ctrl.searchSkills)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Skills">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSkills" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Skills matching "{{ctrl.searchSkills}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.skills.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+
+  <div style="width:2%"></div>
+   
+     <div flex>
+     <md-contact-chips
+        ng-model="carrymodel.tags"
+        required md-input-name="tags"
+        md-contacts="ctrl.delayedQuerySearchTags($query)"
+        md-contact-name="name"
+        md-require-match="true"
+        md-highlight-flags="i"
+        filter-selected="ctrl.filterSelected"
+        placeholder="Tags"
+        secondary-placeholder="Tags">
+        <div ng-messages="carrymodelForm.tags.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+    </md-contact-chips>
+    </div>
+  
+</div>
+<!-- row 5 end -->
+<div style="padding-bottom:2%"></div>
+ <!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+          <!-- ng-disabled="!carrymodelForm.$valid" -->
+           <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+<link href="assets/css/course.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
