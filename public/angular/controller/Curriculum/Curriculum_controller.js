@@ -988,7 +988,6 @@ $scope.getCompetency=function()
     .then(function(answer) {
 
       console.log("ok"+JSON.stringify(answer));
-
       $scope.selectCourse_data.push(answer);
      console.log($scope.selectCourse_data.length)
      $scope.findMandatory=[];
@@ -1225,9 +1224,7 @@ $scope.CourseCost=function()
   $scope.pickemployee=function()
   {
      curriculumService.pickemployee().then(function(response)
-     {
-        
-             
+     {           
         if (answerarr.length==0) {
            $scope.Emplyoee=response.data;
            console.log(JSON.stringify($scope.Emplyoee))
@@ -1320,7 +1317,6 @@ console.log(JSON.stringify($scope.Emplyoee));
          console.log("Final Result::"+JSON.stringify($scope.Emplyoee[i].Selected));
         if ($scope.Emplyoee[i].Selected==false || !angular.isDefined($scope.Emplyoee[i].Selected) ) {}else{
         $scope.select_employee.push($scope.Emplyoee[i].firstname);
-
       };
         console.log("Emplyoee"+JSON.stringify($scope.Emplyoee))
       }

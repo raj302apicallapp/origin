@@ -251,6 +251,36 @@ when('/masterdash',
   controller: 'masterDashCtrl'
 }).
 
+when('/MVenuetype',
+{
+  templateUrl: 'angular/view/MasterManagement/MVenuetype.html', 
+  controller: 'masterDashCtrl'
+}).
+
+when('/MRoomtype',
+{
+  templateUrl: 'angular/view/MasterManagement/MRoomtype.html', 
+  controller: 'masterDashCtrl'
+}).
+
+when('/MSeattype',
+{
+  templateUrl: 'angular/view/MasterManagement/MSeattype.html', 
+  controller: 'masterDashCtrl'
+}).
+
+when('/MEquipment',
+{
+  templateUrl: 'angular/view/MasterManagement/MEquipment.html', 
+  controller: 'masterDashCtrl'
+}).
+
+when('/MTag',
+{
+  templateUrl: 'angular/view/MasterManagement/MTag.html', 
+  controller: 'masterDashCtrl'
+}).
+
 
 otherwise({
         redirectTo: '/'
