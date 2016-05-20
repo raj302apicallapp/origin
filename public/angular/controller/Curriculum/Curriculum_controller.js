@@ -1,4 +1,6 @@
 var app=angular.module('app');
+var answerarr=[];
+var employeedata=[];
 app.controller('curriculumCtrl',function($localStorage,$location,$scope,$mdMedia,$mdDialog,$filter,$q,$timeout,$http,mOrgService,vendorService,curriculumService,courseService)
 {    
  
@@ -16,6 +18,7 @@ $scope.courseDataListCount=[];
     $scope.dis_department=true;
     $scope.dis_cost=true;
     $scope.dis_curriculumOwner=true;
+    $scope.dis_pickemployee=false;
     var tagarr=[];
     $scope.approvals = ['Individual Course','Whole Course'];
     $scope.individual_Cost_type = ['Sum Of Individual Course Cost'];
@@ -846,7 +849,6 @@ $scope.getCompetency=function()
        $scope.Competencyfliter=$scope.Competency;
        console.log(JSON.stringify($scope.Competency))
        $scope.getSubCompetencydata(item,competencyResponse);
-       console.log()
      }
     }
 
@@ -986,6 +988,7 @@ $scope.getCompetency=function()
     .then(function(answer) {
 
       console.log("ok"+JSON.stringify(answer));
+
       $scope.selectCourse_data.push(answer);
      console.log($scope.selectCourse_data.length)
      $scope.findMandatory=[];
@@ -1223,7 +1226,15 @@ $scope.CourseCost=function()
   {
      curriculumService.pickemployee().then(function(response)
      {
-        $scope.Emplyoee=response.data;
+        
+             
+        if (answerarr.length==0) {
+           $scope.Emplyoee=response.data;
+           console.log(JSON.stringify($scope.Emplyoee))
+            }
+            else{
+              $scope.Emplyoee=employeedata;
+            }
         $scope.Employeedata=response.data;
         $scope.getUserdata();
      });
@@ -1233,6 +1244,7 @@ $scope.CourseCost=function()
   $scope.select_employee=[];
  $scope.pick_employee_details = function(ev) {
    console.log(JSON.stringify($scope.Emplyoee));
+  employeedata =$scope.Emplyoee;
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller :CurriculumController,
@@ -1246,8 +1258,35 @@ $scope.CourseCost=function()
      }
     })
     .then(function(answer) {
-      console.log("ok"+JSON.stringify(answer));
-      $scope.carrymodel.curriculum_owner=answer;
+      for(var i=0;i<answer.length;i++){
+          if(answerarr.length<2)
+          {
+             answerarr.push(answer[i]);
+             $scope.dis_pickemployee=true;
+          }
+          else
+          {
+            alert("Curriculum Owner should be one")
+          }
+         
+      }
+      // $scope.carrymodel.curriculum_owner=answerarr;
+
+      for(var i=0;i<$scope.Emplyoee.length;i++)
+      {
+        for(var j=0;j<answerarr.length;j++)
+        {
+        if(answerarr[j]==$scope.Emplyoee[i].firstname)
+        {
+          $scope.Emplyoee[i].Checked=true;
+          $scope.Emplyoee[i].Selected=false;
+          $scope.carrymodel.curriculum_owner=answerarr[i];
+          console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
+        }
+      }
+
+      }
+      
       $scope.dis_curriculumOwner=false;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
@@ -1281,8 +1320,9 @@ console.log(JSON.stringify($scope.Emplyoee));
          console.log("Final Result::"+JSON.stringify($scope.Emplyoee[i].Selected));
         if ($scope.Emplyoee[i].Selected==false || !angular.isDefined($scope.Emplyoee[i].Selected) ) {}else{
         $scope.select_employee.push($scope.Emplyoee[i].firstname);
+
       };
-        
+        console.log("Emplyoee"+JSON.stringify($scope.Emplyoee))
       }
       console.log("Final Result::"+JSON.stringify($scope.select_employee));
        $scope.jj="jjjj";

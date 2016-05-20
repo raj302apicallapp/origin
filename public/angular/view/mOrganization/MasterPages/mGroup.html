@@ -30,7 +30,7 @@
      <div flex>
       <md-input-container class="md-block">
         <label>Group</label>
-        <input  ng-model="mgroup">
+        <input  ng-model="mgroup" ng-disabled="in_group">
       
       </md-input-container>
     </div>
@@ -53,7 +53,7 @@
       </md-input-container>
   </div>
    	<div flex>
-   		<md-button class="md-raised md-primary"  ng-disabled="group" ng-click="addGroup()" style="float:right">{{action_name}}</md-button>
+   		<md-button class="md-raised md-primary"  ng-disabled="!mgroup" ng-click="addGroup()" style="float:right">{{action_name}}</md-button>
     </div>
     <div flex ng-hide="editgroup">
       <md-button class="md-raised md-primary"  ng-click="cancelGroup()" style="float:right">Cancel</md-button>

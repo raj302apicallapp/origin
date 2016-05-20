@@ -15,14 +15,11 @@
 	 <div flex ng-show="carrymodel.prereq">
       <table class="responstable">
   <tr>
-    <th>Course ID</th>
     <th data-th="Course details"><span>Course Title</span></th>
     <th>Type</th>
     <th>Duration</th>
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
-
-  
   <tr ng-repeat="item in carrymodel.selectPrereq">
     <td>{{item.title}}</td>
      <td>{{item.coursetype}}</td>

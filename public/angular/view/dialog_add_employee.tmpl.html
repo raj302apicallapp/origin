@@ -79,7 +79,7 @@
     </tr>
   
     <tr dir-paginate="item in Emplyoee | itemsPerPage: perPage">
-    <td><md-checkbox ng-change="Employee_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+    <td><md-checkbox ng-change="Employee_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1" ng-disabled="item.Checked">
           </md-checkbox></td>
     <td>{{item.firstname}}</td>
     </tr> 
