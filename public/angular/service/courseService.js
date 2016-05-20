@@ -87,7 +87,7 @@ addCurriculum:function(savedata){
       savedata.addeddate=new Date();
     var promise = $http.post('/addCurriculum',savedata).then(function(response){
       return promise; 
-    }
+    });
 },
 //get EGDFmaster
   getEGDFmaster:function(){
@@ -99,7 +99,7 @@ addCurriculum:function(savedata){
       // Return the promise to the controller
       return promise;
 
-    }
+    },
 //get JRmaster
   getJRmaster:function(){
       console.log("getJRmaster");

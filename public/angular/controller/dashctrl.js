@@ -263,7 +263,13 @@ else if($localStorage.currentPath=="/addelearn"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
   }
-
+//QuestionBank
+else if($location.path()=="/addquestion"){
+    var a1=['Category','Question','Answer'];
+    var a2="angular/view/QuestionBank/AddQuestion/templates/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+  }
 
 
 
@@ -350,13 +356,6 @@ xhr.send(fd);
 }
 
 
-//QuestionBank
-else if($location.path()=="/addquestion"){
-		var a1=['Category','Question','Answer'];
-		var a2="angular/view/QuestionBank/AddQuestion/templates/";
-		$scope.currentPath=a2;
-		$scope.ConfigureWizard(a1,a2);
-	}
 
 });
 
