@@ -230,6 +230,11 @@ when('/managecourse',
   templateUrl: 'angular/view/CourseManagement/managecourse/courselist.html', 
   controller: 'dashctrl'
 }).
+when('/addassessment',
+  {
+    templateUrl: 'angular/view/wizard.html', 
+    controller: 'dashctrl'  
+}).
 
 //QuestionBank
 when('/addquestion',
@@ -238,12 +243,14 @@ when('/addquestion',
   controller: 'dashctrl'
 }).
 
+
 //MasterManagement
 when('/masterdash',
 {
   templateUrl: 'angular/view/MasterManagement/masterDashboard.html', 
   controller: 'masterDashCtrl'
 }).
+
 
 otherwise({
         redirectTo: '/'

@@ -16,7 +16,7 @@
  <td>
     <div flex>
      <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click="addCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+       <md-button  ng-click="addCourses()" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
       </md-input-container>
   </div>
 </td>
@@ -37,7 +37,7 @@
    <td>
      <div flex>
      <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
       </md-input-container>
   </div>
 </td>
@@ -62,7 +62,11 @@
       <div flex="60">
           <md-input-container class="md-block" >
             <label>Section Name</label>
-            <input ng-model="carrymodel.section_name[parentIndex]">
+            <input ng-model="carrymodel.section_name[parentIndex]" required name="sectionname">
+            <div ng-messages="carrymodelForm.sectionname.$error">
+   <div ng-message="required">Section Name is Required.</div>
+           
+        </div>
           </md-input-container>
         </div>
         <div flex="5"></div>
@@ -108,7 +112,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
           <!-- ng-disabled="!carrymodelForm.$valid" -->
-           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

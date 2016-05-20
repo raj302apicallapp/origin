@@ -1,5 +1,5 @@
 var app=angular.module('app');
-app.controller('curriculumCtrl',function($localStorage,$location,$scope,$mdMedia,$mdDialog,$filter,$q,$timeout,mOrgService,vendorService)
+app.controller('curriculumCtrl',function($localStorage,$location,$scope,$mdMedia,$mdDialog,$filter,$q,$timeout,$http,mOrgService,vendorService,curriculumService,courseService)
 {    
  
 $scope.courseDataListCount=[];
@@ -15,6 +15,7 @@ $scope.courseDataListCount=[];
     $scope.dis_skills=true;
     $scope.dis_department=true;
     $scope.dis_cost=true;
+    $scope.dis_curriculumOwner=true;
     var tagarr=[];
     $scope.approvals = ['Individual Course','Whole Course'];
     $scope.individual_Cost_type = ['Sum Of Individual Course Cost'];
@@ -65,6 +66,11 @@ $scope.courseDataListCount=[];
    self.querySearchCurrency   = querySearchCurrency;
     self.selectedCurrencyChange = selectedCurrencyChange;
     self.searchCurrencyChange   = searchCurrencyChange;
+// employee
+    self.querySearchUser   = querySearchUser;
+    self.selectedUserChange = selectedUserChange;
+    self.searchUserChange   = searchUserChange;
+
     /*Tags*/
     var pendingSearch, cancelSearch = angular.noop;
     var cachedQuery, lastSearch;
@@ -340,7 +346,64 @@ $scope.getCurrencydata=function()
         self.selectedCurrency=item;
        // $scope.Course=($filter('filter')($scope.Course, {course: item}));
        // console.log(JSON.stringify($scope.Currency))
-       console.log()
+
+     }
+    }
+
+
+
+
+    // employee
+
+
+$scope.getUserdata=function()
+   {
+      var getResponse=$scope.Emplyoee;
+      $scope.UserList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {
+       if ($scope.UserList.indexOf(getResponse[i].firstname) == -1) 
+        {
+         $scope.UserList.push(getResponse[i].firstname);
+        }
+     }
+       console.log("User List::"+$scope.UserList);
+      self.Userdata=$scope.UserList;
+
+   }
+     function querySearchUser (query) 
+ {     
+  console.log("datas::"+JSON.stringify(self.Userdata));
+      console.log("sr::"+query); 
+        console.log(JSON.stringify(query));
+       query=UpperCase(query);
+       console.log(JSON.stringify(query));
+      var results = query ? self.Userdata.filter( createFilterFor(query) ) : self.Userdata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchUserChange(text)
+   {
+              console.log('Text changed to ' + text);
+      $scope.User=$scope.Userdata;
+    }
+  function selectedUserChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    if(item ==undefined)
+    {         
+         $scope.Emplyoee=$scope.Employeedata;
+    }
+      else{
+        self.selectedUser=item;
+       $scope.Emplyoee=($filter('filter')($scope.Emplyoee, {firstname: item}));
+      
      }
     }
 
@@ -942,15 +1005,18 @@ $scope.getCompetency=function()
 
        var length=$scope.carrymodel.selectCourse_data.length-1;
        for(var i=length;i<$scope.selectCourse_data.length;i++)
-     { 
-       for(var j=0;j<$scope.selectCourse_data[i].length;j++)
+     {  
+      for(var j=0;j<$scope.selectCourse_data[i].length;j++)
        {
+
         $scope.selectCourse_data[i][j].Selected=false;
        }
      }
      }
       $scope.carrymodel.selectCourse_data= $scope.selectCourse_data;
+
       $scope.carrymodel.Section_number=$scope.selectCourse_data.length;
+      $scope.CourseCost();
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -978,7 +1044,6 @@ $scope.Course_checkAll = function () {
     };
     $scope.Course_saveAction=function(){
       console.log(JSON.stringify($scope.Course));
-
       for(var i=0;i<$scope.Course.length;i++){
          console.log("Final Result::"+JSON.stringify($scope.Course[i].Selected));
         if ($scope.Course[i].Selected==false || !angular.isDefined($scope.Course[i].Selected)) {}else{
@@ -991,7 +1056,6 @@ $scope.Course_checkAll = function () {
       $mdDialog.hide($scope.selectCourse);
     }
     $scope.removeCourse=function(parentIndex,index){
-
       $scope.carrymodel.selectCourse_data[parentIndex].splice(index,1);
     }
 
@@ -1034,8 +1098,6 @@ Array.prototype.move = function(from,to){
   $scope.addSection=function(parentIndex)
 { 
   $scope.addCourses();
-   // $scope.selectCourse_data.splice(parentIndex,1);  
-   
 }
   /*remove*/
 $scope.removeSection=function(parentIndex)
@@ -1060,7 +1122,7 @@ $scope.carrymodel.Section_number=$scope.selectCourse_data.length;
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller :CurriculumController,
-      templateUrl: 'angular/view/dialog_add_Course.tmpl.html',
+      templateUrl: 'angular/view/dialog_add_Related_Course.tmpl.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
@@ -1081,10 +1143,10 @@ $scope.carrymodel.Section_number=$scope.selectCourse_data.length;
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-$scope.Course_checkOne=function(vindex){
+$scope.Related_Course_checkOne=function(vindex){
 console.log(JSON.stringify($scope.Course));
 }
-$scope.Course_checkAll = function () {
+$scope.Related_Course_checkAll = function () {
         if ($scope.selectedAll) {
             $scope.selectedAll = true;
 
@@ -1097,24 +1159,21 @@ $scope.Course_checkAll = function () {
         });
         console.log("$scope.Competency::"+JSON.stringify($scope.Course));
     };
-    $scope.Course_saveAction=function(){
+    $scope.Related_Course_saveAction=function(){
       console.log(JSON.stringify($scope.Course));
       for(var i=0;i<$scope.Course.length;i++){
          console.log("Final Result::"+JSON.stringify($scope.Course[i].Selected));
         if ($scope.Course[i].Selected==false || !angular.isDefined($scope.Course[i].Selected)) {}else{
         $scope.select_related_Curriculum.push($scope.Course[i]);
-      };
-        
+      }; 
       }
       console.log("Final Result::"+JSON.stringify($scope.select_related_Curriculum));
        $scope.jj="jjjj";
       $mdDialog.hide($scope.select_related_Curriculum);
     }
-    $scope.removeCourse=function(vindex){
-      $scope.carrymodel.relatedCurriculum_data.splice(vindex,1);
+    $scope.Related_removeCourse=function(vindex){
+      $scope.carrymodel.select_related_Curriculum.splice(vindex,1);
     }
-
-
     $scope.loadCurrency = function() {
 
     // Use timeout to simulate a 650ms request.
@@ -1134,9 +1193,117 @@ $scope.Course_checkAll = function () {
     }, 650);
   };
 
-  if($scope.carrymodel.sum_of_individual_course_cost)
+$scope.CourseCost=function()
+{  
+   $scope.Course_total_cost=0;
+      for(var i=0;i<$scope.selectCourse_data.length;i++)
+     { 
+       for(var j=0;j<$scope.selectCourse_data[i].length;j++)
+       {  
+         
+         $scope.Course_total_cost=parseInt($scope.selectCourse_data[i][j].cost)+parseInt($scope.Course_total_cost);
+       }
+     }
+     $scope.carrymodel.sum_of_individual_total_course_cost="INR"+$scope.Course_total_cost;
+     // $scope.Currenyresult=angular.extend({}, $scope.selectedcurrency, $scope.Course_total_cost);
+     
+     // $scope.carrymodel.sum_of_individual_total_course_cost=$scope.Currenyresult;
+    $scope.dis_total_cost=true;
+}
+
+  $scope.ChangeCurrency=function(data)
   {
-       alert(JSON.stringify($scope.carrymodel.selectCourse_data))
+    // alert(JSON.stringify(data))
+    // $scope.selectedcurrency=data.code;
+    // $scope.CourseCost();
   }
-  
+
+
+  $scope.pickemployee=function()
+  {
+     curriculumService.pickemployee().then(function(response)
+     {
+        $scope.Emplyoee=response.data;
+        $scope.Employeedata=response.data;
+        $scope.getUserdata();
+     });
+  }
+ $scope.pickemployee();
+
+  $scope.select_employee=[];
+ $scope.pick_employee_details = function(ev) {
+   console.log(JSON.stringify($scope.Emplyoee));
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller :CurriculumController,
+      templateUrl: 'angular/view/dialog_add_employee.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen,
+      locals: {
+        items: $scope.Emplyoee
+     }
+    })
+    .then(function(answer) {
+      console.log("ok"+JSON.stringify(answer));
+      $scope.carrymodel.curriculum_owner=answer;
+      $scope.dis_curriculumOwner=false;
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+  };
+$scope.Employee_checkOne=function(vindex){
+
+console.log(JSON.stringify($scope.Emplyoee));
+}
+// $scope.Related_Course_checkAll = function () {
+//         if ($scope.selectedAll) {
+//             $scope.selectedAll = true;
+
+//         } else {
+//             $scope.selectedAll = false;
+//         }
+        
+//         angular.forEach($scope.Emplyoee, function (item) {
+//             item.Selected = $scope.selectedAll;
+//         });
+//         console.log("$scope.Emplyoee::"+JSON.stringify($scope.Emplyoee));
+//     };
+    $scope.Employee_saveAction=function(){
+      console.log(JSON.stringify($scope.Emplyoee));
+      for(var i=0;i<$scope.Emplyoee.length;i++){
+         console.log("Final Result::"+JSON.stringify($scope.Emplyoee[i].Selected));
+        if ($scope.Emplyoee[i].Selected==false || !angular.isDefined($scope.Emplyoee[i].Selected) ) {}else{
+        $scope.select_employee.push($scope.Emplyoee[i].firstname);
+      };
+        
+      }
+      console.log("Final Result::"+JSON.stringify($scope.select_employee));
+       $scope.jj="jjjj";
+      $mdDialog.hide($scope.select_employee);
+    }
+    
+ // image upload
+ 
+   $scope.submitaction=function(data)
+   {
+
+
+      // alert(JSON.stringify(data));
+      courseService.addCurriculum(data).then(function(response)
+      {
+        console.log(JSON.stringify(response));
+        if(response)
+        {
+          $location.path('/managecourse');
+        }
+      });
+   }
+
 });

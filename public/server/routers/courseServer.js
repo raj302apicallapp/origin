@@ -17,6 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']);
 
  var sess="";
@@ -169,6 +170,16 @@ db.mProgramCoordinator.find({"status":1},function(err,docs){
 	res.json(docs);
 });
 });
+// add curriculum
+router.post('/addCurriculum',function(req,res){
+console.log(req.body);
+
+db.course_management.insert(req.body,function(err,docs){
+	
+	res.json(docs);
+});
+});
+
 
 
 //getEGDFmaster
@@ -194,5 +205,6 @@ db.competency.find({},function(err,docs){
 	res.json(docs);
 });
 });
+
 
 module.exports=router;

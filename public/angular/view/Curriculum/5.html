@@ -1,8 +1,8 @@
 <h5 style="text-align:center;padding-bottom:10px;">Cost Curriculum</h5>
-<form name="masterForm" ng-controller="curriculumCtrl as ctrl">
+<form name="masterForm" ng-controller="curriculumCtrl as ctrl" >
 <div layout="row" layout-xs="column">
  <div flex>
-        <md-select placeholder="Select Curreny" ng-model="carrymodel.item" md-on-open="loadCurrency()" style="min-width: 200px;">
+        <md-select placeholder="Select Curreny" ng-model="carrymodel.selectedCurrency" md-on-open="loadCurrency()" style="min-width: 200px;"  ng-change="ChangeCurrency(carrymodel.item)">
       <md-option ng-value="item" ng-repeat="item in Currency">{{item.Currency_Name}}</md-option>
     </md-select>
  </div> 
@@ -29,7 +29,7 @@
 
   <div layout="row" layout-xs="column">
  <div flex>
-  
+
         <md-radio-group ng-model="carrymodel.CourseCost">
                       <label ng-repeat="individual_Cost_type in individual_Cost_type"> 
             <md-radio-button name="cost" ng-value="individual_Cost_type" >{{individual_Cost_type}}
@@ -40,7 +40,7 @@
  <div flex>
   <md-input-container class="md-block">
         <label>Cost</label>
-        <input required name="cost" ng-model="carrymodel.sum_of_individual_course_cost">
+        <input required name="cost" ng-model="carrymodel.sum_of_individual_total_course_cost" ng-disabled="dis_total_cost">
   
       </md-input-container>
  </div>
@@ -62,13 +62,25 @@
       </md-input-container>
  </div>
 </div>
+<div layout="row" layout-xs="column">
+ <div flex>
+       <label>Re-Occurrence Cost - First Time</label> 
+ </div> 
+ <div flex>
+  <md-input-container class="md-block">
+        <label>Cost</label>
+        <input required name="cost" ng-model="carrymodel.re_occurrence_cost">
+  
+      </md-input-container>
+ </div>
+</div>
 <div style="padding-bottom:2%"></div>
  <!-- ROW last Starts -->
 <div class="row">
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
           <!-- ng-disabled="!carrymodelForm.$valid" -->
-           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button   ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

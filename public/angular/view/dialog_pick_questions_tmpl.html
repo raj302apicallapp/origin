@@ -1,9 +1,9 @@
  <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog" >
-  <form ng-controller="curriculumCtrl as ctrl " ng-init="getCoursedata()">
+  <form ng-controller="assessmentCtrl as ctrl " ng-init="getQuestiondata()">
     
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Course Info</h2>
+        <h2>Question Info</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           x
@@ -13,7 +13,7 @@
     <md-dialog-content>
     <div class="md-dialog-content">
      <!-- ROW 1 start -->
-<div layout="row" layout-xs="column">
+<!-- <div layout="row" layout-xs="column">
  <div flex>
   
       <md-autocomplete
@@ -33,7 +33,7 @@
           No Course matching "{{ctrl.searchCourse}}" were found.
         </md-not-found>
       </md-autocomplete>
-  </div>
+  </div> -->
   <!-- <div style="width:2%"></div>
   <div flex>
       <md-autocomplete
@@ -55,9 +55,9 @@
         </md-not-found>
       </md-autocomplete>
   </div> -->
-</div>
+<!-- </div> -->
 <!-- row 1 end -->
-<div style="padding-bottom:1%"></div>
+<!-- <div style="padding-bottom:1%"></div> -->
 <!-- row 2 start -->
 <div layout="row" layout-xs="column" ng-init="perPage=5">
   <div flex>
@@ -67,19 +67,19 @@
         
       </md-input-container>
   </div>
- </div>      
+</div>      
     
     <table class="responstable">
     <tr>
-    <th><md-checkbox ng-model="selectedAll" ng-change="Related_Course_checkAll()" aria-label="Checkbox 1">
+    <th><md-checkbox ng-model="selectedAll" ng-change="Question_checkAll()" aria-label="Checkbox 1">
      </md-checkbox></th>
-    <th data-th="Course details"><span>Course</span></th>
+    <th data-th="Question details"><span>Question</span></th>
     </tr>
   
-    <tr dir-paginate="item in Course | itemsPerPage: perPage">
-    <td><md-checkbox ng-change="Related_Course_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+    <tr dir-paginate="item in questions | itemsPerPage: perPage">
+    <td><md-checkbox ng-change="Question_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
-    <td>{{item.course}}</td>
+    <td>{{item.question}}</td>
     </tr> 
   </table>
 
@@ -88,7 +88,7 @@
 </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-    <md-button ng-click="Related_Course_saveAction()" style="margin-right:20px;">
+    <md-button ng-click="Question_saveAction()" style="margin-right:20px;">
         Save
       </md-button>
     </md-dialog-actions>

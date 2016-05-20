@@ -72,6 +72,7 @@
    <md-button ng-click="AddAction()" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
 </div>
 </div>
+
 <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
 <div layout="row" layout-xs="column">
 
@@ -84,6 +85,7 @@
     <th ng-click="sortDuration()">Duration<md-icon class="material-icons"><i class="material-icons">{{durationSortIcon}}</i></md-icon></th>
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
+
 
   <tr dir-paginate="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
     
@@ -100,6 +102,7 @@
   
 </table>
 <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+
   </div> 
 </div>
 <!-- ROW 1 Ends -->

@@ -1,12 +1,13 @@
 <h5 style="text-align:center;padding-bottom:10px;">Target Audience</h5>
-<form name="masterForm" ng-controller="curriculumCtrl as ctrl">
-	<!-- row 1 -->
-	<div layout="row" layout-xs="column">
+<form name="carrymodelForm" ng-controller="curriculumCtrl as ctrl">
+  <!-- row 1 -->
+  <div layout="row" layout-xs="column">
  <div flex>
   
       <md-autocomplete
            md-no-cache="true"
            ng-disabled="dis_entity"
+           required md-input-name="entity"
           md-selected-item="ctrl.selectedEntity"
           md-search-text-change="ctrl.searchEntityChange(ctrl.searchEntity)"
           md-search-text="ctrl.searchEntity"
@@ -21,6 +22,9 @@
         <md-not-found>
           No Entity matching "{{ctrl.searchEntity}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.entity.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
   </div>
  <div style="width:2%"></div>
@@ -29,6 +33,7 @@
       <md-autocomplete
            md-no-cache="true"
            ng-disabled="dis_group"
+            required md-input-name="group"
           md-selected-item="ctrl.selectedGroup"
           md-search-text-change="ctrl.searchGroupChange(ctrl.searchGroup)"
           md-search-text="ctrl.searchGroup"
@@ -43,6 +48,9 @@
         <md-not-found>
           No Group matching "{{ctrl.searchGroup}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.group.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
   </div>
 </div>
@@ -55,6 +63,7 @@
       <md-autocomplete
            md-no-cache="true"
            ng-disabled="dis_function"
+           required md-input-name="function"
           md-selected-item="ctrl.selectedFunction"
           md-search-text-change="ctrl.searchFunctionChange(ctrl.searchFunction)"
           md-search-text="ctrl.searchFunction"
@@ -69,6 +78,9 @@
         <md-not-found>
           No Function matching "{{ctrl.searchFunction}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.function.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
   </div>
 
@@ -78,6 +90,7 @@
       <md-autocomplete
            md-no-cache="true"
            ng-disabled="dis_department"
+           required md-input-name="department"
           md-selected-item="ctrl.selectedDepartment"
           md-search-text-change="ctrl.searchDepartmentChange(ctrl.searchDepartment)"
           md-search-text="ctrl.searchDepartment"
@@ -92,6 +105,9 @@
         <md-not-found>
           No Department matching "{{ctrl.searchDepartment}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.department.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
     </div>
   
@@ -156,7 +172,7 @@
   
       <md-autocomplete
            md-no-cache="true"
-           
+           required md-input-name="competency"
           md-selected-item="ctrl.selectedCompetency"
           md-search-text-change="ctrl.searchCompetencyChange(ctrl.searchCompetency)"
           md-search-text="ctrl.searchCompetency"
@@ -171,6 +187,9 @@
         <md-not-found>
           No Competency matching "{{ctrl.searchCompetency}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.competency.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
   </div>
 
@@ -180,6 +199,7 @@
       <md-autocomplete
            md-no-cache="true"
            ng-disabled="dis_SubCompetency"
+           required md-input-name="sub_competency"
           md-selected-item="ctrl.selectedSubCompetency"
           md-search-text-change="ctrl.searchSubCompetencyChange(ctrl.searchSubCompetency)"
           md-search-text="ctrl.searchSubCompetency"
@@ -192,8 +212,11 @@
           <span md-highlight-text="ctrl.searchSubCompetency" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No Job Role matching "{{ctrl.searchSubCompetency}}" were found.
+          No Sub Competency matching "{{ctrl.searchSubCompetency}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.sub_competency.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
     </div>
   
@@ -208,6 +231,7 @@
            md-no-cache="true"
            ng-disabled="dis_skills"
           md-selected-item="ctrl.selectedSkills"
+          required md-input-name="skills"
           md-search-text-change="ctrl.searchSkillsChange(ctrl.searchSkills)"
           md-search-text="ctrl.searchSkills"
           md-selected-item-change="ctrl.selectedSkillsChange(item)"
@@ -221,6 +245,9 @@
         <md-not-found>
           No Skills matching "{{ctrl.searchSkills}}" were found.
         </md-not-found>
+        <div ng-messages="carrymodelForm.skills.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
       </md-autocomplete>
   </div>
 
@@ -229,6 +256,7 @@
      <div flex>
      <md-contact-chips
         ng-model="carrymodel.tags"
+        required md-input-name="tags"
         md-contacts="ctrl.delayedQuerySearchTags($query)"
         md-contact-name="name"
         md-require-match="true"
@@ -236,6 +264,9 @@
         filter-selected="ctrl.filterSelected"
         placeholder="Tags"
         secondary-placeholder="Tags">
+        <div ng-messages="carrymodelForm.tags.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
     </md-contact-chips>
     </div>
   
@@ -247,7 +278,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
           <!-- ng-disabled="!carrymodelForm.$valid" -->
-           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

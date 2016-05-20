@@ -8,8 +8,6 @@ var http = require('http');
 var mongojs=require('mongojs');
 
 var db = mongojs('mongodb://soundar:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['register']);
-
-
  
 var port = Number(process.env.PORT || 3000)
 var session = require('express-session');
@@ -18,9 +16,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-
-
-
 
 app.use('/', express.static(__dirname+'/public'));
 app.use(require(path.join(__dirname+'/public/server/routers/auth.js')));
@@ -32,6 +27,7 @@ app.use(require(path.join(__dirname+'/public/server/routers/locationServer.js'))
 app.use(require(path.join(__dirname+'/public/server/routers/venueServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/vendorServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/mOrgServer.js')));
+app.use(require(path.join(__dirname+'/public/server/routers/curriculumServer.js')));
 
 app.listen(port,function(){
 })

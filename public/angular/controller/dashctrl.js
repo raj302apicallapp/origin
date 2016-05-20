@@ -41,8 +41,7 @@ i=i+1;
 }]);
 
 //Dashboard controller starts
-app.controller('dashctrl',function($scope,$localStorage,$timeout,$window,$interval,$location,$routeParams,WizardService){
-
+app.controller('dashctrl',function($scope,$localStorage,$http,$timeout,$window,$interval,$location,$routeParams,WizardService){
 
 //localstorage for show current login user
 $scope.displayName=$localStorage.User;
@@ -102,8 +101,6 @@ console.log("templatepath::"+resultJson.templatepath);
 }
 //Previous button action
 $scope.prevaction=function(add){
-	// alert(""+JSON.stringify(add));
-
 var resultJson=WizardService.prevaction(add,$scope.currentIndex,$scope.menuList,$scope.currentPath);
 $scope.templatepath=resultJson.templatepath;
 $scope.currentIndex=resultJson.currentindex;
@@ -141,6 +138,11 @@ if($location.path()=="/add_curriculum")
 else if($location.path()=="/addelearn")
 {
 	console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
+else if($location.path()=="/addassessment")
+{
+  console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
 
@@ -254,14 +256,106 @@ else if($localStorage.currentPath=="/addelearn"){
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
 	}
-
+  else if($localStorage.currentPath=="/addassessment"){
+  console.log("addassessment");
+    var a1=['Basic Info','Assessment Questions','Assessment Options'];
+    var a2="angular/view/AssessmentManagement/Assessment/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+  }
 //QuestionBank
 else if($location.path()=="/addquestion"){
-		var a1=['Category','Question','Answer'];
-		var a2="angular/view/QuestionBank/AddQuestion/templates/";
-		$scope.currentPath=a2;
-		$scope.ConfigureWizard(a1,a2);
-	}
+    var a1=['Category','Question','Answer'];
+    var a2="angular/view/QuestionBank/AddQuestion/templates/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+  }
+
+
+
+
+$scope.browseClick=function(){
+  console.log("browse");
+  $scope.kok=false;
+  console.log(JSON.stringify($scope.carrymodel));
+}
+$scope.uploadClick=function(carrymodel){
+  $scope.kok=true;
+  console.log(JSON.stringify(carrymodel));
+  console.log(carrymodel.localfile);
+
+var fd = new FormData();
+  fd.append('images', carrymodel.localfile);
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open('post', '/upload', true);
+  
+  xhr.upload.onprogress = function(e) {
+  if (e.lengthComputable) {
+  var percentage = (e.loaded / e.total) * 100;
+    $scope.$apply(function() {
+    $scope.progressValue=percentage.toFixed(1);
+    if ($scope.progressValue>0 && $scope.progressValue<=100) {
+      $scope.showProgress=true;
+    }else{
+      $scope.showProgress=false;
+    }
+    }); 
+    console.log("Percentage::"+$scope.progressValue);
+  }
+};
+
+xhr.onerror = function(e) {
+  // showInfo('An error occurred while submitting the form. Maybe your file is too big');
+  console.log("error");
+};
+
+xhr.onload = function() {
+  // showInfo(this.statusText);
+  console.log("onload");
+  console.log(this.statusText);
+  console.log(JSON.stringify(this));
+  $scope.$apply(function() {
+  $scope.showProgress=false;
+
+}); 
+
+  
+};
+
+xhr.send(fd);
+ 
+
+
+
+ var promise = $http.post("/upload", fd, {
+                              withCredentials: false,
+                              headers: {
+                                'Content-Type': undefined
+                              },
+                              transformRequest: angular.identity,
+                              params: {
+                                fd
+                              },
+                              // responseType: "arraybuffer"
+                            })
+                            .success(function(response, status, headers, config) {
+                             console.log(JSON.stringify(response));
+                             if (response) {
+                              $scope.carrymodel.filePath=response.imgPath;
+                               console.log("Upload Server URL::"+$scope.carrymodel.filePath);
+
+                              
+                             };
+                            })
+                            .error(function(error, status, headers, config) {
+                              console.log(error);
+                            });
+          // Return the promise to the controller
+          return promise;
+}
+
+
 
 });
 

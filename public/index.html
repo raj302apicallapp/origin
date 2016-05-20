@@ -30,7 +30,6 @@
 	<!-- /global stylesheets -->
 
 	
-
 <!-- MATERIAL DESIGN CALL STARTS -->
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.js"></script>
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
@@ -44,11 +43,6 @@
 	<!-- MATERIAL DESIGN CALL ENDS -->
 
 
-
-
-<!-- Pagination -->
-<script src="angular/directives/dirPagination.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js"></script>
 	<!-- Controllers-->
 	<script type="text/javascript" src="angular/controller/maincontroller.js"></script>
 	<script type="text/javascript" src="angular/controller/InformalLearning/ILController.js"></script>
@@ -60,7 +54,11 @@
 	<!-- /Controllers -->
 	<script type="text/javascript" src="angular/controller/VenueManagement/VenueController.js"></script>
 	<script type="text/javascript" src="angular/service/venueService.js"></script>
+	<!-- Pagination -->
+<script src="angular/directives/dirPagination.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js"></script>
 	
+
 
 <!-- Vendor management -->
 <script src="angular/controller/VendorManagement/VendorController.js"></script>
@@ -83,6 +81,20 @@
 
 <!-- add curriculum -->
 <script src="angular/controller/Curriculum/Curriculum_controller.js"></script>
+<script type="text/javascript" src="angular/service/Curriculum/curriculumService.js"></script>
+
+
+<!-- Assessement management -->
+<script type="text/javascript" src="angular/controller/Assessmentmanagement/Assessment/AssessmentController.js"></script>
+</head>
+
+
+<!-- Course Management -->
+<script src="angular/controller/coursemanagement/addCourseController.js"></script>
+<script src="angular/controller/coursemanagement/manageCourseController.js"></script>
+<script src="angular/service/courseService.js"></script>
+<!-- choose file directive -->
+<script type="text/javascript" src="angular/directives/ChoosefileDirective.js"></script>
 
 <!-- Course Management -->
 <script src="angular/directives/uploadDirective.js"></script>
@@ -99,10 +111,6 @@
 <!-- Master Managemet -->
 <script type="text/javascript" src="angular/controller/MasterManagement/masterdashCtrl.js"></script>
 </head>
-
-
-
-
 <body ng-controller="maincontroller">
 	<!-- Top Navbar Starts -->
 	<div class="navbar navbar-inverse">
@@ -293,7 +301,7 @@ Gamification</a></li>
 <li><a href="/"><i class="material-icons">question_answer</i>Question Bank Management</a></li>
 <li><a href="/dash1"><i class="material-icons">library_books</i>
 Survey Management</a></li>
-<li><a href="/dash1"><i class="material-icons">cloud_upload</i>
+<li><a href="/addassessment"><i class="material-icons">cloud_upload</i>
 Assessment Management</a></li>
 <li><a href="/dash1"><i class="material-icons">school</i>
 Certification Management</a></li>

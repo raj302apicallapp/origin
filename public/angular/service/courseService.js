@@ -3,6 +3,7 @@ app.factory('courseService',function ($http,$window) {
 return{
 addCourse:function(savedata){
 			console.log("courseService"+JSON.stringify(savedata));
+
 			savedata.coursetype="ILT";
 			savedata.coursestatus=1;
 			savedata.addeddate=new Date();
@@ -79,6 +80,15 @@ updateCourse:function(savedata){
       // Return the promise to the controller
       return promise; 
 },
+addCurriculum:function(savedata){
+      console.log("courseService"+JSON.stringify(savedata));
+      savedata.coursetype="Curriculum";
+      savedata.curriculumstatus=1;
+      savedata.addeddate=new Date();
+    var promise = $http.post('/addCurriculum',savedata).then(function(response){
+      return promise; 
+    });
+},
 //get EGDFmaster
   getEGDFmaster:function(){
       console.log("getEGDFmaster");
@@ -87,8 +97,9 @@ updateCourse:function(savedata){
         return response;
       });
       // Return the promise to the controller
-      return promise; 
-},
+      return promise;
+
+    },
 //get JRmaster
   getJRmaster:function(){
       console.log("getJRmaster");
@@ -109,16 +120,9 @@ updateCourse:function(savedata){
       // Return the promise to the controller
       return promise; 
 },
+
+
 }
-
-
-
-
-
-
-
-
-
 
 
 });
