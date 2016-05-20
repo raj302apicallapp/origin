@@ -1,4 +1,4 @@
-var app=angular.module('app',['ngRoute','ngStorage','ngMaterial','ngMessages','angularUtils.directives.dirPagination','ngSanitize']);
+var app=angular.module('app',['ngRoute','ngStorage','ngMaterial','ngMessages','angularUtils.directives.dirPagination','ngSanitize','ephox.textboxio']);
 
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
 $locationProvider.html5Mode({
@@ -236,6 +236,13 @@ when('/addquestion',
 {
   templateUrl: 'angular/view/QuestionBank/AddQuestion/addquestion.html', 
   controller: 'dashctrl'
+}).
+
+//MasterManagement
+when('/masterdash',
+{
+  templateUrl: 'angular/view/MasterManagement/masterDashboard.html', 
+  controller: 'masterDashCtrl'
 }).
 
 otherwise({
