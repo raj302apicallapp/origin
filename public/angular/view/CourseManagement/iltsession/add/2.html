@@ -1,0 +1,74 @@
+<h5 style="text-align:center;padding-bottom:10px;">Contact</h5>
+<form name="carrymodelForm" ng-controller="addCourseCtrl as ctrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedCoordinator"
+          md-search-text-change="ctrl.searchCoordinatorChange(ctrl.searchCoordinator)"
+          md-search-text="ctrl.searchCoordinator"
+          md-selected-item-change="ctrl.selectedCoordinatorChange(item)"
+          md-items="item in ctrl.querySearchCoordinator(ctrl.searchCoordinator)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Coordinator">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCoordinator" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Coordinator matching "{{ctrl.searchCoordinator}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  
+  
+  
+</div>
+<!-- ROW 1 Ends -->
+<div style="padding-bottom:2%"></div>
+
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Email ID</label>
+        <input required name="Email" disabled="disabled" ng-model="carrymodel.email">
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+
+<!-- ROW 3 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Phone</label>
+        <input required name="Phone" disabled="disabled" ng-model="carrymodel.phone">
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 3 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 4 Ends -->
+<div layout="row" layout-xs="column">
+<div flex>
+ <md-checkbox ng-model="onlineStatus" aria-label="Checkbox 1">
+            Show Online Status
+          </md-checkbox>
+</div>
+</div>
+<!-- ROW 4 Ends -->
+<div style="padding-bottom:2%"></div> 
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+ 

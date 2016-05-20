@@ -1,0 +1,226 @@
+
+<form name="CourseForm" ng-controller="venueCtrl as ctrl" ng-init="getVenue()"> 
+<div layout="row" layout-xs="column">
+ <div flex>
+  <!-- md-floating-label="Country"  -->
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="true"    
+          md-selected-item="ctrl.selectedCountry"
+          md-search-text-change="ctrl.searchCountryChange(ctrl.searchCountry)"
+          md-search-text="ctrl.searchCountry"
+          md-selected-item-change="ctrl.selectedCountryChange(item)"
+          md-items="item in ctrl.querySearchCountry(ctrl.searchCountry)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Country">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCountry" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Country matching "{{ctrl.searchCountry}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="!ctrl.selectedCountry"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedState"
+          md-search-text-change="ctrl.searchStateChange(ctrl.searchState)"
+          md-search-text="ctrl.searchState"
+          md-selected-item-change="ctrl.selectedStateChange(item)"
+          md-items="item in ctrl.querySearchState(ctrl.searchState)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="State">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchState" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No State matching "{{ctrl.searchState}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="!ctrl.selectedState"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedCity"
+          md-search-text-change="ctrl.searchCityChange(ctrl.searchCity)"
+          md-search-text="ctrl.searchCity"
+          md-selected-item-change="ctrl.selectedCityChange(item)"
+          md-items="item in ctrl.querySearchCity(ctrl.searchCity)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="City">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCity" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No City matching "{{ctrl.searchCity}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 3 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-autocomplete
+          ng-disabled="!ctrl.selectedCity"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedBuilding"
+          md-search-text-change="ctrl.searchBuildingChange(ctrl.searchBuilding)"
+          md-search-text="ctrl.searchBuilding"
+          md-selected-item-change="ctrl.selectedBuildingChange(item)"
+          md-items="item in ctrl.querySearchBuilding(ctrl.searchBuilding)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Building">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchBuilding" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Building matching "{{ctrl.searchBuilding}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="!ctrl.selectedBuilding"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedFloor"
+          md-search-text-change="ctrl.searchFloorChange(ctrl.searchFloor)"
+          md-search-text="ctrl.searchFloor"
+          md-selected-item-change="ctrl.selectedFloorChange(item)"
+          md-items="item in ctrl.querySearchFloor(ctrl.searchFloor)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Floor">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchFloor" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Floor matching "{{ctrl.searchFloor}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="!ctrl.selectedFloor"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedWing"
+          md-search-text-change="ctrl.searchWingChange(ctrl.searchWing)"
+          md-search-text="ctrl.searchWing"
+          md-selected-item-change="ctrl.selectedWingChange(item)"
+          md-items="item in ctrl.querySearchWing(ctrl.searchWing)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Wing">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchWing" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Wing matching "{{ctrl.searchWing}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- ROW 3 Ends -->
+<div style="padding-bottom:2%"></div>
+<!--Row 4 Starts -->
+<div layout="row" layout-xs="column">
+<div flex>
+      <md-autocomplete
+          ng-disabled="false"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedTypes"
+          md-search-text-change="ctrl.searchTypesChange(ctrl.searchTypes)"
+          md-search-text="ctrl.searchTypes"
+          md-selected-item-change="ctrl.selectedTypesChange(item)"
+          md-items="item in ctrl.querySearchTypes(ctrl.searchTypes)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Types">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchTypes" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Types matching "{{ctrl.searchTypes}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div layout="row" layout-xs="column">
+   <div flex>
+      <md-input-container class="md-block">
+       <md-checkbox ng-model="activestatus" ng-change="changeActiveStatus()" aria-label="Checkbox 1">
+           Show Inactive Course also
+          </md-checkbox>
+      </md-input-container>
+  </div>
+
+    <div flex>
+          <md-input-container class="md-block">
+          <label>Choose Venue Type</label>
+       <md-select ng-model="carrymodel.venuetype" ng-change="changeType()"  aria-label="Type">
+          <md-option ng-repeat="type in types" value="{{type}}">
+            {{type}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+     <div flex>
+          <md-input-container class="md-block">
+       <md-button ng-disabled="!carrymodel.venuetype" ng-click="addVenue()" style="float:right;" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+      </md-input-container>
+    </div>
+    
+</div>
+<div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:12%;"><img src="assets/img/balls.svg"/></div>
+<div layout="row">
+   <div flex>
+      <table class="responstable">
+  <tr>
+    <th data-th="Course details" ng-click="sortvenue()">Venue<md-icon class="material-icons"><i class="material-icons">{{venueSortIcon}}</i></md-icon></th>
+    <th ng-click="sortroom()">Room<md-icon class="material-icons"><i class="material-icons">{{roomSortIcon}}</i></md-icon></th>
+    <th ng-click="sorttype()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+
+  <tr dir-paginate="item in getVenueList | orderBy:orderList | filter:countryFilter | filter:stateFilter | filter:cityFilter | filter:buildingFilter | filter:floorFilter | filter:wingFilter | filter:changeTypeFilter | itemsPerPage:5">
+    <td>{{item.venue}}</td>
+     <td>{{item.room}}</td>
+    <td>{{item.venuetype}}</td>
+   <td class="actionclass" ng-hide="item.venuestatus"><md-button class="actionbtn" ng-click="activeVenue(item)" aria-label="Info"><i class="fa fa-eye-slash"></i></md-button></td>
+   <td class="actionclass" ng-show="item.venuestatus"><md-button class="actionbtn" ng-click="activeVenue(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons"><i class="material-icons">remove_red_eye</i></i></md-icon></md-button></td>
+   <td class="actionclass"><md-button ng-click="editVenue(item)" class="actionbtn" ng-click="" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">mode_edit</i></md-icon></md-button></td>
+    <td class="actionclass"><md-button class="actionbtn" ng-click="removeVenue(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">delete_forever</i></md-icon></md-button></td>
+  </tr>
+</table>
+<dir-pagination-controls templateurl="angular/directives/dirPagination.tpl" style="float:right"></dir-pagination-controls>
+  </div> 
+</div>
+<!-- ROW 1 Ends -->
+</form>
+
+ <link href="assets/css/course.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">

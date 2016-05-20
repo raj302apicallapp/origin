@@ -1,0 +1,99 @@
+ <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog"  >
+  <form ng-controller="curriculumCtrl as ctrl " >
+    
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>User Info</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          x
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    <div class="md-dialog-content">
+     <!-- ROW 1 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="User">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No User matching "{{ctrl.searchUser}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <!-- <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="dis_cost"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedCost"
+          md-search-text-change="ctrl.searchCostChange(ctrl.searchCost)"
+          md-search-text="ctrl.searchCost"
+          md-selected-item-change="ctrl.selectedCostChange(item)"
+          md-items="item in ctrl.querySearchCost(ctrl.searchCost)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Cost">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCost" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Cost matching "{{ctrl.searchCost}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div> -->
+</div>
+<!-- row 1 end -->
+<div style="padding-bottom:1%"></div>
+<!-- row 2 start -->
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label style="text-style:bold;text-color:black">Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div>
+ </div>      
+    
+    <table class="responstable">
+    <tr>
+    <th><md-checkbox  aria-label="Checkbox 1">
+     </md-checkbox></th>
+     <!-- <th><md-checkbox ng-model="selectedAll" ng-change="Related_Course_checkAll()" aria-label="Checkbox 1">
+     </md-checkbox></th> -->
+    <th data-th="Course details"><span>Name</span></th>
+    </tr>
+  
+    <tr dir-paginate="item in Emplyoee | itemsPerPage: perPage">
+    <td><md-checkbox ng-change="Employee_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+          </md-checkbox></td>
+    <td>{{item.firstname}}</td>
+    </tr> 
+  </table>
+
+ <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  
+</div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+    <md-button ng-click="Employee_saveAction()" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+  
+</md-dialog>

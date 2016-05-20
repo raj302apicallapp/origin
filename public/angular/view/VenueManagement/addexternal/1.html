@@ -1,0 +1,60 @@
+<h5 style="text-align:center;padding-bottom:10px;">Equipments Info</h5>
+<form name="carrymodelForm" ng-controller="venueCtrl" ng-init="initMethod()">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+	
+  <div flex>
+     <md-checkbox ng-model="carrymodel.projector" aria-label="Checkbox 1">
+            Projector Available
+          </md-checkbox>  
+  </div>
+ 
+</div>
+<!-- ROW 1 Ends --> 
+
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  
+  <div flex>
+     <md-checkbox ng-model="carrymodel.whiteboard" aria-label="Checkbox 1">
+            Whiteboard Available
+          </md-checkbox>
+  </div>
+ 
+</div>
+<!-- ROW 2 Ends -->
+<!-- ROW 3 Starts -->
+<div layout="row" layout-xs="column">
+  
+  <div flex>
+     <md-checkbox ng-model="carrymodel.flipboard" aria-label="Checkbox 1">
+            Flipboard Available
+          </md-checkbox>
+  </div>
+ 
+</div>
+<!-- ROW 3 Ends -->
+<!-- ROW 4 Starts -->
+<div layout="row" layout-xs="column">
+  
+  <div flex>
+     <md-checkbox ng-model="carrymodel.internet" aria-label="Checkbox 1">
+            Internet Available
+          </md-checkbox>
+  </div>
+ 
+</div>
+<!-- ROW 4 Ends -->
+
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+ 
