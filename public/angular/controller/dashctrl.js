@@ -43,7 +43,6 @@ i=i+1;
 //Dashboard controller starts
 app.controller('dashctrl',function($scope,$localStorage,$http,$timeout,$window,$interval,$location,$routeParams,WizardService){
 
-
 //localstorage for show current login user
 $scope.displayName=$localStorage.User;
 $scope.nextName="Next";
@@ -102,7 +101,6 @@ console.log("templatepath::"+resultJson.templatepath);
 }
 //Previous button action
 $scope.prevaction=function(add){
-
 var resultJson=WizardService.prevaction(add,$scope.currentIndex,$scope.menuList,$scope.currentPath);
 $scope.templatepath=resultJson.templatepath;
 $scope.currentIndex=resultJson.currentindex;
@@ -246,14 +244,12 @@ else if($localStorage.currentPath=="/add_curriculum"){
 
 //Course Management
 else if($localStorage.currentPath=="/managecourse"){
-	console.log("add_curriculum");
 		var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Approval','Related Course'];
 var a2="angular/view/CourseManagement/addcourse/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 	}	
-
-	else if($localStorage.currentPath=="/addelearn"){
+else if($localStorage.currentPath=="/addelearn"){
 	console.log("addelearn");
 		var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Approval','Related Course','Upload'];
 		var a2="angular/view/ElearnManagement/";
@@ -353,6 +349,14 @@ xhr.send(fd);
           return promise;
 }
 
+
+//QuestionBank
+else if($location.path()=="/addquestion"){
+		var a1=['Category','Question','Answer'];
+		var a2="angular/view/QuestionBank/AddQuestion/templates/";
+		$scope.currentPath=a2;
+		$scope.ConfigureWizard(a1,a2);
+	}
 
 });
 

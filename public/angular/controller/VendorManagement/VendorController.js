@@ -97,7 +97,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     function querySearchType (query) 
  {
       console.log("sr::"+query); 
-       // query=UpperCase(query);
+       query=UpperCase(query);
       var results = query ? self.vendortypedatas.filter( createFilterFor(query) ) : self.vendortypedatas,
           deferred;
       if (self.simulateQuery) {

@@ -26,9 +26,10 @@
 	<link href="assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="assets/icomoon/styles.css" rel="stylesheet" type="text/css">
 	
+	
 	<!-- /global stylesheets -->
 
-
+	
 <!-- MATERIAL DESIGN CALL STARTS -->
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.js"></script>
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
@@ -40,6 +41,7 @@
  <script src="assets/js/angular-messages.min.js"></script>
 	<script src="assets/js/angular-messages.js"></script>
 	<!-- MATERIAL DESIGN CALL ENDS -->
+
 
 	<!-- Controllers-->
 	<script type="text/javascript" src="angular/controller/maincontroller.js"></script>
@@ -55,6 +57,8 @@
 	<!-- Pagination -->
 <script src="angular/directives/dirPagination.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js"></script>
+	
+
 
 <!-- Vendor management -->
 <script src="angular/controller/VendorManagement/VendorController.js"></script>
@@ -91,6 +95,19 @@
 <script src="angular/service/courseService.js"></script>
 <!-- choose file directive -->
 <script type="text/javascript" src="angular/directives/ChoosefileDirective.js"></script>
+
+<!-- Course Management -->
+<script src="angular/directives/uploadDirective.js"></script>
+<script src="angular/controller/coursemanagement/ILT/addILTCourseCtrl.js"></script>
+<script src="angular/controller/coursemanagement/addCourseController.js"></script>
+<script src="angular/controller/coursemanagement/manageAllCourseCtrl.js"></script>
+<script src="angular/service/courseService.js"></script>
+
+<!-- QuestionBank Management -->
+<script src="angular/controller/QuestionBank/QBController.js"></script>
+<script src="angular/service/QuestionBank/QBService.js"></script>
+
+</head>
 <body ng-controller="maincontroller">
 	<!-- Top Navbar Starts -->
 	<div class="navbar navbar-inverse">

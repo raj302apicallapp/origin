@@ -1,58 +1,60 @@
 <h5 style="text-align:center;padding-bottom:10px;">Competency & Tags</h5>
-<form name="carrymodelForm" ng-controller="addCourseCtrl as ctrl" ng-init="compInit()">
+<form name="carrymodelForm" ng-controller="addILTCourseCtrl as ctrl" ng-init="compInit()">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
       <md-autocomplete
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
+          ng-disabled="false"
+          md-no-cache="true"
           md-selected-item="carrymodel.ctrl.selectedCompetency"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchCompetency)"
+          md-search-text-change="ctrl.searchCompetencyChange(ctrl.searchCompetency)"
           md-search-text="ctrl.searchCompetency"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-selected-item-change="ctrl.selectedCompetencyChange(item)"
           md-items="item in ctrl.querySearchCompetency(ctrl.searchCompetency)"
-          md-item-text="item.display"
+          md-item-text="item"
           md-min-length="0"
           placeholder="Competency">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
           No Competency matching "{{ctrl.searchCompetency}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
+  <!-- Row 1 Ends -->
   <div style="width:2%"></div>
+  <!-- Row 2 Starts -->
   <div flex>
-	<md-autocomplete
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="carrymodel.ctrl.selectedsubcompetency"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchsubcompetency)"
-          md-search-text="ctrl.searchsubcompetency"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearchsubcompetency(ctrl.searchsubcompetency)"
-          md-item-text="item.display"
+  <md-autocomplete
+          ng-disabled="!carrymodel.ctrl.selectedCompetency"
+          md-no-cache="true"
+          md-selected-item="carrymodel.ctrl.selectedSubcompetency"
+          md-search-text-change="ctrl.searchSubcompetencyChange(ctrl.searchSubcompetency)"
+          md-search-text="ctrl.searchSubcompetency"
+          md-selected-item-change="ctrl.selectedSubcompetencyChange(item)"
+          md-items="item in ctrl.querySearchSubcompetency(ctrl.searchSubcompetency)"
+          md-item-text="item"
           md-min-length="0"
           placeholder="Sub Competency">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchsubcompetency" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchSubcompetency" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No SubCompetency matching "{{ctrl.searchsubcompetency}}" were found.
+          No SubCompetency matching "{{ctrl.searchSubcompetency}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
 </div>
-<!-- ROW 1 Ends -->
+<!-- ROW 2 Ends -->
 <div style="padding-bottom:2%"></div>
-
-<!-- ROW 2 Starts -->
+<!-- ROW 3 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
-      <md-contact-chips
-        ng-model="carrymodel.skills"
-        md-contacts="ctrl.delayedQuerySearchSkills($query)"
+       <md-contact-chips 
+       ng-hide="!carrymodel.ctrl.selectedSubcompetency" 
+        ng-model="carrymodel.ctrl.asyncContacts"
+        md-contacts="ctrl.delayedQuerySearch($query)"
         md-contact-name="name"
         md-require-match="true"
         md-highlight-flags="i"
@@ -62,9 +64,9 @@
   </div>
   
 </div>
-<!-- ROW 2 Ends -->
+<!-- ROW 3 Ends -->
 <div style="padding-bottom:2%"></div>
-<!-- ROW 3 Starts -->
+<!-- ROW 4 Starts -->
 <div layout="row" layout-xs="column">
   <div flex ng-disabled="true">
        <md-chips
@@ -78,7 +80,7 @@
   </div>
   
 </div>
-<!-- ROW 3 Ends -->
+<!-- ROW 4 Ends -->
 <div style="padding-bottom:2%"></div>
 <!-- ROW last Starts -->
 <div class="row">

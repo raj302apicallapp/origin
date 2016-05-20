@@ -3,7 +3,8 @@ app.factory('courseService',function ($http,$window) {
 return{
 addCourse:function(savedata){
 			console.log("courseService"+JSON.stringify(savedata));
-			savedata.coursetype="ELearn";
+
+			savedata.coursetype="ILT";
 			savedata.coursestatus=1;
 			savedata.addeddate=new Date();
 		var promise = $http.post('/addcourse',savedata).then(function(response){
@@ -79,13 +80,19 @@ updateCourse:function(savedata){
       // Return the promise to the controller
       return promise; 
 },
-
 addCurriculum:function(savedata){
       console.log("courseService"+JSON.stringify(savedata));
       savedata.coursetype="Curriculum";
       savedata.curriculumstatus=1;
       savedata.addeddate=new Date();
     var promise = $http.post('/addCurriculum',savedata).then(function(response){
+      return promise; 
+    }
+},
+//get EGDFmaster
+  getEGDFmaster:function(){
+      console.log("getEGDFmaster");
+  var promise = $http.get('/getEGDFmaster').then(function(response){
         console.log("Service response"+JSON.stringify(response));
         return response;
       });
@@ -93,12 +100,29 @@ addCurriculum:function(savedata){
       return promise;
 
     }
+//get JRmaster
+  getJRmaster:function(){
+      console.log("getJRmaster");
+  var promise = $http.get('/getJRmaster').then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+},
+//get CompetencyMaster
+  getCompetencyMaster:function(){
+      console.log("CompetencyMaster");
+  var promise = $http.get('/getcompetencymaster').then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+},
+
+
 }
-
-
-
-
-
 
 
 });

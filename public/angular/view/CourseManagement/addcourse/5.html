@@ -1,5 +1,5 @@
 <h5 style="text-align:center;padding-bottom:10px;">Related Course</h5> 
-<form name="carrymodelForm" ng-controller="addCourseCtrl">
+<form name="carrymodelForm" ng-controller="addILTCourseCtrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
 <div flex>
@@ -13,19 +13,17 @@
 
 	 <div flex ng-show="carrymodel.relcourse">
       <table class="responstable">
-  <tr>
+ <tr>
     <th>Course ID</th>
     <th data-th="Course details"><span>Course Title</span></th>
     <th>Type</th>
     <th>Duration</th>
-    <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
   <tr ng-repeat="item in carrymodel.selectRelCourse">
-    <td>{{item.id}}</td>
     <td>{{item.title}}</td>
-     <td>{{item.type}}</td>
-    <td>{{item.duration}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}{{item.induration}}</td>
    
     <td class="actionclass"><md-button ng-click="removeCourse1($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
   </tr> 
@@ -35,15 +33,20 @@
   </div> 
 </div>
 <!-- ROW 1 Ends -->
-</form>
+
+
 <div style="padding-bottom:2%"></div>
 <!-- ROW last Starts -->
 <div class="row">
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
- <link href="assets/css/course.css" rel="stylesheet">
+
+
+</form>
+
+ <!-- <link href="assets/css/course.css" rel="stylesheet"> -->

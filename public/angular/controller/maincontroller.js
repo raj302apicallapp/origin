@@ -235,6 +235,13 @@ when('/addassessment',
     templateUrl: 'angular/view/wizard.html', 
     controller: 'dashctrl'  
 }).
+
+//QuestionBank
+when('/addquestion',
+{
+  templateUrl: 'angular/view/QuestionBank/AddQuestion/addquestion.html', 
+  controller: 'dashctrl'
+}).
 otherwise({
         redirectTo: '/'
       });

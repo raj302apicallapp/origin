@@ -17,7 +17,8 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['course_management','mProgramCoordinator']);
+
+var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']);
 
  var sess="";
 
@@ -178,4 +179,32 @@ db.course_management.insert(req.body,function(err,docs){
 	res.json(docs);
 });
 });
+
+
+
+//getEGDFmaster
+router.get('/getEGDFmaster',function(req,res){
+db.EGDFmaster.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+
+//getJRmaster
+router.get('/getJRmaster',function(req,res){
+db.JRmaster.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+
+//getCompetencyMaster
+router.get('/getcompetencymaster',function(req,res){
+db.competency.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+
+
 module.exports=router;

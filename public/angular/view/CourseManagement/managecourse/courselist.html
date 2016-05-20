@@ -1,4 +1,3 @@
-
 <form name="CourseForm" ng-controller="manageCourseCtrl as ctrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
@@ -73,6 +72,8 @@
    <md-button ng-click="AddAction()" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
 </div>
 </div>
+
+<div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
 <div layout="row" layout-xs="column">
 
 	 <div flex>
@@ -85,7 +86,8 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 
-  <tr ng-repeat="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter">
+
+  <tr dir-paginate="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
     
     <td>{{item.title}}</td>
      <td>{{item.coursetype}}</td>
@@ -99,6 +101,8 @@
   
   
 </table>
+<dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+
   </div> 
 </div>
 <!-- ROW 1 Ends -->

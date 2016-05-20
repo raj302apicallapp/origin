@@ -66,11 +66,11 @@ $scope.courseDataListCount=[];
    self.querySearchCurrency   = querySearchCurrency;
     self.selectedCurrencyChange = selectedCurrencyChange;
     self.searchCurrencyChange   = searchCurrencyChange;
-
 // employee
     self.querySearchUser   = querySearchUser;
     self.selectedUserChange = selectedUserChange;
     self.searchUserChange   = searchUserChange;
+
     /*Tags*/
     var pendingSearch, cancelSearch = angular.noop;
     var cachedQuery, lastSearch;
@@ -346,6 +346,7 @@ $scope.getCurrencydata=function()
         self.selectedCurrency=item;
        // $scope.Course=($filter('filter')($scope.Course, {course: item}));
        // console.log(JSON.stringify($scope.Currency))
+
      }
     }
 
@@ -405,7 +406,6 @@ $scope.getUserdata=function()
       
      }
     }
-
 
     // org
  $scope.getOrganization=function()
@@ -1006,12 +1006,10 @@ $scope.getCompetency=function()
        var length=$scope.carrymodel.selectCourse_data.length-1;
        for(var i=length;i<$scope.selectCourse_data.length;i++)
      {  
-
-       for(var j=0;j<$scope.selectCourse_data[i].length;j++)
+      for(var j=0;j<$scope.selectCourse_data[i].length;j++)
        {
 
         $scope.selectCourse_data[i][j].Selected=false;
-
        }
      }
      }
@@ -1046,7 +1044,6 @@ $scope.Course_checkAll = function () {
     };
     $scope.Course_saveAction=function(){
       console.log(JSON.stringify($scope.Course));
-        
       for(var i=0;i<$scope.Course.length;i++){
          console.log("Final Result::"+JSON.stringify($scope.Course[i].Selected));
         if ($scope.Course[i].Selected==false || !angular.isDefined($scope.Course[i].Selected)) {}else{
@@ -1059,7 +1056,6 @@ $scope.Course_checkAll = function () {
       $mdDialog.hide($scope.selectCourse);
     }
     $scope.removeCourse=function(parentIndex,index){
-      
       $scope.carrymodel.selectCourse_data[parentIndex].splice(index,1);
     }
 
@@ -1102,8 +1098,6 @@ Array.prototype.move = function(from,to){
   $scope.addSection=function(parentIndex)
 { 
   $scope.addCourses();
-   // $scope.selectCourse_data.splice(parentIndex,1);  
-   
 }
   /*remove*/
 $scope.removeSection=function(parentIndex)
@@ -1171,8 +1165,7 @@ $scope.Related_Course_checkAll = function () {
          console.log("Final Result::"+JSON.stringify($scope.Course[i].Selected));
         if ($scope.Course[i].Selected==false || !angular.isDefined($scope.Course[i].Selected)) {}else{
         $scope.select_related_Curriculum.push($scope.Course[i]);
-      };
-        
+      }; 
       }
       console.log("Final Result::"+JSON.stringify($scope.select_related_Curriculum));
        $scope.jj="jjjj";
@@ -1181,8 +1174,6 @@ $scope.Related_Course_checkAll = function () {
     $scope.Related_removeCourse=function(vindex){
       $scope.carrymodel.select_related_Curriculum.splice(vindex,1);
     }
-
-
     $scope.loadCurrency = function() {
 
     // Use timeout to simulate a 650ms request.
@@ -1202,10 +1193,6 @@ $scope.Related_Course_checkAll = function () {
     }, 650);
   };
 
-  // if($scope.carrymodel.sum_of_individual_course_cost)
-  // {
-  //      alert(JSON.stringify($scope.carrymodel.selectCourse_data))
-  // }
 $scope.CourseCost=function()
 {  
    $scope.Course_total_cost=0;
@@ -1318,6 +1305,5 @@ console.log(JSON.stringify($scope.Emplyoee));
         }
       });
    }
-
 
 });
