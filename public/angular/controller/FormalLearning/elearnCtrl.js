@@ -57,89 +57,13 @@ var self = this;
   {"id":"102","title":"RDBMS","type":"ILT","duration":"50Hrs"}
   ];
   $scope.selectJson=[];
-
-$scope.browseClick=function(){
-  console.log('browse');
-  $scope.kok=false;
-  console.log(JSON.stringify($scope.carrymodel));
-}
-
-
-$scope.uploadClick=function(carrymodel){
-  $scope.kok=true;
-  console.log(JSON.stringify($scope.carrymodel));
-  console.log($scope.carrymodel.localfile);
-  var fd = new FormData();
-  fd.append('images', carrymodel.localfile);
-  
-  var xhr = new XMLHttpRequest();
-  xhr.open('post', '/upload', true);
-  
-  xhr.upload.onprogress = function(e) {
-  if (e.lengthComputable) {
-  var percentage = (e.loaded / e.total) * 100;
-    $scope.$apply(function() {
-    $scope.progressValue=percentage.toFixed(1);
-    if ($scope.progressValue>0 && $scope.progressValue<=100) {
-      $scope.showProgress=true;
-    }else{
-      $scope.showProgress=false;
-    }
-    }); 
-    console.log("Percentage::"+$scope.progressValue);
-  }
-};
-
-xhr.onerror = function(e) {
-  // showInfo('An error occurred while submitting the form. Maybe your file is too big');
-  console.log("error");
-};
-
-xhr.onload = function() {
-  // showInfo(this.statusText);
-  console.log("onload");
-  console.log(this.statusText);
-  console.log(JSON.stringify(this));
-  $scope.$apply(function() {
-  $scope.showProgress=false;
-
-}); 
-
-  
-};
-
-xhr.send(fd);
- 
+  $scope.preCourseJson=[];
+  $scope.postCourseJson=[];
 
 
 
- var promise = $http.post("/upload", fd, {
-                              withCredentials: false,
-                              headers: {
-                                'Content-Type': undefined
-                              },
-                              transformRequest: angular.identity,
-                              params: {
-                                fd
-                              },
-                              // responseType: "arraybuffer"
-                            })
-                            .success(function(response, status, headers, config) {
-                             console.log(JSON.stringify(response));
-                             if (response) {
-                              $scope.carrymodel.filePath=response.imgPath;
-                               console.log("Upload Server URL::"+$scope.carrymodel.filePath);
 
-                              
-                             };
-                            })
-                            .error(function(error, status, headers, config) {
-                              console.log(error);
-                            });
-          // Return the promise to the controller
-          return promise;
 
-}
 $scope.showAdvanced = function(ev) {
   console.log(JSON.stringify($scope.JsonResult));
    prereqFlag=true;
@@ -169,7 +93,7 @@ $scope.showAdvanced = function(ev) {
   };
   
 $scope.showPreCourse = function(ev) {
-console.log("inside show pre_cours")
+console.log("inside show pre_course")
   console.log(JSON.stringify($scope.JsonResult));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
@@ -180,9 +104,8 @@ console.log("inside show pre_cours")
       clickOutsideToClose:true,
       fullscreen: useFullScreen
     })
-    .then(function(answer) {
-      console.log("ok"+JSON.stringify(answer));
-      $scope.carrymodel.pre_course=answer;
+    .then(function(answer) {      
+      $scope.carrymodel.selectPre_course=answer;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -192,11 +115,7 @@ console.log("inside show pre_cours")
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-    $scope.$watch(function() {
-      return $mdMedia('xs') || $mdMedia('sm');
-    }, function(wantsFullScreen) {
-      $scope.customFullscreen = (wantsFullScreen === true);
-    });
+   
 
 
     $scope.showPostCourse = function(ev) {
@@ -213,7 +132,7 @@ console.log("inside show pre_cours")
     })
     .then(function(answer) {
       console.log("ok"+JSON.stringify(answer));
-      $scope.addElearn.post_course=answer;
+      $scope.carrymodel.selectPost_course=answer;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -223,15 +142,36 @@ console.log("inside show pre_cours")
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
+  
+   $scope.showRelatedCourse = function(ev) {
+
+  console.log(JSON.stringify($scope.JsonResult));
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: addElearnController,
+      templateUrl: 'angular/view/ElearnManagement/relatedCourse.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      console.log("ok"+JSON.stringify(answer));
+      $scope.carrymodel.selectRelCourse = answer;
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
     $scope.$watch(function() {
       return $mdMedia('xs') || $mdMedia('sm');
     }, function(wantsFullScreen) {
       $scope.customFullscreen = (wantsFullScreen === true);
     });
+  };
+   
 
   /**/
 $scope.checkOne=function(vindex){
-console.log(JSON.stringify($scope.JsonResult));
+console.log(JSON.stringify($scope.getILTCourse));
 }
 $scope.checkAll = function () {
   console.log("checkAll::"+prereqFlag);
@@ -242,50 +182,50 @@ $scope.checkAll = function () {
             $scope.selectedAll = false;
         }
 
-        angular.forEach($scope.getILTCourse, function (item) {
-          if (prereqFlag==true) {
+    //     angular.forEach($scope.getILTCourse, function (item) {
+    //       if (prereqFlag==true) {
 
-                     if (answerarr.length==0) {
-                  item.Selected = $scope.selectedAll;
-                };
-                  console.log("Checked TEM::"+JSON.stringify(item));
-                  console.log("answerarr TEM::"+JSON.stringify(answerarr));
-                  for (var i =0; i <answerarr.length; i++) {
-                   if (item.title==answerarr[i].title) {
-                    item.Selected=false;
-                    return;
-                   }else{
-                    item.Selected=$scope.selectedAll;
-                   }
-                  };
+    //                  if (answerarr.length==0) {
+    //               item.Selected = $scope.selectedAll;
+    //             };
+    //               console.log("Checked TEM::"+JSON.stringify(item));
+    //               console.log("answerarr TEM::"+JSON.stringify(answerarr));
+    //               for (var i =0; i <answerarr.length; i++) {
+    //                if (item.title==answerarr[i].title) {
+    //                 item.Selected=false;
+    //                 return;
+    //                }else{
+    //                 item.Selected=$scope.selectedAll;
+    //                }
+    //               };
                     
                 
 
 
-          }else if (relFlag==true) {
+    //       }else if (relFlag==true) {
 
 
-             if (relanswerarr.length==0) {
-          item.Selected = $scope.selectedAll;
-        };
-          console.log("Checked TEM::"+JSON.stringify(item));
-          console.log("answerarr TEM::"+JSON.stringify(relanswerarr));
-          for (var i =0; i <relanswerarr.length; i++) {
-           if (item.title==relanswerarr[i].title) {
-            item.Selected=false;
-            return;
-           }else{
-            item.Selected=$scope.selectedAll;
-           }
-          };
+    //          if (relanswerarr.length==0) {
+    //       item.Selected = $scope.selectedAll;
+    //     };
+    //       console.log("Checked TEM::"+JSON.stringify(item));
+    //       console.log("answerarr TEM::"+JSON.stringify(relanswerarr));
+    //       for (var i =0; i <relanswerarr.length; i++) {
+    //        if (item.title==relanswerarr[i].title) {
+    //         item.Selected=false;
+    //         return;
+    //        }else{
+    //         item.Selected=$scope.selectedAll;
+    //        }
+    //       };
             
        
 
 
-          }
+    //       }
          
         
-    });
+    // });
 }
      $scope.saveAction=function(){
       console.log(JSON.stringify($scope.getILTCourse));
@@ -302,17 +242,68 @@ $scope.checkAll = function () {
 
     }
     
+    $scope.saveAction2=function(){
+      console.log(JSON.stringify($scope.getILTCourse));
+      for(var i=0;i<$scope.getILTCourse.length;i++){
+         console.log("Final Result::"+JSON.stringify($scope.getILTCourse[i].Selected));
+        if ($scope.getILTCourse[i].preSelected==false || !angular.isDefined($scope.getILTCourse[i].preSelected)) {}else{
+        $scope.preCourseJson.push($scope.getILTCourse[i]);
+        
+      };
+        
+      }
+      console.log("Final Result::"+JSON.stringify($scope.preCourseJson));
+       $scope.jj="jjjj";
+      $mdDialog.hide($scope.preCourseJson);
+
+    }
+    
+    $scope.saveAction3=function(){
+      console.log(JSON.stringify($scope.getILTCourse));
+      for(var i=0;i<$scope.getILTCourse.length;i++){
+         console.log("Final Result::"+JSON.stringify($scope.getILTCourse[i].Selected));
+        if ($scope.getILTCourse[i].postSelected==false || !angular.isDefined($scope.getILTCourse[i].postSelected)) {}else{
+        $scope.postCourseJson.push($scope.getILTCourse[i]);
+        
+      };
+        
+      }
+      console.log("Final Result::"+JSON.stringify($scope.postCourseJson));
+       $scope.jj="jjjj";
+      $mdDialog.hide($scope.postCourseJson);
+
+    }
+    
+     $scope.saveAction4=function(){
+      console.log(JSON.stringify($scope.getILTCourse));
+      for(var i=0;i<$scope.getILTCourse.length;i++){
+         console.log("Final Result::"+JSON.stringify($scope.getILTCourse[i].Selected));
+        if ($scope.getILTCourse[i].relSelected==false || !angular.isDefined($scope.getILTCourse[i].relSelected)) {}else{
+        $scope.postCourseJson.push($scope.getILTCourse[i]);
+        
+      };
+        
+      }
+      console.log("Final Result::"+JSON.stringify($scope.postCourseJson));
+       $scope.jj="jjjj";
+      $mdDialog.hide($scope.postCourseJson);
+
+    }
+    
     
     
    
     $scope.removeCourse=function(vindex){
       $scope.carrymodel.selectPrereq.splice(vindex,1);
     }
-    $scope.removeCourse1=function(vindex){
-      $scope.carrymodel.selectPreCourse.splice(vindex,1);
+    $scope.removePreCourse=function(vindex){
+      $scope.carrymodel.selectPre_course.splice(vindex,1);
     }
-     $scope.removeCourse2=function(vindex){
-      $scope.carrymodel.selectPostCourse.splice(vindex,1);
+     $scope.removePostCourse=function(vindex){
+      $scope.carrymodel.selectPost_course.splice(vindex,1);
+    }
+     $scope.removeRelCourse=function(vindex){
+      $scope.carrymodel.selectRelCourse.splice(vindex,1);
     }
 
 

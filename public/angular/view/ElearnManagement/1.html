@@ -25,7 +25,7 @@
   <tr ng-repeat="item in carrymodel.selectPrereq">
    
     <td>{{item.title}}</td>
-     <td>{{item.type}}</td>
+     <td>{{item.coursetype}}</td>
     <td>{{item.duration}}</td>
    
     <td class="actionclass"><md-button ng-click="removeCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
@@ -59,10 +59,10 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
-  <tr ng-repeat="item in carrymodel.pre_course">
+  <tr ng-repeat="item in carrymodel.selectPre_course">
    
     <td>{{item.title}}</td>
-     <td>{{item.type}}</td>
+     <td>{{item.coursetype}}</td>
     <td>{{item.duration}}</td>
    
     <td class="actionclass"><md-button ng-click="removePreCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
@@ -95,10 +95,10 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
-  <tr ng-repeat="item in carrymodel.post_course">
+  <tr ng-repeat="item in carrymodel.selectPost_course">
 
     <td>{{item.title}}</td>
-     <td>{{item.type}}</td>
+     <td>{{item.coursetype}}</td>
     <td>{{item.duration}}</td>
    
     <td class="actionclass"><md-button ng-click="removePostCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>

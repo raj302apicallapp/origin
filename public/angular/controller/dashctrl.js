@@ -145,6 +145,11 @@ else if($location.path()=="/addassessment")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/iltsession")
+{
+  console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
 
 console.log("LocalStorage:"+$localStorage.currentPath);
 console.log("vendor type::"+$localStorage.vendortype)
