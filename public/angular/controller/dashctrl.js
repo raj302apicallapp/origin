@@ -284,7 +284,7 @@ $scope.uploadClick=function(carrymodel){
   console.log(JSON.stringify(carrymodel));
   console.log(carrymodel.localfile);
 
-var fd = new FormData();
+  var fd = new FormData();
   fd.append('images', carrymodel.localfile);
   
   var xhr = new XMLHttpRequest();

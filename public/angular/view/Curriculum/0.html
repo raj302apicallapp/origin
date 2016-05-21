@@ -50,7 +50,7 @@
       &nbsp;
     </div>
     <div>
-      <md-button ng-click="uploadClick(carrymodel)" ng-disabled="browsefile" id="uploadbtn" class="md-fab md-mini">
+      <md-button ng-click="uploadClick(carrymodel)"  ng-disabled="!carrymodel.localfile" id="uploadbtn" class="md-fab md-mini">
         <md-icon class="material-icons">file_upload</md-icon>
       </md-button>
     </div>
@@ -72,7 +72,7 @@
       </md-input-container>
   </div>
   <div flex> 
-    <md-button   ng-click="pick_employee_details()" ng-disabled="dis_pickemployee|| !carrymodel.curriculum_owner" type="button" class="md-raised md-primary" style="float:right;">Pick Employee</md-button>
+    <md-button   ng-click="pick_employee_details()"  type="button" class="md-raised md-primary" style="float:right;">Pick Employee</md-button>
   </div>
 
 </div>
