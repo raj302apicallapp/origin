@@ -71,7 +71,7 @@
     
     <table class="responstable">
     <tr>
-    <th><md-checkbox  aria-label="Checkbox 1">
+    <th><md-checkbox  aria-label="Checkbox 1" >
      </md-checkbox></th>
      <!-- <th><md-checkbox ng-model="selectedAll" ng-change="Related_Course_checkAll()" aria-label="Checkbox 1">
      </md-checkbox></th> -->
@@ -79,8 +79,13 @@
     </tr>
   
     <tr dir-paginate="item in Emplyoee | itemsPerPage: perPage">
-    <td><md-checkbox ng-change="Employee_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1" ng-disabled="item.Checked">
-          </md-checkbox></td>
+      
+    <td><md-radio-group ng-model="carrymodel.curriculum_owner">
+                    
+            <md-radio-button name="item" ng-value="item" > 
+                 </md-radio-button>
+               
+              </md-radio-group></td>
     <td>{{item.firstname}}</td>
     </tr> 
   </table>

@@ -1240,58 +1240,8 @@ $scope.CourseCost=function()
      }
     })
     .then(function(answer) {
-      alert(JSON.stringify(answer.length))
-      if(answer.length<2)
-          { 
-
-           if(answerarr.length<1) 
-             {
-              $scope.carrymodel.curriculum_owner=answer;
-              for(var i=0;i<$scope.Emplyoee.length;i++)
-                {
-                  for(var j=0;j<answerarr.length;j++)
-                  {
-                  if(answerarr[j]==$scope.Emplyoee[i].firstname)
-                  {
-                    $scope.Emplyoee[i].Selected=false;
-                    
-                    console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
-                  }
-                }
-              }
-               for(var i=0;i<answer.length;i++){ 
-               
-                answerarr.push(answer[i]);
-
-              }
-          }
-            else
-            {
-              alert("Curriculum Owner should be one")
-            }
-          }
-        
-          else
-            {
-              alert("Curriculum Owner should be one")
-            }
-      // $scope.carrymodel.curriculum_owner=answerarr;
-
-      for(var i=0;i<$scope.Emplyoee.length;i++)
-      {
-        for(var j=0;j<answerarr.length;j++)
-        {
-        if(answerarr[j]==$scope.Emplyoee[i].firstname)
-        {
-          $scope.Emplyoee[i].Checked=true;
-          $scope.Emplyoee[i].Selected=false;
-          
-          console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
-        }
-      }
-
-      }
       
+          $scope.carrymodel.curriculum_owner=answer; 
       $scope.dis_curriculumOwner=false;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
@@ -1306,32 +1256,9 @@ $scope.Employee_checkOne=function(vindex){
 
 console.log(JSON.stringify($scope.Emplyoee));
 }
-// $scope.Related_Course_checkAll = function () {
-//         if ($scope.selectedAll) {
-//             $scope.selectedAll = true;
-
-//         } else {
-//             $scope.selectedAll = false;
-//         }
-        
-//         angular.forEach($scope.Emplyoee, function (item) {
-//             item.Selected = $scope.selectedAll;
-//         });
-//         console.log("$scope.Emplyoee::"+JSON.stringify($scope.Emplyoee));
-//     };
     $scope.Employee_saveAction=function(){
-      console.log(JSON.stringify($scope.Emplyoee));
-      for(var i=0;i<$scope.Emplyoee.length;i++){
-        if ($scope.Emplyoee[i].Selected==true || angular.isDefined($scope.Emplyoee[i].Selected) ) {
-        $scope.select_employee.push($scope.Emplyoee[i].firstname);
-      }
-      else{}
       
-        console.log("Emplyoee"+JSON.stringify($scope.Emplyoee))
-      }
-      console.log("Final Result::"+JSON.stringify($scope.select_employee));
-       $scope.jj="jjjj";
-      $mdDialog.hide($scope.select_employee);
+      $mdDialog.hide($scope.carrymodel.curriculum_owner);
     }
     
  // image upload

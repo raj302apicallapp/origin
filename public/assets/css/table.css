@@ -2,22 +2,23 @@
   margin: 1em 0;
   width: 100%;
   overflow: hidden;
-  background: #FEF;
+  background: #ffffff;
   color: #024457;
  border-collapse: collapse;
- border: 1px solid #D9E4E6;
+ /*border: 1px solid #D9E4E6;*/
   /*border: none;*/
 }
 .responstable tr {
-  border: 1px solid #D9E4E6;
+  /*border: 1px solid #D9E4E6;*/
 }
 .responstable tr:nth-child(odd) {
   /*background-color: #EAF3F3;*/
 }
 .responstable th {
   display: none;
-  border: 1px solid #D9E4E6;
-  background-color: #EAF3F3;
+  /*head page*/
+  /*border: 1px solid #D9E4E6;*/
+  background-color: #ffffff;
   color: #000;
   padding: 1em;
 }
@@ -51,17 +52,30 @@
 .responstable td:first-child {
   display: table-cell;
   text-align: center;
-  border-right: 1px solid #D9E4E6;
+  /*border-right: 1px solid #D9E4E6;*/
 }
 @media (min-width: 480px) {
   .responstable td {
-    border: 1px solid #D9E4E6;
+    /*column filed*/
+    /*border: 1px solid #D9E4E6;*/
     
   }
 }
-.responstable th, .responstable td {
+.responstable th {
   text-align: center;
-  margin: .5em 1em;
+  color: rgba(0, 0, 0, 0.54);
+  font-family: 'Roboto';
+  font-size: 12sp;
+  margin: .0em;
+  text-align: center;
+}
+.responstable td {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 13sp;
+  margin: .0em;
+  text-align: center;
 }
 @media (min-width: 480px) {
   .responstable th, .responstable td {
