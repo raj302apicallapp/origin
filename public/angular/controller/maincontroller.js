@@ -21,11 +21,6 @@ when('/vendormanagement',
  templateUrl:'angular/view/vendormanagement/vendormanagement.html',
  controller:'vendorCtrl'
 }).
-when('/vendor',
-{
-  templateUrl: 'angular/view/VendorManagement/list.html', 
-  controller: 'dashctrl'
-}).
 when('/add_equipmentVendor',
 {
   templateUrl: 'angular/view/wizard.html', 
