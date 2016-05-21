@@ -1,0 +1,162 @@
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
+<form name="addElearnForm" ng-controller="addElearnCtrl as ctrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Title</label>
+        <input required name="title" ng-model="carrymodel.title">
+        <div ng-messages="addElearnForm.title.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Description</label>
+        <input md-maxlength="256" required md-no-asterisk name="description" ng-model="carrymodel.description">
+        <div ng-messages="addElearnForm.description.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 256 characters long.</div>
+        </div>
+      </md-input-container>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-input-container class="md-block">
+        <label>Course Duration</label>
+        <input type="number" required name="duration" ng-model="carrymodel.duration">
+        <div ng-messages="addElearnForm.duration.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+  </div>
+  <div flex>
+      <md-input-container class="md-block"   flex-gt-sm>
+             <label>Select Duration By</label>
+            <md-select ng-model="carrymodel.induration" aria-label="induration">
+              
+            <md-option value="days">day(s)</md-option>
+              <md-option value="hrs">hrs</md-option>
+              <md-option  value="min">min</md-option>
+            </md-select>
+          </md-input-container>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+<!-- ROW 3 Starts -->
+<div class="row">
+
+<choose-file layout="row">
+    <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
+    <md-input-container flex class="md-block">
+    <label>Course Image </label>
+      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files">
+    </md-input-container>
+    <div>
+      <md-button ng-click="browseClick()" id="browsebtn" class="md-fab md-mini">
+        <md-icon class="material-icons">attach_file</md-icon>
+      </md-button>
+    </div>
+    <div>
+      &nbsp;
+    </div>
+    <div>
+      <md-button ng-click="uploadClick(carrymodel)" ng-disabled="!carrymodel.localurl"  id="uploadbtn" class="md-fab md-mini">
+        <md-icon class="material-icons">file_upload</md-icon>
+      </md-button>
+    </div>
+  </choose-file>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</div>
+<!-- ROW 3 Ends -->
+
+<!-- ROW 4 Start -->
+<div class="row" >
+   <div flex>
+    <input id="internal" type="radio" name="course_developed" ng-model="carrymodel.course_developed" value="internal">
+    <label for="internal">Internally Developed</label>
+&nbsp &nbsp
+
+    <input id="vendor" type="radio" name="course_developed" ng-model="carrymodel.course_developed" value="vendor">
+    <label for="other">Developed by Vendor</label>
+</div>
+</div>
+<!-- ROW 4 End -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 5 start -->
+
+<div class="row" layout-xs="column"  ng-show="carrymodel.course_developed == 'internal'" >
+<!-- ng-show="isShown('one')" -->
+  
+  <div flex >
+  <md-autocomplete ng-model="carrymodel.internal"
+
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedInternal"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchInternal)"
+          md-search-text="ctrl.Searchinternal"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearchinternal(ctrl.searchInternal)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Select the Course Owner">
+        <md-item-template>
+          <span md-highlight-text="ctrl.Searchinternal" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Group matching "{{ctrl.Searchinternal}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+ 
+</div>
+<!-- ROW 5 end -->
+<div style="padding-bottom:2%"></div>
+<!-- Row 6 start -->
+
+<div class="row" layout-xs="column"  ng-show="carrymodel.course_developed == 'vendor'">
+<!-- ng-show="isShown('two')" -->
+  
+  <div flex >
+  <md-autocomplete ng-model="carrymodel.vendor"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedvendor"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchvendor)"
+          md-search-text="ctrl.Searchvendor"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearchvendor(ctrl.searchvendor)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Select the Vendor">
+        <md-item-template>
+          <span md-highlight-text="ctrl.Searchvendor" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Group matching "{{ctrl.Searchvendor}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+ 
+</div>
+<!-- Row 6 end -->
+  <div style="padding-bottom:2%"></div>
+  <!-- ROW last Starts -->
+<div class="row">
+        
+          <!-- <md-button ng-click="prevaction(addElearn)" type="button" class="md-raised md-primary">Previous</md-button> -->
+        
+           <md-button ng-disabled="!addElearnForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+
+ 
+
