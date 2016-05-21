@@ -97,7 +97,6 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     function querySearchType (query) 
  {
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.vendortypedatas.filter( createFilterFor(query) ) : self.vendortypedatas,
           deferred;
       if (self.simulateQuery) {
@@ -118,7 +117,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       if(item==undefined)
       {
         $scope.getVendorList=vendorResponse;
-        this.dis_Country=true;
+        // this.dis_Country=true;
         this.dis_State=true;
         this.dis_City=true;
         self.selectedvendorCountry="";
@@ -132,7 +131,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
         self.vendorCity="";
       }
       else{
-        this.dis_Country=false;
+        // this.dis_Country=false;
         
       self.selectedType=item;
       console.log("SelectedType::"+JSON.stringify(self.selectedType))
@@ -140,10 +139,11 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       $scope.vendortypedatas=$scope.getVendorList;
       // alert(JSON.stringify($scope.vendortypedatas));
        console.log("Vendor Data"+JSON.stringify($scope.vendortypedatas))
-       $scope.getCountryList(item,vendorResponse);
+       // $scope.getCountryList(item,vendorResponse);
      }
     }
-    $scope.getCountryList=function(data,getResponse)
+
+    $scope.getCountryList=function(getResponse)
     {
       $scope.vendorCountryList=[];
       
@@ -161,7 +161,6 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
  function querySearchvendorCountry (query) 
  {
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.vendorCountry.filter( createFilterFor(query) ) : self.vendorCountry,
           deferred;
       if (self.simulateQuery) {
@@ -181,7 +180,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       $log.info('Type changed to ' + JSON.stringify(item));  
       if(item==undefined)
       {
-        $scope.getVendorList=$scope.vendortypedatas;
+        $scope.getVendorList=vendorResponse;
          self.selectedvendorState="";
         self.searchvendorState="";
         self.vendorState="";
@@ -223,7 +222,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     }
    
  function querySearchvendorState (query) 
- {  query=UpperCase(query);
+ {  
       console.log("data::"+query); 
       var results = query ? self.vendorState.filter( createFilterFor(query) ) : self.vendorState,
           deferred;
@@ -285,7 +284,6 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
  function querySearchvendorCity (query) 
  {
       console.log("city::"+query); 
-       query=UpperCase(query);
       var results = query ? self.vendorCity.filter( createFilterFor(query) ) : self.vendorCity,
           deferred;
       if (self.simulateQuery) {
@@ -734,6 +732,7 @@ console.log("location path::"+$location.path());
          $scope.getVendorList=response.data;
          vendorResponse=response.data;
          $scope.getVendorType(response.data);
+         $scope.getCountryList(response.data);
          console.log("Get Vendor List::"+JSON.stringify($scope.getVendorList));
          $scope.isLoading=false;
        });
@@ -858,7 +857,6 @@ $scope.getCity=function(SelectedState,getResponse){
   function querySearchCountry (query) 
  {
       console.log("sr::"+query); 
-      query=UpperCase(query);
       var results = query ? self.countries.filter( createFilterFor(query) ) : self.countries,
           deferred;
       if (self.simulateQuery) {
@@ -871,7 +869,6 @@ $scope.getCity=function(SelectedState,getResponse){
   }
     function querySearchState (query) {
     console.log("state::"+JSON.stringify(self.states)); 
-     query=UpperCase(query);
       var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
           deferred;
       if (self.simulateQuery) {
@@ -884,7 +881,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }
     function querySearchCity (query) {
     console.log("state::"+query);
-       query=UpperCase(query);
       var results = query ? self.Cities.filter( createFilterFor(query) ) : self.Cities,
           deferred;
       if (self.simulateQuery) {
@@ -972,8 +968,9 @@ $scope.getCity=function(SelectedState,getResponse){
       function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
+          res=angular.lowercase(res);
           console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(query) == 0);
+          return (res.indexOf(lowercaseQuery) == 0);
         };
 
     }
@@ -1537,7 +1534,6 @@ $scope.sortlocation=function(){
 
   console.log("datas::"+JSON.stringify(self.competencydata));
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.competencydata.filter( createFilterFor(query) ) : self.competencydata,
           deferred;
       if (self.simulateQuery) {
@@ -1603,7 +1599,6 @@ $scope.sortlocation=function(){
    
    function querySearchSubCompetency (query) {
     console.log("SubCompetency::"+query); 
-     query=UpperCase(query);
       var results = query ? self.subcompetency.filter( createFilterFor(query) ) : self.subcompetency,
           deferred;
       if (self.simulateQuery) {
@@ -1655,7 +1650,6 @@ $scope.sortlocation=function(){
    }
 
    function querySearchSkills (query) {
-      query=UpperCase(query);
     console.log("SubCompetency::"+query); 
       var results = query ? self.SkillSet.filter( createFilterFor(query) ) : self.SkillSet,
           deferred;
@@ -1866,7 +1860,6 @@ $scope.checkAll = function () {
  {     
     console.log("datas::"+JSON.stringify(self.Certifying_authoritydata));
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.Certifying_authoritydata.filter( createFilterFor(query) ) : self.Certifying_authoritydata,
           deferred;
       if (self.simulateQuery) {
@@ -1926,7 +1919,6 @@ $scope.checkAll = function () {
    
    function querySearchCertification (query) {
     console.log("Certification::"+query); 
-     query=UpperCase(query);
       var results = query ? self.Certificationdata.filter( createFilterFor(query) ) : self.Certificationdata,
           deferred;
       if (self.simulateQuery) {

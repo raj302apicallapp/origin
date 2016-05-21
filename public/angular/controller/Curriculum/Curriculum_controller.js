@@ -3,7 +3,7 @@ var answerarr=[];
 var employeedata=[];
 app.controller('curriculumCtrl',function($localStorage,$location,$scope,$mdMedia,$mdDialog,$filter,$q,$timeout,$http,mOrgService,vendorService,curriculumService,courseService)
 {    
- 
+
 $scope.courseDataListCount=[];
  console.log($location.path())
 
@@ -266,9 +266,6 @@ $scope.getCoursedata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Coursedata));
       console.log("sr::"+query); 
-        console.log(JSON.stringify(query));
-       query=UpperCase(query);
-       console.log(JSON.stringify(query));
       var results = query ? self.Coursedata.filter( createFilterFor(query) ) : self.Coursedata,
           deferred;
       if (self.simulateQuery) {
@@ -322,7 +319,6 @@ $scope.getCurrencydata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Currencydata));
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.Currencydata.filter( createFilterFor(query) ) : self.Currencydata,
           deferred;
       if (self.simulateQuery) {
@@ -378,9 +374,6 @@ $scope.getUserdata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Userdata));
       console.log("sr::"+query); 
-        console.log(JSON.stringify(query));
-       query=UpperCase(query);
-       console.log(JSON.stringify(query));
       var results = query ? self.Userdata.filter( createFilterFor(query) ) : self.Userdata,
           deferred;
       if (self.simulateQuery) {
@@ -448,7 +441,6 @@ $scope.getUserdata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Entitydata));
       console.log("sr::"+query); 
-       // query=UpperCase(query);
       var results = query ? self.Entitydata.filter( createFilterFor(query) ) : self.Entitydata,
           deferred;
       if (self.simulateQuery) {
@@ -527,7 +519,6 @@ $scope.getUserdata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Groupdata));
       console.log("sr::"+query); 
-       // query=UpperCase(query);
       var results = query ? self.Groupdata.filter( createFilterFor(query) ) : self.Groupdata,
           deferred;
       if (self.simulateQuery) {
@@ -604,7 +595,6 @@ $scope.getUserdata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Functiondata));
       console.log("sr::"+query); 
-       // query=UpperCase(query);
       var results = query ? self.Functiondata.filter( createFilterFor(query) ) : self.Functiondata,
           deferred;
       if (self.simulateQuery) {
@@ -680,7 +670,6 @@ $scope.getUserdata=function()
  {     
   console.log("datas::"+JSON.stringify(self.Departmentdata));
       console.log("sr::"+query); 
-       // query=UpperCase(query);
       var results = query ? self.Departmentdata.filter( createFilterFor(query) ) : self.Departmentdata,
           deferred;
       if (self.simulateQuery) {
@@ -715,8 +704,8 @@ $scope.getUserdata=function()
    function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
-          console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(query) == 0);
+          res=angular.lowercase(res);
+          return (res.indexOf(lowercaseQuery) == 0);
         };
 
     }
@@ -811,7 +800,6 @@ $scope.getCompetency=function()
 
   console.log("datas::"+JSON.stringify(self.competencydata));
       console.log("sr::"+query); 
-       query=UpperCase(query);
       var results = query ? self.competencydata.filter( createFilterFor(query) ) : self.competencydata,
           deferred;
       if (self.simulateQuery) {
@@ -826,7 +814,6 @@ $scope.getCompetency=function()
    function searchCompetencyChange(text)
     {    $scope.Competency=competencyResponse;
               console.log('Text changed to ' + text);
-              // this.searchSubCompetency="";
       
     }
   function selectedCompetencyChange(item) {
@@ -877,7 +864,6 @@ $scope.getCompetency=function()
    
    function querySearchSubCompetency (query) {
     console.log("SubCompetency::"+query); 
-     query=UpperCase(query);
       var results = query ? self.subcompetency.filter( createFilterFor(query) ) : self.subcompetency,
           deferred;
       if (self.simulateQuery) {
@@ -930,7 +916,6 @@ $scope.getCompetency=function()
    }
 
    function querySearchSkills (query) {
-      query=UpperCase(query);
     console.log("SubCompetency::"+query); 
       var results = query ? self.SkillSet.filter( createFilterFor(query) ) : self.SkillSet,
           deferred;
@@ -1255,18 +1240,41 @@ $scope.CourseCost=function()
      }
     })
     .then(function(answer) {
-      for(var i=0;i<answer.length;i++){
-          if(answerarr.length<2)
-          {
-             answerarr.push(answer[i]);
-             $scope.dis_pickemployee=true;
+      alert(JSON.stringify(answer.length))
+      if(answer.length<2)
+          { 
+
+           if(answerarr.length<1) 
+             {
+              $scope.carrymodel.curriculum_owner=answer;
+              for(var i=0;i<$scope.Emplyoee.length;i++)
+                {
+                  for(var j=0;j<answerarr.length;j++)
+                  {
+                  if(answerarr[j]==$scope.Emplyoee[i].firstname)
+                  {
+                    $scope.Emplyoee[i].Selected=false;
+                    
+                    console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
+                  }
+                }
+              }
+               for(var i=0;i<answer.length;i++){ 
+               
+                answerarr.push(answer[i]);
+
+              }
           }
+            else
+            {
+              alert("Curriculum Owner should be one")
+            }
+          }
+        
           else
-          {
-            alert("Curriculum Owner should be one")
-          }
-         
-      }
+            {
+              alert("Curriculum Owner should be one")
+            }
       // $scope.carrymodel.curriculum_owner=answerarr;
 
       for(var i=0;i<$scope.Emplyoee.length;i++)
@@ -1277,7 +1285,7 @@ $scope.CourseCost=function()
         {
           $scope.Emplyoee[i].Checked=true;
           $scope.Emplyoee[i].Selected=false;
-          $scope.carrymodel.curriculum_owner=answerarr[i];
+          
           console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
         }
       }
@@ -1314,10 +1322,11 @@ console.log(JSON.stringify($scope.Emplyoee));
     $scope.Employee_saveAction=function(){
       console.log(JSON.stringify($scope.Emplyoee));
       for(var i=0;i<$scope.Emplyoee.length;i++){
-         console.log("Final Result::"+JSON.stringify($scope.Emplyoee[i].Selected));
-        if ($scope.Emplyoee[i].Selected==false || !angular.isDefined($scope.Emplyoee[i].Selected) ) {}else{
+        if ($scope.Emplyoee[i].Selected==true || angular.isDefined($scope.Emplyoee[i].Selected) ) {
         $scope.select_employee.push($scope.Emplyoee[i].firstname);
-      };
+      }
+      else{}
+      
         console.log("Emplyoee"+JSON.stringify($scope.Emplyoee))
       }
       console.log("Final Result::"+JSON.stringify($scope.select_employee));

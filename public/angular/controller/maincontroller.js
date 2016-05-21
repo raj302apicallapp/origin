@@ -21,11 +21,6 @@ when('/vendormanagement',
  templateUrl:'angular/view/vendormanagement/vendormanagement.html',
  controller:'vendorCtrl'
 }).
-when('/vendor',
-{
-  templateUrl: 'angular/view/VendorManagement/list.html', 
-  controller: 'dashctrl'
-}).
 when('/add_equipmentVendor',
 {
   templateUrl: 'angular/view/wizard.html', 
@@ -215,6 +210,11 @@ when('/addelearn',{
 
 
 //CourseManagement
+when('/iltsession',
+{
+  templateUrl: 'angular/view/wizard.html', 
+  controller: 'dashctrl'
+}).
 when('/addcourse',
 {
   templateUrl: 'angular/view/CourseManagement/addcourse/addcourse.html', 
@@ -242,6 +242,7 @@ when('/addquestion',
   templateUrl: 'angular/view/QuestionBank/AddQuestion/addquestion.html', 
   controller: 'dashctrl'
 }).
+
 
 
 //MasterManagement

@@ -23,7 +23,7 @@
 </div>
 <!-- Row 2 end -->
 <!-- row 3 start -->
- <div layout="row" layout-xs="column" ng-show="carrymodel.registation.approval_type" style="margin-left:2em"> 
+ <div layout="row" layout-xs="column" ng-show="carrymodel.registation.approval_type || carrymodel.registation.approval" style="margin-left:2em"> 
   <div flex>
     Approval Level
   </div>
@@ -59,7 +59,7 @@
 </div>
 <!-- Row 5 end -->
 <!-- row 6 start -->
- <div layout="row" layout-xs="column" ng-show="carrymodel.cancellation.approval_type" style="margin-left:2em"> 
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cancellation.approval_type || carrymodel.cancellation.approval" style="margin-left:2em"> 
   <div flex>
     Approval Level
   </div>
@@ -94,7 +94,7 @@
 </div>
 <!-- Row 8 end -->
 <!-- row 9 start -->
- <div layout="row" layout-xs="column" ng-show="carrymodel.excemption.approval_type" style="margin-left:2em"> 
+ <div layout="row" layout-xs="column" ng-show="carrymodel.excemption.approval_type || carrymodel.excemption.approval" style="margin-left:2em"> 
   <div flex>
     Approval Level
   </div>
@@ -129,7 +129,7 @@
 </div>
 <!-- Row 8 end -->
 <!-- row 9 start -->
- <div layout="row" layout-xs="column" ng-show="carrymodel.cost.approval_type" style="margin-left:2em"> 
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cost.approval_type || carrymodel.cost.approval" style="margin-left:2em"> 
   <div flex>
     Approval Level
   </div>
