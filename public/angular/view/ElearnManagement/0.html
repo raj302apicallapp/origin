@@ -48,7 +48,7 @@
 </div>
 <!-- ROW 2 Ends -->
 <!-- ROW 3 Starts -->
-<div class="row">
+<div class="row col-md-12">
 
 <choose-file layout="row">
     <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
@@ -76,7 +76,7 @@
 <!-- ROW 3 Ends -->
 
 <!-- ROW 4 Start -->
-<div class="row" >
+<div class="row col-md-12" >
    <div flex>
     <input id="internal" type="radio" name="course_developed" ng-model="carrymodel.course_developed" value="internal">
     <label for="internal">Internally Developed</label>
@@ -151,8 +151,8 @@
 <div class="row">
         
           <!-- <md-button ng-click="prevaction(addElearn)" type="button" class="md-raised md-primary">Previous</md-button> -->
-        
-           <md-button ng-disabled="!addElearnForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        <!--ng-disabled="!addElearnForm.$valid"-->
+           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
