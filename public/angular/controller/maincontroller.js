@@ -290,4 +290,137 @@ otherwise({
 }]);
 app.controller('maincontroller',function($scope){
 console.log("maincontroller");
+
+$scope.showLearner=false;
+$scope.showLearnerOps=false;
+$scope.showPeople=false;
+$scope.showCatalog=false;
+$scope.showLearnerPartner=false;
+$scope.showAssessment=false;
+$scope.showSurvey=false;
+$scope.showSecurity=false;
+$scope.showSuperAdmin=false;
+$scope.showReportAdmin=false;
+$scope.showlearner=function()
+{
+  console.log("insss")
+  $scope.showLearner=true;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+
+$scope.showlearnerOps=function()
+{
+  $scope.showLearnerOps=true;
+  $scope.showLearner=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+
+$scope.showpeople=function()
+{
+  $scope.showPeople=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+
+$scope.showcatalog=function()
+{ 
+   $scope.showCatalog=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+$scope.showlearingPartner=function()
+{
+  $scope.showLearnerPartner=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+$scope.showassessment=function()
+{  
+  $scope.showAssessment=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+$scope.showsecurity=function()
+{
+  $scope.showSecurity=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSuperAdmin=false;
+  $scope.showReportAdmin=false;
+}
+$scope.showsuperAdmin=function()
+{
+  $scope.showSuperAdmin=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showReportAdmin=false;
+}
+$scope.showreportAdmin=function()
+{
+  $scope.showReportAdmin=true;
+  $scope.showLearner=false;
+  $scope.showLearnerOps=false;
+  $scope.showPeople=false;
+  $scope.showCatalog=false;
+  $scope.showLearnerPartner=false;
+  $scope.showAssessment=false;
+  $scope.showSurvey=false;
+  $scope.showSecurity=false;
+  $scope.showSuperAdmin=false;
+}
+
 })

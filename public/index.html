@@ -147,36 +147,40 @@
 					</a>
 			<ul class="dropdown-menu dropdown-menu-left">
 				<li>
-					<a href="#"><i class="material-icons">notifications_active
+					<a href="#" ng-click="showlearner()"><i class="material-icons">notifications_active
 					</i>Learner</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">content_paste
+					<a href="#" ng-click="showlearnerOps()"><i class="material-icons">content_paste
 					</i>Learn Ops Admin</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showpeople()"><i class="material-icons">account_circle
 					</i>People Manager</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showcatalog()"><i class="material-icons">account_circle
 					</i>Catalog Admin</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showlearingPartner()"><i class="material-icons">account_circle
 					</i>Learning Partner</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showassessment()"><i class="material-icons">account_circle
 					</i>Assessment Admin</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showsecurity()"><i class="material-icons">account_circle
 					</i>Security Admin</a>
 				</li>
 				<li>
-					<a href="#"><i class="material-icons">account_circle
+					<a href="#" ng-click="showsuperAdmin()"><i class="material-icons">account_circle
 					</i>Super Admin</a>
+				</li>
+				<li>
+					<a href="#" ng-click="showreportAdmin()"><i class="material-icons">account_circle
+					</i>Report Admin</a>
 				</li>
 			</ul>
 				</li>
@@ -262,7 +266,7 @@
 
 
 <!-- Learner  -->
-<li>
+<li ng-show="showLearner">
 <a href="#"><span>Learner</span><i class="material-icons">local_library</i></a>
 <ul>
 <li><a href="/dash1"><i class="material-icons">chrome_reader_mode</i>
@@ -311,7 +315,7 @@ Learning Evaluation</a>
 <!-- /Learner  -->
 
 <!-- Learn Ops Admin  -->
-<li>
+<li ng-show="showLearnerOps">
 <a href="#"><span>Learn Ops Admin</span><i class="material-icons">local_post_office</i></a>
 <ul>
 <li><a href="/dash1"><i class="material-icons">assignment_turned_in</i>
@@ -378,7 +382,7 @@ Trainer Management</a>
 
 
 <!-- People Management  -->
-<li>
+<li ng-show="showPeople">
 <a href="#"><span>People Manager</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">supervisor_account</i>MyTeam Learning</a></li>
@@ -391,7 +395,7 @@ Assign Learning</a></li>
 
 
 <!-- Catalog Management  -->
-<li>
+<li ng-show="showCatalog">
 <a href="#"><span>Catalog Admin</span></a>
 <ul>
 
@@ -470,7 +474,7 @@ Bulk Upload</a>
 
 
 <!-- Learning Partner  -->
-<li>
+<li ng-show="showLearnerPartner">
 <a href="#"><span>Learning Partner</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">library_books</i>
@@ -683,7 +687,7 @@ Gamification</a>
 <!-- /Learning Partner  -->
 
 <!-- Assessment Management  -->
-<li>
+<li ng-show="showAssessment">
 <a href="#"><span>Assessment Admin</span></a>
 <ul>
 
@@ -716,7 +720,7 @@ Gamification</a>
 <!-- /Assessment Management  -->
 
 <!-- Survey -->
-<li>
+<li ng-show="showSurvey">
 <a href="#"><span>Survey Admin</span></a>
 	<ul>
 		<li><a href="#"><i class="material-icons">library_books</i>
@@ -738,7 +742,7 @@ Gamification</a>
 </li>
 <!-- Survey -->
 <!-- Security Admin -->
-<li>
+<li ng-show="showSecurity">
 <a href="#"><span>Security Admin</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">supervisor_account</i>User Management
@@ -776,7 +780,7 @@ Device Management</a></li>
 <!-- /Security Admin  -->
 
 <!-- Super Admin -->
-  <li>
+  <li ng-show="showSuperAdmin">
 	<a href="#"><span>Super Admin</span></a>
 	<ul>
 	  <li>
@@ -946,7 +950,7 @@ Device Management</a></li>
 
   <!-- Super Admin -->
 <!-- Report Admin -->
-<li>
+<li ng-show="showReportAdmin">
 	<a href="/"><span>Reporting Admin</span></a>
 
 	<ul>
