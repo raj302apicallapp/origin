@@ -215,6 +215,11 @@ when('/addelearn',{
 
 
 //CourseManagement
+when('/iltsession',
+{
+  templateUrl: 'angular/view/wizard.html', 
+  controller: 'dashctrl'
+}).
 when('/addcourse',
 {
   templateUrl: 'angular/view/CourseManagement/addcourse/addcourse.html', 
@@ -242,6 +247,7 @@ when('/addquestion',
   templateUrl: 'angular/view/QuestionBank/AddQuestion/addquestion.html', 
   controller: 'dashctrl'
 }).
+
 
 
 //MasterManagement
