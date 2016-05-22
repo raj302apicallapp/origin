@@ -125,6 +125,13 @@
 
 		<div class="navbar-collapse collapse" id="navbar-mobile">
 			<ul class="nav navbar-nav">
+
+					<li>
+					<a href="#"><i class="material-icons">home</i></a>
+					</li>
+           </ul>
+		
+			<ul class="nav navbar-nav">
 				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 			</ul>
 
@@ -141,19 +148,54 @@
 			<ul class="dropdown-menu dropdown-menu-left">
 				<li>
 					<a href="#"><i class="material-icons">notifications_active
-					</i>My Notification</a>
+					</i>Learner</a>
 				</li>
 				<li>
 					<a href="#"><i class="material-icons">content_paste
-					</i>My Action</a>
+					</i>Learn Ops Admin</a>
 				</li>
 				<li>
 					<a href="#"><i class="material-icons">account_circle
-					</i>My Profile</a>
+					</i>People Manager</a>
 				</li>
 				<li>
-				<a href="#"><i class="icon-switch2"></i> Logout</a>
-			  </li>
+					<a href="#"><i class="material-icons">account_circle
+					</i>Catalog Admin</a>
+				</li>
+				<li>
+					<a href="#"><i class="material-icons">account_circle
+					</i>Learning Partner</a>
+				</li>
+				<li>
+					<a href="#"><i class="material-icons">account_circle
+					</i>Assessment Admin</a>
+				</li>
+				<li>
+					<a href="#"><i class="material-icons">account_circle
+					</i>Security Admin</a>
+				</li>
+				<li>
+					<a href="#"><i class="material-icons">account_circle
+					</i>Super Admin</a>
+				</li>
+			</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-z"  style="float:right">
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+					<i class="material-icons">headset_mic</i> 
+					<span></span>
+				</a>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="#"><i class="material-icons">notifications_active
+					</i>Create Ticket</a>
+				</li>
+				<li>
+					<a href="#"><i class="material-icons">content_paste
+					</i>Manage Ticket</a>
+				</li>
 			</ul>
 				</li>
 			</ul>
@@ -165,7 +207,7 @@
 					<a class="dropdown-toggle" data-toggle="dropdown">
 						 <img src="assets/img/user.jpg" alt="">
 					<!-- <i class="material-icons">account_circle</i>  -->
-						<span>Bhuvanesh</span>
+						<span>John Myers</span>
 						
 					</a>
 			<ul class="dropdown-menu dropdown-menu-left">
@@ -219,13 +261,6 @@
 
 
 
-<!-- Home  -->
-<li>
-<a href="#"><span>Home</span> <i class="material-icons">home</i></a>
-</li>
-<!-- /Home  -->
-
-
 <!-- Learner  -->
 <li>
 <a href="#"><span>Learner</span><i class="material-icons">local_library</i></a>
@@ -236,8 +271,6 @@ My Learning</a></li>
 My Social Activities</a></li>
 <li><a href="/dash1"><i class="material-icons">youtube_searched_for</i>
 Browse Learning</a></li>
-<li><a href="/dash1"><i class="material-icons">search</i>
-Search Learning</a></li>
 <li><a href="/dash1"><i class="material-icons">search</i>
 Search User</a></li>
 <li><a href="/dash1"><i class="material-icons">find_in_page</i>
@@ -272,8 +305,7 @@ Learning Evaluation</a>
 			</li>   
 		 </ul>
  </li>
- <li><a href="/dash1"><i class="material-icons">help</i>
-Help</a></li>
+
 </ul>
 </li>
 <!-- /Learner  -->
@@ -292,7 +324,7 @@ Close Session</a></li>
        </li>
        <li><a href="/dash1"><i class="material-icons">people</i>Manage Waitlist</a>
        </li>
-       <li><a href="/dash1"><i class="material-icons">people</i>Interest Track</a>
+       <li><a href="/dash1"><i class="material-icons">people</i>Interest Tracking</a>
        </li>
 	</ul>	
 </li>
@@ -300,8 +332,8 @@ Close Session</a></li>
 	<a href="/venue"><i class="material-icons">location_city</i>
         Venue Management</a>
 	<ul>
-		<li><a href="/dash1"><i class="material-icons">location_city</i>External Venue</a></li>
-		<li><a href="/dash1"><i class="material-icons">location_city</i>Internal Venue</a></li>
+		<li><a href="/dash1"><i class="material-icons">location_city</i>Add External Venue</a></li>
+		<li><a href="/dash1"><i class="material-icons">location_city</i>Add Internal Venue</a></li>
 		<li><a href="/dash1"><i class="material-icons">location_city</i>
 		Venue Management</a></li>
 	</ul>
@@ -309,10 +341,6 @@ Close Session</a></li>
 <li><a href="/vendor"><i class="material-icons">person_outline</i>
 Vendor Management</a>
 <ul>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
-	Vendor Management</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
-	ILT Vendor</a></li>
 	<li><a href="/dash1"><i class="material-icons">person_outline</i>
 	Add ILT Vendor</a></li>
 	<li><a href="/dash1"><i class="material-icons">person_outline</i>
@@ -325,6 +353,8 @@ Vendor Management</a>
 	Add Stationary Vendor</a></li>
 	<li><a href="/dash1"><i class="material-icons">person_outline</i>
 	Add Equipment Vendor</a></li>
+	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	Vendor Management</a></li>
 </ul>
 
 </li>
@@ -332,11 +362,13 @@ Vendor Management</a>
 Trainer Management</a>
 <ul>
 	<li><a href="/dash1"><i class="material-icons">account_circle</i>
-	Internal Trainer</a></li>
+	Add Internal Trainer</a></li>
 	<li><a href="/dash1"><i class="material-icons">account_circle</i>
-	External Trainer</a></li>
+	Add External Trainer</a></li>
 	<li><a href="/dash1"><i class="material-icons">account_circle</i>
-	Extenal Freelance </a></li>
+	Add Freelance Trainer </a></li>
+	<li><a href="#"><i class="material-icons">account_circle</i>Trainer Management</a></li>
+
 </ul>
 
 </li>
@@ -347,7 +379,7 @@ Trainer Management</a>
 
 <!-- People Management  -->
 <li>
-<a href="#"><span>People Management</span></a>
+<a href="#"><span>People Manager</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">supervisor_account</i>MyTeam Learning</a></li>
 <li><a href="/dash1"><i class="material-icons">assignment_turned_in</i>
@@ -360,26 +392,78 @@ Assign Learning</a></li>
 
 <!-- Catalog Management  -->
 <li>
-<a href="#"><span>Catalog Management</span></a>
+<a href="#"><span>Catalog Admin</span></a>
 <ul>
 
 <li>
 	<a href="/"><i class="material-icons">event</i>Formal Learning</a>
 	<ul>
-	    <li><a href="/iltsession"><i class="material-icons">event</i>ILT Session</a></li> 
-		<li><a href="/managecourse"><i class="material-icons">event</i>ILT Course</a></li>
-		<li><a href="/addelearn"><i class="material-icons">library_books</i>
-Elearning</a></li>
-
-
-
-</ul>
+		<li><a href="/managecourse"><i class="material-icons">event</i>Add ILT Course</a></li> 
+	    <li><a href="/iltsession"><i class="material-icons">event</i>Add ILT Session</a></li> 
+		<li><a href="/addelearn"><i class="material-icons">library_books
+		</i>
+        Add ELearn</a></li>
+        <li><a href="/#"><i class="material-icons">library_books
+		</i>
+        Add MLearn</a></li>
+        <li><a href="/#"><i class="material-icons">library_books
+		</i>
+        Add Curriculum</a></li>
+        <li><a href="/#"><i class="material-icons">library_books
+		</i>
+        Add Cohart</a></li>
+        <li><a href="/#"><i class="material-icons">library_books
+		</i>
+        Formal Learning Management</a></li>
+      </ul>
 	</li>
 <li><a href="/"><i class="material-icons">library_books</i>
+Informal Learning</a>
+<ul>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add Audio</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add Video</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add Ebook</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add Link</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add Document</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Informal Learning Management</a>
+	</li>
+</ul>
 
-Informal Learning</a></li>
+
+
+
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Bulk Upload</a></li>
+Bulk Upload</a>
+<ul>
+	<li>
+	<a href="/#"><i class="material-icons">cloud_upload</i>
+	 Add ILT Course</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">cloud_upload</i>
+	 Add ILT Session</a>
+	</li>
+</ul>
+
+</li>
 </ul>
 </li>
 <!-- /Catalog Management  -->
@@ -390,74 +474,526 @@ Bulk Upload</a></li>
 <a href="#"><span>Learning Partner</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">library_books</i>
-Learning Needs Identification</a></li>
+Learning Needs Identification</a>
+<ul>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Add LNI Request</a>
+	</li>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Manage LNI Request</a>
+	</li>
+</ul>
+</li>
 <li><a href="/"><i class="material-icons">assessment</i>
-Learning Needs Analysis</a></li>
+Learning Needs Analysis</a>
+<ul>
+	<li>
+	<a href="/#"><i class="material-icons">library_books</i>
+	 Learning Needs Management</a>
+	</li>
+</ul>
+</li>
 <li><a href="/add_curriculum"><i class="material-icons">library_books</i>
-Curriculum Management</a></li>
+Curriculum Management</a>
+<ul>
+	<li><a href="/add_curriculum"><i class="material-icons">library_books</i>
+     Add Curriculum</a>
+    </li>
+    <li><a href="/add_curriculum"><i class="material-icons">library_books</i>
+     Manage Curriculum</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Cohart Management</a></li>
+Cohart Management</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Cohart</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Cohart</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">assignment_turned_in</i>
 Assign Learning</a></li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Competency Management</a></li>
+Competency Management</a>
+	<ul>
+		<li><a href="#"><i class="material-icons">library_books</i>
+	     Add Competency Dictionary</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Manage Competency Dictionary</a>
+	    </li>
+	</ul>
+</li>
+<li>
+	<a href="#">
+		<i class="material-icons">library_books</i>Competency Mapping
+	</a>
+
+	<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Mapping</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Mapping</a>
+    </li>
+</ul>
+	</li>
+<li>
+	<a href="/dash1"><i class="material-icons">cloud_upload</i>
+Competency Assessment</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Assessment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Assessment</a>
+    </li>
+</ul>
+
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Competency Assessment</a></li>
+Assessment Center</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add AC</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Assign AC</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage AC</a>
+    </li>
+</ul>
+
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Assessment Center</a></li>
+Development Center</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add DC</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Assign DC</a>
+    </li>
+
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage DC</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Development Center</a></li>
+Coaching Management</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Internal Coach</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Add Exteral Coach</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Assignment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Assignment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Coaches</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Coaching Management</a></li>
+Mentoring Management</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Internal Mentor</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Add Exteral Mentor</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Mentoring </a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Mentoring </a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Mentor</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Mentoring Management</a></li>
-<li><a href="/dash1"><i class="material-icons">cloud_upload</i>
-Ad-hoc learning requests</a></li>
+Ad-hoc learning requests</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Learning Request</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Learning Request</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">share</i>
-Learning Community</a></li>
+Learning Community</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add COP</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage COP</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">videogame_asset</i>
-Gamification</a></li>
+Gamification</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Create Challenge</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Challenge</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Create Idea Cloud</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Idea Cloud</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Assign Points</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Assign Badges</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Create Competetion</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Competetion</a>
+    </li>
+</ul>
+</li>
 </ul>
 </li>
 <!-- /Learning Partner  -->
 
 <!-- Assessment Management  -->
 <li>
-<a href="#"><span>Assessment Management</span></a>
+<a href="#"><span>Assessment Admin</span></a>
 <ul>
-<li><a href="/"><i class="material-icons">question_answer</i>Question Bank Management</a></li>
-<li><a href="/dash1"><i class="material-icons">library_books</i>
-Survey Management</a></li>
-<li><a href="/addassessment"><i class="material-icons">cloud_upload</i>
-Assessment Management</a></li>
-<li><a href="/dash1"><i class="material-icons">school</i>
-Certification Management</a></li>
+
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Question</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Question</a>
+    </li>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Add Assessment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Assessment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Assign Assessment</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Add Certification</a>
+    </li>
+     <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Certification</a>
+    </li>
+     <li><a href="#"><i class="material-icons">library_books</i>
+     Assign Certification</a>
+    </li>
 </ul>
 </li>
 <!-- /Assessment Management  -->
 
-
+<!-- Survey -->
+<li>
+<a href="#"><span>Survey Admin</span></a>
+	<ul>
+		<li><a href="#"><i class="material-icons">library_books</i>
+	     Add Question</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Manage Question</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Add Survey</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Manage Survey</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Launch Survey</a>
+	    </li>
+	 </ul>
+</li>
+<!-- Survey -->
 <!-- Security Admin -->
 <li>
 <a href="#"><span>Security Admin</span></a>
 <ul>
 <li><a href="/"><i class="material-icons">supervisor_account</i>User Management
-</a></li>
-<li><a href="/dash1"><i class="material-icons">open_in_browser</i>
-Bulk Upload Users</a></li>
+</a>
+	<ul>
+		<li><a href="#"><i class="material-icons">library_books</i>
+	     Add User</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">library_books</i>
+	     Manage User</a>
+	    </li>
+	    <li><a href="#"><i class="material-icons">open_in_browser</i>
+	     Bluk Upload</a>
+	    </li>
+	</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">security</i>
-Security Roles Management</a></li>
+Security Roles Management</a>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+     Assign/Revoke Roles</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Add Custom Role</a>
+    </li>
+    <li><a href="#"><i class="material-icons">library_books</i>
+     Manage Custom Role</a>
+    </li>
+</ul>
+</li>
 <li><a href="/dash1"><i class="material-icons">important_devices</i>
 Device Management</a></li>
 </ul>
 </li>
 <!-- /Security Admin  -->
 
-<!-- master data mangement -->
-<li>
+<!-- Super Admin -->
+  <li>
+	<a href="#"><span>Super Admin</span></a>
+	<ul>
+	  <li>
+		  <a href="#"><i class="material-icons">library_books</i>
+		     User Groups management</a>
+	      <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Standard Group</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Custom Group</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Dynamic Group</a>
+		    </li>
+	    </ul>
+	  </li>
+  </ul>
+      
+
+      <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Annoucements</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Add Annoucements</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Manage Annoucements</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+
+    <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Login Message</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Add Login Message</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Manage Login Message</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+
+    <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Gamification</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		      Add Badges</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Manage Badges</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+    <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Custom Fields Management</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		       Add Custom fields</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Manage Custom fields</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+    <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Mass Mail</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		      Add Mass mail</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Manage Mass mail</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+
+    <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Preferences</a>
+
+		     <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		      Corporate Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Welcome Page Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Search Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Navigation Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Time Zone Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Language Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Certificate Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Points Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Leaderboard Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Badges Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Browse Learning Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Search Learning Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Search User Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Course Rating Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Password Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     Community Preferences</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		     E-Commerce Preferences</a>
+		    </li>
+		     </ul>
+		    </li>
+    </ul>
+
+<ul>
+	<li>
 	<a href="/masterdash"><span>Master Data Management</span></a>
   </li>
-<!-- master data management end -->
+</ul>
+
+
+  </li>
+
+  <!-- Super Admin -->
+<!-- Report Admin -->
+<li>
+	<a href="/"><span>Reporting Admin</span></a>
+
+	<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+      Standard Report</a>
+       <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Run Custom Report</a>
+		    </li>
+	</ul>
+    </li>
+    </ul>
+
+   <ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+      Custom Report</a>
+       <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		      Add Custom Report</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Manage Custom Report</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Report Subscription</a>
+		    </li>
+		 </ul>
+	   </li>
+    </ul>
+<ul>
+	<li><a href="#"><i class="material-icons">library_books</i>
+      Dashboard</a>
+       <ul>
+			<li><a href="#"><i class="material-icons">library_books</i>
+		     Add Dashboard</a>
+		    </li>
+		    <li><a href="#"><i class="material-icons">library_books</i>
+		      Manage Dashboard</a>
+		    </li>
+	</ul>
+    </li>
+    </ul>
+
+  </li>	
+
+
+<!-- Report Admin -->
 	<!-- /page kits -->
 
 							
