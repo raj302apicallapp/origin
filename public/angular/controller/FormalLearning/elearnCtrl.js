@@ -2,6 +2,11 @@ var app = angular.module('app');
    var prereqFlag;
    var PreCourseFlag;
    var PostCourseFlag;
+   var relCourseFlag;
+   var answerarr = [];
+   var preCourseArr =[];
+   var postCourseArr =[];
+   var relCourseArr =[];
 
 app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$timeout,$location,$routeParams,$http,courseService){
 
@@ -52,10 +57,7 @@ var self = this;
 
 
 
-  $scope.JsonResult=[
-  {"id":"101","title":"OOPS","type":"ILT","duration":"70Hrs"},
-  {"id":"102","title":"RDBMS","type":"ILT","duration":"50Hrs"}
-  ];
+ 
   $scope.selectJson=[];
   $scope.preCourseJson=[];
   $scope.postCourseJson=[];
@@ -69,6 +71,7 @@ $scope.showAdvanced = function(ev) {
    prereqFlag=true;
    PreCourseFlag=false;
    PostCourseFlag=false;
+   relCourseFlag =false;
   
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
@@ -93,6 +96,10 @@ $scope.showAdvanced = function(ev) {
   };
   
 $scope.showPreCourse = function(ev) {
+  prereqFlag=false;
+   PreCourseFlag=true;
+   PostCourseFlag=false;
+   relCourseFlag =false;
 console.log("inside show pre_course")
   console.log(JSON.stringify($scope.JsonResult));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -119,6 +126,10 @@ console.log("inside show pre_course")
 
 
     $scope.showPostCourse = function(ev) {
+      prereqFlag=false;
+   PreCourseFlag=false;
+   PostCourseFlag=true;
+   relCourseFlag =false;
 
   console.log(JSON.stringify($scope.JsonResult));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -144,6 +155,10 @@ console.log("inside show pre_course")
   };
   
    $scope.showRelatedCourse = function(ev) {
+     prereqFlag=false;
+   PreCourseFlag=false;
+   PostCourseFlag=false;
+   relCourseFlag =true;
 
   console.log(JSON.stringify($scope.JsonResult));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -182,50 +197,62 @@ $scope.checkAll = function () {
             $scope.selectedAll = false;
         }
 
-    //     angular.forEach($scope.getILTCourse, function (item) {
-    //       if (prereqFlag==true) {
+        angular.forEach($scope.getILTCourse, function (item) {
+          if (prereqFlag==true) {
 
-    //                  if (answerarr.length==0) {
-    //               item.Selected = $scope.selectedAll;
-    //             };
-    //               console.log("Checked TEM::"+JSON.stringify(item));
-    //               console.log("answerarr TEM::"+JSON.stringify(answerarr));
-    //               for (var i =0; i <answerarr.length; i++) {
-    //                if (item.title==answerarr[i].title) {
-    //                 item.Selected=false;
-    //                 return;
-    //                }else{
-    //                 item.Selected=$scope.selectedAll;
-    //                }
-    //               };
+                     if (answerarr.length==0) {
+                  item.Selected = $scope.selectedAll;
+                };
+                  console.log("Checked TEM::"+JSON.stringify(item));
+                  console.log("answerarr TEM::"+JSON.stringify(answerarr));
+                  for (var i =0; i <answerarr.length; i++) {
+                   if (item.title==answerarr[i].title) {
+                    item.Selected=false;
+                    return;
+                   }else{
+                    item.Selected=$scope.selectedAll;
+                   }
+                  };
                     
                 
 
 
-    //       }else if (relFlag==true) {
+          }
+       else if (PreCourseFlag==true) {
 
+             if (preCourseArr.length==0) {
+          item.Selected = $scope.selectedAll;
+        };
+          console.log("Checked TEM::"+JSON.stringify(item));
+          console.log("preCourseArr TEM::"+JSON.stringify(preCourseArr));
+          for (var i =0; i <preCourseArr.length; i++) {
+           if (item.title==preCourseArr[i].title) {
+            item.Selected=false;
+            return;
+           }else{
+            item.Selected=$scope.selectedAll;
+           }
+          };
+                 }
+       else if (PostCourseFlag==true) {
 
-    //          if (relanswerarr.length==0) {
-    //       item.Selected = $scope.selectedAll;
-    //     };
-    //       console.log("Checked TEM::"+JSON.stringify(item));
-    //       console.log("answerarr TEM::"+JSON.stringify(relanswerarr));
-    //       for (var i =0; i <relanswerarr.length; i++) {
-    //        if (item.title==relanswerarr[i].title) {
-    //         item.Selected=false;
-    //         return;
-    //        }else{
-    //         item.Selected=$scope.selectedAll;
-    //        }
-    //       };
-            
-       
-
-
-    //       }
+             if (postCourseArr.length==0) {
+          item.Selected = $scope.selectedAll;
+        };
+          console.log("Checked TEM::"+JSON.stringify(item));
+          console.log("postCourseArr TEM::"+JSON.stringify(postCourseArr));
+          for (var i =0; i <postCourseArr.length; i++) {
+           if (item.title==postCourseArr[i].title) {
+            item.Selected=false;
+            return;
+           }else{
+            item.Selected=$scope.selectedAll;
+           }
+          };
+                 }
          
         
-    // });
+    });
 }
      $scope.saveAction=function(){
       console.log(JSON.stringify($scope.getILTCourse));
@@ -805,6 +832,19 @@ $scope.isLoading=false;
 
  }
  else if (PostCourseFlag==true) {
+
+          if (response.data.length>0) {
+             for (var j=0; j < answerarr.length; j++) {
+                for (var i = 0; i < $scope.getILTCourse.length; i++) {
+               if (answerarr[j].title==$scope.getILTCourse[i].title) {
+                $scope.getILTCourse[i].postChecked=true;
+              }                
+            };            
+          }
+          }
+
+ }
+ else if (relCourseFlag == true) {
 
           if (response.data.length>0) {
              for (var j=0; j < answerarr.length; j++) {

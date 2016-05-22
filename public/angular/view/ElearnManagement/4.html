@@ -1,50 +1,41 @@
-<h5 style="text-align:center;padding-bottom:10px;">Approval</h5>
+<h5 style="text-align:center;padding-bottom:10px;">Related Course</h5> 
 <form name="addElearnForm" ng-controller="addElearnCtrl as ctrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
-	
-  <div flex>
-     <md-checkbox ng-change="regchange()" ng-model="carrymodel.regapprove" aria-label="Checkbox 1">
-            Registration Approval
-          </md-checkbox>  
-  </div>
-  <div style="width:2%"></div>
-  <div flex ng-show="carrymodel.regapprove">
-      <input ng-model="carrymodel.reglevel" type="number" min="1" max="3" step="1" name="reglevel"/>
-  </div>
+<div flex>
+ <md-checkbox ng-model="carrymodel.relcourse" aria-label="Checkbox 1">
+            Related Courses:
+          </md-checkbox>
+   <md-button ng-click="showRelatedCourse($event)" ng-show="carrymodel.relcourse" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+	 <div flex ng-show="carrymodel.relcourse">
+      <table class="responstable">
+  <tr>
+    
+    <th data-th="Course details"><span>Course Title</span></th>
+    <th>Type</th>
+    <th>Duration</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectRelCourse">
+    
+    <td>{{item.title}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}</td>
+   
+    <td class="actionclass"><md-button ng-click="removeRelCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
 </div>
 <!-- ROW 1 Ends -->
-<div style="padding-bottom:2%"></div>
-
-<!-- ROW 2 Starts -->
-<div layout="row" layout-xs="column">
-  
-  <div flex>
-     <md-checkbox ng-change="exmchange()" ng-model="carrymodel.exmapprove" aria-label="Checkbox 1">
-            Excemption Approval
-          </md-checkbox>
-  </div>
-  <div style="width:2%"></div>
-  <div flex ng-show="carrymodel.exmapprove">
-      <input ng-model="carrymodel.exmlevel" type="number" min="1" max="3" step="1" name="exmlevel"/>
-  </div>
-</div>
-<!-- ROW 2 Ends -->
-<div style="padding-bottom:2%"></div>
-<!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
-  
-  <div flex>
-     <md-checkbox ng-change="costchange()" ng-model="carrymodel.costapprove" aria-label="Checkbox 1">
-            Cost Approval
-          </md-checkbox>
-  </div>
-  <div style="width:2%"></div>
-  <div flex ng-show="carrymodel.costapprove">
-      <input ng-model="carrymodel.costlevel" type="number" min="1" max="3" step="1" name="costlevel"/>
-  </div>
-</div>
-<!-- ROW 3 Ends -->
+</form>
 <div style="padding-bottom:2%"></div>
 <!-- ROW last Starts -->
 <div class="row">
@@ -55,5 +46,4 @@
         
 </div>
 <!-- ROW last Ends -->
-</form>
- 
+ <link href="assets/css/course.css" rel="stylesheet">
