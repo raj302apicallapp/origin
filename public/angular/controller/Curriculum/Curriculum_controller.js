@@ -1240,12 +1240,29 @@ $scope.CourseCost=function()
      }
     })
     .then(function(answer) {
+      alert(JSON.stringify(answer.length))
       if(answer.length<2)
-          {  if(answerarr.length<1) 
+          { 
+
+           if(answerarr.length<1) 
              {
+              $scope.carrymodel.curriculum_owner=answer;
+              for(var i=0;i<$scope.Emplyoee.length;i++)
+                {
+                  for(var j=0;j<answerarr.length;j++)
+                  {
+                  if(answerarr[j]==$scope.Emplyoee[i].firstname)
+                  {
+                    $scope.Emplyoee[i].Selected=false;
+                    
+                    console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
+                  }
+                }
+              }
                for(var i=0;i<answer.length;i++){ 
                
                 answerarr.push(answer[i]);
+
               }
           }
             else
@@ -1268,7 +1285,7 @@ $scope.CourseCost=function()
         {
           $scope.Emplyoee[i].Checked=true;
           $scope.Emplyoee[i].Selected=false;
-          $scope.carrymodel.curriculum_owner=answerarr[i];
+          
           console.log("ok"+JSON.stringify($scope.Emplyoee[i]));
         }
       }
@@ -1305,10 +1322,11 @@ console.log(JSON.stringify($scope.Emplyoee));
     $scope.Employee_saveAction=function(){
       console.log(JSON.stringify($scope.Emplyoee));
       for(var i=0;i<$scope.Emplyoee.length;i++){
-         console.log("Final Result::"+JSON.stringify($scope.Emplyoee[i].Selected));
-        if ($scope.Emplyoee[i].Selected==false || !angular.isDefined($scope.Emplyoee[i].Selected) ) {}else{
+        if ($scope.Emplyoee[i].Selected==true || angular.isDefined($scope.Emplyoee[i].Selected) ) {
         $scope.select_employee.push($scope.Emplyoee[i].firstname);
-      };
+      }
+      else{}
+      
         console.log("Emplyoee"+JSON.stringify($scope.Emplyoee))
       }
       console.log("Final Result::"+JSON.stringify($scope.select_employee));
