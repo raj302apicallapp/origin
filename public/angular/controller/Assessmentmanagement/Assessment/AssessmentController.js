@@ -211,7 +211,6 @@ function createFilterForTags(query) {
 
   console.log("datas::"+JSON.stringify(self.competencydata));
       
-       query=angular.lowercase(query);
        console.log("sr::"+query); 
       var results = query ? self.competencydata.filter( createFilterFor(query) ) : self.competencydata,
           deferred;
@@ -279,7 +278,6 @@ function createFilterForTags(query) {
    
    function querySearchSubCompetency (query) {
     console.log("SubCompetency::"+query); 
-     query=UpperCase(query);
       var results = query ? self.subcompetency.filter( createFilterFor(query) ) : self.subcompetency,
           deferred;
       if (self.simulateQuery) {
@@ -332,7 +330,6 @@ function createFilterForTags(query) {
    }
 
    function querySearchSkills (query) {
-      query=UpperCase(query);
     console.log("SubCompetency::"+query); 
       var results = query ? self.SkillSet.filter( createFilterFor(query) ) : self.SkillSet,
           deferred;
@@ -365,24 +362,11 @@ function createFilterForTags(query) {
      function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
+          res=angular.lowercase(res);
           console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(query) == 0);
+          return (res.indexOf(lowercaseQuery) == 0);
         };
-
     }
-   function UpperCase(string) 
-    {  
-          if(string == null)
-          {
-
-          }
-          else
-          {
-              string = string.toLowerCase();
-             return string.replace(/([^ -])([^ -]*)/gi,function(v,v1,v2){ return v1.toUpperCase()+v2; })
-              // return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase(); 
-          } 
-    } 
 $scope.getQuestiondata=function()
 {
 $scope.questions=[{"question":"question1"},

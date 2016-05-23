@@ -145,6 +145,11 @@ else if($location.path()=="/addassessment")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/iltsession")
+{
+  console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
 
 console.log("LocalStorage:"+$localStorage.currentPath);
 console.log("vendor type::"+$localStorage.vendortype)
@@ -251,7 +256,7 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 	}	
 else if($localStorage.currentPath=="/addelearn"){
 	console.log("addelearn");
-		var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Approval','Related Course','Upload'];
+		var a1=['Basic Info','Pre/Post Work','TargetAudience','Approval','Related Course','Upload'];
 		var a2="angular/view/ElearnManagement/";
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
@@ -284,7 +289,7 @@ $scope.uploadClick=function(carrymodel){
   console.log(JSON.stringify(carrymodel));
   console.log(carrymodel.localfile);
 
-var fd = new FormData();
+  var fd = new FormData();
   fd.append('images', carrymodel.localfile);
   
   var xhr = new XMLHttpRequest();

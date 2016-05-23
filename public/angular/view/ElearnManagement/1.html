@@ -1,0 +1,123 @@
+<h5 style="text-align:center;padding-bottom:10px;">Pre/Post Work</h5> 
+<form name="addElearnForm" ng-controller="addElearnCtrl">
+  
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+<div flex>
+ <md-checkbox ng-model="carrymodel.prereq" aria-label="Checkbox 1">
+            Pre-Requisite
+          </md-checkbox>
+   <md-button ng-click="showAdvanced($event)" ng-show="carrymodel.prereq" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex ng-show="carrymodel.prereq">
+      <table class="responstable">  
+  <tr>
+    
+    <th data-th="Course details"><span>Course Title</span></th>
+    <th>Type</th>
+    <th>Duration</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectPrereq">
+   
+    <td>{{item.title}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}</td>
+   
+    <td class="actionclass"><md-button ng-click="removeCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+<!-- ROW 1 Ends -->
+
+
+<!-- Row 2 starts -->
+<div layout="row" layout-xs="column">
+<div flex>
+ <md-checkbox ng-model="carrymodel.pre_course" aria-label="Checkbox 1">
+     Pre-Course Work
+          </md-checkbox>
+   <md-button ng-click="showPreCourse($event)" ng-show="carrymodel.pre_course" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex ng-show="carrymodel.pre_course">
+      <table class="responstable">
+  <tr>
+    
+    <th data-th="Course details"><span>Course Title</span></th>
+    <th>Type</th>
+    <th>Duration</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectPre_course">
+   
+    <td>{{item.title}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}</td>
+   
+    <td class="actionclass"><md-button ng-click="removePreCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+<!-- Row 2 end -->
+
+<!-- Row 3 start -->
+<div layout="row" layout-xs="column">
+<div flex>
+ <md-checkbox ng-model="carrymodel.post_course" aria-label="Checkbox 1">
+          Post Course Work
+          </md-checkbox>
+   <md-button ng-click="showPostCourse($event)" ng-show="carrymodel.post_course" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex ng-show="carrymodel.post_course">
+      <table class="responstable">
+  <tr>
+   
+    <th data-th="Course details"><span>Course Title</span></th>
+    <th>Type</th>
+    <th>Duration</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectPost_course">
+
+    <td>{{item.title}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}</td>
+   
+    <td class="actionclass"><md-button ng-click="removePostCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+<!-- Row 3 end -->
+</form>
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+ <link href="assets/css/course.css" rel="stylesheet">

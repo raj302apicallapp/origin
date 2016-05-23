@@ -100,7 +100,7 @@
       </md-input-container>
   </div>
     <div flex>
-      <md-button class="md-raised md-primary"  ng-disabled="function" ng-click="addDepartment(mdepartment)" style="float:right">{{action_name}}</md-button>
+      <md-button class="md-raised md-primary"  ng-disabled="!mdepartment" ng-click="addDepartment(mdepartment)" style="float:right">{{action_name}}</md-button>
     </div>
     <div flex ng-hide="editdepartment">
       <md-button class="md-raised md-primary"  ng-click="cancelDepartment()" style="float:right">Cancel</md-button>

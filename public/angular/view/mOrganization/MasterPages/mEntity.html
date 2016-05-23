@@ -19,7 +19,7 @@
       </md-input-container>
   </div>
     <div flex>
-      <md-button class="md-raised md-primary"  ng-click="addEntity(mentity)" style="float:right">{{action_name}}</md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!mentity" ng-click="addEntity(mentity)" style="float:right">{{action_name}}</md-button>
     </div>
     <div flex ng-hide="editentity">
       <md-button class="md-raised md-primary"  ng-click="cancelEntity()" style="float:right">Cancel</md-button>

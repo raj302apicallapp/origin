@@ -50,7 +50,7 @@
       &nbsp;
     </div>
     <div>
-      <md-button ng-click="uploadClick(carrymodel)" ng-disabled="browsefile" id="uploadbtn" class="md-fab md-mini">
+      <md-button ng-click="uploadClick(carrymodel)"  ng-disabled="!carrymodel.localfile" id="uploadbtn" class="md-fab md-mini">
         <md-icon class="material-icons">file_upload</md-icon>
       </md-button>
     </div>
@@ -64,7 +64,7 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Curriculum Owner</label>
-      <input ng-model="carrymodel.curriculum_owner"  rows="" md-select-on-focus=""  required name="curriculum_owner" ng-disabled="dis_curriculumOwner" >
+      <input ng-model="carrymodel.curriculum_owner"  rows="" md-select-on-focus=""  required name="curriculum_owner" ng-disabled="dis_curriculumOwner"  ng-change="curriculum_owner_change()">
          <div ng-messages="carrymodelForm.curriculum_owner.$error">
    <div ng-message="required">Curriculum Owner is Required.</div>
            
@@ -72,7 +72,7 @@
       </md-input-container>
   </div>
   <div flex> 
-    <md-button   ng-click="pick_employee_details()" type="button" class="md-raised md-primary" style="float:right;">Pick Employee</md-button>
+    <md-button   ng-click="pick_employee_details()"  type="button" class="md-raised md-primary" style="float:right;">Pick Employee</md-button>
   </div>
 
 </div>
