@@ -284,7 +284,7 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 	}	
 else if($localStorage.currentPath=="/addelearn"){
 	console.log("addelearn");
-		var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Approval','Related Course','Upload'];
+		var a1=['Basic Info','Pre/Post Work','TargetAudience','Approval','Related Course','Upload'];
 		var a2="angular/view/ElearnManagement/";
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
