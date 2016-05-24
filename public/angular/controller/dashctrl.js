@@ -246,6 +246,34 @@ else if($localStorage.currentPath=="/add_curriculum"){
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
 	}
+// Trainer Management
+
+else if($localStorage.currentPath=="/managetrainer"){
+  if($localStorage.trainertype=="Internal"){
+        console.log("trainertype::Internal")
+      var a1=['Basic Info','Competency Info'];
+    var a2="angular/view/TrainerManagement/Internal/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
+  }
+  
+   else if($localStorage.trainertype == "External")
+  {   
+    console.log("trainertype::External");
+    var a1=['Basic Info','Competency Info','Vendor Info'];
+      var a2="angular/view/TrainerManagement/External/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+   }
+   else if($localStorage.trainertype == "Freelance")
+  {   
+    console.log("trainertype::Freelance");
+    var a1=['Basic Info','Competency Info','Vendor Info'];
+      var a2="angular/view/TrainerManagement/Freelance/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+   }
+  }
 
 //Course Management
 else if($localStorage.currentPath=="/managecourse"){

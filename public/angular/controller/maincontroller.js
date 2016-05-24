@@ -186,6 +186,23 @@ when('/editexternalvenue',
   controller: 'dashctrl'
 }).
 
+
+
+
+
+// trainer management
+when('/addtrainerinternal',
+{
+  templateUrl: 'angular/view/TrainerManagement/Internal/addtrainerinternal.html', 
+  controller: 'dashctrl'
+}).
+
+when('/managetrainer',
+{
+  templateUrl: 'angular/view/TrainerManagement/managetrainer/trainerlist.html', 
+  controller: 'dashctrl'
+}).
+
 //Informal Learning
 when('/ilmanage',
 {
