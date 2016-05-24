@@ -20,6 +20,7 @@ app.use(session({
 app.use('/', express.static(__dirname+'/public'));
 app.use(require(path.join(__dirname+'/public/server/routers/auth.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/courseServer.js')));
+app.use(require(path.join(__dirname+'/public/server/routers/trainerServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/masterVendorRouter.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/venueServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/ILServer.js')));
