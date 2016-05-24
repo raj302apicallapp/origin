@@ -12,9 +12,9 @@ router.post('/addmaster',function(req,res)
 { 
        
 	var collection_name=req.body.collection_name;
-	console.log(JSON.stringify(collection_name))
+	// console.log(JSON.stringify(collection_name))
 	
-	db[collection_name].insert(req.body,function(err,docs){
+	db[collection_name].insert(req.body.data,function(err,docs){
 		console.log(JSON.stringify(docs));
 		res.json(docs);
 	});

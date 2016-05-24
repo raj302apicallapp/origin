@@ -11,8 +11,8 @@ $scope.courseDataListCount=[];
     console.log("add_curriculum");
     var self = this;
     $scope.dis_entity=false; 
-   $scope.dis_group=true;
-   $scope.dis_function=true;
+    $scope.dis_group=true;
+    $scope.dis_function=true;
     $scope.dis_SubCompetency=true;
     $scope.dis_skills=true;
     $scope.dis_department=true;
@@ -1239,10 +1239,8 @@ $scope.CourseCost=function()
         items: $scope.Emplyoee
      }
     })
-    .then(function(answer) {
-      
-          $scope.carrymodel.curriculum_owner=answer; 
-      $scope.dis_curriculumOwner=false;
+    .then(function(answer) {  
+         $scope.carrymodel.curriculum_owner=answer;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -1257,8 +1255,7 @@ $scope.Employee_checkOne=function(vindex){
 console.log(JSON.stringify($scope.Emplyoee));
 }
     $scope.Employee_saveAction=function(){
-      
-      $mdDialog.hide($scope.carrymodel.curriculum_owner);
+            $mdDialog.hide($scope.curriculum_owner);
     }
     
  // image upload
@@ -1276,6 +1273,12 @@ console.log(JSON.stringify($scope.Emplyoee));
           $location.path('/managecourse');
         }
       });
+   }
+
+   $scope.onEmployeeSelect=function(data)
+   {
+    // alert("Seleted"+JSON.stringify(data));
+    $scope.curriculum_owner=data;
    }
 
 });
