@@ -1,0 +1,52 @@
+<h5 style="text-align:center;padding-bottom:10px;">Pre/Post Work</h5> 
+<form name="addCourseForm" ng-controller="addCourseCtrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+<div flex>
+   <md-button ng-click="showAdvanced($event)" class="md-raised md-primary" style="float:right;" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex>
+      <table class="responstable">
+  <tr>
+    <th>Course ID</th>
+    <th data-th="Course details"><span>Course Title</span></th>
+    <th>Type</th>
+    <th>Duration</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in addcourse.selectPrereq">
+    <td>{{item.id}}</td>
+    <td>{{item.title}}</td>
+     <td>{{item.type}}</td>
+    <td>{{item.duration}}</td>
+   
+    <td class="actionclass"><md-button ng-click="removeCourse($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+<!-- ROW 1 Ends -->
+</form>
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(addcourse)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+ <link href="assets/css/course.css" rel="stylesheet">
+
+
+
+
+
+<!-- HOLD FOR MANAGEMENT SCREENS -->

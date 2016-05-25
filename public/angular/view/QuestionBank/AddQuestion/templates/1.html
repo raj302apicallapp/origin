@@ -1,0 +1,64 @@
+<h5 style="text-align:center;padding-bottom:10px;">Category</h5>
+<form name="carrymodelForm" ng-controller="QBCtrl as ctrl">
+	<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+     djfk
+  </div>
+</div>
+<!-- ROW1 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedTopic"
+          md-search-text-change="ctrl.searchTopicChange(ctrl.searchTopic)"
+          md-search-text="ctrl.searchTopic"
+          md-selected-item-change="ctrl.selectedTopicChange(item)"
+          md-items="item in ctrl.querySearchTopic(ctrl.searchTopic)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Topic">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchTopic" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Topic matching "{{ctrl.searchTopic}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+   <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedSubTopic"
+          md-search-text-change="ctrl.searchSubTopicChange(ctrl.searchSubTopic)"
+          md-search-text="ctrl.searchSubTopic"
+          md-selected-item-change="ctrl.selectedSubTopicChange(item)"
+          md-items="item in ctrl.querySearchSubTopic(ctrl.searchSubTopic)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="SubTopic">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSubTopic" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No SubTopic matching "{{ctrl.searchSubTopic}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- ROW2 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">  
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>

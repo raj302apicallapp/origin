@@ -1,0 +1,149 @@
+<h5 style="text-align:center;padding-bottom:10px;">Target Audience</h5>
+<form name="carrymodelForm" ng-controller="addILTCourseCtrl as ctrl" ng-init="getEGDFmaster()">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedEntity"
+
+          md-search-text-change="ctrl.searchEntityChange(ctrl.searchEntity)"
+          md-search-text="ctrl.searchEntity"
+          md-selected-item-change="ctrl.selectedEntityChange(item)"
+          md-items="item in ctrl.querySearchEntity(ctrl.searchEntity)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Entity">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchEntity" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Entity matching "{{ctrl.searchEntity}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+	<md-autocomplete ng-model="carrymodel.group"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedGroup"
+          md-search-text-change="ctrl.searchGroupChange(ctrl.searchGroup)"
+          md-search-text="ctrl.searchGroup"
+          md-selected-item-change="ctrl.selectedGroupChange(item)"
+          md-items="item in ctrl.querySearchGroup(ctrl.searchGroup)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Group">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchGroup" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Group matching "{{ctrl.searchGroup}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete ng-model="carrymodel.department"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedDepartment"
+          md-search-text-change="ctrl.searchDepartmentChange(ctrl.searchDepartment)"
+          md-search-text="ctrl.searchDepartment"
+          md-selected-item-change="ctrl.selectedDepartmentChange(item)"
+          md-items="item in ctrl.querySearchDepartment(ctrl.searchDepartment)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Department">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchDepartment" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Department matching "{{ctrl.searchDepartment}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete ng-model="carrymodel.function"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedFunction"
+          md-search-text-change="ctrl.searchFunctionChange(ctrl.searchFunction)"
+          md-search-text="ctrl.searchFunction"
+          md-selected-item-change="ctrl.selectedFunctionChange(item)"
+          md-items="item in ctrl.querySearchFunction(ctrl.searchFunction)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Function">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchFunction" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Function matching "{{ctrl.searchFunction}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<div style="padding-bottom:2%"></div>
+
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+       <md-autocomplete ng-model="carrymodel.jobfamily"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedJobFamily"
+          md-search-text-change="ctrl.searchJobFamilyChange(ctrl.searchJobFamily)"
+          md-search-text="ctrl.searchJobFamily"
+          md-selected-item-change="ctrl.selectedJobFamilyChange(item)"
+          md-items="item in ctrl.querySearchJobFamily(ctrl.searchJobFamily)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Family">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobFamily" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No JobFamily matching "{{ctrl.searchJobFamily}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+       <md-autocomplete ng-model="carrymodel.jobrole"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="carrymodel.ctrl.selectedJobRole"
+          md-search-text-change="ctrl.searchJobRolesChange(ctrl.searchJobRole)"
+          md-search-text="ctrl.searchJobRole"
+          md-selected-item-change="ctrl.selectedJobRoleChange(item)"
+          md-items="item in ctrl.querySearchJobRole(ctrl.searchJobRole)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Role">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobRole" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No JobRole matching "{{ctrl.searchJobRole}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+ 

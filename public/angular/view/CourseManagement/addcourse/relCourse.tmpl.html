@@ -1,0 +1,42 @@
+<md-dialog aria-label="Pre-Requisite"  ng-cloak >
+  <form ng-controller="addILTCourseCtrl">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Course List</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          x
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
+  <div class="md-dialog-content">
+        
+    <table class="responstable">
+    <tr>
+    <th><md-checkbox ng-model="selectedAll" ng-change="checkAll()" aria-label="Checkbox 1">
+          </md-checkbox></th>
+    <th data-th="Course details" ng-click="sortTitle()">Course Title<md-icon class="material-icons"><i class="material-icons">{{titleSortIcon}}</i></md-icon></th>
+    <th ng-click="sortType()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortDuration()">Duration<md-icon class="material-icons"><i class="material-icons">{{durationSortIcon}}</i></md-icon></th>
+    
+    </tr>
+    <tr dir-paginate="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <td><md-checkbox ng-change="checkOne($index)" ng-disabled="item.relChecked" class="checkid" ng-model="item.relSelected" aria-label="Checkbox 1">
+          </md-checkbox></td>
+    <td>{{item.title}}</td>
+     <td>{{item.coursetype}}</td>
+    <td>{{item.duration}}{{item.induration}}</td>
+    </tr> 
+  </table>
+  <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="saveAction()" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
