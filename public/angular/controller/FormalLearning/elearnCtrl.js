@@ -9,7 +9,15 @@ var app = angular.module('app');
    var relCourseArr =[];
 
 app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$timeout,$location,$routeParams,$http,courseService){
-
+   
+   
+    $scope.saveElearn = function(data)
+{
+  console.log('save called');
+  courseService.addElearn(data).then(function(response){
+    console.log(JSON.stringify(response));
+  });
+}
 
 //AUTOCOMPLETE STARTS
 var self = this;
@@ -221,35 +229,53 @@ $scope.checkAll = function () {
        else if (PreCourseFlag==true) {
 
              if (preCourseArr.length==0) {
-          item.Selected = $scope.selectedAll;
+          item.preSelected = $scope.selectedAll;
         };
           console.log("Checked TEM::"+JSON.stringify(item));
           console.log("preCourseArr TEM::"+JSON.stringify(preCourseArr));
           for (var i =0; i <preCourseArr.length; i++) {
            if (item.title==preCourseArr[i].title) {
-            item.Selected=false;
+            item.preSelected=false;
             return;
            }else{
-            item.Selected=$scope.selectedAll;
+            item.preSelected=$scope.selectedAll;
            }
           };
                  }
        else if (PostCourseFlag==true) {
 
              if (postCourseArr.length==0) {
-          item.Selected = $scope.selectedAll;
+          item.postSelected = $scope.selectedAll;
         };
           console.log("Checked TEM::"+JSON.stringify(item));
           console.log("postCourseArr TEM::"+JSON.stringify(postCourseArr));
           for (var i =0; i <postCourseArr.length; i++) {
            if (item.title==postCourseArr[i].title) {
-            item.Selected=false;
+            item.postSelected=false;
             return;
            }else{
-            item.Selected=$scope.selectedAll;
+            item.postSelected=$scope.selectedAll;
            }
           };
                  }
+                 
+       else if (relCourseFlag==true) {
+
+             if (relCourseArr.length==0) {
+          item.relSelected = $scope.selectedAll;
+        };
+          console.log("Checked TEM::"+JSON.stringify(item));
+          console.log("relCourseArr TEM::"+JSON.stringify(relCourseArr));
+          for (var i =0; i <relCourseArr.length; i++) {
+           if (item.title==relCourseArr[i].title) {
+            item.relSelected=false;
+            return;
+           }else{
+            item.relSelected=$scope.selectedAll;
+           }
+          };
+                 }
+         
          
         
     });
@@ -886,5 +912,9 @@ function addElearnController($scope, $mdDialog) {
     };
 
     $scope.courses='one';
+    
+
   
 }
+
+

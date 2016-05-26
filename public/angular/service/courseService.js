@@ -121,6 +121,21 @@ addCurriculum:function(savedata){
       return promise; 
 },
 
+addElearn:function(savedata){
+		alert("addElearn"+JSON.stringify(savedata));
+
+			savedata.coursetype="Elearn";
+			savedata.coursestatus=1;
+			savedata.addeddate=new Date();
+		var promise = $http.post('/addElearn',savedata).then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise;
+
+		}
+
 
 }
 

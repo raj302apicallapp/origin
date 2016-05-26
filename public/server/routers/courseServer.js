@@ -206,5 +206,17 @@ db.competency.find({},function(err,docs){
 });
 });
 
+//Add Elearn-Insert Starts
+router.post('/addElearn',function(req,res){
+	console.log("Elearn ");
+console.log(req.body);
+
+db.course_management.insert(req.body,function(err,docs){
+	
+	res.json(docs);
+});
+});
+//Add Elearn-Insert Ends
+
 
 module.exports=router;
