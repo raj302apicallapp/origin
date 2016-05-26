@@ -5,23 +5,29 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Course Title</label>
-        <input required name="title" ng-model="carrymodel.title">
+        <input required name="title" ng-model="carrymodel.title" ng-change="checkCourseTitleAvail(carrymodel.title)">
         <div ng-messages="addElearnForm.title.$error">
-          <div ng-message="required">This is required.</div>
+          <div ng-message="required">Course Title is required.</div>
+          
         </div>
+        <div ng-show="titleAvailStatus && carrymodel.title"  class="text-danger">Couser title already exist ! </div>
+        <div ng-show="!titleAvailStatus && carrymodel.title" class="text-success" >Available ! </div>
       </md-input-container>
   </div>
+  
+</div>
+<div layout="row" layout-xs="column">
   <div flex>
       <md-input-container class="md-block">
         <label>Course Description</label>
-        <input md-maxlength="256" required md-no-asterisk name="description" ng-model="carrymodel.description">
+        <textarea  md-maxlength="256" required md-no-asterisk name="description" ng-model="carrymodel.description"></textarea>
         <div ng-messages="addElearnForm.description.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 256 characters long.</div>
+          <div ng-message="required">Description is required.</div>
+          <div ng-message="md-maxlength">The description has to be less than 256 characters long.</div>
         </div>
       </md-input-container>
   </div>
-</div>
+  </div>
 <!-- ROW 1 Ends -->
 <!-- ROW 2 Starts -->
 <div layout="row" layout-xs="column">

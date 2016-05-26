@@ -7,15 +7,27 @@ var app = angular.module('app');
    var preCourseArr =[];
    var postCourseArr =[];
    var relCourseArr =[];
+   
 
 app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$timeout,$location,$routeParams,$http,courseService){
    
-   
+   $scope.titleAvailStatus = "";
+   //Saving ElearnManagement
     $scope.saveElearn = function(data)
 {
   console.log('save called');
   courseService.addElearn(data).then(function(response){
     console.log(JSON.stringify(response));
+  });
+}
+
+$scope.checkCourseTitleAvail = function(data){
+
+var sendData = {};
+sendData.title = data;
+  courseService.checkCourseTitleAvail(sendData).then(function(response){
+    $scope.titleAvailStatus = response.data;
+    console.log($scope.titleAvailStatus);
   });
 }
 

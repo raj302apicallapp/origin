@@ -134,7 +134,18 @@ addElearn:function(savedata){
       // Return the promise to the controller
       return promise;
 
-		}
+		},
+    
+    checkCourseTitleAvail : function(data){
+      
+  var promise = $http.post('/checkCourseTitleAvail',data).then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise;
+  
+},
 
 
 }

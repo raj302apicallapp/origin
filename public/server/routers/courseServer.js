@@ -218,5 +218,23 @@ db.course_management.insert(req.body,function(err,docs){
 });
 //Add Elearn-Insert Ends
 
+//Search Elearn-Title Starts
+router.post('/checkCourseTitleAvail',function(req,res){
+	console.log("checkCourseTitleAvail ");
+console.log("checkCourseTitleAvail"+JSON.stringify( req.body));
+
+db.course_management.find({"title":req.body.title},function(err,docs){
+	//console.log("return value"+JSON.stringify(docs.length));
+	
+		 console.log(docs.length);
+	 docs.length > 0 ? res.json(true) : res.json(false);
+
+	//res.json("0");
+	
+	
+});
+});
+//Search Elearn-Title Ends
+
 
 module.exports=router;
