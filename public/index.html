@@ -135,23 +135,23 @@
 			<ul class="nav navbar-nav">
 
 					<li>
-					<a href="#"><i class="material-icons">home</i></a>
+					<a href="/home"><i class="material-icons">home</i></a>
 					</li>
            </ul>
 		
 			<ul class="nav navbar-nav">
-				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+				<li><a  class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 			</ul>
 
            <ul class="nav navbar-nav">
-				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="glyphicon glyphicon-bullhorn"></i></a></li>
+				<li><a href="/announcements"><i class="glyphicon glyphicon-bullhorn"></i></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-z" >
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
 					<!-- <i class="material-icons">account_circle</i>  -->
 						<span>Role {{SelectedRole}}</span>
-						
+						   <span class="caret"></span>
 					</a>
 			<ul class="dropdown-menu dropdown-menu-left">
 				<li>
@@ -298,7 +298,7 @@ Learning Personalization</a>
 	Search Preference</a>
    </li>
  	<li><a href="/dash1"><i class="material-icons">settings_applications</i>
-	 Recommendation Preferences</a>
+	 Recommendations Preferences</a>
 	</li>
 	<li><a href="/dash1"><i class="material-icons">settings_applications</i>
 	Social Preferences</a>
@@ -353,17 +353,17 @@ Close Session</a></li>
 <li><a href="#"><i class="material-icons">person_outline</i>
 Vendor Management</a>
 <ul>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_ilt_vendor"><i class="material-icons">person_outline</i>
 	Add ILT Vendor</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_f&b_vendor"><i class="material-icons">person_outline</i>
 	Add F&B Vendor</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_Travel_vendor"><i class="material-icons">person_outline</i>
 	Add Travel Vendor</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_printing_vendor"><i class="material-icons">person_outline</i>
 	Add Printing Vendor</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_stationary_vendor"><i class="material-icons">person_outline</i>
 	Add Stationary Vendor</a></li>
-	<li><a href="/dash1"><i class="material-icons">person_outline</i>
+	<li><a href="/add_equipmentVendor"><i class="material-icons">person_outline</i>
 	Add Equipment Vendor</a></li>
 	<li><a href="/vendormanagement"><i class="material-icons">person_outline</i>
 	Vendor Management</a></li>
@@ -392,7 +392,7 @@ Trainer Management</a>
 <li ng-show="showPeople">
 <a href="#"><span>People Manager</span></a>
 <ul>
-<li><a href="/"><i class="material-icons">supervisor_account</i>MyTeam Learning</a></li>
+<li><a href="/myteamlearning"><i class="material-icons">supervisor_account</i>MyTeam Learning</a></li>
 <li><a href="/dash1"><i class="material-icons">assignment_turned_in</i>
 Assign Learning</a></li>
 </ul>
@@ -1021,7 +1021,7 @@ Device Management</a></li>
 			<div class="content-wrapper">
 
 				<!-- Page header -->
-				<div class="page-header">
+				<!-- <div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
 							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
@@ -1034,7 +1034,7 @@ Device Management</a></li>
 							<li class="active">Dashboard</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<!-- /page header -->
 
 

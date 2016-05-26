@@ -294,7 +294,21 @@ when('/MTag',
   templateUrl: 'angular/view/MasterManagement/MTag.html', 
   controller: 'masterDashCtrl'
 }).
-
+when('/home',
+{
+  templateUrl: 'angular/view/home.html', 
+  controller: 'maincontroller'
+}).
+when('/myteamlearning',
+{
+  templateUrl: 'angular/view/Peoplemanager/myteamlearning.html', 
+  controller: 'maincontroller'
+}).
+when('/announcements',
+{
+  templateUrl: 'angular/view/announcements.html', 
+  controller: 'maincontroller'
+}).
 
 otherwise({
         redirectTo: '/'

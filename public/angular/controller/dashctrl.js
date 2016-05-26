@@ -151,8 +151,47 @@ else if($location.path()=="/iltsession")
     $localStorage.currentPath=$location.path();
 }
 
+
+else if($location.path()=="/add_equipmentVendor")
+{
+    $localStorage.vendortype="Equipment Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
+else if($location.path()=="/add_ilt_vendor")
+{
+    $localStorage.vendortype="ILT Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
+else if($location.path()=="/add_stationary_vendor")
+{
+  
+    $localStorage.vendortype="Stationary Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
+else if($location.path()=="/add_printing_vendor")
+{
+  
+    $localStorage.vendortype="Printing Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
+else if($location.path()=="/add_f&b_vendor")
+{
+  
+    $localStorage.vendortype="f&b Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
+else if($location.path()=="/add_Travel_vendor")
+{
+  
+    $localStorage.vendortype="Travel Vendor";
+    $scope.carrymodel.vendortype=$localStorage.vendortype;
+}
 console.log("LocalStorage:"+$localStorage.currentPath);
-console.log("vendor type::"+$localStorage.vendortype)
+console.log("vendor type::"+$localStorage.vendortype);
+
+
+
+ // $localStorage.currentPath=$location.path();
 //EDIT THIS or
 //Wizard-- configure your wizard by call this function with the parameters
 if ($localStorage.currentPath=="/dashboard") {
@@ -171,8 +210,6 @@ var a2="angular/view/VenueManagement/addinternal/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 }  
-else if($localStorage.currentPath =="/vendormanagement")
-{
 	 if($localStorage.vendortype=="Equipment Vendor"){
    	    console.log("vendortype::Equipement Vendor")
 	    var a1=['Basic Info','Services Info','Tax Information','Contact Details'];
@@ -238,7 +275,7 @@ else if($localStorage.vendortype == "f&b Vendor")
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
    }
-}
+
 else if($localStorage.currentPath=="/add_curriculum"){
 	console.log("add_curriculum");
 		var a1=['Basic Info','Design Info','Target Audience','Approval','Related Curriculum','Cost Curriculum'];
