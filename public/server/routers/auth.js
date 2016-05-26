@@ -17,7 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['register']);
+var db = mongojs('mongodb://mongodb://54.169.235.125:27017/flms', ['register']);
 
  var sess="";
 

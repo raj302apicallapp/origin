@@ -186,6 +186,19 @@ when('/editexternalvenue',
   controller: 'dashctrl'
 }).
 
+// trainer management
+when('/addtrainerinternal',
+{
+  templateUrl: 'angular/view/TrainerManagement/Internal/addtrainerinternal.html', 
+  controller: 'dashctrl'
+}).
+
+when('/managetrainer',
+{
+  templateUrl: 'angular/view/TrainerManagement/managetrainer/trainerlist.html', 
+  controller: 'dashctrl'
+}).
+
 //Informal Learning
 when('/ilmanage',
 {
@@ -281,7 +294,21 @@ when('/MTag',
   templateUrl: 'angular/view/MasterManagement/MTag.html', 
   controller: 'masterDashCtrl'
 }).
-
+when('/home',
+{
+  templateUrl: 'angular/view/home.html', 
+  controller: 'maincontroller'
+}).
+when('/myteamlearning',
+{
+  templateUrl: 'angular/view/Peoplemanager/myteamlearning.html', 
+  controller: 'maincontroller'
+}).
+when('/announcements',
+{
+  templateUrl: 'angular/view/announcements.html', 
+  controller: 'maincontroller'
+}).
 
 otherwise({
         redirectTo: '/'
@@ -291,7 +318,7 @@ otherwise({
 app.controller('maincontroller',function($scope){
 console.log("maincontroller");
 
-$scope.showLearner=false;
+$scope.showLearner=true;
 $scope.showLearnerOps=false;
 $scope.showPeople=false;
 $scope.showCatalog=false;
@@ -301,9 +328,10 @@ $scope.showSurvey=false;
 $scope.showSecurity=false;
 $scope.showSuperAdmin=false;
 $scope.showReportAdmin=false;
+$scope.SelectedRole="";
 $scope.showlearner=function()
 {
-  console.log("insss")
+  
   $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
@@ -318,8 +346,9 @@ $scope.showlearner=function()
 
 $scope.showlearnerOps=function()
 {
+  $scope.SelectedRole="Learn Ops Admin";
   $scope.showLearnerOps=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showPeople=false;
   $scope.showCatalog=false;
   $scope.showLearnerPartner=false;
@@ -332,8 +361,9 @@ $scope.showlearnerOps=function()
 
 $scope.showpeople=function()
 {
+  $scope.SelectedRole="People Manager";
   $scope.showPeople=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showCatalog=false;
   $scope.showLearnerPartner=false;
@@ -346,8 +376,9 @@ $scope.showpeople=function()
 
 $scope.showcatalog=function()
 { 
+  $scope.SelectedRole="Catalog Admin";
    $scope.showCatalog=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showLearnerPartner=false;
@@ -359,8 +390,9 @@ $scope.showcatalog=function()
 }
 $scope.showlearingPartner=function()
 {
+  $scope.SelectedRole="Learning Partner";
   $scope.showLearnerPartner=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -372,8 +404,9 @@ $scope.showlearingPartner=function()
 }
 $scope.showassessment=function()
 {  
+  $scope.SelectedRole="Assessment Admin";
   $scope.showAssessment=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -385,8 +418,9 @@ $scope.showassessment=function()
 }
 $scope.showsecurity=function()
 {
+  $scope.SelectedRole="Security Admin";
   $scope.showSecurity=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -398,8 +432,9 @@ $scope.showsecurity=function()
 }
 $scope.showsuperAdmin=function()
 {
+  $scope.SelectedRole="Super Admin";
   $scope.showSuperAdmin=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -411,8 +446,9 @@ $scope.showsuperAdmin=function()
 }
 $scope.showreportAdmin=function()
 {
+  $scope.SelectedRole="Report Admin";
   $scope.showReportAdmin=true;
-  $scope.showLearner=false;
+  $scope.showLearner=true;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;

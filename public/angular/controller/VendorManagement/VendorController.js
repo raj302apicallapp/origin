@@ -583,8 +583,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
    }
   else if($location.path()=="/add_ilt_vendor")
@@ -593,8 +591,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -604,8 +600,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -615,8 +609,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -626,8 +618,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -637,8 +627,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -648,8 +636,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -659,8 +645,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
    }
   else if($location.path() == "/vendormanagement")
@@ -738,15 +722,15 @@ console.log("location path::"+$location.path());
        });
    }
 
- //chagetype 
-   $scope.changeType=function()
-   {
+ // //chagetype 
+ //   $scope.changeType=function()
+ //   {
       
-      $localStorage.vendortype=$scope.carrymodel.vendortype;
-      console.log("local vendortype::"+$localStorage.vendortype)
-       vendortype=$scope.carrymodel.vendortype;
-       console.log("vendorType::"+JSON.stringify(vendortype));
-    }
+ //      $localStorage.vendortype=$scope.carrymodel.vendortype;
+ //      console.log("local vendortype::"+$localStorage.vendortype)
+ //       vendortype=$scope.carrymodel.vendortype;
+ //       console.log("vendorType::"+JSON.stringify(vendortype));
+ //    }
 // add vendor
   $scope.addVendor=function()
   {  

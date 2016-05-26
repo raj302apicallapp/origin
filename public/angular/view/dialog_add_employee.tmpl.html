@@ -80,14 +80,16 @@
   
     <tr dir-paginate="item in Emplyoee | itemsPerPage: perPage">
       
-    <td><md-radio-group ng-model="carrymodel.curriculum_owner">
-                    
-            <md-radio-button name="item" ng-value="item" > 
+   <td>
+    <md-radio-group ng-model="$parent.firstname" ng-change="onEmployeeSelect(item.firstname)">
+                      
+            <md-radio-button name="item" ng-value="item" >{{item.firstname}} 
                  </md-radio-button>
                
-              </md-radio-group></td>
-    <td>{{item.firstname}}</td>
+              </md-radio-group>
+      </td>        
     </tr> 
+  </div>
   </table>
 
  <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>

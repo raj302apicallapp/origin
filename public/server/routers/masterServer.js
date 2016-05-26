@@ -5,24 +5,39 @@ var bodyPaser=require('body-parser');
 router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
+var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital'];
+var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
 
-var collections=['MRoomtype'];
-var db = mongojs('mongodb://arun:123@git.frugaltek.com:27017/flms', collections);
-
-
-
-
-//addMaster
-router.post('/addmasters',function(req,res)
-{
-  console.log("addmasters");
-  var tablename=req.body.tablename;
-  var savedata=req.body.savedata;
-  db[tablename].save(savedata,function(err,docs)
-	{
-      console.log(JSON.stringify(docs))
-	   res.json(docs);
+router.post('/addmaster',function(req,res)
+{ 
+       
+	var collection_name=req.body.collection_name;
+	// console.log(JSON.stringify(collection_name))
+	
+	db[collection_name].insert(req.body.data,function(err,docs){
+		console.log(JSON.stringify(docs));
+		res.json(docs);
 	});
-})
+});
 
+
+router.post('/OnCheckExist',function(req,res)
+{ 
+       
+	var collection_name=req.body.collection_name;
+	console.log(JSON.stringify(collection_name));
+	db[collection_name].find({[collection_name]:req.body.data[collection_name]},function(err,docs){
+		console.log(JSON.stringify(docs));
+		console.log(JSON.stringify(docs.length));
+		if(docs.length==0)
+		{
+			res.json("Not Exists");
+		}
+		else
+		{	
+		res.json("Exists");
+		}
+		
+	});
+});
 module.exports=router;
