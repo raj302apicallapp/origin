@@ -298,101 +298,8 @@ when('/MTag',
   templateUrl: 'angular/view/MasterManagement/MTag.html', 
   controller: 'masterDashCtrl'
 }).
-when('/MCompetencylevels',
-{
-  templateUrl: 'angular/view/MasterManagement/MCompetencylevel.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mMasterylevels',
-{
-  templateUrl: 'angular/view/MasterManagement/mMasterylevels.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mLearningTypeFormal',
-{
-  templateUrl: 'angular/view/MasterManagement/mLearningTypeFormal.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mLearningTypeInformal',
-{
-  templateUrl: 'angular/view/MasterManagement/mLearningTypeInformal.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mVendortype',
-{
-  templateUrl: 'angular/view/MasterManagement/mVendortype.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mTrainertype',
-{
-  templateUrl: 'angular/view/MasterManagement/mTrainertype.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mLearningRequestobjective',
-{
-  templateUrl: 'angular/view/MasterManagement/mLearningRequestObjective.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mCommunitytype',
-{
-  templateUrl: 'angular/view/MasterManagement/mCommunityType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mSecurityrole',
-{
-  templateUrl: 'angular/view/MasterManagement/mSecurityRole.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mAwardtype',
-{
-  templateUrl: 'angular/view/MasterManagement/mAwardType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mAcheivementtype',
-{
-  templateUrl: 'angular/view/MasterManagement/mAcheivementType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mChallengetype',
-{
-  templateUrl: 'angular/view/MasterManagement/mChallengeType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mAssignmentreason',
-{
-  templateUrl: 'angular/view/MasterManagement/mAssignmentReason.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mAssignmenttype',
-{
-  templateUrl: 'angular/view/MasterManagement/mAssignmentType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mTickettype',
-{
-  templateUrl: 'angular/view/MasterManagement/mTicketType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mEmployeetype ',
-{
-  templateUrl: 'angular/view/MasterManagement/mEmployeeType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mQuestiontype',
-{
-  templateUrl: 'angular/view/MasterManagement/mQuestionType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mDevicetype',
-{
-  templateUrl: 'angular/view/MasterManagement/mDeviceType.html', 
-  controller: 'masterDashCtrl'
-}).
-when('/mdeviceOS',
-{
-  templateUrl: 'angular/view/MasterManagement/mDeviceOS.html', 
-  controller: 'masterDashCtrl'
-}).
+
+
 otherwise({
         redirectTo: '/'
       });
@@ -401,7 +308,7 @@ otherwise({
 app.controller('maincontroller',function($scope){
 console.log("maincontroller");
 
-$scope.showLearner=true;
+$scope.showLearner=false;
 $scope.showLearnerOps=false;
 $scope.showPeople=false;
 $scope.showCatalog=false;
@@ -429,7 +336,7 @@ $scope.showlearner=function()
 $scope.showlearnerOps=function()
 {
   $scope.showLearnerOps=true;
-  $scope.showLearner=true;
+  $scope.showLearner=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
   $scope.showLearnerPartner=false;
@@ -443,7 +350,7 @@ $scope.showlearnerOps=function()
 $scope.showpeople=function()
 {
   $scope.showPeople=true;
-  $scope.showLearner=true;
+  $scope.showLearner=false;
   $scope.showLearnerOps=false;
   $scope.showCatalog=false;
   $scope.showLearnerPartner=false;
@@ -470,7 +377,7 @@ $scope.showcatalog=function()
 $scope.showlearingPartner=function()
 {
   $scope.showLearnerPartner=true;
-  $scope.showLearner=true;
+  $scope.showLearner=false;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -496,7 +403,7 @@ $scope.showassessment=function()
 $scope.showsecurity=function()
 {
   $scope.showSecurity=true;
-  $scope.showLearner=true;
+  $scope.showLearner=false;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;
@@ -522,7 +429,7 @@ $scope.showsuperAdmin=function()
 $scope.showreportAdmin=function()
 {
   $scope.showReportAdmin=true;
-  $scope.showLearner=true;
+  $scope.showLearner=false;
   $scope.showLearnerOps=false;
   $scope.showPeople=false;
   $scope.showCatalog=false;

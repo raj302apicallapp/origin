@@ -90,15 +90,56 @@ $scope.OnCheckExist=function(data)
   })
 
 }
+$scope.flipped = false;
 
-
-$scope.getHospital=function()
-{
-  masterdataService.getHospital().then(function(response)
-  {
-    console.log(response);
-    alert(JSON.stringify(response.data));
-  });
-}
+	$scope.flip = function() {
+		$scope.flipped = !$scope.flipped;
+	};
 });
+
+
+
+
+app.directive("flipper", function() {
+	return {
+		restrict: "E",
+		template: "<div class='flipper' ng-transclude ng-class='{ flipped: flipped }'></div>",
+		transclude: true,
+		scope: {
+			flipped: "="
+		}
+	};
+});
+
+app.directive("front", function() {
+	return {
+		restrict: "E",
+		template: "<div class='front tile' ng-transclude></div>",
+		transclude: true
+	};
+});
+
+app.directive("back", function() {
+	return {
+		restrict: "E",
+		template: "<div class='back tile' ng-transclude></div>",
+		transclude: true
+	}
+});
+
+})
   
+  app.directive("flipPanel", function(){
+  return {
+    restrict : "E",
+    // require : "^masterDashCtrl",
+    transclusion : true,
+    link: function(scope, element, attrs, flipCtr){
+      if(!flipCtr.front) {flipCtr.front = element;}
+      else if(!flipCtr.back) {flipCtr.back = element;}
+      else {
+        console.error("FLIP: Too many panels.");
+      }
+    }
+  }
+});

@@ -1274,11 +1274,9 @@ console.log(JSON.stringify($scope.Emplyoee));
         }
       });
    }
-
    $scope.onEmployeeSelect=function(data)
    {
     // alert("Seleted"+JSON.stringify(data));
     $scope.curriculum_owner=data;
    }
-
 });
