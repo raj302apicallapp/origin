@@ -12,6 +12,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+var collections=['mCountry','mLocation','mState','mCity'];
 var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
  var sess="";
 

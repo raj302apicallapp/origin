@@ -5,7 +5,6 @@ var bodyPaser=require('body-parser');
 router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
-<<<<<<< HEAD
 var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital'];
 var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
 

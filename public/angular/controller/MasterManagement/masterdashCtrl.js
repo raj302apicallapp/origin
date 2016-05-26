@@ -127,7 +127,6 @@ app.directive("back", function() {
 	}
 });
 
-})
   
   app.directive("flipPanel", function(){
   return {
