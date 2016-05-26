@@ -101,7 +101,6 @@
 <script src="angular/controller/trainermanagement/addTrainerController.js"></script>
 <script src="angular/service/trainerService.js"></script>
 
-
 <!-- Course Management -->
 
 <script src="angular/controller/coursemanagement/ILT/addILTCourseCtrl.js"></script>
@@ -118,6 +117,7 @@
 <!-- Master Managemet -->
 <script type="text/javascript" src="angular/controller/MasterManagement/masterdashCtrl.js"></script>
 <script src="angular/service/MasterService/masterdataService.js"></script>
+
 </head>
 <body ng-controller="maincontroller">
 	<!-- Top Navbar Starts -->
@@ -150,7 +150,7 @@
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
 					<!-- <i class="material-icons">account_circle</i>  -->
-						<span>Role</span>
+						<span>Role {{SelectedRole}}</span>
 						
 					</a>
 			<ul class="dropdown-menu dropdown-menu-left">
@@ -380,7 +380,6 @@ Trainer Management</a>
 	<li><a href="/dash1"><i class="material-icons">account_circle</i>
 	Add Freelance Trainer </a></li>
 	<li><a href="/managetrainer"><i class="material-icons">account_circle</i>Trainer Management</a></li>
-
 </ul>
 
 </li>

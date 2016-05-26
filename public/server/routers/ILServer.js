@@ -17,10 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-
 var db = mongojs('mongodb://54.169.235.125:27017/flms', ['mCompetency','informalLearning']);
-
-
  var sess="";
 
 router.post('/upload', function (req,res) {
