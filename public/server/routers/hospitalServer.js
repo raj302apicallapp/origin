@@ -13,13 +13,13 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['mEquipment']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['hospital']);
 
 var sess="";
 
 
-router.get('/gethospitals',function(req,res){
-db.mEquipment.find({},function(err,docs){
+router.get('/gethospital',function(req,res){
+db.hospital.find({},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
