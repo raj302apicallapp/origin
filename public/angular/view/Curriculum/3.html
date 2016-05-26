@@ -1,0 +1,155 @@
+<h5 style="text-align:center;padding-bottom:10px;">Approval</h5>
+<form name="carrymodelForm" ng-controller="curriculumCtrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-checkbox ng-model="carrymodel.registation.approval" aria-label="Checkbox 1">
+             Registration Approval Required
+        </md-checkbox>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<!-- Row 2 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.registation.approval" style="margin-left:2em">
+      <div flex>
+
+            <md-radio-group ng-model="carrymodel.registation.approval_type">
+                      <label ng-repeat="approval in approvals"> 
+            <md-radio-button name="approval" ng-value="approval" >{{approval}} &nbsp; &nbsp;
+                 </md-radio-button>
+               
+              </md-radio-group>
+      </div>
+</div>
+<!-- Row 2 end -->
+<!-- row 3 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.registation.approval_type || carrymodel.registation.approval" style="margin-left:2em"> 
+  <div flex>
+    Approval Level
+  </div>
+   <div flex>
+  
+      <input ng-model="carrymodel.registation.approval_level" type="number" min="1" max="3" step="1" name="reg_approval_level"/>
+  </div>
+ </div>
+<!-- row 3 end -->
+<div style="padding-bottom:2%"></div>
+
+<!-- cancel approval -->
+<!-- ROW 4 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-checkbox ng-model="carrymodel.cancellation.approval" aria-label="Checkbox 1">
+             Cancellation Approval Required
+        </md-checkbox>
+  </div>
+</div>
+<!-- ROW 4 Ends -->
+<!-- Row 5 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cancellation.approval" style="margin-left:2em;">
+      <div flex>
+
+            <md-radio-group ng-model="carrymodel.cancellation.approval_type">
+                      <label ng-repeat="approval in approvals"> 
+            <md-radio-button name="approval" ng-value="approval" >{{approval}} &nbsp; &nbsp;
+                 </md-radio-button>
+               
+              </md-radio-group>
+      </div>
+</div>
+<!-- Row 5 end -->
+<!-- row 6 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cancellation.approval_type || carrymodel.cancellation.approval" style="margin-left:2em"> 
+  <div flex>
+    Approval Level
+  </div>
+   <div flex >
+  
+      <input ng-model="carrymodel.cancellation.approval_level" type="number" min="1" max="3" step="1" name="cancel_approval_level"/>
+  </div>
+ </div>
+<!-- row 6 end -->
+<div style="padding-bottom:2%"></div>
+<!-- Excemption -->
+<!-- ROW 7 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-checkbox ng-model="carrymodel.excemption.approval" aria-label="Checkbox 1">
+             Excemption Approval Required
+        </md-checkbox>
+  </div>
+</div>
+<!-- ROW 7 Ends -->
+<!-- Row 8 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.excemption.approval" style="margin-left:2em;">
+      <div flex>
+
+            <md-radio-group ng-model="carrymodel.excemption.approval_type">
+                      <label ng-repeat="approval in approvals"> 
+            <md-radio-button name="approval" ng-value="approval" >{{approval}} &nbsp; &nbsp;
+                 </md-radio-button>
+               
+              </md-radio-group>
+      </div>
+</div>
+<!-- Row 8 end -->
+<!-- row 9 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.excemption.approval_type || carrymodel.excemption.approval" style="margin-left:2em"> 
+  <div flex>
+    Approval Level
+  </div>
+   <div flex >
+  
+      <input ng-model="carrymodel.excemption.approval_level" type="number" min="1" max="3" step="1" name="excemption_approval_level"/>
+  </div>
+ </div>
+<!-- row 9 end -->
+<div style="padding-bottom:2%"></div>
+<!-- cost -->
+<!-- ROW 10 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-checkbox ng-model="carrymodel.cost.approval" aria-label="Checkbox 1">
+             Cost Approval Required
+        </md-checkbox>
+  </div>
+</div>
+<!-- ROW 7 Ends -->
+<!-- Row 8 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cost.approval" style="margin-left:2em;">
+      <div flex>
+
+            <md-radio-group ng-model="carrymodel.cost.approval_type">
+                      <label ng-repeat="approval in approvals"> 
+            <md-radio-button name="approval" ng-value="approval" >{{approval}} &nbsp; &nbsp;
+                 </md-radio-button>
+               
+              </md-radio-group>
+      </div>
+</div>
+<!-- Row 8 end -->
+<!-- row 9 start -->
+ <div layout="row" layout-xs="column" ng-show="carrymodel.cost.approval_type || carrymodel.cost.approval" style="margin-left:2em"> 
+  <div flex>
+    Approval Level
+  </div>
+   <div flex >
+  
+      <input ng-model="carrymodel.cost.approval_level" type="number" min="1" max="3" step="1" name="cost_approval_level"/>
+  </div>
+ </div>
+<!-- row 9 end -->
+<div style="padding-bottom:2%"></div>
+ <!-- ROW last Starts -->
+<div class="row" >
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+          <!-- ng-disabled="!carrymodelForm.$valid" -->
+           <md-button   ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+
+ 
+

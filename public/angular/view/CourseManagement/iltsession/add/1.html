@@ -1,0 +1,83 @@
+<h5 style="text-align:center;padding-bottom:10px;">Seats</h5>
+<form name="addCourseForm" ng-controller="addCourseCtrl as ctrl">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+   <div flex>
+      <label>Minimum Seats</label>
+  </div>
+  <div flex>
+      <input ng-model="addsession.mini" type="number" min="5" max="100" step="1" name="mini"/>
+  </div>
+</div>
+<!-- ROW 1 Ends -->
+<div style="padding-bottom:2%"></div>
+
+<!-- ROW 2 Starts -->
+<div layout="row" layout-xs="column">
+   <div flex>
+      <label>Maximum Seats</label>
+  </div>
+  <div flex>
+      <input ng-model="addsession.max" type="number" min="20" max="200" step="1" name="max"/>
+  </div>
+</div>
+<!-- ROW 2 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 3 Starts -->
+<div layout="row" layout-xs="column">
+   <div flex>
+      <label>Wait lists</label>
+  </div>
+  <div flex>
+      <input ng-model="addsession.waitlist" type="number" min="5" max="10" step="1" name="waitlist"/>
+  </div>
+</div>
+<!-- ROW 3 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 4 Starts -->
+<div layout="row" layout-xs="column">
+  
+  <div flex>
+     <md-checkbox ng-change="costchange()" ng-model="addcourse.costapprove" aria-label="Checkbox 1">
+            Auto Manage Waitlist
+          </md-checkbox>
+  </div>
+  <div flex>
+     <md-checkbox ng-change="costchange()" ng-model="addcourse.costapprove" aria-label="Checkbox 1">
+            Enable Interest Tracking
+          </md-checkbox>
+  </div>
+ 
+</div>
+<!-- ROW 4 Ends -->
+<div style="padding-bottom:2%"></div>
+<!-- ROW 5 Starts -->
+<div layout="row" layout-xs="column">
+  
+   <div flex>
+     <md-checkbox ng-change="costchange()" ng-model="addcourse.costapprove" aria-label="Checkbox 1">
+            Enable Replacement
+          </md-checkbox>
+  </div>
+
+   
+  <div flex>
+     <md-checkbox ng-change="costchange()" ng-model="addcourse.costapprove" aria-label="Checkbox 1">
+            Enable Walkins
+          </md-checkbox>
+  </div>
+</div>
+<!-- ROW 5 Ends -->
+
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(addcourse)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+ 
