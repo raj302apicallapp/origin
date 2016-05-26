@@ -6,7 +6,7 @@ router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
 var collections = ["MasterVendorType", "MasterVendorSkillType","m_vendor_country","m_vendor_state"]
-var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
 // var db1 = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', );
 /*MasterVendorSkillType*/
    /*Vendor type start*/

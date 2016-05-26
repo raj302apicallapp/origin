@@ -17,7 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['venuemanagement','CSCLocation']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['venuemanagement','CSCLocation']);
 
  var sess="";
 

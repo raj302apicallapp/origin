@@ -7,7 +7,7 @@ var bodyPaser=require('body-parser');
 var http = require('http');
 var mongojs=require('mongojs');
 
-var db = mongojs('mongodb://soundar:123@ds023398.mlab.com:23398/heroku_461p1j1s', ['register']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register']);
  
 var port = Number(process.env.PORT || 3000)
 var session = require('express-session');

@@ -11,6 +11,24 @@ return{
           });
 
            return promise;
+       },
+       OnCheckExist:function(data)
+       {
+     
+       	var promise = $http.post('/OnCheckExist',data).then(function(response)
+          {
+            return response;
+          });
+
+           return promise;
+       },
+       getHospital:function()
+       {
+        var promise=$http.get('/getHospital').then(function(response)
+        {
+          return response;
+        });
+        return promise;
        }
 	}
 });
