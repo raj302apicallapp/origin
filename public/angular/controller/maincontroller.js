@@ -192,7 +192,16 @@ when('/addtrainerinternal',
   templateUrl: 'angular/view/TrainerManagement/Internal/addtrainerinternal.html', 
   controller: 'dashctrl'
 }).
-
+when('/addtrainerexternal',
+{
+  templateUrl: 'angular/view/TrainerManagement/External/addtrainerexternal.html', 
+  controller: 'dashctrl'
+}).
+when('/addtrainerfreelance',
+{
+  templateUrl: 'angular/view/TrainerManagement/Freelance/addtrainerfreelance.html', 
+  controller: 'dashctrl'
+}).
 when('/managetrainer',
 {
   templateUrl: 'angular/view/TrainerManagement/managetrainer/trainerlist.html', 

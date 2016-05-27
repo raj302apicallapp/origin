@@ -218,6 +218,7 @@ $scope.saveAction=function(){
         if ($scope.getILTCourse[i].Selected==false || !angular.isDefined($scope.getILTCourse[i].Selected)) {
         }else{
         $scope.selectJson.push($scope.getILTCourse[i]);
+        
        	};
         
       }

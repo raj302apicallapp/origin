@@ -17,19 +17,17 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','competency','trainer_management']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','mCompetency','mCertificate']);
 
 var sess="";
+router.get('/getemployee',function(req,res)
+{
+	db.register.find({},function(err,docs){
+		console.log(JSON.stringify(docs));
+		res.json(docs);
+	});
+});
 
-// get Trainer starts
-router.get('/gettrainer',function(req,res){
-console.log(req.body);
-db.register.find({"coursestatus":1},function(err,docs){
-	console.log(docs);
-	res.json(docs);
-});
-});
-//get Trainer Ends
 //get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
 router.get('/getalltrainer',function(req,res){
 db.register.find({},function(err,docs){
@@ -39,11 +37,10 @@ db.register.find({},function(err,docs){
 });
 //get Trainer all Ends
 
-
 // get Trainer starts
 router.get('/getcompetency',function(req,res){
 console.log(req.body);
-db.competency.find({"coursestatus":1},function(err,docs){
+db.mCompetency.find({"coursestatus":1},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
@@ -51,7 +48,24 @@ db.competency.find({"coursestatus":1},function(err,docs){
 //get Trainer Ends
 //get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
 router.get('/getallcompetency',function(req,res){
-db.competency.find({},function(err,docs){
+db.mCompetency.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//get Trainer all Ends
+// get Trainer starts
+router.get('/getcertification',function(req,res){
+console.log(req.body);
+db.mCertificate.find({"coursestatus":1},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//get Trainer Ends
+//get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
+router.get('/getallcertification',function(req,res){
+db.mCertificate.find({},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });

@@ -1,6 +1,6 @@
 
 <h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5> 
-<form name="TrainerForm" ng-controller="addTrainerCtrl as ctrl">
+<form name="TrainerForm" ng-controller="addTrainerCtrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
 <div flex>
@@ -19,7 +19,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
-  <tr ng-repeat="item in carrymodel.selectemployee">
+  <tr ng-repeat="item in carrymodel.selectemployee ">
     <td>{{item.firstname +""+item.lastname}}</td>
      <td>{{item.email}}</td>
     <td>{{item.mobilenumber}}</td>
@@ -36,7 +36,7 @@
 <!-- ROW last Starts -->
 <div class="row">
         
-          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+       
         
            <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
