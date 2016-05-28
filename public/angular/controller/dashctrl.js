@@ -192,8 +192,30 @@ else if($location.path()=="/add_Travel_vendor")
     $localStorage.currentPath=$location.path();
     $scope.carrymodel.vendortype=$localStorage.vendortype;
 }
+else if($location.path()=="/addtrainerinternal")
+{
+  
+    $localStorage.trainertype="Internal";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
+else if($location.path()=="/addtrainerexternal")
+{
+  
+    $localStorage.trainertype="External";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
+else if($location.path()=="/addtrainerfreelance")
+{
+  
+    $localStorage.trainertype="Freelance";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
 console.log("LocalStorage:"+$localStorage.currentPath);
 console.log("vendor type::"+$localStorage.vendortype);
+console.log("trainer type::"+$localStorage.trainertype);
 
 
 

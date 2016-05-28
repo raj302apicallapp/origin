@@ -1,21 +1,25 @@
 var app=angular.module("app");
 var answerarr=[];
 var answercer=[];
+var answerarrv=[];
 var answerarrt=[];
-var prereqFlag=true;
-var relFlag=false;
-var finJSon;
+
 var relanswerarr=[];
 var relanswercer=[];
 var relanswerarrt=[];
+var relanswerarrv=[];
+
+var prereqFlag=true;
+var relFlag=false;
+var finJSon;
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
 { 
 
 
 $scope.selectJson=[];
-
 $scope.selectJsoncomp=[];
 $scope.selectJsoncert=[];
+$scope.selectJsonven=[];
 // dialog to pick employee
 
 //Tags
@@ -106,7 +110,7 @@ item.Selected=$scope.selectedAll;
 }
 });
 }
-$scope.saveAction=function(){
+$scope.saveActionemployee=function(){
     if (prereqFlag==true) {
          for(var i=0;i<$scope.getInternalTrainer.length;i++){
         if ($scope.getInternalTrainer[i].Selected==false || !angular.isDefined($scope.getInternalTrainer[i].Selected)) {
@@ -437,7 +441,7 @@ items.Selected=$scope.selectedAll;
 if (relanswerarrt.length==0) {
 items.Selected = $scope.selectedAll;
 };
-console.log("Checked TEM::"+JSON.stringify(item));
+console.log("Checked TEM::"+JSON.stringify(items));
 console.log("answerarrt TEM::"+JSON.stringify(relanswerarrt));
 for (var i =0; i <relanswerarrt.length; i++) {
 if (items.Certification==relanswerarrt[i].Certification) {
@@ -536,11 +540,11 @@ $scope.removeCertification=function(vindex){
 // vendor
 // competency
 // dialog to pick competency
-$scope.showAdvancedCertification = function(ev) {
+$scope.showAdvancedVendor = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 $mdDialog.show({
  controller: addTrainerController,
-templateUrl: 'angular/view/TrainerManagement/Extrernal/dialog4.tmpl.html',
+templateUrl: 'angular/view/TrainerManagement/External/dialog4.tmpl.html',
 parent: angular.element(document.body),
 targetEvent: ev,
 clickOutsideToClose:true,
@@ -574,34 +578,34 @@ $scope.selectedAll = true;
 $scope.selectedAll = false;
 }
 
-angular.forEach($scope.getInternalVendor, function (items) {
+angular.forEach($scope.getInternalVendor, function (item) {
 if (prereqFlag==true) {
 
 if (answerarrv.length==0) {
-items.Selected = $scope.selectedAll;
+item.Selected = $scope.selectedAll;
 };
-console.log("Checked TEM::"+JSON.stringify(items));
+console.log("Checked TEM::"+JSON.stringify(item));
 console.log("answerarrt TEM::"+JSON.stringify(answerarrv));
 for (var i =0; i <answerarrv.length; i++) {
-if (items.name==answerarrv[i].name) {
-items.Selected=false;
+if (item.Firstname==answerarrv[i].Firstname) {
+item.Selected=false;
 return;
 }else{
-items.Selected=$scope.selectedAll;
+item.Selected=$scope.selectedAll;
 }
 };
 }else if (relFlag==true) {
 if (relanswerarrv.length==0) {
-items.Selected = $scope.selectedAll;
+item.Selected = $scope.selectedAll;
 };
 console.log("Checked TEM::"+JSON.stringify(item));
 console.log("answerarrt TEM::"+JSON.stringify(relanswerarrv));
 for (var i =0; i <relanswerarrv.length; i++) {
-if (items.name==relanswerarrv[i].name) {
-items.Selected=false;
+if (item.Firstname==relanswerarrv[i].Firstname) {
+item.Selected=false;
 return;
 }else{
-items.Selected=$scope.selectedAll;
+item.Selected=$scope.selectedAll;
 }
 };
 }
@@ -641,7 +645,7 @@ if (prereqFlag==true) {
 if (response.data.length>0) {
 for (var j=0; j < answerarrv.length; j++) {
 for (var i = 0; i < $scope.getInternalVendor.length; i++) {
-if (answerarrv[j].name==$scope.getInternalVendor[i].name) {
+if (answerarrv[j].Firstname==$scope.getInternalVendor[i].Firstname) {
 $scope.getInternalVendor[i].Checked=true;
 }
 
@@ -658,7 +662,7 @@ $scope.getInternalVendor[i].Checked=true;
 if (response.data.length>0) {
 for (var j=0; j < answerarrv.length; j++) {
 for (var i = 0; i < $scope.getInternalVendor.length; i++) {
-if (answerarrv[j].name==$scope.getInternalVendor[i].name) {
+if (answerarrv[j].Firstname==$scope.getInternalVendor[i].Firstname) {
 $scope.getInternalVendor[i].relChecked=true;
 }
 
