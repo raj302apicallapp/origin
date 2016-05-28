@@ -71,5 +71,22 @@ db.mCertificate.find({},function(err,docs){
 });
 });
 //get Trainer all Ends
+// get Trainer starts
+router.get('/getvendor',function(req,res){
+console.log(req.body);
+db.mCertificate.find({"coursestatus":1},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//get Trainer Ends
+//get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
+router.get('/getallvendor',function(req,res){
+db.mCertificate.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//get Trainer all Ends
 
 module.exports=router;

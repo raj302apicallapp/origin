@@ -379,9 +379,6 @@ $scope.removeCompetency=function(vindex){
 
 // certification
 
-
-// competency
-// dialog to pick competency
 $scope.showAdvancedCertification = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 $mdDialog.show({
@@ -531,6 +528,165 @@ $scope.getCertification();
 $scope.removeCertification=function(vindex){
       $scope.carrymodel.selectcertification.splice(vindex,1);
     }
+
+
+
+
+
+// vendor
+// competency
+// dialog to pick competency
+$scope.showAdvancedCertification = function(ev) {
+var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+$mdDialog.show({
+ controller: addTrainerController,
+templateUrl: 'angular/view/TrainerManagement/Extrernal/dialog4.tmpl.html',
+parent: angular.element(document.body),
+targetEvent: ev,
+clickOutsideToClose:true,
+fullscreen: useFullScreen
+})
+.then(function(answer) {
+console.log("ok"+JSON.stringify(answer));
+for(var i=0;i<answer.length;i++){
+answerarrv.push(answer[i]);
+}
+$scope.carrymodel.selectvendor=answerarrv;
+console.log("Answer::"+JSON.stringify($scope.carrymodel.selectvendor));
+},function() {
+$scope.status = 'You cancelled the dialog.';
+});
+$scope.$watch(function() {
+return $mdMedia('xs') || $mdMedia('sm');
+}, function(wantsFullScreen) {
+$scope.customFullscreen = (wantsFullScreen === true);
+});
+};
+$scope.checkOneVendor=function(vindex){
+console.log(JSON.stringify($scope.getInternalVendor));
+}
+$scope.checkAllVendor = function () {
+console.log("checkAll::"+prereqFlag);
+if ($scope.selectedAll) {
+$scope.selectedAll = true;
+
+} else {
+$scope.selectedAll = false;
+}
+
+angular.forEach($scope.getInternalVendor, function (items) {
+if (prereqFlag==true) {
+
+if (answerarrv.length==0) {
+items.Selected = $scope.selectedAll;
+};
+console.log("Checked TEM::"+JSON.stringify(items));
+console.log("answerarrt TEM::"+JSON.stringify(answerarrv));
+for (var i =0; i <answerarrv.length; i++) {
+if (items.name==answerarrv[i].name) {
+items.Selected=false;
+return;
+}else{
+items.Selected=$scope.selectedAll;
+}
+};
+}else if (relFlag==true) {
+if (relanswerarrv.length==0) {
+items.Selected = $scope.selectedAll;
+};
+console.log("Checked TEM::"+JSON.stringify(item));
+console.log("answerarrt TEM::"+JSON.stringify(relanswerarrv));
+for (var i =0; i <relanswerarrv.length; i++) {
+if (items.name==relanswerarrv[i].name) {
+items.Selected=false;
+return;
+}else{
+items.Selected=$scope.selectedAll;
+}
+};
+}
+});
+}
+$scope.saveActionVendor=function(){
+console.log(JSON.stringify($scope.getInternalVendor));
+for(var i=0;i<$scope.getInternalVendor.length;i++){
+console.log("Final Result::"+JSON.stringify($scope.getInternalVendor[i].Selected));
+if ($scope.getInternalVendor[i].Selected==false || !angular.isDefined($scope.getInternalVendor[i].Selected)) {}else{
+$scope.selectJsonven.push($scope.getInternalVendor[i]);
+};
+}
+console.log("Final Result::"+JSON.stringify($scope.selectJsonven));
+$scope.jj="jjjj";
+$mdDialog.hide($scope.selectJsonven);
+
+}
+
+
+
+//Get Course 
+$scope.getVendor=function(){
+var activestatus=1;
+$scope.isLoading=true;
+if (!angular.isDefined(activestatus)) {
+activestatus=$scope.activestatus;
+};
+console.log("activestatus"+activestatus);
+trainerService.getVendor(activestatus).then(function(response) {
+
+$scope.getInternalVendor=response.data;
+$scope.isLoading=false;
+if (prereqFlag==true) {
+
+
+if (response.data.length>0) {
+for (var j=0; j < answerarrv.length; j++) {
+for (var i = 0; i < $scope.getInternalVendor.length; i++) {
+if (answerarrv[j].name==$scope.getInternalVendor[i].name) {
+$scope.getInternalVendor[i].Checked=true;
+}
+
+};
+
+}
+
+}
+
+
+}else if (relFlag==true) {
+
+
+if (response.data.length>0) {
+for (var j=0; j < answerarrv.length; j++) {
+for (var i = 0; i < $scope.getInternalVendor.length; i++) {
+if (answerarrv[j].name==$scope.getInternalVendor[i].name) {
+$scope.getInternalVendor[i].relChecked=true;
+}
+
+};
+
+}
+
+}
+
+
+
+}
+
+
+});
+
+
+}
+if (!angular.isDefined($scope.activestatus)) {
+$scope.activestatus=false;
+};
+$scope.getVendor();
+
+$scope.removeVendor=function(vindex){
+      $scope.carrymodel.selectvendor.splice(vindex,1);
+    }
+
+
 
 
     

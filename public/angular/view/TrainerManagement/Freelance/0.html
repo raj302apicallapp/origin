@@ -1,4 +1,4 @@
-<h5 style="text-align:center;padding-bottom:10px;">Contact Info</h5>
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
 <form name="carrymodelForm" ng-controller="addTrainerCtrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
@@ -15,13 +15,12 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Middle Name</label>
-        <input required name="middlename" ng-model="carrymodel.Middlename" aria-label="vendor" style="text-transform:capitalize">
-        <div ng-messages="carrymodelForm.middlename.$error">
-          <div ng-message="required">Middel Name is required.</div>
-        </div>
-      </md-input-container>
+        <input  name="middlename" ng-model="carrymodel.Middlename" aria-label="vendor" style="text-transform:capitalize">
+         </md-input-container>
+  </div>
   </div>
   <div style="width:2%"></div>
+  <div layout="row" layout-xs="column">
   <div flex>
        <md-input-container class="md-block">
         <label>Last Name</label>
@@ -31,10 +30,10 @@
         </div>
       </md-input-container>
   </div>
-</div>
+
 <!-- ROW 1 Ends -->
 <!-- ROW 2 Starts -->
-<div layout="row" layout-xs="column">
+
  
   
  <div flex>
@@ -51,7 +50,9 @@
       </md-input-container>
 
   </div>
+</div>
   <div style="width:2%"></div>
+<div layout="row" layout-xs="column">
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
