@@ -1,7 +1,7 @@
 var app=angular.module("app");
 var MasterResponse=[];
 var l=0;
-var addFlag=0;
+// var addFlag=0;
 var editFlag=0;
 var editJson={};
 app.directive('httpPrefix', function() {
@@ -33,16 +33,15 @@ $scope.progressValue=10;
 $scope.showProgress=false;
 $localStorage.editonlypass="";
 
-   if (addFlag==1) {
-    addFlag=0;
-    $location.path('/iladd');
-   }else if(editFlag==1){
-    editFlag=0;
-    $location.path('/iledit');
-   }
-   else{
-    $location.path('/ilmanage');
-   }
+   
+   //  $location.path('/iladd');
+   // if(editFlag==1){
+   //  editFlag=0;
+   //  $location.path('/iledit');
+   // }
+   // else{
+   //  $location.path('/ilmanage');
+   // }
 
 	var self = this;
     self.simulateQuery = false;
@@ -476,13 +475,13 @@ console.log("Get IL List::"+JSON.stringify($scope.getILList));
 });
 
 }
-$scope.addIL=function(){
-  console.log("Add IL");
-  $localStorage.currentPath=$location.path();
-  addFlag=1;
-    $location.path("/iladd");
+// $scope.addIL=function(){
+//   console.log("Add IL");
+//   $localStorage.currentPath=$location.path();
+//   addFlag=1;
+//     $location.path("/iladd");
   
-}
+// }
 //Active status
 $scope.changeActiveStatus=function(){
   $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;

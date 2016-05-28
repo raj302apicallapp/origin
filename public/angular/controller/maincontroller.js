@@ -8,9 +8,11 @@ $locationProvider.html5Mode({
 $routeProvider.
 when('/',
 {
-  templateUrl: 'angular/view/InformalLearning/manage/list.html', 
-  controller: 'ILController'
+  templateUrl: 'angular/view/dash1.html', 
+  controller: 'dashCtrl1'
 }).
+/*templateUrl: 'angular/view/InformalLearning/manage/list.html', 
+  controller: 'ILController'*/
 when('/dash1',
 {
   templateUrl: 'angular/view/dash1.html', 

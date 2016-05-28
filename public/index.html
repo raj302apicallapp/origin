@@ -341,12 +341,12 @@ Close Session</a></li>
 	</ul>	
 </li>
 <li>
-	<a href="/venue"><i class="material-icons">location_city</i>
+	<a href="#"><i class="material-icons">location_city</i>
         Venue Management</a>
 	<ul>
-		<li><a href="/dash1"><i class="material-icons">location_city</i>Add External Venue</a></li>
-		<li><a href="/dash1"><i class="material-icons">location_city</i>Add Internal Venue</a></li>
-		<li><a href="/dash1"><i class="material-icons">location_city</i>
+		<li><a href="/addinternalvenue"><i class="material-icons">location_city</i>Add Internal Venue</a></li>
+		<li><a href="/addexternalvenue"><i class="material-icons">location_city</i>Add External Venue</a></li>
+		<li><a href="/venue"><i class="material-icons">location_city</i>
 		Venue Management</a></li>
 	</ul>
 </li>
@@ -365,6 +365,10 @@ Vendor Management</a>
 	Add Stationary Vendor</a></li>
 	<li><a href="/add_equipmentVendor"><i class="material-icons">person_outline</i>
 	Add Equipment Vendor</a></li>
+	<li><a href="/add_elearn_vendor"><i class="material-icons">person_outline</i>
+	Add ELearn Vendor</a></li>
+	<li><a href="/add_mlearn_vendor"><i class="material-icons">person_outline</i>
+	Add MLearn Vendor</a></li>
 	<li><a href="/vendormanagement"><i class="material-icons">person_outline</i>
 	Vendor Management</a></li>
 </ul>
@@ -417,43 +421,26 @@ Assign Learning</a></li>
         <li><a href="/#"><i class="material-icons">library_books
 		</i>
         Add MLearn</a></li>
-        <li><a href="/#"><i class="material-icons">library_books
+        <li><a href="/add_curriculum"><i class="material-icons">library_books
 		</i>
         Add Curriculum</a></li>
         <li><a href="/#"><i class="material-icons">library_books
 		</i>
         Add Cohart</a></li>
-        <li><a href="/#"><i class="material-icons">library_books
+        <li><a href="/managecourse"><i class="material-icons">library_books
 		</i>
-        Formal Learning Management</a></li>
+         Management</a></li>
       </ul>
 	</li>
 <li><a href="/"><i class="material-icons">library_books</i>
 Informal Learning</a>
 <ul>
 	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Add Audio</a>
-	</li>
+	<a href="/iladd"><i class="material-icons">library_books</i>
+	 Add Informal Learning</a>
 	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Add Video</a>
-	</li>
-	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Add Ebook</a>
-	</li>
-	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Add Link</a>
-	</li>
-	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Add Document</a>
-	</li>
-	<li>
-	<a href="/#"><i class="material-icons">library_books</i>
-	 Informal Learning Management</a>
+	<a href="/ilmanage"><i class="material-icons">library_books</i>
+	  Management</a>
 	</li>
 </ul>
 
@@ -507,26 +494,26 @@ Learning Needs Analysis</a>
 </ul>
 </li>
 <li><a href="/add_curriculum"><i class="material-icons">library_books</i>
-Curriculum Management</a>
-<ul>
+Add Curriculum</a>
+<!-- <ul>
 	<li><a href="/add_curriculum"><i class="material-icons">library_books</i>
      Add Curriculum</a>
     </li>
     <li><a href="/add_curriculum"><i class="material-icons">library_books</i>
      Manage Curriculum</a>
     </li>
-</ul>
+</ul> -->
 </li>
 <li><a href="/dash1"><i class="material-icons">cloud_upload</i>
 Cohart Management</a>
-<ul>
+<!-- <ul>
 	<li><a href="#"><i class="material-icons">library_books</i>
      Add Cohart</a>
     </li>
     <li><a href="#"><i class="material-icons">library_books</i>
      Manage Cohart</a>
     </li>
-</ul>
+</ul> -->
 </li>
 <li><a href="/dash1"><i class="material-icons">assignment_turned_in</i>
 Assign Learning</a></li>
@@ -534,10 +521,10 @@ Assign Learning</a></li>
 Competency Management</a>
 	<ul>
 		<li><a href="#"><i class="material-icons">library_books</i>
-	     Add Competency Dictionary</a>
+	     Add Dictionary</a>
 	    </li>
 	    <li><a href="#"><i class="material-icons">library_books</i>
-	     Manage Competency Dictionary</a>
+	     Manage Dictionary</a>
 	    </li>
 	</ul>
 </li>
@@ -642,10 +629,10 @@ Mentoring Management</a>
 Ad-hoc learning requests</a>
 <ul>
 	<li><a href="#"><i class="material-icons">library_books</i>
-     Add Learning Request</a>
+     Add Request</a>
     </li>
     <li><a href="#"><i class="material-icons">library_books</i>
-     Manage Learning Request</a>
+     Manage Request</a>
     </li>
 </ul>
 </li>
@@ -817,7 +804,7 @@ Device Management</a></li>
 		     Add Annoucements</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Manage Annoucements</a>
+		     Manage</a>
 		    </li>
 		     </ul>
 		    </li>
@@ -830,10 +817,10 @@ Device Management</a></li>
 
 		     <ul>
 			<li><a href="#"><i class="material-icons">library_books</i>
-		     Add Login Message</a>
+		     Add</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Manage Login Message</a>
+		     Manage</a>
 		    </li>
 		     </ul>
 		    </li>
@@ -864,7 +851,7 @@ Device Management</a></li>
 		       Add Custom fields</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Manage Custom fields</a>
+		      Manage</a>
 		    </li>
 		     </ul>
 		    </li>
@@ -892,55 +879,55 @@ Device Management</a></li>
 
 		     <ul>
 			<li><a href="#"><i class="material-icons">library_books</i>
-		      Corporate Preferences</a>
+		      Corporate </a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Welcome Page Preferences</a>
+		      Welcome Page</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Search Preferences</a>
+		      Search</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Navigation Preferences</a>
+		      Navigation</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Time Zone Preferences</a>
+		      Time Zone</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Language Preferences</a>
+		      Language</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Certificate Preferences</a>
+		      Certificate</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Points Preferences</a>
+		      Points</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Leaderboard Preferences</a>
+		      Leaderboard</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Badges Preferences</a>
+		      Badges</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Browse Learning Preferences</a>
+		      Browse Learning</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		      Search Learning Preferences</a>
+		      Search Learning</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Search User Preferences</a>
+		     Search User</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Course Rating Preferences</a>
+		     Course Rating</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Password Preferences</a>
+		     Password</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     Community Preferences</a>
+		     Community</a>
 		    </li>
 		    <li><a href="#"><i class="material-icons">library_books</i>
-		     E-Commerce Preferences</a>
+		     E-Commerce</a>
 		    </li>
 		     </ul>
 		    </li>
