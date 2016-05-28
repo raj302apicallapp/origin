@@ -86,9 +86,8 @@ if ($location.path()=="/addcourse") {
           $localStorage.currentPath=$location.path();
           $scope.carrymodel=editableJson;
         });
-          
-          
-          console.log("Edit carrymodel::"+JSON.stringify($scope.carrymodel));
+       
+        console.log("Edit carrymodel::"+JSON.stringify($scope.carrymodel));
         });
       };
 
@@ -113,7 +112,7 @@ $scope.compInit=function(){
     if (!angular.isDefined($scope.carrymodel.tags)) {
       $scope.carrymodel.tags=[];
     };
-    $scope.getCompetencyMaster(); 
+  $scope.getCompetencyMaster(); 
 }
 $scope.browseClick=function(){
   	$scope.kok=false;
