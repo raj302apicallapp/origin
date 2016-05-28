@@ -224,9 +224,31 @@ else if($location.path()=="/iladd")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/addtrainerinternal")
+{
+  
+    $localStorage.trainertype="Internal";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
+else if($location.path()=="/addtrainerexternal")
+{
+  
+    $localStorage.trainertype="External";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
+else if($location.path()=="/addtrainerfreelance")
+{
+  
+    $localStorage.trainertype="Freelance";
+    $localStorage.currentPath=$location.path();
+    $scope.carrymodel.trainertype=$localStorage.trainertype;
+}
 console.log("LocalStorage:"+$localStorage.currentPath);
-console.log("vendor type::"+$localStorage.type);
 
+console.log("vendor type::"+$localStorage.vendortype);
+console.log("trainer type::"+$localStorage.trainertype);
 
 
  // $localStorage.currentPath=$location.path();
