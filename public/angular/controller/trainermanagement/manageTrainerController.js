@@ -30,9 +30,9 @@ if($scope.carrymodel.trainertype=="Internal"){
 console.log("trainertype::"+$scope.carrymodel.trainertype)
 $location.path("/addtrainerinternal");
 }else if($scope.carrymodel.trainertype=="External"){
-$location.path("/externaltrainer");
+$location.path("/addtrainerexternal");
 }else if($scope.carrymodel.trainertype=="Freelance"){
-$location.path("/externalfreelance");
+$location.path("/addtrainerfreelance");
 }
 }
 
