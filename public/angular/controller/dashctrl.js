@@ -226,25 +226,19 @@ else if($location.path()=="/iladd")
 }
 else if($location.path()=="/addtrainerinternal")
 {
-  
-    $localStorage.trainertype="Internal";
-    $localStorage.currentPath=$location.path();
-    $scope.carrymodel.trainertype=$localStorage.trainertype;
+   $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="Internal"
 }
 else if($location.path()=="/addtrainerexternal")
 {
-  
-    $localStorage.trainertype="External";
-    $localStorage.currentPath=$location.path();
-    $scope.carrymodel.trainertype=$localStorage.trainertype;
-}
-else if($location.path()=="/addtrainerfreelance")
-{
-  
-    $localStorage.trainertype="Freelance";
-    $localStorage.currentPath=$location.path();
-    $scope.carrymodel.trainertype=$localStorage.trainertype;
-}
+   $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="External";
+ }
+ else if($location.path()=="/addtrainerfreelance")
+ {
+  $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="Freelance";
+ }
 console.log("LocalStorage:"+$localStorage.currentPath);
 
 console.log("vendor type::"+$localStorage.vendortype);
@@ -351,8 +345,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-else if($localStorage.currentPath=="/managetrainer"){
-  if($localStorage.type=="Internal"){
+ else if($localStorage.currentPath=="/addtrainerinternal"){
         console.log("type::Internal")
       var a1=['Basic Info','Competency Info'];
     var a2="angular/view/TrainerManagement/Internal/";
@@ -360,7 +353,7 @@ else if($localStorage.currentPath=="/managetrainer"){
     $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
   }
   
-   else if($localStorage.type == "External")
+   else if($localStorage.currentPath == "/addtrainerexternal")
   {   
     console.log("type::External");
     var a1=['Basic Info','Competency Info','Vendor Info'];
@@ -368,7 +361,7 @@ else if($localStorage.currentPath=="/managetrainer"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-   else if($localStorage.type == "Freelance")
+   else if($localStorage.currentPath == "/addtrainerfreelance")
   {   
     console.log("type::Freelance");
     var a1=['Basic Info','Competency Info','Vendor Info'];
@@ -376,7 +369,7 @@ else if($localStorage.currentPath=="/managetrainer"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-}
+
 
 
 //Course Management
