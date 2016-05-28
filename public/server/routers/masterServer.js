@@ -5,7 +5,7 @@ var bodyPaser=require('body-parser');
 router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
-var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital'];
+var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital','mLanguage'];
 var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
 
 router.post('/addmaster',function(req,res)

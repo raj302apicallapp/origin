@@ -968,7 +968,8 @@ $scope.getCity=function(SelectedState,getResponse){
           res=angular.lowercase(res);
           // alert(JSON.stringify(res));
           console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(lowercaseQuery) == 0);
+          //   return (res.indexOf(lowercaseQuery) == 0);
+          return (res.search(lowercaseQuery) !== -1);
         };
 
     }
