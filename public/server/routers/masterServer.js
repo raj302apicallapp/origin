@@ -40,4 +40,12 @@ router.post('/OnCheckExist',function(req,res)
 		
 	});
 });
+
+//getLanguageMaster
+router.get('/getLanguageMaster',function(req,res){
+db.mLanguage.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
 module.exports=router;
