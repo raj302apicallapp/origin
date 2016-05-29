@@ -12,8 +12,11 @@ var relanswerarrv=[];
 var prereqFlag=true;
 var relFlag=false;
 var finJSon;
+
+
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
 { 
+
 
 
 $scope.selectJson=[];
@@ -22,6 +25,31 @@ $scope.selectJsoncert=[];
 $scope.selectJsonven=[];
 // dialog to pick employee
 
+var trainertype=[];
+$scope.types=['Internal','External','Freelance'];
+
+//chagetype 
+$scope.changeType=function()
+{
+
+$localStorage.trainertype=$scope.carrymodel.trainertype;
+$scope.trainertype=$scope.carrymodel.trainertype;
+console.log("local trainertype::"+$localStorage.trainertype)
+trainertype=$scope.carrymodel.trainertype;
+console.log("trainerType::"+JSON.stringify(trainertype));
+}
+
+$scope.activeTrainer=function(item){
+var activeItem=item;
+console.log("Active/Inactive::"+JSON.stringify(activeItem));
+trainerService.activeTrainer(activeItem).then(function(response) {
+$scope.getTrainer();
+}); 
+}
+$scope.changeActiveStatus=function(){
+  // $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;
+  $scope.getTrainer();
+}
 //Tags
 self.tags=[];
 var skillarr=[];
@@ -116,7 +144,7 @@ $scope.saveActionemployee=function(){
         if ($scope.getInternalTrainer[i].Selected==false || !angular.isDefined($scope.getInternalTrainer[i].Selected)) {
         }else{
         $scope.selectJson.push($scope.getInternalTrainer[i]);
-        alert("ddd"+JSON.stringify($scope.selectJson))
+        console.log("ddd"+JSON.stringify($scope.selectJson))
         };
         
       }
@@ -132,6 +160,7 @@ $scope.saveActionemployee=function(){
     $mdDialog.hide($scope.selectJson);
     }
 }
+
 
 
 
@@ -275,7 +304,7 @@ $scope.saveActionCompetency=function(){
         if ($scope.getInternalCompetency[i].Selected==false || !angular.isDefined($scope.getInternalCompetency[i].Selected)) {
         }else{
         $scope.selectJsoncomp.push($scope.getInternalCompetency[i]);
-        alert("ddd"+JSON.stringify($scope.selectJsoncomp))
+        console.log("ddd"+JSON.stringify($scope.selectJsoncomp))
         };
         
       }
@@ -297,7 +326,7 @@ $scope.saveActionCompetency=function(){
         if ($scope.getInternalCompetency[i].Selected==false || !angular.isDefined($scope.getInternalCompetency[i].Selected)) {
         }else{
         $scope.selectJsoncomp.push($scope.getInternalCompetency[i]);
-        alert("ddd"+JSON.stringify($scope.selectJsoncomp))
+        console.log("ddd"+JSON.stringify($scope.selectJsoncomp))
         };
         
       }
@@ -691,7 +720,20 @@ $scope.removeVendor=function(vindex){
     }
 
 
+   $scope.submitaction=function(data)
+   {
 
+
+      // alert(JSON.stringify(data));
+      courseService.addCurriculum(data).then(function(response)
+      {
+        console.log(JSON.stringify(response));
+        if(response)
+        {
+          $location.path('/managecourse');
+        }
+      });
+   }
 
     
 });

@@ -1,6 +1,36 @@
 var app=angular.module('app');
 app.factory('trainerService',function ($http,$window) {
 return{
+addTrainer:function(savedata){
+      console.log("trainerService"+JSON.stringify(savedata));
+
+      savedata.trainertype="Internal";
+      savedata.trainerstatus=1;
+      savedata.addeddate=new Date();
+    var promise = $http.post('/addtrainer',savedata).then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise;
+
+    },
+removeTrainer:function(removeitem){
+  var promise = $http.post('/removetrainer',removeitem).then(function(response){
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+},
+activeTrainer:function(activeitem){
+  var promise = $http.post('/statustrainer',activeitem).then(function(response){
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+},
+
+
 getTrainer:function(activestatus){
   console.log("Service::"+activestatus);
   if (activestatus==false) {

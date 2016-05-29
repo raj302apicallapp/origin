@@ -1,5 +1,4 @@
-
-<form name="TrainerForm" ng-controller="manageTrainerCtrl as ctrl">
+<form name="CourseForm" ng-controller="manageTrainerCtrl as ctrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
@@ -68,40 +67,42 @@
 <div layout="row" layout-xs="column">
 <div flex>
     <md-checkbox ng-model="activestatus" ng-change="getCourse(activestatus)" aria-label="Checkbox 1">
-           Show Inactive Course also
+           Show Inactive Trainer also
           </md-checkbox>
    
 </div>
-
 </div>
+
 <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
 <div layout="row" layout-xs="column">
 
-	 <div flex>
+   <div flex>
       <table class="responstable">
   <tr>
     
-    <th data-th="Course details" ng-click="sortTitle()">Course Title<md-icon class="material-icons"><i class="material-icons">{{titleSortIcon}}</i></md-icon></th>
-    <th ng-click="sortType()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
-    <th ng-click="sortDuration()">Duration<md-icon class="material-icons"><i class="material-icons">{{durationSortIcon}}</i></md-icon></th>
+    <th data-th="Course details" ng-click="sorttrainer()">Trainer Name<md-icon class="material-icons"><i class="material-icons">{{trainerSortIcon}}</i></md-icon></th>
+    <th ng-click="sortType()">Email<md-icon class="material-icons"><i class="material-icons">{{emailSortIcon}}</i></md-icon></th>
+    <th ng-click="sortDuration()">Trainer Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 
-  <tr dir-paginate="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+
+  <tr dir-paginate="item in getTrainerdata | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
     
-    <td>{{item.title}}</td>
-     <td>{{item.coursetype}}</td>
-    <td>{{item.duration}}{{item.induration}}</td>
+    <td>{{item.firstname}}</td>
+     <td>{{item.email}}</td>
+    <td>{{item.trainertype}}</td>
    
-   <td class="actionclass" ng-hide="item.coursestatus"><md-button class="actionbtn" ng-click="activeCourse(item)" aria-label="Info"><i class="fa fa-eye-slash"></i></md-button></td>
-   <td class="actionclass" ng-show="item.coursestatus"><md-button class="actionbtn" ng-click="activeCourse(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons"><i class="material-icons">remove_red_eye</i></i></md-icon></md-button></td>
-   <td class="actionclass"><md-button ng-click="editCourse(item)" class="actionbtn" ng-click="" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">mode_edit</i></md-icon></md-button></td>
-    <td class="actionclass"><md-button class="actionbtn" ng-click="removeCourse(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">delete_forever</i></md-icon></md-button></td>
+   <td class="actionclass" ng-hide="item.coursestatus"><md-button class="actionbtn" ng-click="activeTrainer(item)" aria-label="Info"><i class="fa fa-eye-slash"></i></md-button></td>
+   <td class="actionclass" ng-show="item.coursestatus"><md-button class="actionbtn" ng-click="activeTrainer(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons"><i class="material-icons">remove_red_eye</i></i></md-icon></md-button></td>
+   <td class="actionclass"><md-button ng-click="editTrainer(item)" class="actionbtn" ng-click="" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">mode_edit</i></md-icon></md-button></td>
+    <td class="actionclass"><md-button class="actionbtn" ng-click="removeTrainer(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">delete_forever</i></md-icon></md-button></td>
   </tr>
   
   
 </table>
 <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+
   </div> 
 </div>
 <!-- ROW 1 Ends -->
