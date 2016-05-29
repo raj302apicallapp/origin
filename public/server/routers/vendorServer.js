@@ -47,8 +47,9 @@ db.vendormanagement.find({},function(err,docs){
 //Vendor-Retrieve Ends
 /*get competency*/
 
-router.get('/getCompetency',function(req,res){
-db.mCompetency.find({"status":1},function(err,docs){
+router.get('/getCompetencys',function(req,res){
+	console.log("data")
+db.mCompetency.find({},function(err,docs){
 	console.log("competency"+docs);
 	res.json(docs);
 });

@@ -8,9 +8,11 @@ $locationProvider.html5Mode({
 $routeProvider.
 when('/',
 {
-  templateUrl: 'angular/view/InformalLearning/manage/list.html', 
-  controller: 'ILController'
+  templateUrl: 'angular/view/dash1.html', 
+  controller: 'dashCtrl1'
 }).
+/*templateUrl: 'angular/view/InformalLearning/manage/list.html', 
+  controller: 'ILController'*/
 when('/dash1',
 {
   templateUrl: 'angular/view/dash1.html', 
@@ -273,7 +275,6 @@ when('/masterdash',
   templateUrl: 'angular/view/MasterManagement/masterDashboard.html', 
   controller: 'masterDashCtrl'
 }).
-
 when('/MVenuetype',
 {
   templateUrl: 'angular/view/MasterManagement/MVenuetype.html', 
@@ -303,6 +304,32 @@ when('/MTag',
   templateUrl: 'angular/view/MasterManagement/MTag.html', 
   controller: 'masterDashCtrl'
 }).
+when('/MLanguage',
+{
+  templateUrl: 'angular/view/MasterManagement/mLanguage.html', 
+  controller: 'masterDashCtrl'
+}).
+when('/mAcheivementType',
+{
+  templateUrl: 'angular/view/MasterManagement/mAcheivementType.html', 
+  controller: 'masterDashCtrl'
+}).
+when('/mAssignmentReason',
+{
+  templateUrl: 'angular/view/MasterManagement/mAssignmentReason.html', 
+  controller: 'masterDashCtrl'
+}).
+when('/mAssignmentReason',
+{
+  templateUrl: 'angular/view/MasterManagement/mAssignmentReason.html', 
+  controller: 'masterDashCtrl'
+}).
+when('/mAssignmentReason',
+{
+  templateUrl: 'angular/view/MasterManagement/mAssignmentReason.html', 
+  controller: 'masterDashCtrl'
+}).
+/*masters*/
 when('/home',
 {
   templateUrl: 'angular/view/home.html', 

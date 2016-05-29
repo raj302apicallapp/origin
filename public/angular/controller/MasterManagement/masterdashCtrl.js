@@ -59,6 +59,11 @@ $scope.savedata=function(data)
         {
           $scope.masterdata.mEquipment="";
         }
+        else if(response.data.mLanguage)
+        {
+          $scope.masterdata.mLanguage="";
+        }
+
       }
        
     });

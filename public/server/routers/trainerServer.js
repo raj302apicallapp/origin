@@ -17,7 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','mCompetency','mCertificate']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','mCompetency','mCertificate','vendormanagement']);
 
 var sess="";
 router.get('/getemployee',function(req,res)
@@ -74,7 +74,7 @@ db.mCertificate.find({},function(err,docs){
 // get Trainer starts
 router.get('/getvendor',function(req,res){
 console.log(req.body);
-db.mCertificate.find({"coursestatus":1},function(err,docs){
+db.vendormanagement.find({"coursestatus":1},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
@@ -82,7 +82,7 @@ db.mCertificate.find({"coursestatus":1},function(err,docs){
 //get Trainer Ends
 //get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
 router.get('/getallvendor',function(req,res){
-db.mCertificate.find({},function(err,docs){
+db.vendormanagement.find({},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
