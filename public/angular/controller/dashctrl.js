@@ -150,6 +150,11 @@ else if($location.path()=="/iltsession")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/addcourse")
+{
+  console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
 
 
 else if($location.path()=="/add_equipmentVendor")
@@ -256,6 +261,12 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 }else if($localStorage.currentPath=="/iltsession"){
 var a1=['Schedule','Seats','Contact','Vendor','Trainer','Venue','Agenda','Cost'];
 var a2="angular/view/CourseManagement/iltsession/add/";
+$scope.currentPath=a2;
+$scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
+}else if($localStorage.currentPath=="/addcourse"){
+var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Approval','Related Course'];
+
+var a2="angular/view/CourseManagement/addcourse/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 }else if($localStorage.currentPath=="/addinternalvenue"){
