@@ -30,6 +30,7 @@ app.use(require(path.join(__dirname+'/public/server/routers/mOrgServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/curriculumServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/masterServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/hospitalServer.js')));
+app.use(require(path.join(__dirname+'/public/server/routers/iltsessionServer.js')));
 app.listen(port,function(){
 })
 

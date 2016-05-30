@@ -1,7 +1,52 @@
-<h5 style="text-align:center;padding-bottom:10px;">Vendor</h5>
-<form name="addCourseForm" ng-controller="addCourseCtrl as ctrl" ng-init="compInit()">
+
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5> 
+<form name="TrainerForm" ng-controller="iltsessionCtrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
+<div flex>
+
+   <md-button ng-click="showAdvanced($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Pick Trainer</md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex>
+      <table class="responstable">
+  <tr>
+    <th>Full Name</th>
+    <th >Email</th>
+    <th>Phone Number</th>
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectemployee ">
+    <td>{{item.firstname +""+item.lastname}}</td>
+     <td>{{item.email}}</td>
+    <td>{{item.mobilenumber}}</td>
+   <td class="actionclass"><md-button ng-click="removeTrainer($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+<!-- ROW 1 Ends -->
+</form>
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+       <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+ <link href="assets/css/course.css" rel="stylesheet">
+<!-- <h5 style="text-align:center;padding-bottom:10px;">Vendor</h5>
+<form name="addCourseForm" ng-controller="addCourseCtrl as ctrl" ng-init="compInit()"> -->
+<!-- ROW 1 Starts -->
+<!-- <div layout="row" layout-xs="column">
   <div flex>
       <md-autocomplete
           ng-disabled="ctrl.isDisabled"
@@ -22,12 +67,12 @@
         </md-not-found>
       </md-autocomplete>
   </div>
-</div>
+</div> -->
 <!-- ROW 1 Ends -->
-<div style="padding-bottom:2%"></div>
+<!-- <div style="padding-bottom:2%"></div> -->
 
 <!-- ROW 2 Starts -->
-<div layout="row" layout-xs="column">
+<!-- <div layout="row" layout-xs="column">
  <div flex>
       <md-autocomplete
           ng-disabled="ctrl.isDisabled"
@@ -49,11 +94,11 @@
       </md-autocomplete>
   </div>
  
-</div>
+</div> -->
 <!-- ROW 2 Ends -->
-<div style="padding-bottom:2%"></div>
+<!-- <div style="padding-bottom:2%"></div> -->
 <!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
+<!-- <div layout="row" layout-xs="column">
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
@@ -72,17 +117,17 @@
         <input required name="title" disabled="disabled" ng-model="addcourse.title">
       </md-input-container>
   </div>
-</div>
+</div> -->
 <!-- ROW 3 Ends -->
-<div style="padding-bottom:2%"></div>
+<!-- <div style="padding-bottom:2%"></div> -->
 <!-- ROW last Starts -->
-<div class="row">
+<!-- <div class="row">
         
           <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button>
         
            <md-button  ng-click="nextaction(addcourse)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
-</div>
+</div> -->
 <!-- ROW last Ends -->
-</form>
- 
+<!-- </form>
+  -->
