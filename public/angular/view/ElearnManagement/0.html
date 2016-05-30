@@ -5,12 +5,14 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Course Title</label>
-        <input required name="title" ng-model="carrymodel.title" ng-change="checkCourseTitleAvail(carrymodel.title)">
+        <input required name="title" md-maxlength="256" minlength="8" ng-model="carrymodel.title" ng-change="checkCourseTitleAvail(carrymodel.title)">
         <div ng-messages="addElearnForm.title.$error">
           <div ng-message="required">Course Title is required.</div>
+          <div ng-message="md-maxlength">Title has to be less than 256 characters long.</div>
+          <div ng-message="minlength">Title has to be more than 8 characters long.</div>
           
         </div>
-        <div ng-show="titleAvailStatus && carrymodel.title"  class="text-danger">Couser title already exist ! </div>
+        <div ng-show="titleAvailStatus && carrymodel.title"  class="text-danger">Course title already exist ! </div>
         <div ng-show="!titleAvailStatus && carrymodel.title" class="text-success" >Available ! </div>
       </md-input-container>
   </div>
@@ -20,10 +22,11 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Course Description</label>
-        <textarea  md-maxlength="256" required md-no-asterisk name="description" ng-model="carrymodel.description"></textarea>
+        <textarea minlength="50" md-maxlength="2000" required md-no-asterisk name="description" ng-model="carrymodel.description"></textarea>
         <div ng-messages="addElearnForm.description.$error">
           <div ng-message="required">Description is required.</div>
-          <div ng-message="md-maxlength">The description has to be less than 256 characters long.</div>
+          <div ng-message="md-maxlength">The description has to be less than 2000 characters long.</div>
+          <div ng-message="minlength">The description has to be more than 50 characters long.</div>
         </div>
       </md-input-container>
   </div>
@@ -36,7 +39,7 @@
         <label>Course Duration</label>
         <input type="number" required name="duration" ng-model="carrymodel.duration">
         <div ng-messages="addElearnForm.duration.$error">
-          <div ng-message="required">This is required.</div>
+          <div ng-message="required">Course duration is mandatory.</div>
         </div>
       </md-input-container>
   </div>
@@ -54,7 +57,7 @@
   <div flex>
       <md-input-container class="md-block"   flex-gt-sm>
              <label>Select Language</label>
-            <md-select ng-model="carrymodel.induration" aria-label="induration">
+            <md-select ng-model="carrymodel.language" aria-label="induration">
               
             <md-option value="C">C</md-option>
               <md-option value="C++">C++</md-option>

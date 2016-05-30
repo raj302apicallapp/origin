@@ -9,11 +9,11 @@ var app = angular.module('app');
    var relCourseArr =[];
    
 
-app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$timeout,$location,$routeParams,$http,courseService){
+app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$timeout,$location,$routeParams,$http,courseService, masterService){
    
    $scope.titleAvailStatus = "";
    //Saving ElearnManagement
-    $scope.saveElearn = function(data)
+$scope.saveElearn = function(data)
 {
   console.log('save called');
   courseService.addElearn(data).then(function(response){
@@ -21,6 +21,7 @@ app.controller('addElearnCtrl',function($scope,$mdDialog, $mdMedia,$q, $log,$tim
   });
 }
 
+// Check Course Availability
 $scope.checkCourseTitleAvail = function(data){
 
 var sendData = {};
@@ -32,25 +33,21 @@ sendData.title = data;
 }
 
 //AUTOCOMPLETE STARTS
-var self = this;
+
+
+    var self = this;
     self.simulateQuery = false;
     self.isDisabled    = false;
     self.readonly = false;
     self.internals     = loadInternal();
     self.vendors     = loadvendor();
     //Assign
-    self.entitys        = loadEntity();
-    self.groups         = loadGroup();
-    self.departments    = loadDepartment();
-    self.functions      = loadFunction();
-    self.jobfamilys     = loadJobFamily();
-    self.jobroles       = loadJobRole();
-    self.competencys    = loadCompetency();
-    self.subcompetencys = loadsubcompetency();
+   
 
 
     //search
-     self.querySearchinternal   = querySearchinternal;
+    self.querySearchLanguage = querySearchLanguage;
+    self.querySearchinternal   = querySearchinternal;
     self.querySearchvendor   = querySearchvendor;
     self.querySearchEntity = querySearchEntity;
     self.querySearchGroup  = querySearchGroup;
@@ -71,9 +68,87 @@ var self = this;
 
     var skillarr=[];
 //AUTOCOMPLETE ENDS
-//AUTOCOMPLETE CHIPS STARTS
 
-//AUTOCOMPLETE CHIPS ENDS
+
+//AUTOCOMPLETE Fill STARTS
+$scope.getLanguageData=function()
+ {  
+   masterService.getLanguageMaster().then(function(response) {
+    if(response)
+    {
+            
+       $scope.fillLanguageData(response.data);
+       $scope.contentdata(response.data)
+     }  
+    console.log("OrganizationResponse::"+JSON.stringify(OrganizationResponse));
+    }); 
+  }
+  $scope.getLanguageData();
+  
+  //Filling Language Data 
+  $scope.fillLanguageData = function(getResponse)
+   {
+      $scope.languageList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {  
+       if ($scope.languageList.indexOf(getResponse[i].mLanguage) == -1) 
+        {
+         $scope.languageList.push(getResponse[i].mLanguage);
+        }
+     }
+       console.log("mLanguage List::"+$scope.languageList);
+      self.languageData=$scope.languageList;
+   }
+
+//AUTOCOMPLETE Fill ENDS
+
+//Search Language
+function querySearchLanguage (query) {
+      console.log("query::"+query);
+      var results = query ? self.languageData.filter( createFilterFor(query) ) : self.languageData,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+     function searchLanguageChange(text)
+    {    
+      $scope.Language=OrganizationResponse;
+              console.log('Text changed to ' + text);
+       
+    }
+  function selectedLanguageChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    $scope.selectedLanguagedata=item;
+    if(item ==undefined)
+    {    
+          $scope.Entity=OrganizationResponse;
+           
+           $scope.dis_group=true;
+           $scope.dis_function=true;   
+           self.selectedGroup="";
+           self.searchGroup="";
+           $scope.GroupList="";
+           $scope.mOrg="";
+           self.selectedFunction="";
+          self.searchFunction="";
+          self.selectedDepartment="";
+          self.searchDepartment="";
+
+    }
+   else
+      { 
+        
+          $scope.dis_group=false;
+       $scope.carrymodel.Entity=item;
+      self.selectedEntity=item;
+       $scope.getGroupdata(self.selectedEntity,OrganizationResponse)
+     }
+    }
 
 
 
@@ -435,118 +510,8 @@ function loadvendor() {
     }
 
 //Entity load
-function loadEntity() {
-      var allStates = ' Entity 1,\
-                        Entity 2,\
-                        Entity 3,\
-                        Entity 4,\
-                        Entity 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//Group Load
-function loadGroup() {
-      var allStates = ' Group 1,\
-                        Group 2,\
-                        Group 3,\
-                        Group 4,\
-                        Group 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//Department Load
-function loadDepartment() {
-      var allStates = ' Department 1,\
-                        Department 2,\
-                        Department 3,\
-                        Department 4,\
-                        Department 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//Function Load
-function loadFunction() {
-      var allStates = ' Function 1,\
-                        Function 2,\
-                        Function 3,\
-                        Function 4,\
-                        Function 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
 
-//JobFamily Load
-function loadJobFamily() {
-      var allStates = ' JobFamily 1,\
-                        JobFamily 2,\
-                        JobFamily 3,\
-                        JobFamily 4,\
-                        JobFamily 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//JobRole Load
-function loadJobRole() {
-      var allStates = ' JobRole 1,\
-                        JobRole 2,\
-                        JobRole 3,\
-                        JobRole 4,\
-                        JobRole 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//Competency Load
-function loadCompetency() {
-      var allStates = ' Competency 1,\
-                        Competency 2,\
-                        Competency 3,\
-                        Competency 4,\
-                        Competency 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-//SubCompetency Load
-function loadsubcompetency() {
-      var allStates = ' SubCompetency 1,\
-                        SubCompetency 2,\
-                        SubCompetency 3,\
-                        SubCompetency 4,\
-                        SubCompetency 5';
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
+
 
 
 
@@ -577,6 +542,8 @@ function loadsubcompetency() {
         return results;
       }
     }
+    
+    
 //Entity Fetch
 function querySearchEntity (query) {
       console.log("query::"+query);
@@ -590,6 +557,7 @@ function querySearchEntity (query) {
         return results;
       }
     }
+    
 //Group Fetch
      function querySearchGroup (query) {
       console.log("query::"+query);
