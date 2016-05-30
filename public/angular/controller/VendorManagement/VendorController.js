@@ -248,7 +248,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       // $scope.vendortypeData=" ";
       // $scope.vendortypeData = $scope.getVendorList;
       // // alert(JSON.stringify($scope.getVendorList));
-      //  $scope.getStateList(item,LocationResponse);
+       $scope.getStateList(item,LocationResponse);
      }
     }
 
@@ -289,10 +289,11 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
    }
     function selectedvendorStateChange(item) 
     {
+      $scope.vendorstate=item;
       $log.info('Type changed to ' + JSON.stringify(item));  
       if(item==undefined)
       {
-        $scope.getVendorList= $scope.vendortypeData;
+        $scope.getVendorList= vendorResponse;
         self.selectedvendorCity="";
         self.searchvendorCity="";
         self.vendorCity="";
@@ -348,12 +349,14 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       $log.info('Text changed to ' + text);
    }
     function selectedvendorCityChange(item) 
-    {
+    { 
+
+      $scope.vendorcity=item;
       $log.info('Type changed to ' + JSON.stringify(item));  
       if(item==undefined)
       {
         
-       $scope.getVendorList= $scope.vendortypeDatas;
+       $scope.getVendorList=vendorResponse;
       }
       else{
       self.selectedvendorCity=item;
