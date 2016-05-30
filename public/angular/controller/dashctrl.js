@@ -290,7 +290,7 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 		$scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 	}
 	
-   else if($localStorage.currentPath== "/add_ilt_vendor" || $localStorage.currentPath=="/edit_ilt_vendor" )
+   else if($localStorage.currentPath== "/add_ilt_vendor"  )
 	{   
 		console.log("type::ILT Vendor");
 		var a1=['Basic Info','Competency Info','Tax Information','Contact Details'];
