@@ -273,6 +273,16 @@ db.CSCLocation.find(req.body,function(err,docs){
 	res.json(docs);
 });
 });
+router.post('/OnVendorCompanyCheck',function(req,res)
+{
+  console.log(JSON.stringify(req.body));
+  db.vendormanagement.find({"Vendor_Company":req.body.vendor_company},function(err,docs)
+  {
+    console.log(JSON.stringify(docs));
+      docs.length==0 ?res.json("Not Exists") :res.json("Exists");
+    
+  });
+});
 
 router.get('/getTags',function(req,res){
 	db.mTags.find({},function(err,docs){
@@ -361,4 +371,6 @@ db.vendormanagement.update({"_id" :event_id}, {$set:
 	res.json(udocs);
 });
 });
+
+
 module.exports=router;

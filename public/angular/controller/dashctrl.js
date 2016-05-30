@@ -277,7 +277,7 @@ $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 }   
 
-	else if($localStorage.currentPath=="/add_equipmentVendor"){
+	else if($localStorage.currentPath=="/add_equipmentVendor" || $localStorage.currentPath=="/edit_equipement_vendor"){
    	    console.log("type::Equipement Vendor")
 	    var a1=['Basic Info','Services Info','Tax Information','Contact Details'];
 		var a2="angular/view/vendorManagement/EquipementVendor/";
@@ -285,7 +285,7 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 		$scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 	}
 	
-   else if($localStorage.currentPath== "/add_ilt_vendor")
+   else if($localStorage.currentPath== "/add_ilt_vendor" || $localStorage.currentPath=="/edit_ilt_vendor" )
 	{   
 		console.log("type::ILT Vendor");
 		var a1=['Basic Info','Competency Info','Tax Information','Contact Details'];
@@ -295,7 +295,7 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
    }
    
    // stationary vendor
-   else if($localStorage.currentPath=="/add_stationary_vendor"){
+   else if($localStorage.currentPath=="/add_stationary_vendor" || $localStorage.currentPath=="/edit_stationary_vendor" ){
    	console.log("type::Stationary Vendor");
    var a1=['Basic Info','Tax info','Contact Details'];
    var a2="angular/view/VendorManagement/StationaryVendor/";
@@ -304,14 +304,14 @@ $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
    }
 // End stationary vendor
 // Printing vendor
-   else if($localStorage.currentPath=="/add_printing_vendor"){
+   else if($localStorage.currentPath=="/add_printing_vendor" || $localStorage.currentPath=="/edit_printing_vendor" ){
    var a1=['Basic Info','Services info','Tax info','Contact Details'];
    var a2="angular/view/VendorManagement/PrintingVendor/";
    $scope.currentPath=a2;
    $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
    }
 // End Printing  vendor
-else if($localStorage.currentPath=="/add_f&b_vendor")
+else if($localStorage.currentPath=="/add_f&b_vendor"  || $localStorage.currentPath=="/edit_f&b_vendor" )
 	{   
 		console.log("type::f&b Vendor");
 		var a1=['Basic Info','Services Info','Tax Information','Contact Details'];
@@ -319,7 +319,7 @@ else if($localStorage.currentPath=="/add_f&b_vendor")
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
    }
-   else if($localStorage.currentPath == "/add_Travel_vendor")
+   else if($localStorage.currentPath == "/add_Travel_vendor" || $localStorage.currentPath=="/edit_Travel_vendor" )
 	{   
 		console.log("type::Travel Vendor");
 		var a1=['Basic Info','Services Info','Tax Information','Contact Details'];
@@ -335,7 +335,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
 		$scope.currentPath=a2;
 		$scope.ConfigureWizard(a1,a2);
 	}
-  else if($localStorage.currentPath == "/add_elearn_vendor")
+  else if($localStorage.currentPath == "/add_elearn_vendor" || $localStorage.currentPath=="/edit_elearn_vendor" )
   {   
     console.log("vendortype::ELearn Vendor");
     var a1=['Basic Info','Competency Info','Tax Information','Contact Details'];
@@ -343,7 +343,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-   else if($localStorage.currentPath == "/add_mlearn_vendor")
+   else if($localStorage.currentPath == "/add_mlearn_vendor" || $localStorage.currentPath=="/edit_mlearn_vendor" )
   {   
     console.log("vendortype::MLearn Vendor");
     var a1=['Basic Info','Competency Info','Tax Information','Contact Details'];
@@ -482,7 +482,7 @@ xhr.send(fd);
                              if (response) {
                               $scope.carrymodel.filePath=response.imgPath;
                                console.log("Upload Server URL::"+$scope.carrymodel.filePath);
-
+                              
                               
                              };
                             })

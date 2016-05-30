@@ -22,6 +22,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     this.dis_Floor=true;
     this.dis_skills=true;
     $scope.isLoading=false;
+    $scope.showCompetencytable=true;
 
     // Country
     self.querySearchCountry   = querySearchCountry;
@@ -91,6 +92,40 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
        $scope.Empanelment_Date= dd;
      }
     }
+
+/*title change*/
+
+
+    $scope.OnVendorTitleCheck=function(data)
+    { 
+       if(data==undefined)
+       {
+         $scope.Vendor_CompanyStatus="";
+       }
+       else
+       {
+       var title={};
+       title.vendor_company=data;
+       console.log("vendor_company"+JSON.stringify(title));
+       vendorService.OnVendorTitleCheck(title).then(function(response)
+       {
+        console.log(JSON.stringify(response));
+       if(response.data=="Exists")
+       {
+          $scope.Vendor_CompanyStatus="Company Name Already Exists";
+          $scope.Vendor_CompanyStatusStyle="text-danger";
+       }
+       else
+       {
+          $scope.Vendor_CompanyStatus="Available";
+          $scope.Vendor_CompanyStatusStyle="text-success";
+       }
+
+       });
+
+     }
+    }
+    /*title chage*/
     
       $scope.getVendorType=function(getResponse)
     {
@@ -126,32 +161,32 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
    }
     function selectedTypeChange(item) 
     {
-      $log.info('Type changed to ' + JSON.stringify(item));  
+      $log.info('Type changed to ' + JSON.stringify(item)); 
+      $scope.typevendor=item; 
       if(item==undefined)
       {
         $scope.getVendorList=vendorResponse;
         // this.dis_Country=true;
-        this.dis_State=true;
-        this.dis_City=true;
-        self.selectedvendorCountry="";
-        self.searchvendorCountry="";
-        self.vendorCountry="";
-        self.selectedvendorState="";
-        self.searchvendorState="";
-        self.vendorState="";
-        self.selectedvendorCity="";
-        self.searchvendorCity="";
-        self.vendorCity="";
+        // this.dis_State=true;
+        // this.dis_City=true;
+        // self.selectedvendorCountry="";
+        // self.searchvendorCountry="";
+        // self.vendorCountry="";
+        // self.selectedvendorState="";
+        // self.searchvendorState="";
+        // self.vendorState="";
+        // self.selectedvendorCity="";
+        // self.searchvendorCity="";
+        // self.vendorCity="";
       }
       else{
         // this.dis_Country=false;
         
       self.selectedType=item;
-      console.log("SelectedType::"+JSON.stringify(self.selectedType))
-      $scope.getVendorList = ($filter('filter')($scope.getVendorList, {vendortype: self.selectedType}));
-      $scope.vendortypedatas=$scope.getVendorList;
-      // alert(JSON.stringify($scope.vendortypedatas));
-       console.log("Vendor Data"+JSON.stringify($scope.vendortypedatas))
+      // console.log("SelectedType::"+JSON.stringify(self.selectedType))
+      // $scope.getVendorList = ($filter('filter')($scope.getVendorList, {vendortype: self.selectedType}));
+      // $scope.vendortypedatas=$scope.getVendorList;
+      //  console.log("Vendor Data"+JSON.stringify($scope.vendortypedatas))
        // $scope.getCountryList(item,vendorResponse);
      }
     }
@@ -191,6 +226,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     function selectedvendorCountryChange(item) 
     {
       $log.info('Type changed to ' + JSON.stringify(item));  
+      $scope.vendorcountry=item;
       if(item==undefined)
       {
         $scope.getVendorList=vendorResponse;
@@ -208,11 +244,11 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       
       self.selectedvendorCountry=item;
       console.log("SelectedType::"+JSON.stringify(self.selectedvendorCountry))
-      $scope.getVendorList = ($filter('filter')($scope.getVendorList, {Country: self.selectedvendorCountry}));
-      $scope.vendortypeData=" ";
-      $scope.vendortypeData = $scope.getVendorList;
-      // alert(JSON.stringify($scope.getVendorList));
-       $scope.getStateList(item,vendorResponse);
+      // $scope.getVendorList = ($filter('filter')($scope.getVendorList, {Country: self.selectedvendorCountry}));
+      // $scope.vendortypeData=" ";
+      // $scope.vendortypeData = $scope.getVendorList;
+      // // alert(JSON.stringify($scope.getVendorList));
+      //  $scope.getStateList(item,LocationResponse);
      }
     }
 
@@ -271,7 +307,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
       $scope.vendortypeDatas=" ";
       $scope.vendortypeDatas=$scope.getVendorList;
       // alert(JSON.stringify($scope.getVendorList))
-       $scope.getCityList(item,$scope.getVendorList);
+       $scope.getCityList(item,LocationResponse);
      }
     }
 
@@ -729,7 +765,7 @@ console.log("location path::"+$location.path());
          $scope.getVendorList=response.data;
          vendorResponse=response.data;
          $scope.getVendorType(response.data);
-         $scope.getCountryList(response.data);
+         // $scope.getCountryList(response.data);
          console.log("Get Vendor List::"+JSON.stringify($scope.getVendorList));
          $scope.isLoading=false;
        });
@@ -794,6 +830,7 @@ console.log("location path::"+$location.path());
       console.log("Res::"+JSON.stringify(response.data));
       LocationResponse=response.data;
       $scope.getCountry(response.data);
+      $scope.getCountryList(response.data);
       console.log("LocationResponse::"+JSON.stringify(LocationResponse));
       
     };
@@ -979,17 +1016,17 @@ $scope.getCity=function(SelectedState,getResponse){
   { 
      console.log("edit Vendor"+JSON.stringify(item));
      editableJSon=item;
+     
+     // if($location.path()=="/vendormanagement")
+     // {
+     //    $localStorage.currentPath= "/vendormanagement";
+     // }
+     // else
+     // {
+      // $localStorage.currentPath=$location.path();
+     // }
      console.log("ediitpass"+ $localStorage.editonlypass)
      console.log("local PAth"+$location.path());
-     if($location.path()=="/vendormanagement")
-     {
-        $localStorage.currentPath= "/vendormanagement";
-     }
-     else
-     {
-      $localStorage.currentPath=$location.path();
-     }
-     
      if(editableJSon.vendortype=="ILT Vendor")
      { 
       $localStorage.type="ILT Vendor";
@@ -1009,6 +1046,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // $scope.nexts=false;
       console.log("edit Equipment vendor::"+JSON.stringify(editableJSon));
       $localStorage.editonlypass="/edit_equipement_vendor";
+      $localStorage.currentPath="/edit_equipement_vendor"
       $location.path("/edit_equipement_vendor");   
       }
       else if(editableJSon.vendortype=="ELearn Vendor")
@@ -1017,6 +1055,7 @@ $scope.getCity=function(SelectedState,getResponse){
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit E learn vendor::"+JSON.stringify(editableJSon));
+      $localStorage.currentPath="/edit_elearn_vendor"
       $localStorage.editonlypass="/edit_elearn_vendor";
       $location.path("/edit_elearn_vendor");   
       }
@@ -1027,6 +1066,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // $scope.nexts=false;
       console.log("edit M learn vendor::"+JSON.stringify(editableJSon));
       $localStorage.editonlypass="/edit_mlearn_vendor";
+      $localStorage.currentPath="/edit_mlearn_vendor"
       $location.path("/edit_mlearn_vendor");   
       }
       else if(editableJSon.vendortype=="Stationary Vendor")
@@ -1036,6 +1076,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // $scope.nexts=false;
       console.log("edit Stationary vendor::"+JSON.stringify(editableJSon));
       $localStorage.editonlypass="/edit_stationary_vendor";
+      $localStorage.currentPath="/edit_stationary_vendor";
       $location.path("/edit_stationary_vendor");   
       }
       //Edit printing Vendor
@@ -1045,6 +1086,7 @@ $scope.getCity=function(SelectedState,getResponse){
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit printing vendor::"+JSON.stringify(editableJSon));
+      $localStorage.currentPath="/edit_printing_vendor";
       $localStorage.editonlypass="/edit_printing_vendor";
       $location.path("/edit_printing_vendor");   
       }
@@ -1056,6 +1098,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // $scope.nexts=false;
       console.log("edit f&b vendor::"+JSON.stringify(editableJSon));
       $localStorage.editonlypass="/edit_f&b_vendor";
+      $localStorage.currentPath="/edit_f&b_vendor";
       $location.path("/edit_f&b_vendor");   
       }
       else if(editableJSon.vendortype=="Travel Vendor")
@@ -1065,6 +1108,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // $scope.nexts=false;
       console.log("edit Travelendor::"+JSON.stringify(editableJSon));
       $localStorage.editonlypass="/edit_Travel_vendor";
+      $localStorage.currentPath="/edit_f&b_vendor";
       $location.path("/edit_Travel_vendor");   
       }
 
@@ -1928,5 +1972,11 @@ $scope.checkAll = function () {
       $scope.Certification= ($filter('filter')($scope.Certifying_authorityfliter,{Certification:self.selectedCertification})); 
      }
     }
+
+
+
+
+
+
        
 }); 

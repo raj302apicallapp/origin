@@ -6,10 +6,10 @@
    <md-button ng-click="showAdvanced($event)"  class="md-raised md-primary" style="float:right;" aria-label="Info">Add Competency</md-button>
 </div>
 </div>
-<div layout="row" layout-xs="column" ng-show="carrymodel.addcomp">
+<div layout="row" layout-xs="column" >
 
 	 <div flex >
-      <table class="responstable">
+      <table class="responstable" ng-hide="showComptable">
   <tr>
     <th>Competency</th>
     <th data-th="Course details"><span>Sub Competency</span></th>
@@ -85,7 +85,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" ng-disabled="!carrymodel.selectCompetency_data" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
