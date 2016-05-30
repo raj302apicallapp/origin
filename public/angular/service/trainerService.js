@@ -1,20 +1,49 @@
 var app=angular.module('app');
 app.factory('trainerService',function ($http,$window) {
 return{
-addTrainer:function(savedata){
-      console.log("trainerService"+JSON.stringify(savedata));
 
-      savedata.trainertype="Internal";
-      savedata.trainerstatus=1;
-      savedata.addeddate=new Date();
-    var promise = $http.post('/addtrainer',savedata).then(function(response){
-        console.log("Service response"+JSON.stringify(response));
+addTrainer:function(savedata){
+  savedata.trainerstatus=1;
+     savedata.addeddate=new Date();
+  var services = $http.post('/addtrainerdata',savedata).then(function(response)
+  { 
+    
+      return response;
+      console.log("service"+JSON.stringify(response))
+  });
+   return services;
+},
+removeTrainermgnt:function(id){
+  console.log(id);
+        var remove=$http.post('/removeTrainermgnttype',id).then(function(response){
+           console.log("removeVendor response"+JSON.stringify(response));
+           return response;
+        });
+        return remove;
+},
+ 
+
+getTrainermgnt:function(activestatus){
+  console.log("Service::"+activestatus);
+  if (activestatus==false) {
+    var promise = $http.get('/getTrainermgntdata').then(function(response){
+        // console.log("Service response"+JSON.stringify(response));
         return response;
       });
       // Return the promise to the controller
-      return promise;
+      return promise; 
+    }else{
+      var promise = $http.get('/getallTrainermgnt').then(function(response){
+        // console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+    }
+  
+},
 
-    },
+
 removeTrainer:function(removeitem){
   var promise = $http.post('/removetrainer',removeitem).then(function(response){
         return response;

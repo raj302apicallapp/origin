@@ -16,18 +16,13 @@ var finJSon;
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
 { 
-
-
-
 $scope.selectJson=[];
 $scope.selectJsoncomp=[];
 $scope.selectJsoncert=[];
 $scope.selectJsonven=[];
 // dialog to pick employee
-
 var trainertype=[];
 $scope.types=['Internal','External','Freelance'];
-
 //chagetype 
 $scope.changeType=function()
 {
@@ -50,19 +45,7 @@ $scope.changeActiveStatus=function(){
   // $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;
   $scope.getTrainer();
 }
-//Tags
-self.tags=[];
-var skillarr=[];
-self.item=[];
-$scope.compInit=function(){
-    if (!angular.isDefined($scope.carrymodel.tags)) {
-      $scope.carrymodel.tags=[];
-    }; 
-  }
-$scope.browseClick=function(){
-  $scope.kok=false;
-  console.log(JSON.stringify($scope.carrymodel));
-}
+
 
 
 // dialog to pick employee
@@ -82,6 +65,7 @@ for(var i=0;i<answer.length;i++){
 answerarr.push(answer[i]);
 }
 $scope.carrymodel.selectemployee=answerarr;
+
 console.log("Answer::"+JSON.stringify($scope.carrymodel.selectemployee));
 },function() {
 $scope.status = 'You cancelled the dialog.';
@@ -185,11 +169,8 @@ for (var i = 0; i < $scope.getInternalTrainer.length; i++) {
 if (answerarr[j].firstname==$scope.getInternalTrainer[i].firstname) {
 $scope.getInternalTrainer[i].Checked=true;
 }
-
 };
-
 }
-
 }
 }else if (relFlag==true) {
 if (response.data.length>0) {
@@ -200,17 +181,9 @@ $scope.getInternalTrainer[i].relChecked=true;
 }
 };
 }
-
 }
-
-
-
 }
-
-
 });
-
-
 }
 if (!angular.isDefined($scope.activestatus)) {
 $scope.activestatus=false;
@@ -320,29 +293,6 @@ $scope.saveActionCompetency=function(){
     $mdDialog.hide($scope.selectJsoncomp);
     }
 }
-$scope.saveActionCompetency=function(){
-    if (prereqFlag==true) {
-         for(var i=0;i<$scope.getInternalCompetency.length;i++){
-        if ($scope.getInternalCompetency[i].Selected==false || !angular.isDefined($scope.getInternalCompetency[i].Selected)) {
-        }else{
-        $scope.selectJsoncomp.push($scope.getInternalCompetency[i]);
-        console.log("ddd"+JSON.stringify($scope.selectJsoncomp))
-        };
-        
-      }
-      $mdDialog.hide($scope.selectJsoncomp);
-  }
-  else if (relFlag==true) {
-        for(var i=0;i<$scope.getInternalCompetency.length;i++){
-          if ($scope.getInternalCompetency[i].relSelected==false || !angular.isDefined($scope.getInternalCompetency[i].relSelected)) {
-          }else{
-          $scope.selectJsoncomp.push($scope.getInternalTrainer[i]);
-        };
-    }
-    $mdDialog.hide($scope.selectJsoncomp);
-    }
-}
-
 
 
 
@@ -385,21 +335,11 @@ for (var i = 0; i < $scope.getInternalCompetency.length; i++) {
 if (answercer[j].skills==$scope.getInternalCompetency[i].skills) {
 $scope.getInternalCompetency[i].relChecked=true;
 }
-
 };
-
 }
-
 }
-
-
-
 }
-
-
 });
-
-
 }
 if (!angular.isDefined($scope.activestatus)) {
 $scope.activestatus=false;
@@ -537,21 +477,11 @@ for (var i = 0; i < $scope.getInternalCertification.length; i++) {
 if (answerarrt[j].Certification==$scope.getInternalCertification[i].Certification) {
 $scope.getInternalCertification[i].relChecked=true;
 }
-
 };
-
 }
-
 }
-
-
-
 }
-
-
 });
-
-
 }
 if (!angular.isDefined($scope.activestatus)) {
 $scope.activestatus=false;
@@ -694,21 +624,11 @@ for (var i = 0; i < $scope.getInternalVendor.length; i++) {
 if (answerarrv[j].Firstname==$scope.getInternalVendor[i].Firstname) {
 $scope.getInternalVendor[i].relChecked=true;
 }
-
 };
-
 }
-
 }
-
-
-
 }
-
-
 });
-
-
 }
 if (!angular.isDefined($scope.activestatus)) {
 $scope.activestatus=false;
@@ -720,27 +640,347 @@ $scope.removeVendor=function(vindex){
     }
 
 
-   $scope.submitaction=function(data)
+//  Trainer Management
+// get Vendor
+  $scope.getTrainermgmt=function()
    {
-
-
-      // alert(JSON.stringify(data));
-      courseService.addCurriculum(data).then(function(response)
+      console.log("get TrainerManagement");
+     if (!angular.isDefined(activestatus) || !$scope.activestatus)
       {
-        console.log(JSON.stringify(response));
-        if(response)
+        console.log("undefined");
+        activestatus=false;
+      }
+      else
+      {
+       activestatus=$scope.activestatus;
+      }
+       console.log("activestatus"+activestatus);
+       trainerService.getTrainermgnt(activestatus).then(function(response) 
+       {  
+          $scope.isLoading=true;
+       
+         $scope.getTrainerList=response.data;
+         $scope.getTrainerType(response.data);
+         trainerResponse=response.data;
+         
+         console.log("Get Trainer List::"+JSON.stringify($scope.getTrainerList));
+         $scope.isLoading=false;
+       });
+   }
+// submit 
+   $scope.submitaction=function(savedata)
+   {
+    
+    console.log("submitaction"+JSON.stringify(savedata));
+    console.log("location path"+$location.path());
+    if($location.path()=="/addtrainerinternal")
+    {
+      $scope.carrymodel.trainertype="Internal"
+  console.log("ci"+JSON.stringify(savedata));
+         trainerService.addTrainer(savedata).then(function(response) 
         {
-          $location.path('/managecourse');
+          console.log(response);
+          if (response) 
+           {
+            $location.path("/managetrainer");
+            };
+        })
+    }
+    
+    else if ($location.path()=="/addtrainerexternal") 
+    {
+          $scope.carrymodel.trainertype="External"
+      console.log("ci"+JSON.stringify(savedata));
+           trainerService.addTrainer(savedata).then(function(response) 
+        {
+          console.log(response);
+          if (response) 
+           {
+            $location.path("/managetrainer");
+            };
+        })
+    }
+    else if ($location.path()=="/addtrainerfreelance") 
+    {
+          $scope.carrymodel.trainertype="Freelance"
+      console.log("ci"+JSON.stringify(savedata));
+           trainerService.addTrainer(savedata).then(function(response) 
+        {
+          console.log(response);
+          if (response) 
+           {
+            $location.path("/managetrainer");
+            };
+        })
+m    }
+    
+    
+   }
+   $scope.getTrainerType=function(getResponse)
+    {
+      $scope.trainerTypeList=[];
+      
+      for(var i= 0;i<getResponse.length;i++)
+      {
+        if($scope.trainerTypeList.indexOf(getResponse[i].trainertype) == -1)
+        {
+          $scope.trainerTypeList.push(getResponse[i].trainertype);
         }
-      });
+      }
+      console.log("trainer type List::"+$scope.trainerTypeList);
+      self.trainertypedatas=$scope.trainerTypeList;
+    }
+
+  // remove vendor
+  $scope.removeTrainermgnt=function(id)
+  {
+    console.log("Remove trainer Management"+id);
+    trainerService.removeTrainermgnt(id).then(function(response)
+    {
+      console.log("removeTrainermgnt"+JSON.stringify(response.data))
+
+      
+      
+    });
+    $scope.getTrainermgmt();
+  }
+
+
+// ***********************************************//
+var self = this;
+self.querySearchType=querySearchType;
+self.searchTypeChange=searchTypeChange;
+self.selectedTypeChange=selectedTypeChange;
+
+ // Competency
+    self.querySearchCompetency   = querySearchCompetency;
+    self.selectedCompetencyChange = selectedCompetencyChange;
+    self.searchCompetencyChange   = searchCompetencyChange;
+    // Sub Competency
+    self.querySearchSubCompetency   = querySearchSubCompetency;
+    self.selectedSubCompetencyChange = selectedSubCompetencyChange;
+    self.searchSubCompetencyChange   = searchSubCompetencyChange;
+     // Skills
+    self.querySearchSkills   = querySearchSkills;
+    self.selectedSkillsChange = selectedSkillsChange;
+    self.searchSkillsChange   = searchSkillsChange;
+
+function querySearchType (query) 
+ {
+      console.log("sr::"+query); 
+      var results = query ? self.trainertypedatas.filter( createFilterFor(query) ) : self.trainertypedatas,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+  }
+function searchTypeChange(text) 
+  {
+      $log.info('Text changed to ' + text);
+   }
+  function selectedTypeChange(item) 
+    {
+      $log.info('Type changed to ' + JSON.stringify(item));  
+      if(item==undefined)
+      {
+        $scope.getTrainerList=trainerResponse;
+        // this.dis_Country=true;
+       
+      }
+      else{
+        // this.dis_Country=false;
+        
+      self.selectedType=item;
+      console.log("SelectedType::"+JSON.stringify(self.selectedType))
+      $scope.getTrainerList = ($filter('filter')($scope.getTrainerList, {trainertype: self.selectedType}));
+      $scope.trainertypedatas=$scope.getTrainerList;
+      // alert(JSON.stringify($scope.vendortypedatas));
+       console.log("Trainer Data"+JSON.stringify($scope.trainertypedatas))
+       // $scope.getCountryList(item,vendorResponse);
+     }
+    }
+//skills
+function querySearchCompetency (query) 
+ {     
+  
+
+  console.log("datas::"+JSON.stringify(self.competencydata));
+      console.log("sr::"+query); 
+      var results = query ? self.competencydata.filter( createFilterFor(query) ) : self.competencydata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchCompetencyChange(text)
+    {    $scope.Competency=competencyResponse;
+              $log.info('Text changed to ' + text);
+              // this.searchSubCompetency="";
+      
+    }
+  function selectedCompetencyChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    if(item ==undefined)
+    {    
+          $scope.Competency=competencyResponse;
+         // self.subcompetency="";
+         
+         self.searchSubCompetency="";
+         self.searchSkills="";
+         this.dis_subcompetency=true;
+         this.dis_skills=true;
+    }
+      else{
+        this.dis_subcompetency=false;
+      self.selectedCompetency=item;
+       $scope.Competency=($filter('filter')($scope.Competency, {competency: item}));
+       $scope.Competencyfliter=$scope.Competency;
+       console.log(JSON.stringify($scope.Competency))
+       $scope.getSubCompetencydata(item,competencyResponse);
+       console.log()
+     }
+    }
+
+
+    $scope.getSubCompetencydata=function(selectedCompetency,getResponse)
+    {    $scope.Competency=$scope.Competencyfliter;
+      console.log("selectedCompetency::"+JSON.stringify(selectedCompetency))
+    console.log("competencyResponse"+JSON.stringify(getResponse))
+      // console.log("subcompetency competency get::"+selectedCompetency);
+      /*bhuvanesh*/
+      
+      $scope.SubCompetencyList=[];
+      for (var i = 0;i<getResponse.length;i++) {
+        // console.log(selectedCompetency+"="+getResponse[i].competency);
+        if (selectedCompetency==getResponse[i].competency) {
+          if ($scope.SubCompetencyList.indexOf(getResponse[i].sub_competency) == -1) {
+            $scope.SubCompetencyList.push(getResponse[i].sub_competency);
+            }
+        };
+        
+      };
+      self.subcompetency=$scope.SubCompetencyList;
+      
+      console.log("SubCompetency List::"+self.subcompetency);
+  }
+   
+   function querySearchSubCompetency (query) {
+    console.log("SubCompetency::"+query); 
+      var results = query ? self.subcompetency.filter( createFilterFor(query) ) : self.subcompetency,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+    function searchSubCompetencyChange(text) {
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedSubCompetencyChange(item) {
+    if(item == undefined)
+    {  
+      $scope.Competency=$scope.Competencyfliter;
+       this.searchSkills=""; 
+       this.dis_skills=true;    
+    } 
+   else{
+       this.dis_skills=false;
+       self.selectedSubCompetency=item;
+      console.log("Sub competencyResponse"+JSON.stringify(self.selectedSubCompetency))
+      $scope.Competency= ($filter('filter')($scope.Competencyfliter,{sub_competency:self.selectedSubCompetency})); 
+        $scope.SubCompetencyfilter=$scope.Competency;
+      $scope.getSkills(self.selectedSubCompetency,competencyResponse);
+     }
+    }
+    $scope.getSkills=function(selectedSubCompetency,getResponse)
+    { $scope.Competency=$scope.SubCompetencyfilter;
+        $log.info('slected subcompetency ' + JSON.stringify(selectedSubCompetency));
+        console.log("Response data"+JSON.stringify(getResponse))
+      $scope.SkillListdata=[];
+      for (var i = 0;i<getResponse.length;i++) {
+        
+        if (selectedSubCompetency==getResponse[i].sub_competency) {
+          console.log("selectedSubCompetency skills"+getResponse[i].skills);        
+          if ($scope.SkillListdata.indexOf(getResponse[i].skills) == -1) {
+            $scope.SkillListdata.push(getResponse[i].skills);
+               console.log("skills::"+JSON.stringify($scope.SkillListdata));
+            }
+        };
+      };
+      self.SkillSet=$scope.SkillListdata;
+      
    }
 
-    
-});
+   function querySearchSkills (query) {
+    console.log("SubCompetency::"+query); 
+      var results = query ? self.SkillSet.filter( createFilterFor(query) ) : self.SkillSet,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
 
+    function searchSkillsChange(text) {
+      $log.info('Text changed to ' + text);
+      if (text=="") {
+        $scope.Competency=$scope.SubCompetencyfilter;
+        
+       };
+    }
+    function selectedSkillsChange(item) {
+            // $scope.carrymodel.City=item;
+            self.selectedSkills=item;
+            $scope.Competency=($filter('filter')($scope.SubCompetencyfilter,{skills:item}))
+            $scope.skillsfilter=$scope.Competency;
+  // console.log("selectedCity::"+JSON.stringify($scope.carrymodel.City))
+      $log.info('Skills changed to ' + JSON.stringify(item));
+      // $scope.getBuilding(item,LocationResponse);
+    }
+  $scope.selectCompetency=[];
+  function createFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+        return function filterFn(res) {
+          res=angular.lowercase(res);
+          // alert(JSON.stringify(res));
+          console.log("sj::"+lowercaseQuery);
+          //   return (res.indexOf(lowercaseQuery) == 0);
+          return (res.search(lowercaseQuery) !== -1);
+        };
 
+    }
+// Employee filter
 
-
+//Tags
+self.tags=[];
+var skillarr=[];
+self.item=[];
+$scope.compInit=function(){
+    if (!angular.isDefined($scope.carrymodel.tags)) {
+      $scope.carrymodel.tags=[];
+    }; 
+  }
+$scope.browseClick=function(){
+  $scope.kok=false;
+  console.log(JSON.stringify($scope.carrymodel));
+}
 
 function addTrainerController($scope, $mdDialog) {
   $scope.hide = function() {
@@ -751,3 +991,5 @@ function addTrainerController($scope, $mdDialog) {
   };
   
 }
+    
+});

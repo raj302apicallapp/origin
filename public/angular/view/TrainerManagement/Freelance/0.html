@@ -5,8 +5,8 @@
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
-        <input required name="firstname" ng-model="carrymodel.Firstname" aria-label="vendor" style="text-transform:capitalize">
-        <div ng-messages="carrymodelForm.firstname.$error">
+        <input required name="firstname" ng-model="carrymodel.selectemployee[0].firstname" aria-label="vendor" style="text-transform:capitalize">
+        <div ng-messages="carrymodel.selectemployee[0].firstname.$error">
           <div ng-message="required">First Name is required.</div>
         </div>
       </md-input-container>
@@ -15,7 +15,7 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Middle Name</label>
-        <input  name="middlename" ng-model="carrymodel.Middlename" aria-label="vendor" style="text-transform:capitalize">
+        <input  name="middlename" ng-model="carrymodel.selectemployee[0].middlename" aria-label="vendor" style="text-transform:capitalize">
          </md-input-container>
   </div>
   </div>
@@ -24,8 +24,8 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Last Name</label>
-        <input required name="lastname" ng-model="carrymodel.Lastname" aria-label="vendor" style="text-transform:capitalize">
-        <div ng-messages="carrymodelForm.lastname.$error">
+        <input required name="lastname" ng-model="carrymodel.selectemployee[0].lastname" aria-label="vendor" style="text-transform:capitalize">
+        <div ng-messages="carrymodel.selectemployee[0].lastname.$error">
           <div ng-message="required">Last Name is required.</div>
         </div>
       </md-input-container>
@@ -39,9 +39,9 @@
  <div flex>
       <md-input-container class="md-block">
       <label>Email ID</label>
-       <input required type="email" name="emailid" ng-model="carrymodel.email_id"
+       <input required type="email" name="emailid" ng-model="carrymodel.selectemployee[0].email"
                ng-pattern="/^.+@.+\..+$/" aria-label="vendor" />
-        <div ng-messages="carrymodelForm.emailid.$error" role="alert">
+        <div ng-messages="carrymodel.selectemployee[0].email.$error" role="alert">
           <div ng-message-exp="['required', 'pattern']">
             Invalid Email.
           </div>
@@ -56,8 +56,9 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor" style="text-transform:capitalize">
-        <div ng-messages="carrymodelForm.phonenumber.$error">
+         
+        <input required name="mobilenumber" ng-model="carrymodel.selectemployee[0].mobilenumber"  ng-minlength="10" ng-maxlength="10"  type="Phone" placeholder="mobilenumber"  ng-required="true" aria-label="Trainer" style="text-transform:capitalize">
+        <div ng-messages="carrymodel.selectemployee[0].mobilenumber.$error">
           <div ng-message="required">Phone Number is required.</div>
         </div>
       </md-input-container>
@@ -72,8 +73,7 @@
 <!-- ROW last Starts -->
 <div class="row">
         
-          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
-        
+                
           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>

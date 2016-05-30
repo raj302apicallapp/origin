@@ -7,9 +7,11 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Pan Number</label>
-        <input required name="pan" ng-model="carrymodel.pannumber" aria-label="pan">
+        <input required name="pan" ng-model="carrymodel.pannumber" aria-label="pan" ng-pattern="/^[A-Za-z]{5}\d{4}[A-Za-z]{1}$/">
+           <span style="color:red" ng-show="testValidation.pancard.$dirty && testValidation.pancard.$invalid"> <span ng-show="testValidation.pancard.$error.pattern"><EM></EM>PAN CARd is not valid</span> </span>
       </md-input-container>
   </div>
+
   
 </div>
 <!-- ROW 2 Ends -->

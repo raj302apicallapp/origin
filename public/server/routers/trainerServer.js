@@ -23,17 +23,42 @@ var sess="";
 
 
 
-//trainer-Insert Starts
-router.post('/addtrainer',function(req,res){
-	console.log("hhhyes");
-console.log(req.body);
-
+//trainer Post
+router.post('/addtrainerdata',function(req,res){
 db.trainermanagement.insert(req.body,function(err,docs){
-	
+	console.log(JSON.stringify(docs))
 	res.json(docs);
 });
 });
-//CourseILT-Insert Ends
+
+//trainer-get Starts(ACTIVE ONLY)
+router.get('/getTrainermgntdata',function(req,res){
+console.log(req.body);
+db.trainermanagement.find({"trainerstatus":1},function(err,docs){
+	console.log("trainerstatus"+docs);
+	res.json(docs);
+});
+});
+//Vendor-Retrieve Starts(BOTH ACTIVE AND INACTIVE)
+router.get('/getallTrainermgnt',function(req,res){
+db.trainermanagement.find({},function(err,docs){
+	console.log("trainerstatus"+docs);
+	res.json(docs);
+});
+});
+
+// trainer remove start
+router.post('/removeTrainermgnttype',function(req,res){
+	
+	console.log(JSON.stringify(req.body._id));
+	var id=req.body._id;
+	db.trainermanagement.remove({_id:mongojs.ObjectId(id)}, function(err,doc)   {
+                  res.json(doc);
+            });
+});
+// trainer reomve end
+//Vendor-Retrieve Ends
+/*get competency*/
 //Trainer-Remove Starts
 router.post('/removetrainer',function(req,res){
 	console.log("RemoveTrainer");
