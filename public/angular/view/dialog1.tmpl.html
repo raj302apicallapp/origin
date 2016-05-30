@@ -1,5 +1,5 @@
 <md-dialog aria-label="Pre-Requisite"  ng-cloak >
-  <form ng-controller="addCourseCtrl">
+  <form ng-controller="addCourseCtrl"  ng-init="getVendordata()">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Course List</h2>
@@ -16,10 +16,10 @@
     <tr>
     <th><md-checkbox ng-model="selectedAll" ng-change="checkAll()" aria-label="Checkbox 1">
           </md-checkbox></th>
-    <th data-th="Course details"><span>Course ID</span></th>
-    <th>Course Title</th>
-    <th>Type</th>
-    <th>Duration</th>
+    <th data-th="Course details"><span>Vendor Name</span></th>
+    <th>Vendor Type</th>
+    <th>Location</th>
+    
     </tr>
   
     <tr ng-repeat="item in JsonResult">
@@ -40,4 +40,3 @@
     </md-dialog-actions>
   </form>
 </md-dialog>
-<s

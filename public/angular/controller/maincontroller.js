@@ -1,4 +1,4 @@
-var app=angular.module('app',['ngRoute','ngStorage','ngMaterial','ngMessages','angularUtils.directives.dirPagination','ngSanitize','ephox.textboxio']);
+var app=angular.module('app',['ngRoute','ngStorage','ngMaterial','ngMessages','angularUtils.directives.dirPagination','ngSanitize','mdDataTable']);
 
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
 $locationProvider.html5Mode({
@@ -115,8 +115,8 @@ when('/mastermOrganization',
 }).
 when('/mEntity',
 {
-  templateUrl:'angular/view/mOrganization/MasterPages/mEntity.html',
-  controller:'organizationCtrl'
+  templateUrl:'angular/view/MasterManagement/Organization/entity.html',
+  controller:'entityCtrl'
 }).
 when('/mGroup',
 {

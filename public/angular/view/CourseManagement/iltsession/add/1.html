@@ -1,38 +1,42 @@
 <h5 style="text-align:center;padding-bottom:10px;">Seats</h5>
-<form name="addCourseForm" ng-controller="addCourseCtrl as ctrl">
+<form name="addCourseForm" ng-controller="iltsessionCtrl as ctrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
-   <div flex>
+   <!-- <div flex>
       <label>Minimum Seats</label>
+  </div> -->
+  <div flex>
+    <md-input-container class="md-block">
+        <label>Minimum Seats</label>
+        <input ng-model="addsession.mini" type="number" min="5" max="100" step="1" name="mini"/>
+        <div ng-messages="carrymodelForm.duration.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+     
   </div>
   <div flex>
-      <input ng-model="addsession.mini" type="number" min="5" max="100" step="1" name="mini"/>
+    <md-input-container class="md-block">
+        <label>Maximum Seats</label>
+        
+        <input ng-model="addsession.max" type="number" min="20" max="200" step="1" name="max"/>
+        <div ng-messages="carrymodelForm.duration.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      
   </div>
 </div>
-<!-- ROW 1 Ends -->
-<div style="padding-bottom:2%"></div>
-
-<!-- ROW 2 Starts -->
-<div layout="row" layout-xs="column">
-   <div flex>
-      <label>Maximum Seats</label>
+<div flex>
+      <md-input-container class="md-block">
+        <label>Wait Lists</label>
+        
+        <input ng-model="addsession.wait" type="number" min="1" max="5" step="1" name="wait"/>
+        <div ng-messages="carrymodelForm.duration.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
   </div>
-  <div flex>
-      <input ng-model="addsession.max" type="number" min="20" max="200" step="1" name="max"/>
-  </div>
-</div>
-<!-- ROW 2 Ends -->
-<div style="padding-bottom:2%"></div>
-<!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
-   <div flex>
-      <label>Wait lists</label>
-  </div>
-  <div flex>
-      <input ng-model="addsession.waitlist" type="number" min="5" max="10" step="1" name="waitlist"/>
-  </div>
-</div>
-<!-- ROW 3 Ends -->
 <div style="padding-bottom:2%"></div>
 <!-- ROW 4 Starts -->
 <div layout="row" layout-xs="column">
