@@ -12,6 +12,7 @@ var relanswerarrv=[];
 var prereqFlag=true;
 var relFlag=false;
 var finJSon;
+var activestatus;
 
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
@@ -667,6 +668,14 @@ $scope.removeVendor=function(vindex){
          $scope.isLoading=false;
        });
    }
+
+    $scope.activeTrainer=function(item)
+  {
+    var activeItem=item;
+    trainerService.activeTrainer(activeItem).then(function(response) {
+    $scope.getTrainermgmt();
+    }); 
+  }
 // submit 
    $scope.submitaction=function(savedata)
    {
