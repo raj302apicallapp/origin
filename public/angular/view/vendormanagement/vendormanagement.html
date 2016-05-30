@@ -108,14 +108,14 @@
   </div>    
 </div>
 
-<div layout="row" layout-xs="column" ng-init="perPage=5">
+<!-- <div layout="row" layout-xs="column" ng-init="perPage=5">
   <div flex>
       <md-input-container class="md-block" style="float:right">
         <label>Item Per Page</label>
         <input type="number"   ng-model="perPage">
         
       </md-input-container>
-  </div>
+  </div> -->
  <!--  <div flex>
           <md-input-container class="md-block" style="float:right;">
           <label>Choose Item Per Page</label>
@@ -127,8 +127,32 @@
       </md-input-container>
     </div> -->
  </div>
+ 
 
-<div layout="row" layout-xs="column">
+<md-table-container>
+ <mdt-table sortable-columns="true" paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" save-row-callback="saveRowCallback(row)">
+    <mdt-header-row>
+     
+      <mdt-column align-rule="left">Vendor Company</mdt-column>
+      <mdt-column align-rule="left">Vendor Type</mdt-column>
+      <mdt-column align-rule="left">City</mdt-column>
+      
+    </mdt-header-row>
+    <mdt-row ng-repeat="item in getVendorList | orderBy:orderList | filter:searchvendor| filter: typevendor |filter:vendorcountry | filter:vendorcity| filter:vendorstate ">
+       <mdt-cell>
+        {{item.Vendor_Company}}
+      </mdt-cell>
+      <mdt-cell>
+      {{item.vendortype}}
+      </mdt-cell>
+       <mdt-cell>
+      {{item.City}}
+       </mdt-cell>
+    </mdt-row>
+  </mdt-table>
+
+</md-table-container>
+<!-- <div layout="row" layout-xs="column">
    <div flex>
        <table class="responstable">
   <tr>
@@ -138,7 +162,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 <!-- ng-animate= "'silde'" -->
-  <tr   dir-paginate="item in getVendorList | orderBy:orderList | filter:searchvendor| filter: typevendor |filter:vendorcountry | filter:vendorcity| filter:vendorstate |itemsPerPage: perPage">
+  <!-- <tr   dir-paginate="item in getVendorList | orderBy:orderList | filter:searchvendor| filter: typevendor |filter:vendorcountry | filter:vendorcity| filter:vendorstate |itemsPerPage: perPage">
     <td>{{item.Vendor_Company}}</td>
      <td>{{item.vendortype}}</td>
      <td>{{item.City}}</td>
@@ -153,7 +177,7 @@
 </table>
 <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
   </div> 
-</div>
+</div>  -->
 <!-- ROW Ends -->
 </form>
 
