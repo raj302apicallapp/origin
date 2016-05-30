@@ -92,8 +92,9 @@ getCSCLocation:function(searchText){
 },
 getCompetency:function()
 {
-  var competency=$http.get('/getCompetency').then(function(response)
+  var competency=$http.get('/getCompetencys').then(function(response)
   {
+
     return response;
   });
   return competency;

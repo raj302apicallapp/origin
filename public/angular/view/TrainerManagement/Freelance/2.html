@@ -1,0 +1,27 @@
+<h5 style="text-align:center;padding-bottom:10px;">Contact Info</h5>
+<form name="carrymodelForm" ng-controller="addTrainerCtrl as ctrl">
+
+<div layout="row" layout-xs="column">
+ 
+  <div style="width:2%"></div>
+  <div flex>
+       <md-input-container class="md-block">
+        <label>Pan Number</label>
+        <input required name="pan" ng-model="carrymodel.pannumber" aria-label="pan">
+      </md-input-container>
+  </div>
+  
+</div>
+<!-- ROW 2 Ends -->
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+</form>
+ <!-- ROW last Ends -->
+ <link href="assets/css/course.css" rel="stylesheet">

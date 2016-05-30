@@ -78,7 +78,20 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     this.dis_State=true;
     this.dis_City=true;
     var skillarr=[];
+  
 
+    if(angular.isDefined($scope.carrymodel))
+    {
+      self.selectedCountry=$scope.carrymodel.Country;
+      self.selectedState=$scope.carrymodel.State;
+      self.selectedCity=$scope.carrymodel.City;
+      if($scope.carrymodel.Empanelment_Date){
+      var dd=new Date($scope.carrymodel.Empanelment_Date);
+      console.log("Empanelment_Date carrymodel::"+dd);
+       $scope.Empanelment_Date= dd;
+     }
+    }
+    
       $scope.getVendorType=function(getResponse)
     {
       $scope.vendorTypeList=[];
@@ -583,8 +596,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
    }
   else if($location.path()=="/add_ilt_vendor")
@@ -593,8 +604,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -604,8 +613,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -615,8 +622,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -626,8 +631,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -637,8 +640,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -648,8 +649,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
 
   }
@@ -659,8 +658,6 @@ console.log("location path::"+$location.path());
         console.log("Vendor TYPE CHECK::"+vendortype);
         if (vendortype) {
              console.log("Vendor TYPE::"+vendortype)
-        }else{
-        $location.path("/vendormanagement");
         }
    }
   else if($location.path() == "/vendormanagement")
@@ -738,15 +735,15 @@ console.log("location path::"+$location.path());
        });
    }
 
- //chagetype 
-   $scope.changeType=function()
-   {
+ // //chagetype 
+ //   $scope.changeType=function()
+ //   {
       
-      $localStorage.vendortype=$scope.carrymodel.vendortype;
-      console.log("local vendortype::"+$localStorage.vendortype)
-       vendortype=$scope.carrymodel.vendortype;
-       console.log("vendorType::"+JSON.stringify(vendortype));
-    }
+ //      $localStorage.vendortype=$scope.carrymodel.vendortype;
+ //      console.log("local vendortype::"+$localStorage.vendortype)
+ //       vendortype=$scope.carrymodel.vendortype;
+ //       console.log("vendorType::"+JSON.stringify(vendortype));
+ //    }
 // add vendor
   $scope.addVendor=function()
   {  
@@ -969,8 +966,10 @@ $scope.getCity=function(SelectedState,getResponse){
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
           res=angular.lowercase(res);
+          // alert(JSON.stringify(res));
           console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(lowercaseQuery) == 0);
+          //   return (res.indexOf(lowercaseQuery) == 0);
+          return (res.search(lowercaseQuery) !== -1);
         };
 
     }
@@ -993,7 +992,7 @@ $scope.getCity=function(SelectedState,getResponse){
      
      if(editableJSon.vendortype=="ILT Vendor")
      { 
-      $localStorage.vendortype="ILT Vendor";
+      $localStorage.type="ILT Vendor";
       console.log("edit ilt vendor"+JSON.stringify(editableJSon));
       $scope.carrymodel=editableJSon;
       $localStorage.editonlypass="/edit_ilt_vendor";
@@ -1005,7 +1004,7 @@ $scope.getCity=function(SelectedState,getResponse){
       }
     else if(editableJSon.vendortype=="Equipment Vendor")
      {  
-     $localStorage.vendortype="Equipment Vendor";
+     $localStorage.type="Equipment Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit Equipment vendor::"+JSON.stringify(editableJSon));
@@ -1014,7 +1013,7 @@ $scope.getCity=function(SelectedState,getResponse){
       }
       else if(editableJSon.vendortype=="ELearn Vendor")
      {  
-     $localStorage.vendortype="ELearn Vendor";
+     $localStorage.type="ELearn Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit E learn vendor::"+JSON.stringify(editableJSon));
@@ -1023,7 +1022,7 @@ $scope.getCity=function(SelectedState,getResponse){
       }
       else if(editableJSon.vendortype=="MLearn Vendor")
      {  
-     $localStorage.vendortype="MLearn Vendor";
+     $localStorage.type="MLearn Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit M learn vendor::"+JSON.stringify(editableJSon));
@@ -1032,7 +1031,7 @@ $scope.getCity=function(SelectedState,getResponse){
       }
       else if(editableJSon.vendortype=="Stationary Vendor")
      {  
-     $localStorage.vendortype="Stationary Vendor";
+     $localStorage.type="Stationary Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit Stationary vendor::"+JSON.stringify(editableJSon));
@@ -1042,7 +1041,7 @@ $scope.getCity=function(SelectedState,getResponse){
       //Edit printing Vendor
       else if(editableJSon.vendortype=="Printing Vendor")
      {  
-     $localStorage.vendortype="Printing Vendor";
+     $localStorage.type="Printing Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit printing vendor::"+JSON.stringify(editableJSon));
@@ -1052,7 +1051,7 @@ $scope.getCity=function(SelectedState,getResponse){
       // end of printing vendor
       else if(editableJSon.vendortype=="f&b Vendor")
      {  
-     $localStorage.vendortype="f&b Vendor";
+     $localStorage.type="f&b Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit f&b vendor::"+JSON.stringify(editableJSon));
@@ -1061,7 +1060,7 @@ $scope.getCity=function(SelectedState,getResponse){
       }
       else if(editableJSon.vendortype=="Travel Vendor")
      {  
-     $localStorage.vendortype="Travel Vendor";
+     $localStorage.type="Travel Vendor";
       $scope.carrymodel=editableJSon;
       // $scope.nexts=false;
       console.log("edit Travelendor::"+JSON.stringify(editableJSon));
@@ -1099,8 +1098,6 @@ $scope.getCity=function(SelectedState,getResponse){
     console.log("location path"+$location.path());
     if($location.path()=="/add_ilt_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1114,8 +1111,6 @@ $scope.getCity=function(SelectedState,getResponse){
     
     else if ($location.path()=="/add_equipmentVendor") 
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1124,12 +1119,10 @@ $scope.getCity=function(SelectedState,getResponse){
            {
             $location.path("/vendormanagement");
             };
-        })
+        });
     }
     else if($location.path()=="/add_elearn_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1142,8 +1135,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }
      else if($location.path()=="/add_mlearn_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1156,8 +1147,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }
     else if($location.path()=="/add_stationary_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1170,8 +1159,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }
     else if($location.path()=="/add_printing_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1251,8 +1238,6 @@ $scope.getCity=function(SelectedState,getResponse){
 
       else if($location.path()=="/edit_printing_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.updateVendordata(savedata).then(function(response) 
         {
@@ -1265,8 +1250,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }
     else if($location.path()=="/add_f&b_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {
@@ -1279,8 +1262,8 @@ $scope.getCity=function(SelectedState,getResponse){
     }
     else if($location.path()=="/add_Travel_vendor")
     {
-         console.log("vendor::"+vendortype);
-         savedata.vendortype=vendortype;   
+      
+           
          console.log("ci"+JSON.stringify(savedata));
          vendorService.addVendor(savedata).then(function(response) 
         {

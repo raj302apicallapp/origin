@@ -1,0 +1,48 @@
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5> 
+<form name="carrymodelForm" ng-controller="addTrainerCtrl as ctrl" ng-init="compInit()">
+<!-- ROW 1 Starts -->
+<div layout="row" layout-xs="column">
+<div flex>
+<h3></h3>
+   <md-button ng-click="showAdvancedVendor($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Add Vendor</md-button>
+</div>
+</div>
+<div layout="row" layout-xs="column">
+
+   <div flex>
+      <table class="responstable">
+  <tr>
+    <th>Vendor Name</th>
+    <th >Location</th>
+    
+    <th colspan="4" style="text-align:center;">Action</th>
+  </tr>
+  
+  <tr ng-repeat="item in carrymodel.selectvendor">
+     <td>{{item.Firstname}}</td>
+     <td>{{item.Country}}</td>
+
+
+    
+    
+   
+    <td class="actionclass"><md-button ng-click="removeVendor($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr> 
+  
+  
+</table>
+  </div> 
+</div>
+
+</form>
+<div style="padding-bottom:2%"></div>
+<!-- ROW last Starts -->
+<div class="row">
+        
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+        
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+ <link href="assets/css/course.css" rel="stylesheet">

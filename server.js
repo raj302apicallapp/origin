@@ -6,7 +6,6 @@ var path=require('path');
 var bodyPaser=require('body-parser');
 var http = require('http');
 var mongojs=require('mongojs');
-
 var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register']);
  
 var port = Number(process.env.PORT || 3000)
@@ -20,6 +19,7 @@ app.use(session({
 app.use('/', express.static(__dirname+'/public'));
 app.use(require(path.join(__dirname+'/public/server/routers/auth.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/courseServer.js')));
+app.use(require(path.join(__dirname+'/public/server/routers/trainerServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/masterVendorRouter.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/venueServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/ILServer.js')));
@@ -30,7 +30,7 @@ app.use(require(path.join(__dirname+'/public/server/routers/mOrgServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/curriculumServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/masterServer.js')));
 app.use(require(path.join(__dirname+'/public/server/routers/hospitalServer.js')));
-
+app.use(require(path.join(__dirname+'/public/server/routers/iltsessionServer.js')));
 app.listen(port,function(){
 })
 

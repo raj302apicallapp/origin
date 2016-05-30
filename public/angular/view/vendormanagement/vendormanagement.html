@@ -102,27 +102,10 @@
    <div flex>
       <md-input-container class="md-block">
        <md-checkbox ng-model="activestatus" ng-change="getVendor(activestatus)" aria-label="Checkbox 1">
-           Show Inactive Vendor also
+           Show Inactive Vendors also
           </md-checkbox>
       </md-input-container>
-  </div>
-
-    <div flex>
-          <md-input-container class="md-block">
-          <label>Choose Vendor Type</label>
-       <md-select ng-model="carrymodel.vendortype" ng-change="changeType()"  aria-label="Type" >
-          <md-option ng-repeat="type in types" value="{{type}}">
-            {{type}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-    </div>
-     <div flex>
-          <md-input-container class="md-block">
-       <md-button ng-disabled="!carrymodel.vendortype" ng-click="addVendor()" style="float:right;" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
-      </md-input-container>
-    </div>
-    
+  </div>    
 </div>
 
 <div layout="row" layout-xs="column" ng-init="perPage=2">

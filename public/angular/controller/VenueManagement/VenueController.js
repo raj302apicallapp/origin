@@ -39,7 +39,7 @@ app.controller("venueCtrl",function($scope,$location,$localStorage,venueService,
 
 
     console.log("Venue controller triggered");
-    $scope.types=['Internal','External'];
+    
     $scope.rooms=['Ball Room','Meeting Room'];
 
 
@@ -91,8 +91,8 @@ console.log("LocalStorage::"+$localStorage.editonlypass);
         $location.path($localStorage.editonlypass);
       } else if($location.path()=="/addexternalvenue" || $location.path()=="/addinternalvenue"){
       	$localStorage.editonlypass="";
-      	console.log("VENUE TYPE CHECK::"+venuetype);
-      	if (venuetype) {
+      	console.log("VENUE TYPE CHECK::"+$scope.carrymodel.venuetype);
+      	if ($scope.carrymodel.venuetype) {
       	}else{
       	$location.path("/venue");
       	}
@@ -119,24 +119,12 @@ $scope.isLoading=false;
 });
 
 }
-//Change Venue Type
-$scope.changeType=function(){
-  $scope.changeTypeFilter=$scope.carrymodel.venuetype;
-	console.log("venueType::"+$scope.carrymodel.venuetype);
-	venuetype=$scope.carrymodel.venuetype;
-}
 
 
-$scope.addVenue=function(){
-	console.log("Add Venue");
-	$localStorage.currentPath=$location.path();
-	if($scope.carrymodel.venuetype=="Internal"){
-    console.log("Internal");
-		$location.path("/addinternalvenue");
-	}else if($scope.carrymodel.venuetype=="External"){
-		$location.path("/addexternalvenue");
-	}
-}
+
+
+
+
 $scope.editVenue=function(item){
 	//THis is for url check (unique roll pass)
 	console.log("edit Venue");

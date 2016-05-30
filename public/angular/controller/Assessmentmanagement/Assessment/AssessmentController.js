@@ -1,5 +1,5 @@
 var app=angular.module('app');
-app.controller('assessmentCtrl',function($scope,$localStorage,$location,$filter,$mdMedia,$mdDialog,vendorService)
+app.controller('assessmentCtrl',function($scope,$localStorage,$location,$filter,$q,$mdMedia,$mdDialog,vendorService)
 {  
 	$localStorage.currentPath=$location.path();
 	$scope.dis_SubCompetency=true;

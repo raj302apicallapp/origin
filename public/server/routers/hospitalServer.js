@@ -3,7 +3,6 @@ var router=express.Router();
 var path=require('path');
 var bodyParser=require('body-parser');
 router.use(bodyParser.json());
-
 var http = require('http');
 var mongojs=require('mongojs');
 var session = require('express-session');
@@ -24,5 +23,4 @@ db.hospital.find({},function(err,docs){
 	res.json(docs);
 });
 });
-
 module.exports=router;

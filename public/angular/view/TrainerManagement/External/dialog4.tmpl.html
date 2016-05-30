@@ -1,0 +1,46 @@
+<md-dialog aria-label="Pre-Requisite"  ng-cloak >
+  <form ng-controller="addTrainerCtrl">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Pick Vendor</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          x
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
+  <div class="md-dialog-content">
+        
+    <table class="responstable">
+    <tr>
+    <th><md-checkbox ng-model="selectedAll" ng-change="checkAllVendor()" aria-label="Checkbox 1">
+          </md-checkbox></th>
+    <th data-th="vendor details" ng-click="sortcertification()">Vendor Name<md-icon class="material-icons"><i class="material-icons">{{vendornameSortIcon}}</i></md-icon></th>
+    <th ng-click="sortslocation()">Location<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
+    <th ng-click="sortslocation()">Vendor Type<md-icon class="material-icons"><i class="material-icons">{{vendortypeSortIcon}}</i></md-icon></th>
+    
+    
+    </tr>
+  
+    <tr dir-paginate="item in getInternalVendor | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <td><md-checkbox ng-change="checkOneVendor($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+          </md-checkbox></td>
+    <td>{{item.Firstname}}</td>
+     <td>{{item.Country}}</td>
+     <td>{{item.vendortype}}</td>
+      
+    
+    </tr> 
+  </table>
+  <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="saveActionVendor()" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
