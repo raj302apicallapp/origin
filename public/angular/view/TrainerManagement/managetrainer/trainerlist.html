@@ -72,21 +72,7 @@
           </md-checkbox>
    
 </div>
-<div flex>
-          <md-input-container class="md-block">
-          <label>Choose Trainer Type</label>
-       <md-select ng-model="carrymodel.trainertype" ng-change="changeType()"  aria-label="Type" >
-          <md-option ng-repeat="type in types" value="{{type}}">
-            {{type}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-    </div>
-     <div flex>
-          <md-input-container class="md-block">
-       <md-button ng-disabled="!carrymodel.trainertype" ng-click="addTrainer()" style="float:right;" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add</md-icon></md-button>
-      </md-input-container>
-    </div>
+
 </div>
 <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
 <div layout="row" layout-xs="column">
