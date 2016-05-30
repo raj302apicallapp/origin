@@ -105,6 +105,41 @@ $mdDialog.hide($scope.selectJsonven);
 
 }
 
+// ILT SESSION
+// $scope.addsession.minimum=5;
+// $scope.carrymodel.startDate = new Date(); 
+//   $scope.minDate = new Date(
+//       $scope.carrymodel.startDate.getFullYear(),
+//       $scope.carrymodel.startDate.getMonth(),
+//       $scope.carrymodel.startDate.getDate());
+
+//   $scope.endDate = new Date(); 
+//   $scope.endDate = new Date(
+//       $scope.endDate.getFullYear(),
+//       $scope.endDate.getMonth(),
+//       $scope.endDate.getDate()); 
+   
+    
+// //Decleration
+//     //Program Coordinator
+//     self.Coordinators=[];
+//     self.querySearchCoordinator   = querySearchCoordinator;
+//     self.selectedCoordinatorChange = selectedCoordinatorChange;
+//     self.searchCoordinatorChange   = searchCoordinatorChange;
+
+
+
+//     self.VendorTypes = loadVendorTypes();
+//     self.TrainerVendors = loadTrainerVendors();
+//     self.ContentVendors = loadContentVendors();
+//     self.EmailIDs = loadEmailID();
+//     self.Rooms = loadRoom();
+    
+//     self.querySearchVendorTypes = querySearchVendorTypes;
+//     self.querySearchTrainerVendors = querySearchTrainerVendors;
+//     self.querySearchContentVendors = querySearchContentVendors;
+//     self.querySearchEmailID = querySearchEmailID;
+//     self.querySearchRoom = querySearchRoom;
 
 
 //Get Course 
