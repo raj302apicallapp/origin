@@ -108,7 +108,7 @@
   </div>    
 </div>
 
-<div layout="row" layout-xs="column" ng-init="perPage=2">
+<div layout="row" layout-xs="column" ng-init="perPage=5">
   <div flex>
       <md-input-container class="md-block" style="float:right">
         <label>Item Per Page</label>
@@ -138,7 +138,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 <!-- ng-animate= "'silde'" -->
-  <tr   dir-paginate="item in getVendorList | orderBy:orderList | filter:searchvendor | itemsPerPage: perPage">
+  <tr   dir-paginate="item in getVendorList | orderBy:orderList | filter:searchvendor| filter: typevendor |filter:vendorcountry | itemsPerPage: perPage">
     <td>{{item.Vendor_Company}}</td>
      <td>{{item.vendortype}}</td>
      <td>{{item.City}}</td>
