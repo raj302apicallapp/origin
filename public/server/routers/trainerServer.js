@@ -74,7 +74,7 @@ router.post('/statustrainer',function(req,res){
 console.log(req.body);
 var event_id=mongojs.ObjectId(req.body._id);
 var updatestatus;
-if (req.body.coursestatus==1) {
+if (req.body.trainerstatus==1) {
 updatestatus=0;
 }else{
 updatestatus=1;

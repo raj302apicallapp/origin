@@ -9,9 +9,12 @@ var relanswercer=[];
 var relanswerarrt=[];
 var relanswerarrv=[];
 
+var editableJSon={};
+
 var prereqFlag=true;
 var relFlag=false;
 var finJSon;
+var activestatus;
 
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
@@ -40,10 +43,6 @@ console.log("Active/Inactive::"+JSON.stringify(activeItem));
 trainerService.activeTrainer(activeItem).then(function(response) {
 $scope.getTrainer();
 }); 
-}
-$scope.changeActiveStatus=function(){
-  // $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;
-  $scope.getTrainer();
 }
 
 
@@ -667,6 +666,14 @@ $scope.removeVendor=function(vindex){
          $scope.isLoading=false;
        });
    }
+
+    $scope.activeTrainer=function(item)
+  {
+    var activeItem=item;
+    trainerService.activeTrainer(activeItem).then(function(response) {
+    $scope.getTrainermgmt();
+    }); 
+  }
 // submit 
    $scope.submitaction=function(savedata)
    {
@@ -990,6 +997,50 @@ function addTrainerController($scope, $mdDialog) {
     $mdDialog.cancel();
   };
   
+}
+
+
+//SORT
+$scope.vsorttrainer=true;
+$scope.trainerSortIcon="arrow_drop_down";
+$scope.sorttrainer=function(){
+  if ($scope.vsorttrainer==true) {
+    $scope.orderList = "selectemployee[0].firstname";
+    $scope.vsorttrainer=false;
+    $scope.trainerSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-selectemployee[0].firstname";
+    $scope.vsorttrainer=true;
+    $scope.trainerSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsorttrainertype=true;
+$scope.trainertypeSortIcon="arrow_drop_down";
+$scope.sorttrainertype=function(){
+  if ($scope.vsorttrainertype==true) {
+    $scope.orderList = "trainertype";
+    $scope.vsorttrainertype=false;
+    $scope.trainertypeSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-trainertype";
+    $scope.vsorttrainertype=true;
+    $scope.trainerSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsorttrainerSkills=true;
+$scope.trainerSkillsSortIcon="arrow_drop_down";
+$scope.sortSkills=function(){
+  if ($scope.vsorttrainerSkills==true) {
+    $scope.orderList = "selectcompetency[0].skills";
+    $scope.vsorttrainerSkills=false;
+    $scope.trainerSkillsSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-selectcompetency[0].skills";
+    $scope.vsorttrainerSkills=true;
+    $scope.trainerSkilllsSortIcon="arrow_drop_down";
+  }
 }
     
 });

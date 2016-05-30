@@ -103,7 +103,7 @@
 <div style="padding-bottom:2%"></div>
 <div layout="row" layout-xs="column">
 <div flex>
-    <md-checkbox ng-model="activestatus" ng-change="getCourse(activestatus)" aria-label="Checkbox 1">
+    <md-checkbox ng-model="activestatus" ng-change="getTrainermgmt(activestatus)" aria-label="Checkbox 1">
            Show Inactive Trainer also
           </md-checkbox>
    
@@ -126,9 +126,9 @@
       <table class="responstable">
   <tr>
     
-    <th data-th="Course details" ng-click="sorttrainer()">Trainer Name<md-icon class="material-icons"><i class="material-icons">{{trainerSortIcon}}</i></md-icon></th>
-     <th ng-click="sorttype()">Trainer Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
-    <th ng-click="sortType()">Skills<md-icon class="material-icons"><i class="material-icons">{{SkillsSortIcon}}</i></md-icon></th>
+    <th data-th="Trainer details" ng-click="sorttrainer()">Trainer Name<md-icon class="material-icons"><i class="material-icons">{{trainerSortIcon}}</i></md-icon></th>
+     <th ng-click="sorttrainertype()">Trainer Type<md-icon class="material-icons"><i class="material-icons">{{trainertypeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortSkills()">Skills<md-icon class="material-icons"><i class="material-icons">{{trainerSkillsSortIcon}}</i></md-icon></th>
    
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>

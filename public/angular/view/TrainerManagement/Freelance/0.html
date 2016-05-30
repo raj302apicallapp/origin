@@ -1,5 +1,6 @@
 <h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
 <form name="carrymodelForm" ng-controller="addTrainerCtrl">
+<!-- Trainer Management -->
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
@@ -56,8 +57,7 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-         
-        <input required name="mobilenumber" ng-model="carrymodel.selectemployee[0].mobilenumber"  ng-minlength="10" ng-maxlength="10"  type="Phone" placeholder="mobilenumber"  ng-required="true" aria-label="Trainer" style="text-transform:capitalize">
+        <input required name="phonenumber" ng-model="carrymodel.selectemployee[0].mobilenumber" aria-label="vendor" style="text-transform:capitalize">
         <div ng-messages="carrymodel.selectemployee[0].mobilenumber.$error">
           <div ng-message="required">Phone Number is required.</div>
         </div>
