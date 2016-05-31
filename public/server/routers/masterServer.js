@@ -26,12 +26,13 @@ router.post('/OnCheckExist',function(req,res)
        
 	var collection_name=req.body.collection_name;
 	console.log(JSON.stringify(collection_name));
-	db[collection_name].find({[collection_name]:req.body.data[collection_name]},function(err,docs){
+// 	db[collection_name].find({[collection_name]:req.body.data[collection_name]},function(err,docs){
 		
-		docs.length==0 ? res.json("Not Exists") : res.json("Exists");
+// 		docs.length==0 ? res.json("Not Exists") : res.json("Exists");
 		
 		
-	});
+// 	});
+res.json("hello")
 });
 
 //getLanguageMaster
