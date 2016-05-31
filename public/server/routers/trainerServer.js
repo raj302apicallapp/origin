@@ -17,10 +17,74 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','mCompetency','mCertificate','vendormanagement']);
+var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register','mCompetency','mCertificate','vendormanagement','trainermanagement']);
 
 var sess="";
-router.get('/getemployee',function(req,res)
+
+
+
+//trainer Post
+router.post('/addtrainerdata',function(req,res){
+db.trainermanagement.insert(req.body,function(err,docs){
+	console.log(JSON.stringify(docs))
+	res.json(docs);
+});
+});
+
+//trainer-get Starts(ACTIVE ONLY)
+router.get('/getTrainermgntdata',function(req,res){
+console.log(req.body);
+db.trainermanagement.find({"trainerstatus":1},function(err,docs){
+	console.log("trainerstatus"+docs);
+	res.json(docs);
+});
+});
+//Vendor-Retrieve Starts(BOTH ACTIVE AND INACTIVE)
+router.get('/getallTrainermgnt',function(req,res){
+db.trainermanagement.find({},function(err,docs){
+	console.log("trainerstatus"+docs);
+	res.json(docs);
+});
+});
+
+// trainer remove start
+router.post('/removeTrainermgnttype',function(req,res){
+	
+	console.log(JSON.stringify(req.body._id));
+	var id=req.body._id;
+	db.trainermanagement.remove({_id:mongojs.ObjectId(id)}, function(err,doc)   {
+                  res.json(doc);
+            });
+});
+// trainer reomve end
+//Vendor-Retrieve Ends
+/*get competency*/
+//Trainer-Remove Starts
+router.post('/removetrainer',function(req,res){
+	console.log("RemoveTrainer");
+	var event_id=mongojs.ObjectId(req.body._id);
+console.log(req.body);
+db.trainermanagement.remove({"_id":event_id},function(err,docs){
+	res.json(docs);
+});
+});
+//trainer Post End
+router.post('/statustrainer',function(req,res){
+	console.log("hhhyes");
+console.log(req.body);
+var event_id=mongojs.ObjectId(req.body._id);
+var updatestatus;
+if (req.body.coursestatus==1) {
+updatestatus=0;
+}else{
+updatestatus=1;
+}
+db.trainermanagement.update({"_id" :event_id	}, {$set: {trainerstatus:updatestatus}},function(err,udocs){
+	res.json(udocs);
+});
+});
+
+router.get('/gettrainer',function(req,res)
 {
 	db.register.find({},function(err,docs){
 		console.log(JSON.stringify(docs));
@@ -40,7 +104,7 @@ db.register.find({},function(err,docs){
 // get Trainer starts
 router.get('/getcompetency',function(req,res){
 console.log(req.body);
-db.mCompetency.find({"coursestatus":1},function(err,docs){
+db.mCompetency.find({"trainerstatus":1},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
@@ -88,5 +152,19 @@ db.vendormanagement.find({},function(err,docs){
 });
 });
 //get Trainer all Ends
+router.post('/statustrainer',function(req,res){
+	console.log("hhhyes");
+console.log(req.body);
+var event_id=mongojs.ObjectId(req.body._id);
+var updatestatus;
+if (req.body.venuestatus==1) {
+updatestatus=0;
+}else{
+updatestatus=1;
+}
+db.trainermanagement.update({"_id" :event_id	}, {$set: {trainerstatus:updatestatus}},function(err,udocs){
+	res.json(udocs);
+});
+});
 
 module.exports=router;

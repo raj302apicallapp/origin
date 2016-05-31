@@ -4,52 +4,46 @@
   
       
         <!-- class="responstable" -->
- <table class="table_white" > 
- <tr> 
- <td> 
-  <div flex>
+ <div class="row" > 
+   
+  <div div flex="10">
     
-    <h6 style="padding:15%">Section</h6>
+    Section
     
    </div>
- </td>
- <td>
-    <div flex>
+
+
+    <div flex="10">
      <md-input-container class="md-block" flex-gt-sm="">
        <md-button  ng-click="addCourses()" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
       </md-input-container>
   </div>
-</td>
-<td>
-  <div flex>
+
+  <div flex="10">
      <md-input-container class="md-block" flex-gt-sm="">
        <md-button  ng-click="removeCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
       </md-input-container>
   </div>
-   </td>
-   <td>
-    <div flex>
+   
+    <div flex="10">
       
-    <h6 style="padding:15%">Learning Activity</h6>
+    Learning Activity
   
      </div>
-   </td>
-   <td>
-     <div flex>
+ 
+     <div flex="10">
      <md-input-container class="md-block" flex-gt-sm="">
        <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
       </md-input-container>
   </div>
-</td>
-<td>
-  <div flex>
+
+  <div flex="10">
      <md-input-container class="md-block" flex-gt-sm="">
        <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
       </md-input-container>
   </div>
-</td>
-</tr>
-</table>
+
+</div>
 
     <div ng-repeat="(parentIndex,ChildCourse_data) in carrymodel.selectCourse_data" ng-init="rowIndex = $index" >
     <!-- <div style="padding-bottom:2%"></div>   -->
