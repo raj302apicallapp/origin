@@ -104,6 +104,50 @@ $scope.jj="jjjj";
 $mdDialog.hide($scope.selectJsonven);
 
 }
+//SORT
+$scope.vsortvendor=true;
+$scope.vendorSortIcon="arrow_drop_down";
+$scope.sortvendor=function(){
+  if ($scope.vsortvendor==true) {
+    $scope.orderList = "Firstname";
+    $scope.vsortvendor=false;
+    $scope.vendorSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Firstname";
+    $scope.vsortvendor=true;
+    $scope.vendorSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortType=true;
+$scope.typeSortIcon="arrow_drop_down";
+$scope.sorttype=function(){
+
+  if ($scope.vsortType==true) {
+    $scope.orderList = "vendortype";
+    $scope.vsortType=false;
+    $scope.typeSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-vendortype";
+    $scope.vsortType=true;
+    $scope.typeSortIcon="arrow_drop_down";
+  }
+}
+$scope.vsortLocation=true;
+$scope.locationSortIcon="arrow_drop_down";
+$scope.sortlocation=function(){
+
+  if ($scope.vsortLocation==true) {
+    $scope.orderList = "Country";
+    $scope.vsortLocation=false;
+    $scope.locationSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Country";
+    $scope.vsortLocation=true;
+    $scope.locationSortIcon="arrow_drop_down";
+  }
+}
+ 
 
 // ILT SESSION
 // $scope.addsession.minimum=5;
@@ -118,8 +162,9 @@ $mdDialog.hide($scope.selectJsonven);
 //       $scope.endDate.getFullYear(),
 //       $scope.endDate.getMonth(),
 //       $scope.endDate.getDate()); 
-   
-    
+       
+
+
 // //Decleration
 //     //Program Coordinator
 //     self.Coordinators=[];
