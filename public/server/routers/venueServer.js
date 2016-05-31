@@ -18,8 +18,8 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['venuemanagement','CSCLocation'];
-var db = mongojs('mongodb://54.179.156.114:27017/flms', ['venuemanagement','CSCLocation']);
-// var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+// var db = mongojs('mongodb://54.179.156.114:27017/flms', ['venuemanagement','CSCLocation']);
+var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
  var sess="";
 
 router.post('/upload', function (req,res) {
