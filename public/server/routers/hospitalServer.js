@@ -12,8 +12,9 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['hospital']);
-
+var collections=['hospital'];
+var db = mongojs('mongodb://54.179.156.114:27017/flms', ['hospital']);
+// var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var sess="";
 
 

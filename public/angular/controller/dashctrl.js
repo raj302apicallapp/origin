@@ -356,7 +356,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
- else if($localStorage.currentPath=="/addtrainerinternal"|| $localStorage.currentPath=="/edittrainerinternal"){
+ else if($localStorage.currentPath=="/addtrainerinternal"){
         console.log("type::Internal")
       var a1=['Basic Info','Competency Info'];
     var a2="angular/view/TrainerManagement/Internal/";
@@ -364,7 +364,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
   }
   
-   else if($localStorage.currentPath == "/addtrainerexternal"|| $localStorage.currentPath=="/edittrainerexternal" )
+   else if($localStorage.currentPath == "/addtrainerexternal")
   {   
     console.log("type::External");
     var a1=['Basic Info','Competency Info','Vendor Info'];
@@ -372,7 +372,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-   else if($localStorage.currentPath == "/addtrainerfreelance"|| $localStorage.currentPath=="/edittrainerfreelance" )
+   else if($localStorage.currentPath == "/addtrainerfreelance")
   {   
     console.log("type::Freelance");
     var a1=['Basic Info','Competency Info','Vendor Info'];
