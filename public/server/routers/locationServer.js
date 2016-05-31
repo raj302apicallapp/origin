@@ -13,7 +13,8 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['mCountry','mLocation','mState','mCity'];
-var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
+// var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
+var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
  var sess="";
 
 

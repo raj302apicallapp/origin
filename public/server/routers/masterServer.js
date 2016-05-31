@@ -6,8 +6,8 @@ router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
 var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital','mLanguage','checkk'];
-var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
-
+// var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
+var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 router.post('/addmaster',function(req,res)
 { 
        
