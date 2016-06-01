@@ -13,8 +13,8 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['hospital'];
-// var db = mongojs('mongodb://54.179.156.114:27017/flms', ['hospital']);
-var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+var db = mongojs('mongodb://192.169.146.79:27017/flms', ['hospital']);
+// var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var sess="";
 
 

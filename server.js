@@ -7,8 +7,8 @@ var bodyPaser=require('body-parser');
 var http = require('http');
 var mongojs=require('mongojs');
 var collections=['register'];
-// var db = mongojs('mongodb://54.169.235.125:27017/flms', ['register']);
- var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+var db = mongojs('mongodb://192.169.146.79:27017/flms', ['register']);
+ // var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var port = Number(process.env.PORT || 3000)
 var session = require('express-session');
 app.use(session({

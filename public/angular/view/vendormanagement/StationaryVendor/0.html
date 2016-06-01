@@ -152,7 +152,7 @@
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
         
-           <md-button  ng-disabled="!carrymodelForm.$valid" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-disabled="!carrymodelForm.$valid  && !carrymodel.City" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
