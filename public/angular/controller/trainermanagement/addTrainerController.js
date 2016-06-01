@@ -19,6 +19,7 @@ var activestatus;
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
 { 
+ $scope.phoneNumbr = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
 $scope.selectJson=[];
 $scope.selectJsoncomp=[];
 $scope.selectJsoncert=[];
