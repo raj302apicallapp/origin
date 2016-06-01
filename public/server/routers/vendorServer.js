@@ -13,8 +13,8 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['vendormanagement','CSCLocation','mCompetency','mCertificate','mTags'];
-var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
-// var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+// var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
+var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
  var sess="";
 
 
