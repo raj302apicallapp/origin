@@ -123,28 +123,28 @@
 
 <div style="padding-bottom:2%"></div>
 <!-- Row 4 start -->
-<div class="row" layout-xs="column">
-<div style="padding-bottom:2%"></div>
-  <div flex>
+<div layout="row" layout-xs="column">
+ 
+   <div flex style="padding: 22px;">
       <md-input-container class="md-block">
         <label>Pin Code</label>
-        <input required name="pincode" ng-model="carrymodel.Pincode"
-        style="text-transform: capitalize;">
+        <input required name="pincode" ng-model="carrymodel.Pincode" ng-change="pincodeCheck(carrymodel.Pincode)">
         <div ng-messages="carrymodelForm.pincode.$error">
           <div ng-message="required">Pin Code is required.</div>
+          <div ng-meassge="required">{{entered_pincode}}</div>
         </div>
       </md-input-container>
   </div>
-
-  <div flex>
-    <label>Empanelment Date</label>
-    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Enter date"  required name="empanelment_date" ng-change="date()">
+    
+  <div flex ng-init="initDatepicker()">
+    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Empanelment Date "  required name="empanelment_date" ng-change="date()" class="md-block">
     <div ng-messages="carrymodelForm.empanelment_date.$error">
           <div ng-message="required">Empanelment Date is required.</div>
     </div>
   </md-datepicker>
     
   </div>
+ 
 </div>
 <!-- Row 4 send -->
  
@@ -154,7 +154,7 @@
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
         
-           <md-button  ng-disabled="!carrymodelForm.$valid && !carrymodel.City" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
@@ -162,3 +162,31 @@
 
  
 
+<style>
+ /*.md-datepicker-input-container {
+  width: 100%;
+  margin-left: 0px;
+}*/
+
+
+.inputdemoBasicUsage .md-datepicker-button {
+  width: 36px;
+}
+.inputdemoBasicUsage .md-datepicker-input-container {
+  margin-left: 2px;
+}
+.md-datepicker-input-container {
+  display: block;
+}
+.md-datepicker-input[placeholder] {
+  color=red;
+}
+.padding-top-0 {
+  padding-top: 0px;
+}
+.padding-bottom-0 {
+  padding-bottom: 0px;
+}
+ 
+
+</style>
