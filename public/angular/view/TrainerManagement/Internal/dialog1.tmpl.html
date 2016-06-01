@@ -19,19 +19,19 @@
   
       <md-autocomplete
            md-no-cache="true"
-          md-selected-item="ctrl.selectedUser"
-          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
-          md-search-text="ctrl.searchUser"
-          md-selected-item-change="ctrl.selectedUserChange(item)"
-         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-selected-item="ctrl.selecteduser"
+          md-search-text-change="ctrl.searchuserChange(ctrl.searchuser)"
+          md-search-text="ctrl.searchuser"
+          md-selected-item-change="ctrl.selecteduserChange(item)"
+         md-items="item in ctrl.querySearchuser(ctrl.searchuser)"
           md-item-text="item"
           md-min-length="0"
           placeholder="User">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+          <span md-highlight-text="ctrl.searchuser" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No User matching "{{ctrl.searchUser}}" were found.
+          No User matching "{{ctrl.searchuser}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>

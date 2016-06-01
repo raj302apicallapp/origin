@@ -2,6 +2,17 @@ var app=angular.module('app');
 app.factory('trainerService',function ($http,$window) {
 return{
 
+    updatetrainerdatas:function(savedata){
+   // alert("datass"+JSON.stringify(savedata));
+      console.log("trainerService"+JSON.stringify(savedata));
+    var promise = $http.post('/updateVendordatas',savedata).then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      return promise; 
+
+    },
+
 addTrainer:function(savedata){
   savedata.trainerstatus=1;
      savedata.addeddate=new Date();

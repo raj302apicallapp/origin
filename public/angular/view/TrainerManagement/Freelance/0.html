@@ -57,9 +57,18 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="phonenumber" ng-model="carrymodel.selectemployee[0].mobilenumber" aria-label="vendor" style="text-transform:capitalize">
+        <input required name="phonenumber" ng-model="carrymodel.selectemployee[0].mobilenumber"   aria-label="vendor"  ng-minlength="10" ng-maxlength="10" ng-pattern="phoneNumbr" style="text-transform:capitalize">
         <div ng-messages="carrymodel.selectemployee[0].mobilenumber.$error">
+
           <div ng-message="required">Phone Number is required.</div>
+      </div>
+         
+      <div  ng-messages="carrymodel.selectemployee[0].mobilenumber.$error.minlength" role="alert"><div ng-message="minlength">Phone no not less that 10 char.</div></div>
+
+      <div  ng-messages="carrymodel.selectemployee[0].mobilenumber.$error.maxlength" role="alert">      <div ng-message="maxlength">Phone no not more than 11 char.</div></div>
+
+      <br><div  ng-messages="carrymodel.selectemployee[0].mobilenumber.$error.minlength" role="alert">
+      <div ng-message-exp="['required', 'pattern']">Please match pattern [+91-036-78658 || 91-036-78658]</div>
         </div>
         
       </md-input-container>

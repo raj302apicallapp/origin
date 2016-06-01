@@ -85,6 +85,41 @@ db.trainermanagement.update({"_id" :event_id	}, {$set: {trainerstatus:updatestat
 });
 });
 
+/*router.post('/updatetrainerdatas',function(req,res){
+	console.log("UPDATE");
+console.log(req.body);
+var event_id=mongojs.ObjectId(req.body._id);
+db.trainermanagement.update({"_id" :event_id}, {$set: 
+{
+
+
+"selectemployee":req.body.selectemployee,
+
+"tags":req.body.tags,
+"selectcompetency":req.body.selectcompetency,
+"selectcertification":req.body.selectcertification,
+"trainertype":req.body.trainertype,
+"trainerstatus":req.body.trainerstatus,
+"addeddate":req.body.addeddate
+
+
+}
+
+},function(err,udocs){
+	res.json(udocs);
+});
+});*/
+router.post('/updatetrainerdatas',function(req,res){
+	console.log("UPDATE");
+console.log(req.body);
+var event_id=mongojs.ObjectId(req.body._id);
+db.trainermanagement.insert(req.body,function(err,udocs){
+	res.json(udocs);
+});
+});
+
+
+
 router.get('/gettrainer',function(req,res)
 {
 	db.register.find({},function(err,docs){
