@@ -635,7 +635,7 @@ $scope.getUserdata=function()
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
           console.log("sj::"+lowercaseQuery);
-          return (res.indexOf(query) == 0);
+          return (res.search(lowercaseQuery) !== -1);
         };
 
     }
