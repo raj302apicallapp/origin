@@ -23,6 +23,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     this.dis_skills=true;
     $scope.isLoading=false;
     $scope.showCompetencytable=true;
+    $scope.autocompletefill=true;
 
     // Country
     self.querySearchCountry   = querySearchCountry;
@@ -997,6 +998,7 @@ $scope.getCity=function(SelectedState,getResponse){
           this.dis_Floor=false;
             $scope.carrymodel.City=item;
             self.selectedCity=$scope.carrymodel.City;
+            $scope.autocompletefill=false;
   console.log("selectedCity::"+JSON.stringify($scope.carrymodel.City))
       $log.info('City changed to ' + JSON.stringify(item));
    }
@@ -1230,7 +1232,7 @@ $scope.getCity=function(SelectedState,getResponse){
      else if($location.path()=="/edit_equipement_vendor")
     {                                        
       console.log("edit vendor::"+JSON.stringify($scope.carrymodel));
-      vendorService.updateVendor($scope.carrymodel).then(function(response) 
+      vendorService.updateVendordatas($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -1377,113 +1379,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }); 
   }
 
-$scope.changeProjector=function(){
-    checkcheck.Projector=$scope.carrymodel.Projector;
-  $scope.checkboxs();
-}
-$scope.changeProjector_Screen=function(){
-  checkcheck.Projector_Screen=$scope.carrymodel.Projector_Screen;
-  $scope.checkboxs();
-}
-$scope.changeAudio_Equipments=function(){
-   checkcheck.Audio_Equipments=$scope.carrymodel.Audio_Equipments;
-  $scope.checkboxs();
-}
-$scope.changePrinting_Photo_Copy_Machine=function(){
-    checkcheck.Printing_Photo_Copy_Machine=$scope.carrymodel.Printing_Photo_Copy_Machine;
-    $scope.checkboxs();
-}
-$scope.changechangeFlip_Board=function(){
-   checkcheck.changeFlip_Board=$scope.carrymodel.changeFlip_Board;
-  $scope.checkboxs();
-}
-
-  // check box 
-  $scope.checkboxs=function()
-  { 
-    console.log(JSON.stringify(checkcheck));
-    var arrcheck=[];
-    var getArrCheck=[];
-    var kjson=checkcheck;
-    for(var keyName in kjson)
-    {        
-     var key=keyName ;
-     var value= kjson[keyName];
-     arrcheck.push(value);
-    }
-      for(var i=0;i<arrcheck.length;i++)
-    {
-       console.log(arrcheck[i]);
-      if (arrcheck[i] == true) 
-       {
-         getArrCheck.push(arrcheck[i]);
-       }
-    }
-   console.log("Length::"+getArrCheck.length);
-    if (getArrCheck.length>=1) 
-    {
-        console.log("Now enable the button");
-        $scope.nexts=false;
-    }else
-    {
-        console.log("Disable the button now!");
-        $scope.nexts=true;
-    } 
-}
- // tax inforrmation
-
-$scope.pancardCheck=function()
-{
-   Checktax.Pan_Card=$scope.carrymodel.Pan_Card;
-   $scope.taxs();
-}
-$scope.tinnumberCheck=function()
-{
-  Checktax.TIN_Number=$scope.carrymodel.TIN_Number;
-  $scope.taxs();
-}
-$scope.tannumberCheck=function()
-{
-  Checktax.TAN_Number=$scope.carrymodel.TAN_Number;
-  $scope.taxs();
-}
-$scope.servicetaxnumberCheck=function()
-{
-  Checktax.Service_Tax_Number=$scope.carrymodel.Service_Tax_Number;
-  $scope.taxs();
-}
-
-$scope.taxs=function()
-  { 
-    console.log(JSON.stringify(Checktax));
-    var arrcheck=[];
-    var getArrCheck=[];
-    var kjson=Checktax;
-    for(var keyName in kjson)
-    {        
-     var key=keyName ;
-     var value= kjson[keyName];
-     arrcheck.push(value);
-    }
-      for(var i=0;i<arrcheck.length;i++)
-    {  console.log("arrcheck"+arrcheck.length)
-       console.log(arrcheck[i]);
-      if (arrcheck[i] !== " " || arrcheck[i] == "undefined" ) 
-       {
-         getArrCheck.push(arrcheck[i]);
-       }
-    }
-   console.log("Length::"+getArrCheck.length);
-    if (getArrCheck.length>=2) 
-    {
-        console.log("Now enable the button");
-        $scope.nextTax=false;
-    }else
-    {
-        console.log("Disable the button now!");
-        $scope.nextTax=true;
-    } 
-}
 //SORT
 $scope.vsortvendor=true;
 $scope.vendorSortIcon="arrow_drop_down";
@@ -1980,7 +1875,37 @@ $scope.checkAll = function () {
 
 
 
+ $scope.initDatepicker = function(){
+        angular.element(".md-datepicker-button").each(function(){
+            var el = this;
+            var ip = angular.element(el).parent().find("input").bind('click', function(e){
+                angular.element(el).click();
+            });
+            angular.element(this).css('visibility', 'hidden');
+        });
+    };
+$scope.pincodeCheck=function(data)
+{
 
+  var check=isNaN(data);
+  // var pin_lenth=data.length;
+  // if(pin_lenth<=6)
+  // {
 
+  // }
+  // else
+  // {
+  //   $scope.lengthmsg="not valid pincode"
+  // }
+  console.log(check);
+  if(check==true)
+  {
+    $scope.entered_pincode="Enter Number Only"
+  }
+  else
+  {
+    $scope.entered_pincode="";
+  }
+}
        
 }); 

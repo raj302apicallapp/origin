@@ -17,9 +17,15 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+<<<<<<< HEAD
 var collections=['register','mCompetency','mCertificate','mProgramCoordinator','vendormanagement'];
 // var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
 var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+=======
+var collections=['register','mCompetency','mCertificate','vendormanagement'];
+var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+>>>>>>> 87ce1dcc4c915d19a84f5958faf85ae257267448
 var sess="";
 //get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
 router.get('/getalltrainer',function(req,res){

@@ -61,9 +61,10 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor" style="text-transform:capitalize">
+        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor" style="text-transform:capitalize" ng-change="pincodeCheck()">
         <div ng-messages="carrymodelForm.phonenumber.$error">
           <div ng-message="required">Phone Number is required.</div>
+          <div ng-message="required">{{entered_pincode}}</div>
         </div>
       </md-input-container>
   </div>
