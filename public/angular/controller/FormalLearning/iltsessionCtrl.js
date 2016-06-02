@@ -3,11 +3,15 @@ var answerarr=[];
 var answercer=[];
 var answerarrv=[];
 var answerarrt=[];
+var answerarrs=[];
 
 var relanswerarr=[];
 var relanswercer=[];
 var relanswerarrt=[];
 var relanswerarrv=[];
+var relanswerarrs=[];
+var CoordinatorResponse=[];
+var venuetype;
 
 var prereqFlag=true;
 var relFlag=false;
@@ -167,25 +171,70 @@ $scope.sortlocation=function(){
 
 // //Decleration
 //     //Program Coordinator
-//     self.Coordinators=[];
-//     self.querySearchCoordinator   = querySearchCoordinator;
-//     self.selectedCoordinatorChange = selectedCoordinatorChange;
-//     self.searchCoordinatorChange   = searchCoordinatorChange;
+    self.Coordinators=[];
+    self.querySearchCoordinator   = querySearchCoordinator;
+    self.selectedCoordinatorChange = selectedCoordinatorChange;
+    self.searchCoordinatorChange   = searchCoordinatorChange;
+
+//Get Program Coordinator-ServiceCall
+$scope.getProgramCoordinator=function(){
+  iltsessionService.getProgramCoordinator().then(function(response){
+    if (response) {
+      CoordinatorResponse=response.data;
+      console.log("Coordinators::"+JSON.stringify(CoordinatorResponse));
+      for (var i = 0; i < CoordinatorResponse.length; i++) {
+        self.Coordinators.push(response.data[i].name);
+      };
+    };
+  });
+}
+$scope.getProgramCoordinator();
 
 
 
-//     self.VendorTypes = loadVendorTypes();
-//     self.TrainerVendors = loadTrainerVendors();
-//     self.ContentVendors = loadContentVendors();
-//     self.EmailIDs = loadEmailID();
-//     self.Rooms = loadRoom();
+
+//Coordinator Functions
+function querySearchCoordinator (query) {
+    console.log("sr::"+query); 
+
+      var results = query ? self.Coordinators.filter( createFilterFor(query) ) : self.Coordinators,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+ function searchCoordinatorChange(text) {
     
-//     self.querySearchVendorTypes = querySearchVendorTypes;
-//     self.querySearchTrainerVendors = querySearchTrainerVendors;
-//     self.querySearchContentVendors = querySearchContentVendors;
-//     self.querySearchEmailID = querySearchEmailID;
-//     self.querySearchRoom = querySearchRoom;
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedCoordinatorChange(item) {
+      console.log(JSON.stringify(CoordinatorResponse));
+      if (angular.isDefined(item)) {
+    for (var i = 0; i < CoordinatorResponse.length; i++) {
+    if (CoordinatorResponse[i].name==item) {
+      console.log("changed::"+CoordinatorResponse[i].name);
+      $scope.carrymodel.email=CoordinatorResponse[i].email;
+      $scope.carrymodel.phone=CoordinatorResponse[i].phone;
+    }
+  }
+      }else{
+    $scope.carrymodel.email="";
+      $scope.carrymodel.phone="";
+  }
+        
+      $log.info('Country changed to ' + JSON.stringify(item));
+       
+    }
 
+
+
+//     
 
 //Get Course 
 $scope.getVendor=function(){
@@ -407,6 +456,163 @@ $scope.getTrainer();
 $scope.removeTrainer=function(vindex){
       $scope.carrymodel.selectemployee.splice(vindex,1);
     }
-// auto complete
+// venue
+$scope.showAdvancedvenue = function(ev) {
+var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+$mdDialog.show({
+ templateUrl: 'angular/view/CourseManagement/iltsession/add/dialog3.tmpl.html',
+
+parent: angular.element(document.body),
+targetEvent: ev,
+clickOutsideToClose:true,
+fullscreen: useFullScreen
+})
+.then(function(answer) {
+console.log("ok"+JSON.stringify(answer));
+for(var i=0;i<answer.length;i++){
+answerarrs.push(answer[i]);
+}
+$scope.carrymodel.venuetype=answerarrs;
+console.log("Answer::"+JSON.stringify($scope.carrymodel.venuetype));
+},function() {
+$scope.status = 'You cancelled the dialog.';
+});
+$scope.$watch(function() {
+return $mdMedia('xs') || $mdMedia('sm');
+}, function(wantsFullScreen) {
+$scope.customFullscreen = (wantsFullScreen === true);
+});
+};
+$scope.checkOne=function(vindex){
+console.log(JSON.stringify($scope.getVenueList));
+}
+$scope.checkAll = function () {
+console.log("checkAll::"+prereqFlag);
+if ($scope.selectedAll) {
+$scope.selectedAll = true;
+
+} else {
+$scope.selectedAll = false;
+}
+
+angular.forEach($scope.getVenueList, function (item) {
+if (prereqFlag==true) {
+
+if (answerarrs.length==0) {
+item.Selected = $scope.selectedAll;
+};
+console.log("Checked TEM::"+JSON.stringify(item));
+console.log("answerarrs TEM::"+JSON.stringify(answerarrs));
+for (var i =0; i <answerarrs.length; i++) {
+if (item.venue==answerarrs[i].venue) {
+item.Selected=false;
+return;
+}else{
+item.Selected=$scope.selectedAll;
+}
+};
+}
+else if (relFlag==true) {
+if (relanswerarrs.length==0) {
+item.Selected = $scope.selectedAll;
+};
+console.log("Checked TEM::"+JSON.stringify(item));
+console.log("answerarrs TEM::"+JSON.stringify(relanswerarrs));
+for (var i =0; i <relanswerarrs.length; i++) {
+if (item.venue==relanswerarrs[i].venue) {
+item.Selected=false;
+return;
+}else{
+item.Selected=$scope.selectedAll;
+}
+};
+}
+});
+}
+$scope.saveActionvenue=function(){
+
+    if (prereqFlag==true) {
+         for(var i=0;i<$scope.getVenueList.length;i++){
+        if ($scope.getVenueList[i].Selected==false || !angular.isDefined($scope.getVenueList[i].Selected)) {
+        }else{
+        $scope.selectJson.push($scope.getVenueList[i]);
+        alert("ddd"+JSON.stringify($scope.selectJson))
+        };
+        
+      }
+      $mdDialog.hide($scope.selectJson);
+  }
+  else if (relFlag==true) {
+        for(var i=0;i<$scope.getVenueList.length;i++){
+          if ($scope.getVenueList[i].relSelected==false || !angular.isDefined($scope.getVenueList[i].relSelected)) {
+          }else{
+          $scope.selectJson.push($scope.getVenueList[i]);
+        };
+    }
+    $mdDialog.hide($scope.selectJson);
+    }
+}
+
+// //getVenue list
+// $scope.getVenue=function(){
+//   // console.log("activestatus"+$scope.carrymodel.activestatus);
+// $scope.isLoading=true;
+// iltsessionService.getVenue(1).then(function(response) {
+// $scope.getVenueList=response.data;
+// console.log("Get Venue List::"+JSON.stringify($scope.getVenueList));
+// $scope.isLoading=false;
+// });
+
+// }
+
+
+
+//Get Course 
+$scope.getVenue=function(){
+var activestatus=1;
+$scope.isLoading=true;
+if (!angular.isDefined(activestatus)) {
+activestatus=$scope.activestatus;
+};
+console.log("activestatus"+activestatus);
+iltsessionService.getVenue(activestatus).then(function(response) {
+
+$scope.getVenueList=response.data;
+$scope.isLoading=false;
+if (prereqFlag==true) {
+
+
+if (response.data.length>0) {
+for (var j=0; j < answerarrs.length; j++) {
+for (var i = 0; i < $scope.getVenueList.length; i++) {
+if (answerarrs[j].venue==$scope.getVenueList[i].venue) {
+$scope.getVenueList[i].Checked=true;
+}
+};
+}
+}
+}else if (relFlag==true) {
+if (response.data.length>0) {
+for (var j=0; j < answerarrs.length; j++) {
+for (var i = 0; i < $scope.getVenueList.length; i++) {
+if (answerarrs[j].venue==$scope.getVenueList[i].venue) {
+$scope.getVenueList[i].relChecked=true;
+}
+};
+}
+}
+}
+});
+}
+if (!angular.isDefined($scope.activestatus)) {
+$scope.activestatus=false;
+};
+$scope.getVenue();
+
+
+$scope.removevenue=function(vindex){
+      $scope.carrymodel.venuetype.splice(vindex,1);
+    }
+
 
 });

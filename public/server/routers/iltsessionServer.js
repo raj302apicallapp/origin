@@ -17,7 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var collections=['register','mCompetency','mCertificate','vendormanagement'];
+var collections=['register','mCompetency','mCertificate','mProgramCoordinator','vendormanagement'];
 // var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
 var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var sess="";
@@ -46,5 +46,28 @@ db.vendormanagement.find({},function(err,docs){
 });
 });
 //get Trainer all Ends
-
+//ILT Session
+router.get('/getcoordinator',function(req,res){
+console.log(req.body);
+db.mProgramCoordinator.find({"status":1},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//(getvenue)
+router.get('/getvenue',function(req,res){
+console.log(req.body);
+db.venuemanagement.find({"venuestatus":1},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
+//CourseILT-Retrieve Ends
+//CourseILT-Retrieve Starts(BOTH ACTIVE AND INACTIVE)
+router.get('/getallvenue',function(req,res){
+db.venuemanagement.find({},function(err,docs){
+	console.log(docs);
+	res.json(docs);
+});
+});
 module.exports=router;
