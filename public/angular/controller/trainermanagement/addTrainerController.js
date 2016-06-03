@@ -1350,16 +1350,6 @@ $scope.browseClick=function(){
 }
 
 
-function addTrainerController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  
-}
-
 
 
 
@@ -1406,4 +1396,80 @@ $scope.sortSkills=function(){
   }
 }
     
+
+
+// pick trainer sort
+$scope.vsortname=true;
+$scope.nameSortIcon="arrow_drop_down";
+$scope.sortName=function(){
+
+  if ($scope.vsortname==true) {
+    $scope.orderList = "firstname";
+    $scope.vsortname=false;
+    $scope.nameSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-firstname";
+    $scope.vsortname=true;
+    $scope.nameSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortemail=true;
+$scope.emailSortIcon="arrow_drop_down";
+$scope.sortemail=function(){
+  
+  if ($scope.vsortemail==true) {
+    $scope.orderList = "email";
+    $scope.vsortemail=false;
+    $scope.emailSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-email";
+    $scope.vsortemail=true;
+    $scope.emailSortIcon="arrow_drop_down";
+  }
+}
+
+
+$scope.vsortphone=true;
+$scope.phoneSortIcon="arrow_drop_down";
+$scope.sortphone=function(){
+  if ($scope.vsortphone==true) {
+    $scope.orderList = "email";
+    $scope.vsortphone=false;
+    $scope.phoneSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-email";
+    $scope.vsortphone=true;
+    $scope.phoneSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortmobile=true;
+$scope.mobileSortIcon="arrow_drop_down";
+$scope.sortmobile=function(){
+  if ($scope.vsortmobile==true) {
+    $scope.orderList = "mobilenumber";
+    $scope.vsortmobile=false;
+    $scope.mobileSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-mobilenumber";
+    $scope.vsortmobile=true;
+    $scope.mobileSortIcon="arrow_drop_down";
+  }
+}
+
+
+function addTrainerController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  
+}
+
+
+
+
 });
