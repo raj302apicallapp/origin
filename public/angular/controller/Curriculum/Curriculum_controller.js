@@ -6,7 +6,7 @@ app.controller('curriculumCtrl',function($localStorage,$location,$scope,$mdMedia
 
 $scope.courseDataListCount=[];
  console.log($location.path())
-
+    $scope.nxtshow=false;
     $localStorage.currentPath="add_curriculum";
     console.log("add_curriculum");
     var self = this;
@@ -952,10 +952,19 @@ $scope.getCompetency=function()
     $scope.selectCourse=[];
     $scope.clickCount=[];
    var count=0;
- $scope.addCourses = function(ev) {
+$scope.addSections=function()
+{
      $scope.clickCount.push({"count":count = count + 1});
      $scope.clickCountLength=$scope.clickCount.length;
-     console.log("array"+JSON.stringify($scope.clickCount));
+     $scope.nxtshow=true;
+     console.log("array"+JSON.stringify($scope.clickCount.length));
+
+}
+
+
+
+ $scope.addCourses = function(ev) {
+    
   // $scope.carrymodel.addcomp=true;
   console.log(JSON.stringify($scope.Course));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -1087,10 +1096,9 @@ Array.prototype.move = function(from,to){
   $scope.addCourses();
 }
   /*remove*/
-$scope.removeSection=function(parentIndex)
+$scope.removeSection=function(Index)
 {
-   $scope.carrymodel.selectCourse_data.splice(parentIndex,1); 
-   $scope.carrymodel.Section_number=$scope.selectCourse_data.length; 
+   $scope.clickCount.splice(Index,1); 
 }
 /*remove*/
 $scope.removeCourses=function()

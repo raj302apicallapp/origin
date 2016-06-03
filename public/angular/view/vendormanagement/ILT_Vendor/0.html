@@ -129,20 +129,19 @@
  
    <div flex style="padding: 22px;">
       <md-input-container class="md-block">
-        <label>Pin Code</label>
+        <label>Pin/Zip Code</label>
         <input required name="pincode" ng-model="carrymodel.Pincode" ng-change="pincodeCheck(carrymodel.Pincode)">
         <div ng-messages="carrymodelForm.pincode.$error">
-          <div ng-message="required">Pin Code is required.</div>
+          <div ng-message="required">Pin/Zip Code is required.</div>
           <div ng-meassge="required">{{entered_pincode}}</div>
+          <div ng-meassage="required">{{pincode}}</div>
         </div>
       </md-input-container>
   </div>
     
   <div flex ng-init="initDatepicker()">
-    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Empanelment Date "  required name="empanelment_date" ng-change="date()" class="md-block">
-    <div ng-messages="carrymodelForm.empanelment_date.$error">
-          <div ng-message="required">Empanelment Date is required.</div>
-    </div>
+    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Empanelment Date " ng-change="date()" class="md-block">
+    
   </md-datepicker>
     
   </div>
@@ -154,8 +153,8 @@
 <div class="row" >
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
-        
-           <md-button  ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        <!-- ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity" -->
+           <md-button   ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
