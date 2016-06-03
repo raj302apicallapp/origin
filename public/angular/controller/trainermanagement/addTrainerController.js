@@ -15,13 +15,17 @@ var prereqFlag=true;
 var relFlag=false;
 var finJSon;
 var activestatus;
+var cert_duplicate=false;
+var certification_array=[];
+var competencyarray=[];
+var Competency={};
 
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
 {
-/*vendor type*/
 
-// edit functions starts
+
+//************************* edit functions starts******************//
 
 //check for editable mode
 console.log("locationnn pathh::" )
@@ -31,10 +35,6 @@ if( $location.path() == "/edittrainerinternal")
   if (angular.isDefined(editableJSon))
    {
     $scope.carrymodel=editableJSon;
-    // self.selectedCountry=$scope.carrymodel.Country;
-    // self.selectedState=$scope.carrymodel.State;
-    // self.selectedCity=$scope.carrymodel.City;
-       // var dateStr=JSON.parse(JSON.stringify($scope.carrymodel.Empanelment_Date));
     var dd=new Date($scope.carrymodel.Empanelment_Date);
     console.log("Empanelment_Date carrymodel::"+dd);
     $scope.Empanelment_Date= dd;
@@ -47,12 +47,6 @@ else if($location.path()=="/edittrainerexternal")
   if (angular.isDefined(editableJSon))
    {
     $scope.carrymodel=editableJSon;
-    // self.selectedCountry=$scope.carrymodel.Country;
-    // self.selectedState=$scope.carrymodel.State;
-    // self.selectedCity=$scope.carrymodel.City;
-    
-    
-    // var dateStr=JSON.parse(JSON.stringify($scope.carrymodel.Empanelment_Date));
     var dd=new Date($scope.carrymodel.Empanelment_Date);
     console.log("Empanelment_Date carrymodel::"+dd);
     $scope.Empanelment_Date= dd;
@@ -64,12 +58,6 @@ else if($location.path()=="/edittrainerfreelance")
   if (angular.isDefined(editableJSon))
    {
     $scope.carrymodel=editableJSon;
-    // self.selectedCountry=$scope.carrymodel.Country;
-    // self.selectedState=$scope.carrymodel.State;
-    // self.selectedCity=$scope.carrymodel.City;
-    
-    
-    // var dateStr=JSON.parse(JSON.stringify($scope.carrymodel.Empanelment_Date));
     var dd=new Date($scope.carrymodel.Empanelment_Date);
     console.log("Empanelment_Date carrymodel::"+dd);
     $scope.Empanelment_Date= dd;
@@ -112,7 +100,7 @@ console.log("location path::"+$location.path());
   }
    else if($location.path() == "/managetrainer")
   {
-     // $localStorage.editonlypass="";
+     
      $localStorage.editonlypass="";
       cot=1;
 
@@ -122,42 +110,13 @@ console.log("location path::"+$location.path());
      $location.path("/managetrainer");
   }
 
-// date
-      $scope.date=function()
-   {
-    var date=GetFormattedDate($scope.Empanelment_Date);
-     console.log("date::"+JSON.stringify(date))
-     $scope.carrymodel.Empanelment_Date=date;
-   }
-  function GetFormattedDate(dd) 
-  {
-    var todayTime = new Date(dd);
-    
-    var day = ("0" + todayTime .getDate()).slice(-2);
-    var month = ("0" + (todayTime .getMonth()+1)).slice(-2);
-    var year = todayTime .getFullYear();
-    return month + "/" + day+ "/" + year;
-  }
-  // check initialize
-    if (cot==0) 
-    {
-      // $scope.nexts=false;
-      $scope.carrymodel.Projector=false;
-      $scope.carrymodel.Projector_Screen=false;
-      $scope.carrymodel.Audio_Equipments=false;
-      $scope.carrymodel.Printing_Photo_Copy_Machine=false;
-      $scope.carrymodel.Flip_Board=false;
-      checkcheck=$scope.carrymodel;
-      console.log("trainer controller triggered"+JSON.stringify(checkcheck));
-      cot=1;
-    };
   //Active status
   $scope.changeActiveStatus=function()
   {
     $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;
     $scope.getTrainermgmt();
   }
-//************************//
+
 $scope.editTrainer=function(item)
   { 
      console.log("edit trainer"+JSON.stringify(item));
@@ -185,16 +144,18 @@ $scope.editTrainer=function(item)
       $location.path("/edittrainerexternal");   
       }
    }
-// end edit function
+//*****************************end edit function****************************************//
+
+
+//**********************change fuction***********************//
  $scope.phoneNumbr = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
 $scope.selectJson=[];
 $scope.selectJsoncomp=[];
 $scope.selectJsoncert=[];
 $scope.selectJsonven=[];
-// dialog to pick employee
+
 var trainertype=[];
 $scope.types=['Internal','External','Freelance'];
-//chagetype 
 $scope.changeType=function()
 {
 
@@ -204,7 +165,7 @@ console.log("local trainertype::"+$localStorage.trainertype)
 trainertype=$scope.carrymodel.trainertype;
 console.log("trainerType::"+JSON.stringify(trainertype));
 }
-
+//*******************************end change function*************************************//
 $scope.activeTrainer=function(item){
 var activeItem=item;
 console.log("Active/Inactive::"+JSON.stringify(activeItem));
@@ -213,6 +174,7 @@ $scope.getTrainer();
 }); 
 }
 
+//*****************************pick employee  starts****************//
 // dialog to pick employee
 $scope.showAdvanced = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -363,9 +325,9 @@ $scope.removeTrainer=function(vindex){
       $scope.carrymodel.selectemployee.splice(vindex,1);
     }
 
+//***************************pick employee ends************************//
 
-
-// competency
+//*************************** competency starts************************//
 // dialog to pick competency
 
 $scope.showAdvancedCompetency = function(ev) {
@@ -522,8 +484,9 @@ $scope.getCompetency();
 $scope.removeCompetency=function(vindex){
       $scope.carrymodel.selectcompetency.splice(vindex,1);
     }
+//**************** competency ends ***********************//
 
-// certification
+//**************** certification starts *****************************//
 
 $scope.showAdvancedCertification = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -609,9 +572,6 @@ $scope.jj="jjjj";
 $mdDialog.hide($scope.selectJsoncert);
 
 }
-
-
-
 //Get Course 
 $scope.getCertification=function(){
 var activestatus=1;
@@ -623,6 +583,10 @@ console.log("activestatus"+activestatus);
 trainerService.getCertification(activestatus).then(function(response) {
 
 $scope.getInternalCertification=response.data;
+$scope.getTrainerCertification(response.data);
+CertificateResponse=response.data;
+
+
 $scope.isLoading=false;
 if (prereqFlag==true) {
 
@@ -665,13 +629,12 @@ $scope.removeCertification=function(vindex){
       $scope.carrymodel.selectcertification.splice(vindex,1);
     }
 
+//****************************competency ends*******************//
 
 
 
+//***************************** vendor starts *****************//
 
-// vendor
-
-// dialog to pick competency
 $scope.showAdvancedVendor = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 $mdDialog.show({
@@ -756,10 +719,7 @@ $scope.jj="jjjj";
 $mdDialog.hide($scope.selectJsonven);
 
 }
-
-
-
-//Get Course 
+//Get Vendor
 $scope.getVendor=function(){
 var activestatus=1;
 $scope.isLoading=true;
@@ -813,8 +773,8 @@ $scope.removeVendor=function(vindex){
     }
 
 
-//  Trainer Management
-// get Vendor
+//*********************  Trainer Management ***********************//
+
   $scope.getTrainermgmt=function()
    {
       console.log("get TrainerManagement");
@@ -848,7 +808,9 @@ $scope.removeVendor=function(vindex){
     $scope.getTrainermgmt();
     }); 
   }
-// submit 
+
+
+//********************************* submit  action ********************//
    $scope.submitaction=function(savedata)
    {
     
@@ -959,46 +921,46 @@ $scope.removeVendor=function(vindex){
   }
 
 
-// ***********************************************//
-// duplicate check
-  $scope.Ontrainernamecheck=function(data)
+// ***********************get trainermgmt ends************************//
+// *********************** duplicate check ***************************//
+  $scope.Ontraineremailcheck=function(data)
     { 
-       if(data==undefined)
+if(data==undefined)
        {
-         $scope.Trainer_nameStatus="";
+         $scope.Trainer_emailStatus="";
        }
        else
        {
-       var name={};
-       name.Trainer_name=data;
-       console.log("Trainer_name"+JSON.stringify(name));
-       trainerService.Ontrainernamecheck(title).then(function(response)
+       var email={};
+       email.Trainer_email=data;
+       console.log("Trainer_email"+JSON.stringify(email));
+       trainerService.Ontraineremailcheck(email).then(function(response)
        {
-        console.log(JSON.stringify(response));
+      console.log(JSON.stringify(response.data));
        if(response.data=="Exists")
        {
-          $scope.Trainer_nameStatus="First Name Already Exists";
-          $scope.Trainer_nameStatusStyle="text-danger";
+          $scope.Trainer_emailStatus="Email ID Already Exists";
+          $scope.Trainer_emailStatusStyle="text-danger";
        }
        else
        {
-          $scope.Trainer_nameStatus="Available";
-          $scope.Trainer_nameStatusStyle="text-success";
+          $scope.Trainer_emailStatus="Available";
+          $scope.Trainer_emailStatusStyle="text-success";
        }
 
        });
 
      }
     }
-// dupliacate check end
+//*********************** dupliacate check end ***********************//
 
 var self = this;
 this.dis_skills=true;
 this.dis_subcompetency=true;
 
-    self.querySearchuser=querySearchuser;
-    self.searchuserChange=searchuserChange;
-    self.selecteduserChange=selecteduserChange;
+    // self.querySearchuser=querySearchuser;
+    // self.searchuserChange=searchuserChange;
+    // self.selecteduserChange=selecteduserChange;
 
    self.querySearchType=querySearchType;
     self.searchTypeChange=searchTypeChange;
@@ -1044,52 +1006,8 @@ function searchTypeChange(text)
      }
     }
 
-    // user 
-    function querySearchuser (query) 
- {
-      console.log("sr::"+query); 
-      var results = query ? self.traineruserdatas.filter( createFilterFor(query) ) : self.traineruserdatas,
-          deferred;
-      if (self.simulateQuery) {
-        deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-        return deferred.promise;
-      } else {
-        return results;
-      }
-  }
-function searchuserChange(text) 
-  {
-      $log.info('Text changed to ' + text);
-   }
-  function selecteduserChange(item) 
-    {
-      $log.info('Type changed to ' + JSON.stringify(item));  
-      if(item==undefined)
-      {
-        $scope.getInternalTrainer=userResponse;
-        // this.dis_Country=true;
-       
-      }
-      else{
-        // this.dis_Country=false;
-        
-      self.selectedType=item;
-      console.log("SelectedType::"+JSON.stringify(self.selectedType))
-      $scope.getInternalTrainer = ($filter('filter')($scope.getTrainerList, {trainertype: self.selectedType}));
-      $scope.traineruserdatas=$scope.getInternalTrainer;
-      // alert(JSON.stringify($scope.vendortypedatas));
-       console.log("Trainer Data"+JSON.stringify($scope.traineruserdatas))
-       // $scope.getCountryList(item,vendorResponse);
-     }
-    }
-
-
-
-
-
-
-  function createFilterFor(query) {
+    
+ function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(res) {
           res=angular.lowercase(res);
@@ -1100,6 +1018,11 @@ function searchuserChange(text)
         };
 
     }
+
+
+
+
+ 
 // Employee filter
 // Competency
  this.dis_skills=true;
@@ -1174,7 +1097,11 @@ function searchuserChange(text)
        $scope.Competencyfliter=$scope.Competency;
        console.log(JSON.stringify($scope.Competency))
        $scope.getSubCompetencydata(item,competencyResponse);
-       console.log()
+       console.log();
+       $scope.example=item;
+       
+       ;
+       
      }
     }
 
@@ -1225,13 +1152,13 @@ function searchuserChange(text)
        this.searchSkills=""; 
        this.dis_skills=true;    
     } 
-   else{
-       this.dis_skills=false;
+   else{       this.dis_skills=false;
        self.selectedSubCompetency=item;
       console.log("Sub competencyResponse"+JSON.stringify(self.selectedSubCompetency))
       $scope.Competency= ($filter('filter')($scope.Competencyfliter,{sub_competency:self.selectedSubCompetency})); 
         $scope.SubCompetencyfilter=$scope.Competency;
       $scope.getSkills(self.selectedSubCompetency,competencyResponse);
+      $scope.example=item;
      }
     }
     $scope.getSkills=function(selectedSubCompetency,getResponse)
@@ -1280,9 +1207,131 @@ function searchuserChange(text)
             $scope.skillsfilter=$scope.Competency;
   // console.log("selectedCity::"+JSON.stringify($scope.carrymodel.City))
       $log.info('Skills changed to ' + JSON.stringify(item));
+         $scope.example=item;
       // $scope.getBuilding(item,LocationResponse);
     }
   $scope.selectCompetency=[];
+
+//  certification
+
+// Certifying_authority
+    self.querySearchCertifying_authority   = querySearchCertifying_authority;
+    self.selectedCertifying_authorityChange = selectedCertifying_authorityChange;
+    self.searchCertifying_authorityChange   = searchCertifying_authorityChange;
+    // Certification
+    self.querySearchCertification   = querySearchCertification;
+    self.selectedCertificationChange = selectedCertificationChange;
+    self.searchCertificationChange   = searchCertificationChange;
+    this.dis_Certification=true;
+
+/*Certifying Authority*/
+   $scope.getTrainerCertification=function(getResponse)
+   {  console.log("getResponse"+JSON.stringify(getResponse));
+      $scope.Certifying_authorityList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {
+       if ($scope.Certifying_authorityList.indexOf(getResponse[i].Certifying_Authority) == -1) 
+        {
+         $scope.Certifying_authorityList.push(getResponse[i].Certifying_Authority);
+        }
+     }
+       console.log("Certifying_authority List::"+$scope.Certifying_authorityList);
+      self.Certifying_authoritydata=$scope.Certifying_authorityList;
+   }
+
+   function querySearchCertifying_authority (query) 
+ {     
+    console.log("datas::"+JSON.stringify(self.Certifying_authoritydata));
+      console.log("sr::"+query); 
+      var results = query ? self.Certifying_authoritydata.filter( createFilterFor(query) ) : self.Certifying_authoritydata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchCertifying_authorityChange(text)
+    {   
+      $scope.Certification=CertificateResponse;
+      $log.info('Text changed to ' + text);
+    }
+  function selectedCertifying_authorityChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    if(item ==undefined)
+    {      this.searchCertification="";
+          this.dis_Certification=true;
+          $scope.Certification=CertificateResponse;
+         
+         
+    }
+      else{
+        this.dis_Certification=false;
+      self.selectedCertifying_authority=item;
+       $scope.Certification=($filter('filter')($scope.Certification, {Certifying_Authority: item}));
+       $scope.Certifying_authorityfliter=$scope.Certification;
+       $scope.getCertificationdata(self.selectedCertifying_authority,CertificateResponse);
+
+       console.log()
+       $scope.certf=item;
+     }
+    }
+
+  
+  /*certification*/
+  $scope.getCertificationdata=function(selectedCertifying_authority,getResponse)
+    {         
+      $scope.CertificationList=[];
+      for (var i = 0;i<getResponse.length;i++) 
+      {
+        if (selectedCertifying_authority==getResponse[i].Certifying_Authority)
+         {
+          if ($scope.CertificationList.indexOf(getResponse[i].Certification) == -1)
+           {
+             $scope.CertificationList.push(getResponse[i].Certification);
+          }
+        };  
+      };
+      self.Certificationdata=$scope.CertificationList;
+      console.log("Certification List::"+self.Certification);
+  }
+   
+   function querySearchCertification (query) {
+    console.log("Certification::"+query); 
+      var results = query ? self.Certificationdata.filter( createFilterFor(query) ) : self.Certificationdata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+    function searchCertificationChange(text) {
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedCertificationChange(item) {
+    if(item == undefined)
+    {   
+      $scope.Certification=$scope.Certifying_authorityfliter;
+    } 
+   else{
+       self.selectedCertification=item;
+      console.log("Certification"+JSON.stringify(self.selectedCertification))
+      $scope.Certification= ($filter('filter')($scope.Certifying_authorityfliter,{Certification:self.selectedCertification})); 
+      $scope.certf=item;
+      }
+    }
+
+
+
+
 
 
 
@@ -1300,16 +1349,6 @@ $scope.browseClick=function(){
   console.log(JSON.stringify($scope.carrymodel));
 }
 
-
-function addTrainerController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  
-}
 
 
 
@@ -1357,4 +1396,80 @@ $scope.sortSkills=function(){
   }
 }
     
+
+
+// pick trainer sort
+$scope.vsortname=true;
+$scope.nameSortIcon="arrow_drop_down";
+$scope.sortName=function(){
+
+  if ($scope.vsortname==true) {
+    $scope.orderList = "firstname";
+    $scope.vsortname=false;
+    $scope.nameSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-firstname";
+    $scope.vsortname=true;
+    $scope.nameSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortemail=true;
+$scope.emailSortIcon="arrow_drop_down";
+$scope.sortemail=function(){
+  
+  if ($scope.vsortemail==true) {
+    $scope.orderList = "email";
+    $scope.vsortemail=false;
+    $scope.emailSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-email";
+    $scope.vsortemail=true;
+    $scope.emailSortIcon="arrow_drop_down";
+  }
+}
+
+
+$scope.vsortphone=true;
+$scope.phoneSortIcon="arrow_drop_down";
+$scope.sortphone=function(){
+  if ($scope.vsortphone==true) {
+    $scope.orderList = "email";
+    $scope.vsortphone=false;
+    $scope.phoneSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-email";
+    $scope.vsortphone=true;
+    $scope.phoneSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortmobile=true;
+$scope.mobileSortIcon="arrow_drop_down";
+$scope.sortmobile=function(){
+  if ($scope.vsortmobile==true) {
+    $scope.orderList = "mobilenumber";
+    $scope.vsortmobile=false;
+    $scope.mobileSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-mobilenumber";
+    $scope.vsortmobile=true;
+    $scope.mobileSortIcon="arrow_drop_down";
+  }
+}
+
+
+function addTrainerController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  
+}
+
+
+
+
 });

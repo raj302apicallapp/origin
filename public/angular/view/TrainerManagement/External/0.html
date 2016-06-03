@@ -5,12 +5,12 @@
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
-        <input required name="firstname" ng-model="carrymodel.selectemployee[0].firstname"  md-maxlength="35" minlength="0"aria-label="vendor" ng-change="Ontrainernamecheck(carrymodel.selectemployee[0].firstname)" style="text-transform:capitalize">
+        <input required name="firstname" ng-model="carrymodel.selectemployee[0].firstname"  md-maxlength="35" minlength="0"aria-label="vendor"  style="text-transform:capitalize">
         <div ng-messages="carrymodelForm.firstname.$error">
           <div ng-message="required">First Name is required.</div>
           <div ng-message="md-maxlength">First Name too long!</div>
           <div ng-message="minlength">First Name too short!</div>
-          <div class={{Trainer_nameStatusStyle}}>{{Trainer_nameStatus}}</div>
+          
         </div>
       </md-input-container>
   </div>
@@ -44,12 +44,13 @@
  <div flex>
       <md-input-container class="md-block">
       <label>Email ID</label>
-       <input required type="email" name="email" ng-model="carrymodel.selectemployee[0].email"
-               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" />
+       <input required type="email" name="email" ng-model="carrymodel.selectemployee[0].email" 
+               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" ng-change="Ontraineremailcheck(carrymodel.selectemployee[0].email)" />
         <div ng-messages="carrymodelForm.email.$error">
           <div ng-message-exp="['required', 'pattern']">
             Invalid Email.
           </div>
+          <div class={{Trainer_emailStatusStyle}}>{{Trainer_emailStatus}}</div>
         </div>
 
       </md-input-container>

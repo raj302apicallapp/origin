@@ -18,7 +18,7 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['register','mCompetency','mCertificate','vendormanagement','trainermanagement'];
-var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
 // var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var sess="";
 
@@ -58,10 +58,10 @@ router.post('/removeTrainermgnttype',function(req,res){
             });
 });
 // trainer reomve end
-router.post('/Ontrainernamecheck',function(req,res)
+router.post('/Ontraineremailcheck',function(req,res)
 {
   console.log(JSON.stringify(req.body));
-  db.trainermanagement.find({"firstname":req.body.firstname},function(err,docs)
+  db.trainermanagement.find({"email":req.body.email},function(err,docs)
   {
     console.log(JSON.stringify(docs));
       docs.length==0 ?res.json("Not Exists") :res.json("Exists");

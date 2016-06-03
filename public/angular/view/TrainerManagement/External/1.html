@@ -18,7 +18,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
-  <tr ng-repeat="item in carrymodel.selectcompetency">
+  <tr ng-repeat="item in carrymodel.selectcompetency | filter: example">
      <td>{{item.competency}}</td>
      <td>{{item.sub_competency}}</td>
      <td>{{item.skills}}</td>
