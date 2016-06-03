@@ -2,6 +2,17 @@ var app=angular.module('app');
 app.factory('trainerService',function ($http,$window) {
 return{
 
+    updatetrainerdatas:function(savedata){
+  
+      console.log("trainerService"+JSON.stringify(savedata));
+    var promise = $http.post('/updateVendordatas',savedata).then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      return promise; 
+
+    },
+
 addTrainer:function(savedata){
   savedata.trainerstatus=1;
      savedata.addeddate=new Date();
@@ -22,6 +33,16 @@ removeTrainermgnt:function(id){
         return remove;
 },
  
+Ontraineremailcheck:function(data)
+{
+  console.log("data"+JSON.stringify(data))
+  var email=$http.post('/Ontraineremailcheck',data).then(function(response)
+  {
+    return response;
+  });
+  return email;
+},
+
 
 getTrainermgnt:function(activestatus){
   console.log("Service::"+activestatus);

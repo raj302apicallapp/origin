@@ -7,7 +7,7 @@ var http = require('http');
 var mongojs=require('mongojs');
 var collections = ['register'];
 // var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
-var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+var db = mongojs('mongodb://mongodb://dev.frugaltek.com:27017/flms', collections);
 router.get('/getemployee',function(req,res)
 {
 	db.register.find({},function(err,docs){

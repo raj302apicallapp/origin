@@ -3,6 +3,45 @@
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
+      <md-input-container class="md-block">
+        <label>Coordinator</label>
+      <input ng-model="carrymodel.curriculum_owner"  rows="" md-select-on-focus=""  required name="curriculum_owner" ng-disabled="dis_curriculumowner">
+         <div ng-messages="carrymodelForm.curriculum_owner.$error">
+   <div ng-message="required">Coordinator is Required.</div>
+           
+        </div>
+      </md-input-container>
+  </div>
+  <div flex> 
+    <md-button   ng-click="pick_employee_details()"  type="button" class="md-raised md-primary" style="float:right;">Pick Coordinator</md-button>
+  </div>
+
+</div>
+
+
+<!-- <div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Coordinator">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No User matching "{{ctrl.searchUser}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+<div layout="row" layout-xs="column">
+  <div flex>
       <md-autocomplete
           ng-disabled="ctrl.isDisabled"
           md-no-cache="true"
@@ -25,17 +64,35 @@
   
   
   
-</div>
+</div> -->
 <!-- ROW 1 Ends -->
 <div style="padding-bottom:2%"></div>
 
 <!-- ROW 2 Starts -->
-<div layout="row" layout-xs="column">
+<!-- <div layout="row" layout-xs="column">
   <div flex>
       <md-input-container class="md-block">
-        <label>Email ID</label>
-        <input required name="Email" disabled="disabled" ng-model="carrymodel.email">
+        <label>Email</label>
+      <input ng-model="carrymodel.email"  rows="" md-select-on-focus=""  required name="curriculum_email" ng-disabled="dis_curriculumemail">
+         <div ng-messages="carrymodelForm.curriculum_owner.$error">
+   <div ng-message="required">Coordinator is Required.</div>
+           
+        </div>
       </md-input-container>
+  </div> -->
+  <div flex>
+      <md-input-container class="md-block">
+      <label>Email ID</label>
+       <input required type="email" name="emailid" ng-model="carrymodel.selectemployee[0].email"
+               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" />
+        <div ng-messages="carrymodel.selectemployee[0].email.$error" role="alert">
+          <div ng-message-exp="['required', 'pattern']">
+            Invalid Email.
+          </div>
+        </div>
+
+      </md-input-container>
+
   </div>
 </div>
 <!-- ROW 2 Ends -->
@@ -43,10 +100,16 @@
 <!-- ROW 3 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
-      <md-input-container class="md-block">
-        <label>Phone</label>
-        <input required name="Phone" disabled="disabled" ng-model="carrymodel.phone">
-      </md-input-container>
+       <md-input-container class="md-block">
+        <label>Phone Number</label>
+
+        <input   id="phonenum" required type="tel"   ng-model="carrymodel.selectemployee[0].mobilenumber"  ng-minlength="10" ng-maxlength="10" ng-pattern="phoneNumbr"  />
+    
+      <span  ng-show="carrymodel.selectemployee[0].mobilenumber.$error"role="alert"></span>
+      <span  ng-show="carrymodel.selectemployee[0].mobilenumber.$error.minlength" role="alert">Phone no not less that 10 char.</span>
+      <span  ng-show="carrymodel.selectemployee[0].mobilenumber.$error.maxlength" role="alert">Phone no not more than 11 char.</span>
+      <br><span  ng-show="carrymodel.selectemployee[0].mobilenumber.$error.pattern">Please match pattern [+91-036-78658 || 91-036-78658]</span>
+    </md-input-container>
   </div>
 </div>
 <!-- ROW 3 Ends -->
@@ -66,7 +129,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

@@ -19,7 +19,7 @@ router.use(session({
 }));
 var collections=['mCompetency','informalLearning']
 // var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
-var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
  var sess="";
 
 router.post('/upload', function (req,res) {

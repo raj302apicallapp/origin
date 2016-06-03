@@ -1,0 +1,101 @@
+ <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog"  >
+  <form ng-controller="iltsessionCtrl as ctrl " >
+    
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Coordinator</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          x
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    <div class="md-dialog-content">
+     <!-- ROW 1 start -->
+<!-- <div layout="row" layout-xs="column">
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="User">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No User matching "{{ctrl.searchcoordinator}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  
+</div> -->
+<!-- row 1 end -->
+<div style="padding-bottom:1%"></div>
+<!-- row 2 start -->
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <!-- <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label style="text-style:bold;text-color:black">Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div> -->
+ </div>      
+    <div class="md-dialog-content">
+    <table class="responstable">
+    <tr>
+      <!-- <th><md-checkbox ng-model="selectedAll" ng-change="checkAllVendor()" aria-label="Checkbox 1">
+          </md-checkbox></th>
+ -->          <th data-th="Course details" ng-click="sortvendor()"&nbsp;&nbsp;>Name<md-icon class="material-icons"><i class="material-icons">{{vendorSortIcon}}</i></md-icon></th>
+    <th ng-click="sorttype()">Email<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortlocation()">Phone No<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
+     <!--  <th><md-checkbox ng-model="selectedAll" ng-change="Course_checkAll()" aria-label="Checkbox 1">
+     </md-checkbox></th>
+    <th data-th="Course details">Name</th>
+    <th data-th="Course details">email</th>
+    <th data-th="Course details">Phone No</th> -->
+    <!-- <th><md-checkbox  aria-label="Checkbox 1" >
+     </md-checkbox></th>
+     <th><md-checkbox ng-model="selectedAll" ng-change="Related_Course_checkAll()" aria-label="Checkbox 1">
+     </md-checkbox></th>
+    <th data-th="Course details"><span>Name</span></th> -->
+    </tr>
+  
+    <tr dir-paginate="item in Emplyoee | itemsPerPage: perPage">
+      
+   <td>
+    <md-radio-group ng-model="$parent.firstname" ng-change="onEmployeeSelect(item.firstname)">
+                      
+            <md-radio-button name="item" ng-value="item" >{{item.firstname}} 
+                 </md-radio-button></td>
+                 <td>{{item.email}}</td>
+                 <td>{{item.mobilenumber}}</td>
+               <!-- <td><md-radio-button name="item" ng-value="item" >{{item.email}} 
+                 </md-radio-button></td>
+                 <td><md-radio-button name="item" ng-value="item" >{{item.mobilenumber}} 
+                 </md-radio-button></td> -->
+              </md-radio-group>
+      </td>        
+    </tr> 
+  </div>
+  </table>
+
+ <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  
+</div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+    <md-button ng-click="Employee_saveAction()" class="md-raised md-primary" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+  
+</md-dialog>

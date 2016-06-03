@@ -1,5 +1,5 @@
 <md-dialog aria-label="Pre-Requisite"  ng-cloak >
-  <form ng-controller="addTrainerCtrl">
+  <form ng-controller="addTrainerCtrl as ctrl">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Pick Competency & Skill</h2>
@@ -14,8 +14,7 @@
   <div class="md-dialog-content">
    <!-- ROW 1 start -->
 <div layout="row" layout-xs="column">
- <div flex>
-  
+   <div flex>
       <md-autocomplete
            md-no-cache="true"
           md-selected-item="ctrl.selectedCompetency"
@@ -78,6 +77,7 @@
       </md-autocomplete>
   </div>
 </div>
+</div>
 <!-- row 1 end -->
 <div style="padding-bottom:1%"></div>
 <!-- row 2 start -->
@@ -102,8 +102,8 @@
     
     </tr>
   
-    <tr dir-paginate="item in getInternalCompetency | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
-    <td><md-checkbox ng-change="checkOneComp($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+    <tr dir-paginate="item in getInternalCompetency | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5 | filter:example ">
+    <td><md-checkbox   ng-change="Competency_checkOne($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
     <td>{{item.competency}}</td>
      <td>{{item.sub_competency}}</td>

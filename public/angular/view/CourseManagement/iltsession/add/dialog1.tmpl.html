@@ -1,5 +1,9 @@
 <md-dialog aria-label="Pre-Requisite"  ng-cloak >
   <form ng-controller="iltsessionCtrl">
+    
+  
+
+
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Pick Vendor</h2>
@@ -9,6 +13,18 @@
         </md-button>
       </div>
     </md-toolbar>
+    <div layout="row" layout-xs="column">
+  
+     <div flex>
+      <md-input-container class="md-block">
+        <label>Search</label>
+        <input  ng-model="searchvendor">
+      
+      </md-input-container>
+  </div>
+  
+</div>
+
     <md-dialog-content>
     <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
   <div class="md-dialog-content">
@@ -17,19 +33,23 @@
     <tr>
     <th><md-checkbox ng-model="selectedAll" ng-change="checkAllVendor()" aria-label="Checkbox 1">
           </md-checkbox></th>
-    <th data-th="vendor details" ng-click="sortcertification()">Vendor Name<md-icon class="material-icons"><i class="material-icons">{{vendornameSortIcon}}</i></md-icon></th>
-    <th ng-click="sortslocation()">Location<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
-    <th ng-click="sortslocation()">Vendor Type<md-icon class="material-icons"><i class="material-icons">{{vendortypeSortIcon}}</i></md-icon></th>
+          <th data-th="Course details" ng-click="sortvendor()">Vendor Company<md-icon class="material-icons"><i class="material-icons">{{vendorSortIcon}}</i></md-icon></th>
+    <th ng-click="sorttype()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortlocation()">Location<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
+   <!--  <th data-th="vendor details" ng-click="sortcertification()">Vendor Name<md-icon class="material-icons"><i class="material-icons">{{vendornameSortIcon}}</i></md-icon></th>
+    <th ng-click="sortslocation()">Location<md-icon class="material-icons"><i class="material-icons">{{locationSortIco}}</i></md-icon></th>
+    <th ng-click="sortslocation()">Vendor Type<md-icon class="material-icons"><i class="material-icons">{{vendortypeSortIcon}}</i></md-icon></th> -->
     
     
     </tr>
   
-    <tr dir-paginate="item in getInternalVendor | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <tr dir-paginate="item in getInternalVendor | orderBy:orderList | filter:searchvendor| itemsPerPage:5">
     <td><md-checkbox ng-change="checkOneVendor($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
     <td>{{item.Firstname}}</td>
+    <td>{{item.vendortype}}</td>
      <td>{{item.Country}}</td>
-     <td>{{item.vendortype}}</td>
+     
       
     
     </tr> 
@@ -38,7 +58,7 @@
   </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="saveActionVendor()" style="margin-right:20px;">
+      <md-button ng-click="saveActionVendor()"  class="md-raised md-primary" style="margin-right:20px;">
         Save
       </md-button>
     </md-dialog-actions>

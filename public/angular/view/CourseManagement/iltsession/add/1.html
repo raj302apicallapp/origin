@@ -8,8 +8,8 @@
   <div flex>
     <md-input-container class="md-block">
         <label>Minimum Seats</label>
-        <input ng-model="addsession.mini" type="number" min="5" max="20" step="1" name="mini"/>
-        <div ng-messages="carrymodelForm.duration.$error">
+        <input ng-model="addsession.mini" required type="number" min="5" max="20" step="1" name="mini"/>
+        <div ng-messages="addsession.mini.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
@@ -19,7 +19,7 @@
     <md-input-container class="md-block">
         <label>Maximum Seats</label>
         
-        <input ng-model="addsession.max" type="number" min="20" max="100" step="1" name="max"/>
+        <input ng-model="addsession.max"  required type="number" min="20" max="100" step="1" name="max"/>
         <div ng-messages="carrymodelForm.duration.$error">
           <div ng-message="required">This is required.</div>
         </div>
@@ -31,7 +31,7 @@
       <md-input-container class="md-block">
         <label>Wait Lists</label>
         
-        <input ng-model="addsession.wait" type="number" min="1" max="5" step="1" name="wait"/>
+        <input ng-model="addsession.wait" required type="number" min="1" max="5" step="1" name="wait"/>
         <div ng-messages="carrymodelForm.duration.$error">
           <div ng-message="required">This is required.</div>
         </div>
