@@ -88,10 +88,10 @@
 <div class="row col-md-12">
 
 <choose-file layout="row" style="padding-top:15px;">
-    <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
+    <input id="fileInput"  accept=".png, .jpg, .jpeg" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
     <md-input-container flex class="md-block">
     <label>Course Image </label>
-      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files">
+      <input type="text"  accept=".png, .jpg, .jpeg" ng-model="carrymodel.localurl" disabled aria-label="files">
     </md-input-container>
     <div>
       <md-button ng-click="browseClick()" id="browsebtn" class="md-fab md-mini">
