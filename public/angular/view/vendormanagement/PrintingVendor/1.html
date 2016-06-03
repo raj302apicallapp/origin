@@ -1,11 +1,11 @@
 <h5 style="text-align:center;padding-bottom:10px;">Equipments Info</h5>
 <form name="carrymodelForm"ng-controller="vendorCtrl">
 <!-- ROW 1 Starts -->
-<div layout="row" layout-xs="column" ng-init="checkboxs();taxs()">
+<div layout="row" layout-xs="column">
 	
   <div flex>
      <md-checkbox ng-model="carrymodel.BWPrinting" aria-label="Checkbox 1">
-            B/W Printing
+          <span><i class="material-icons">print</i></span>  B/W Printing
           </md-checkbox>  
   </div>
  
@@ -17,7 +17,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.ColorPrinting" aria-label="Checkbox 1">
-           Color Printing
+           <span><i class="material-icons">print</i></span>Color Printing
           </md-checkbox>
   </div>
  
@@ -28,7 +28,7 @@
   
   <div flex>
   <md-checkbox ng-model="carrymodel.Binding" aria-label="Checkbox 1" >
-        Binding
+       <span><i class="material-icons">print</i></span> Binding
           </md-checkbox>
   </div>
  
@@ -38,7 +38,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
    <md-checkbox ng-model="carrymodel.PhotoCopying" aria-label="Checkbox 1">
-           Photo Copying
+          <span><i class="material-icons">photo_camera</i></span> Photo Copying
      </md-checkbox>
   </div>
  
@@ -48,7 +48,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
  <md-checkbox ng-model="carrymodel.Lamination" aria-label="Checkbox 1">
-           Lamination
+         <span><i class="material-icons">photo_camera</i></span>  Lamination
           </md-checkbox>
   </div>
  
@@ -61,7 +61,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;" >{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;" ng-disabled="!carrymodel.BWPrinting && !carrymodel.ColorPrinting && !carrymodel.Binding && !carrymodel.PhotoCopying && !carrymodel.Lamination">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

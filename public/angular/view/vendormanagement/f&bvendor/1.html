@@ -1,11 +1,11 @@
 <h5 style="text-align:center;padding-bottom:10px;">F&B Info</h5>
-<form name="carrymodelForm"ng-controller="vendorCtrl">
+<form name="carrymodelForm"ng-controller="vendorCtrl as ctrl">
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   
   <div flex>
      <md-checkbox ng-model="carrymodel.Supplies_Veg_Food" aria-label="Checkbox 1">
-            Supplies Veg Food
+           <span><i class="material-icons">restaurant</i> </span> Supplies Veg Food
           </md-checkbox>  
   </div>
  
@@ -17,7 +17,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.Supplies_Non_Veg_Food" aria-label="Checkbox 1">
-          Supplies Non Veg Food
+         <span><i class="material-icons">restaurant_menu</i> </span> Supplies Non Veg Food
           </md-checkbox>
   </div>
  </div>
@@ -45,7 +45,7 @@
   
   <div flex>
   <md-checkbox ng-model="carrymodel.Supplies_Water" aria-label="Checkbox 1">
-            Supplies Water
+            <span><i class="material-icons">local_drink</i> </span>Supplies Water
           </md-checkbox>
   </div>
  
@@ -55,7 +55,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
    <md-checkbox ng-model="carrymodel.Supplies_Beverages" aria-label="Checkbox 1">
-           Supplies Beverages
+          <span><i class="material-icons">local_cafe</i> </span> Supplies Beverages
      </md-checkbox>
   </div>
  
@@ -71,7 +71,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" ng-disabled="!carrymodel.Supplies_Veg_Food && !carrymodel.Supplies_Non_Veg_Food && !carrymodel.Supplies_Water && !carrymodel.Supplies_Beverages" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
