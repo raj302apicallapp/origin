@@ -37,7 +37,7 @@
 <choose-file layout="row">
     <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
     <md-input-container flex class="md-block">
-      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files" required name="image_url"  placeholder="Upload Image">
+      <input type="text" accept=".png, .jpg, .jpeg" ng-model="carrymodel.localurl" disabled aria-label="files" required name="image_url"  placeholder="Upload Image"   >
       <div ng-messages="carrymodelForm.image_url.$error">
    <div ng-message="required">Curriculum Image is Required.</div>
            
