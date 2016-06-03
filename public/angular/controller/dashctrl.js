@@ -246,8 +246,7 @@ else if($location.path()=="/addtrainerexternal")
  }
 console.log("LocalStorage:"+$localStorage.currentPath);
 
-console.log("vendor type::"+$localStorage.vendortype);
-console.log("trainer type::"+$localStorage.trainertype);
+console.log("vendor type::"+$localStorage.type);
 
 
  // $localStorage.currentPath=$location.path();
