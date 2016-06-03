@@ -30,7 +30,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
     
   </tr>
-  <tr dir-paginate="item in carrymodel.selectvendor | orderBy:orderList | filter:searchvendor | itemsPerPage: perPage
+  <tr dir-paginate="item in carrymodel.selectvendor | orderBy : orderList | filter:searchvendor | itemsPerPage: perPage
    "></tr>
   <tr ng-repeat="item in carrymodel.selectvendor" >
      <td>{{item.Firstname}}</td>

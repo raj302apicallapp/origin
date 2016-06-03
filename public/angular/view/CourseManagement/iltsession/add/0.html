@@ -17,8 +17,8 @@
             <!-- <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button>
         <md-datepicker datepicker-popup="{{format}}" ng-click="openStart()" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" </md-datepicker>
             <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button> -->
-    <md-datepicker ng-model="carrymodel.startDate" md-placeholder="Enter date"
-        md-min-date="minDate"></md-datepicker>
+    <md-datepicker  ng-click="openStart()" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" md-placeholder="Enter date"
+        ></md-datepicker>
         <!-- md-max-date="maxDate" -->
       </md-content>
   </div>
@@ -35,8 +35,7 @@
   <div flex>
        <md-content>
        
-      <md-datepicker ng-model="carrymodel.endDate" md-placeholder="Enter date"
-        md-min-date="carrymodel.minendDate"></md-datepicker>
+      <md-datepicker  ng-click="openEnd()" ng-model="end" is-open="endOpened" min="minEndDate" max="maxEndDate" datepicker-options="dateOptions" close-text="Close" md-placeholder="Enter date"></md-datepicker>
       </md-content>
   </div>
 </div>
