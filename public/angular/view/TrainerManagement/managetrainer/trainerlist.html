@@ -135,7 +135,7 @@
 
 
 
-  <tr   dir-paginate="item in getTrainerList | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage: perPage">  
+  <tr   dir-paginate="item in getTrainerList | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage: perPage | filter: example">  
     <td>{{item.selectemployee[0].firstname +" "+item.selectemployee[0].lastname}}</td>
     <td>{{item.trainertype}}</td>
     <td>{{item.selectcompetency[0].skills}}</td>   

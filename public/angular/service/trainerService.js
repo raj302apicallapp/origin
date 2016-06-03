@@ -33,14 +33,14 @@ removeTrainermgnt:function(id){
         return remove;
 },
  
-Ontrainernamecheck:function(data)
+Ontraineremailcheck:function(data)
 {
   console.log("data"+JSON.stringify(data))
-  var title=$http.post('/Ontrainernamecheck',data).then(function(response)
+  var email=$http.post('/Ontraineremailcheck',data).then(function(response)
   {
     return response;
   });
-  return title;
+  return email;
 },
 
 

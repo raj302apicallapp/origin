@@ -13,8 +13,7 @@
     <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
   <div class="md-dialog-content">
     
-   <!-- ROW 1 start -->
-<div layout="row" layout-xs="column">
+ <div layout="row" layout-xs="column">
      <div flex>
         <md-autocomplete
          md-no-cache="true"
@@ -80,7 +79,7 @@
     
     </tr>
   
-    <tr dir-paginate="item in getInternalCertification | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <tr dir-paginate="item in getInternalCertification | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5 | filter : certf">
     <td><md-checkbox ng-change="checkOneCertf($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
     <td>{{item.Certifying_Authority}}</td>

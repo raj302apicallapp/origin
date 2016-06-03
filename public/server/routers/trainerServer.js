@@ -58,10 +58,10 @@ router.post('/removeTrainermgnttype',function(req,res){
             });
 });
 // trainer reomve end
-router.post('/Ontrainernamecheck',function(req,res)
+router.post('/Ontraineremailcheck',function(req,res)
 {
   console.log(JSON.stringify(req.body));
-  db.trainermanagement.find({"firstname":req.body.firstname},function(err,docs)
+  db.trainermanagement.find({"email":req.body.email},function(err,docs)
   {
     console.log(JSON.stringify(docs));
       docs.length==0 ?res.json("Not Exists") :res.json("Exists");

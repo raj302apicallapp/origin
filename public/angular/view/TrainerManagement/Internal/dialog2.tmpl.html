@@ -102,7 +102,7 @@
     
     </tr>
   
-    <tr dir-paginate="item in getInternalCompetency | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <tr dir-paginate="item in getInternalCompetency | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5 | filter:example ">
     <td><md-checkbox   ng-change="Competency_checkOne($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
     <td>{{item.competency}}</td>
