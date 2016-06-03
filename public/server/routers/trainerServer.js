@@ -58,8 +58,17 @@ router.post('/removeTrainermgnttype',function(req,res){
             });
 });
 // trainer reomve end
-//Vendor-Retrieve Ends
-/*get competency*/
+router.post('/Ontrainernamecheck',function(req,res)
+{
+  console.log(JSON.stringify(req.body));
+  db.trainermanagement.find({"firstname":req.body.firstname},function(err,docs)
+  {
+    console.log(JSON.stringify(docs));
+      docs.length==0 ?res.json("Not Exists") :res.json("Exists");
+    
+  });
+});
+
 //Trainer-Remove Starts
 router.post('/removetrainer',function(req,res){
 	console.log("RemoveTrainer");
@@ -84,6 +93,33 @@ db.trainermanagement.update({"_id" :event_id	}, {$set: {trainerstatus:updatestat
 	res.json(udocs);
 });
 });
+
+router.post('/updatetrainerdatas',function(req,res){
+	console.log("UPDATE");
+console.log(req.body);
+var event_id=mongojs.ObjectId(req.body._id);
+db.trainermanagement.update({"_id" :event_id}, {$set: 
+{
+
+
+"selectemployee":req.body.selectemployee,
+
+"tags":req.body.tags,
+"selectcompetency":req.body.selectcompetency,
+"selectcertification":req.body.selectcertification,
+"trainertype":req.body.trainertype,
+"trainerstatus":req.body.trainerstatus,
+
+
+
+}
+
+},function(err,udocs){
+	res.json(udocs);
+});
+});
+
+
 
 router.get('/gettrainer',function(req,res)
 {
