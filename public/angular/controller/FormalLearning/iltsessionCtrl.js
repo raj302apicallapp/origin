@@ -4,6 +4,7 @@ var answercer=[];
 var answerarrv=[];
 var answerarrt=[];
 var answerarrs=[];
+var employeedata=[];
 
 var relanswerarr=[];
 var relanswercer=[];
@@ -20,7 +21,10 @@ app.controller("iltsessionCtrl",function($scope,$location,$localStorage,$filter,
 { 
   $scope.selectJson=[];
   $scope.selectJsonven=[];
-
+$scope.dis_curriculumowner=true;
+$scope.dis_curriculumemail=true;
+    $scope.dis_pickemployee=false;
+    var tagarr=[];
   // vendor
 // competency
 // dialog to pick competency
@@ -166,38 +170,123 @@ $scope.sortlocation=function(){
 //       $scope.endDate.getFullYear(),
 //       $scope.endDate.getMonth(),
 //       $scope.endDate.getDate()); 
-       
+       $scope.pickemployee=function()
+  {
+     iltsessionService.pickemployee().then(function(response)
+     {           
+        if (answerarr.length==0) {
+           $scope.Emplyoee=response.data;
+           console.log(JSON.stringify($scope.Emplyoee))
+            }
+            else{
+              $scope.Emplyoee=employeedata;
+            }
+        $scope.Employeedata=response.data;
+        $scope.getUserdata();
+     });
+  }
+ $scope.pickemployee();
 
+  $scope.select_employee=[];
+ $scope.pick_employee_details = function(ev) {
+   console.log(JSON.stringify($scope.Emplyoee));
+  employeedata =$scope.Emplyoee;
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      
+      templateUrl: 'angular/view/CourseManagement/iltsession/add/dialog4.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen,
+      locals: {
+        items: $scope.Emplyoee
+     }
+    })
+    .then(function(answer) {  
+         $scope.carrymodel.curriculum_owner=answer;
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+  };
+$scope.Employee_checkOne=function(vindex){
 
-// //Decleration
-//     //Program Coordinator
-    self.Coordinators=[];
-    self.querySearchCoordinator   = querySearchCoordinator;
-    self.selectedCoordinatorChange = selectedCoordinatorChange;
-    self.searchCoordinatorChange   = searchCoordinatorChange;
-
-//Get Program Coordinator-ServiceCall
-$scope.getProgramCoordinator=function(){
-  iltsessionService.getProgramCoordinator().then(function(response){
-    if (response) {
-      CoordinatorResponse=response.data;
-      console.log("Coordinators::"+JSON.stringify(CoordinatorResponse));
-      for (var i = 0; i < CoordinatorResponse.length; i++) {
-        self.Coordinators.push(response.data[i].name);
-      };
-    };
-  });
+console.log(JSON.stringify($scope.Emplyoee));
 }
-$scope.getProgramCoordinator();
+    $scope.Employee_saveAction=function(){
+            $mdDialog.hide($scope.curriculum_owner);
+    }
+    
+ // image upload
+ 
+   $scope.submitaction=function(data)
+   {
 
 
+      // alert(JSON.stringify(data));
+      courseService.addCurriculum(data).then(function(response)
+      {
+        console.log(JSON.stringify(response));
+        if(response)
+        {
+          $location.path('/managecourse');
+        }
+      });
+   }
+   $scope.onEmployeeSelect=function(data)
+   {
+    // alert("Seleted"+JSON.stringify(data));
+    $scope.curriculum_owner=data;
+   }
+// employee
+    self.querySearchUser   = querySearchUser;
+    self.selectedUserChange = selectedUserChange;
+    self.searchUserChange   = searchUserChange;
+// employee
+
+$scope.pickemployee=function()
+  {
+     iltsessionService.pickemployee().then(function(response)
+     {           
+        if (answerarr.length==0) {
+           $scope.Emplyoee=response.data;
+           console.log(JSON.stringify($scope.Emplyoee))
+            }
+            else{
+              $scope.Emplyoee=employeedata;
+            }
+        $scope.Employeedata=response.data;
+        $scope.getUserdata();
+     });
+  }
+ // employee
 
 
-//Coordinator Functions
-function querySearchCoordinator (query) {
-    console.log("sr::"+query); 
+$scope.getUserdata=function()
+   {
+      var getResponse=$scope.Emplyoee;
+      $scope.UserList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {
+       if ($scope.UserList.indexOf(getResponse[i].firstname) == -1) 
+        {
+         $scope.UserList.push(getResponse[i].firstname);
+        }
+     }
+       console.log("User List::"+$scope.UserList);
+      self.Userdata=$scope.UserList;
 
-      var results = query ? self.Coordinators.filter( createFilterFor(query) ) : self.Coordinators,
+   }
+     function querySearchUser (query) 
+ {     
+  console.log("datas::"+JSON.stringify(self.Userdata));
+      console.log("sr::"+query); 
+      var results = query ? self.Userdata.filter( createFilterFor(query) ) : self.Userdata,
           deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
@@ -206,35 +295,31 @@ function querySearchCoordinator (query) {
       } else {
         return results;
       }
-    }
-
- function searchCoordinatorChange(text) {
     
-      $log.info('Text changed to ' + text);
+  }
+   function searchUserChange(text)
+   {
+              console.log('Text changed to ' + text);
+      $scope.User=$scope.Userdata;
+    }
+  function selectedUserChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    if(item ==undefined)
+    {         
+         $scope.Emplyoee=$scope.Employeedata;
+    }
+      else{
+        self.selectedUser=item;
+       $scope.Emplyoee=($filter('filter')($scope.Emplyoee, {firstname: item}));
       
-    }
-    function selectedCoordinatorChange(item) {
-      console.log(JSON.stringify(CoordinatorResponse));
-      if (angular.isDefined(item)) {
-    for (var i = 0; i < CoordinatorResponse.length; i++) {
-    if (CoordinatorResponse[i].name==item) {
-      console.log("changed::"+CoordinatorResponse[i].name);
-      $scope.carrymodel.email=CoordinatorResponse[i].email;
-      $scope.carrymodel.phone=CoordinatorResponse[i].phone;
-    }
-  }
-      }else{
-    $scope.carrymodel.email="";
-      $scope.carrymodel.phone="";
-  }
-        
-      $log.info('Country changed to ' + JSON.stringify(item));
-       
+     }
     }
 
 
 
-//     
+
+
+
 
 //Get Course 
 $scope.getVendor=function(){
@@ -397,7 +482,49 @@ $scope.saveActionemployee=function(){
     $mdDialog.hide($scope.selectJson);
     }
 }
+//SORT
+$scope.vsorttrainer=true;
+$scope.trainerSortIcon="arrow_drop_down";
+$scope.sorttrainer=function(){
+  if ($scope.vsorttrainer==true) {
+    $scope.orderList = "selectemployee[0].firstname";
+    $scope.vsorttrainer=false;
+    $scope.trainerSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-selectemployee[0].firstname";
+    $scope.vsorttrainer=true;
+    $scope.trainerSortIcon="arrow_drop_down";
+  }
+}
 
+$scope.vsorttrainertype=true;
+$scope.trainertypeSortIcon="arrow_drop_down";
+$scope.sorttrainertype=function(){
+  if ($scope.vsorttrainertype==true) {
+    $scope.orderList = "trainertype";
+    $scope.vsorttrainertype=false;
+    $scope.trainertypeSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-trainertype";
+    $scope.vsorttrainertype=true;
+    $scope.trainerSortIcon="arrow_drop_down";
+  }
+}
+
+$scope.vsortSkills=true;
+$scope.trainerSkillsSortIcon="arrow_drop_down";
+$scope.sortSkills=function(){
+  if ($scope.vsortSkills==true) {
+    $scope.orderList = "selectcompetency[0].skills";
+    $scope.vsortSkills=false;
+    $scope.trainerSkillsSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-selectcompetency[0].skills";
+    $scope.vsortSkills=true;
+    $scope.trainerSkilllsSortIcon="arrow_drop_down";
+  }
+}
+    
 
 
 //Get Course 
@@ -613,6 +740,48 @@ $scope.getVenue();
 $scope.removevenue=function(vindex){
       $scope.carrymodel.venuetype.splice(vindex,1);
     }
+//SORT
+$scope.vsortVenue=true;
+$scope.venueSortIcon="arrow_drop_down";
+$scope.sortvenue=function(){
+  if ($scope.vsortVenue==true) {
+    $scope.orderList = "venue";
+    $scope.vsortVenue=false;
+    $scope.venueSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-venue";
+    $scope.vsortVenue=true;
+    $scope.venueSortIcon="arrow_drop_down";
+  }
+}
+$scope.vsortRoom=true;
+$scope.roomSortIcon="arrow_drop_down";
+$scope.sortroom=function(){
+  if ($scope.vsortRoom==true) {
+    $scope.orderList = "room";
+    $scope.vsortRoom=false;
+    $scope.roomSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-room";
+    $scope.vsortRoom=true;
+    $scope.roomSortIcon="arrow_drop_down";
+  }
+}
+$scope.vsortType=true;
+$scope.typeSortIcon="arrow_drop_down";
+$scope.sorttype=function(){
 
+  if ($scope.vsortType==true) {
+    $scope.orderList = "venuetype";
+    $scope.vsortType=false;
+    $scope.typeSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-venuetype";
+    $scope.vsortType=true;
+    $scope.typeSortIcon="arrow_drop_down";
+  }
+}
+
+ 
 
 });

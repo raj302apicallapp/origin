@@ -1,5 +1,5 @@
 <h5 style="text-align:center;padding-bottom:10px;">Schedule</h5>
-<form name="addCourseForm" ng-controller="iltsessionCtrl">
+<form name="carrymodelForm" ng-controller="iltsessionCtrl">
 <!-- ROW 1 Starts -->
 
 
@@ -17,7 +17,8 @@
             <!-- <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button>
         <md-datepicker datepicker-popup="{{format}}" ng-click="openStart()" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" </md-datepicker>
             <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button> -->
-    <md-datepicker ng-model="carrymodel.startDate" md-placeholder="Enter date"
+    <md-datepicker ng-model="carrymodel.start" is-open="startOpened" ng-click="openStart()" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close"
+       md-placeholder="Enter date"
         md-min-date="minDate"></md-datepicker>
         <!-- md-max-date="maxDate" -->
       </md-content>
@@ -35,7 +36,7 @@
   <div flex>
        <md-content>
        
-      <md-datepicker ng-model="carrymodel.endDate" md-placeholder="Enter date"
+      <md-datepicker ng-model="carrymodel.end"  ng-click="openEnd()" is-open="endOpened" min="minEndDate" max="maxEndDate" datepicker-options="dateOptions" close-text="Close" md-placeholder="Enter date"
         md-min-date="carrymodel.minendDate"></md-datepicker>
       </md-content>
   </div>
@@ -115,7 +116,7 @@
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)"  ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

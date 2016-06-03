@@ -1241,7 +1241,9 @@ $scope.CourseCost=function()
     })
     .then(function(answer) {  
          $scope.carrymodel.curriculum_owner=answer;
-    }, function() {
+    },
+    
+     function() {
       $scope.status = 'You cancelled the dialog.';
     });
     $scope.$watch(function() {

@@ -12,7 +12,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var collections=['vendormanagement','CSCLocation','mCompetency','mCertificate','mTags'];
+var collections=['vendormanagement','CSCLocation','mCompetency','mCertificate','mTags','register'];
 var db = mongojs('mongodb://192.169.146.79:27017/flms', collections);
 // var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
  var sess="";
@@ -73,6 +73,12 @@ db.vendormanagement.update({"_id" :event_id	}, {$set: {vendorstatus:updatestatus
 });
 });
 // Vendor-active/inactive Ends
-
+router.get('/getemployee',function(req,res)
+{
+	db.register.find({},function(err,docs){
+		console.log(JSON.stringify(docs));
+		res.json(docs);
+	});
+});
 
 module.exports=router;

@@ -1,6 +1,7 @@
 var app=angular.module('app');
 app.factory('iltsessionService',function ($http,$window) {
 return{
+  
   getTrainer:function(activestatus){
   console.log("Service::"+activestatus);
   if (activestatus==false) {
@@ -49,6 +50,13 @@ getVenue:function(activestatus){
       // Return the promise to the controller
       return promise; 
 },
+pickemployee:function()
+  {
+       var employee = $http.get('/getemployee').then(function(response){
+        return response;
+      });
+       return employee;
+  },
   getVendor:function(activestatus){
   console.log("Service::"+activestatus);
   if (activestatus==false) {
