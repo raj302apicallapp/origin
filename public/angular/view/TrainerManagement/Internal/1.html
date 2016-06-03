@@ -67,9 +67,9 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
-  <tr ng-repeat="items in carrymodel.selectcertification">
-    <td>{{items.Certifying_Authority}}</td>
-     <td>{{items.Certification}}</td>
+  <tr ng-repeat="item in carrymodel.selectcertification">
+    <td>{{item.Certifying_Authority}}</td>
+     <td>{{item.Certification}}</td>
     
     
    
@@ -82,15 +82,15 @@
 </div>
 <!-- ROW 4 Ends -->
 
-
+</form>
 <div style="padding-bottom:2%"></div>
 <!-- ROW last Starts -->
 <div class="row">
         
-         <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
 </div>
 <!-- ROW last Ends -->
-</form>
  <link href="assets/css/course.css" rel="stylesheet">

@@ -12,33 +12,110 @@
     <md-dialog-content>
     <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
   <div class="md-dialog-content">
+
+     <div flex>
+      <md-input-container class="md-block">
+        <label>Search</label>
+        <input  ng-model="typeSelectedFilter">
+      
+      </md-input-container>
+  </div>
+  
   
        <!-- ROW 1 start -->
 <div layout="row" layout-xs="column">
  <div flex>
-  
-      <md-autocomplete
+  <md-autocomplete
            md-no-cache="true"
-          md-selected-item="ctrl.selecteduser"
-          md-search-text-change="ctrl.searchuserChange(ctrl.searchuser)"
-          md-search-text="ctrl.searchuser"
-          md-selected-item-change="ctrl.selecteduserChange(item)"
-         md-items="item in ctrl.querySearchuser(ctrl.searchuser)"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
           md-item-text="item"
           md-min-length="0"
-          placeholder="User">
+          placeholder="Name">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchuser" md-highlight-flags="^i">{{item}}</span>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No User matching "{{ctrl.searchuser}}" were found.
+          No Fullname matching "{{ctrl.searchUser}}" were found.
         </md-not-found>
-      </md-autocomplete>
+      </md-autocomplete> 
   </div>
-  
+  <div style="width:2%"></div>
+  <div flex>
+  <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="email">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Fullname matching "{{ctrl.searchUser}}" were found.
+        </md-not-found>
+      </md-autocomplete> 
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+  <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="phonenumber">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No User matching "{{ctrl.searchUser}}" were found.
+        </md-not-found>
+      </md-autocomplete> 
+  </div>
+  <div style="width:2%"></div>
+<div flex>
+  <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedUser"
+          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
+          md-search-text="ctrl.searchUser"
+          md-selected-item-change="ctrl.selectedUserChange(item)"
+         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="skills">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No User matching "{{ctrl.searchUser}}" were found.
+        </md-not-found>
+      </md-autocomplete> 
+  </div>
+</div>
+  <div style="padding-top:1%"></div>
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label>Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div>
 </div>
 <!-- row 1 end -->
-<div style="padding-bottom:1%"></div>
+
     <table class="responstable">
     <tr>
     <th><md-checkbox ng-model="selectedAll" ng-change="checkAll()" aria-label="Checkbox 1">
@@ -49,10 +126,10 @@
     
     </tr>
   
-    <tr dir-paginate="item in getInternalTrainer | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <tr dir-paginate="item in getInternalTrainer | orderBy:orderList | filter:typeSelectedFilter |  itemsPerPage:5 | itemsPerPage: perPage " >
     <td><md-checkbox ng-change="checkOne($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
-    <td>{{item.firstname +" "+item.lastname}}</td>
+    <td>{{item.firstname +item.middlename+item.lastname}}</td>
      <td>{{item.email}}</td>
     <td>{{item.mobilenumber}}</td>
     </tr> 
@@ -61,7 +138,7 @@
   </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="saveActionemployee()" style="margin-right:20px;">
+      <md-button class="md-raised md-primary" ng-click="saveActionemployee()" style="margin-right:20px;">
         Save
       </md-button>
     </md-dialog-actions>

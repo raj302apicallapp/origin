@@ -16,11 +16,12 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     var self = this;
     self.simulateQuery = false;
     self.isDisabled    = false;
-    this.dis_subcompetency=true;
+    
     this.dis_Country=true;
     this.dis_Building=true;
     this.dis_Floor=true;
     this.dis_skills=true;
+    this.dis_subcompetency=true;
     $scope.isLoading=false;
     $scope.showCompetencytable=true;
 

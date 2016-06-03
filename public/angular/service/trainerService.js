@@ -3,7 +3,7 @@ app.factory('trainerService',function ($http,$window) {
 return{
 
     updatetrainerdatas:function(savedata){
-   // alert("datass"+JSON.stringify(savedata));
+  
       console.log("trainerService"+JSON.stringify(savedata));
     var promise = $http.post('/updateVendordatas',savedata).then(function(response){
         console.log("Service response"+JSON.stringify(response));
@@ -33,6 +33,16 @@ removeTrainermgnt:function(id){
         return remove;
 },
  
+Ontrainernamecheck:function(data)
+{
+  console.log("data"+JSON.stringify(data))
+  var title=$http.post('/Ontrainernamecheck',data).then(function(response)
+  {
+    return response;
+  });
+  return title;
+},
+
 
 getTrainermgnt:function(activestatus){
   console.log("Service::"+activestatus);

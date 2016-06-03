@@ -223,6 +223,7 @@ parent: angular.element(document.body),
 targetEvent: ev,
 clickOutsideToClose:true,
 fullscreen: useFullScreen
+
 })
 .then(function(answer) {
 console.log("ok"+JSON.stringify(answer));
@@ -335,7 +336,7 @@ for (var j=0; j < answerarr.length; j++) {
 for (var i = 0; i < $scope.getInternalTrainer.length; i++) {
 if (answerarr[j].firstname==$scope.getInternalTrainer[i].firstname) {
 $scope.getInternalTrainer[i].Checked=true;
-$scope.traineruserdatas=$scope.getInternalTrainer[i].firstname;
+
 }
 };
 }
@@ -376,6 +377,7 @@ parent: angular.element(document.body),
 targetEvent: ev,
 clickOutsideToClose:true,
 fullscreen: useFullScreen
+
 })
 .then(function(answer) {
 console.log("ok"+JSON.stringify(answer));
@@ -393,7 +395,7 @@ return $mdMedia('xs') || $mdMedia('sm');
 $scope.customFullscreen = (wantsFullScreen === true);
 });
 };
-$scope.checkOneComp=function(vindex){
+$scope.Competency_checkOne=function(vindex){
 console.log(JSON.stringify($scope.getInternalCompetency));
 }
 $scope.checkAllComp = function () {
@@ -477,6 +479,7 @@ trainerService.getCompetency(activestatus).then(function(response) {
 
 $scope.getInternalCompetency=response.data;
 competencyResponse=response.data;
+
 $scope.getCompetencydata(response.data);
 $scope.isLoading=false;
 if (prereqFlag==true) {
@@ -667,7 +670,7 @@ $scope.removeCertification=function(vindex){
 
 
 // vendor
-// competency
+
 // dialog to pick competency
 $scope.showAdvancedVendor = function(ev) {
 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -851,7 +854,6 @@ $scope.removeVendor=function(vindex){
     
     console.log("submitaction"+JSON.stringify(savedata));
     console.log("location path"+$location.path());
-
     if($location.path()=="/addtrainerinternal")
     {
       $scope.carrymodel.trainertype="Internal"
@@ -904,10 +906,9 @@ $scope.removeVendor=function(vindex){
        })
      }
      else if($location.path()=="/edittrainerexternal")
-    {                         
-                       
-      console.log("edit trainer::"+JSON.stringify(savedata));
-      trainerService.updatetrainerdatas(savedata).then(function(response) 
+    {                                        
+      console.log("edit trainer::"+JSON.stringify($scope.carrymodel));
+      trainerService.updatetrainerdatas($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -959,9 +960,42 @@ $scope.removeVendor=function(vindex){
 
 
 // ***********************************************//
+// duplicate check
+  $scope.Ontrainernamecheck=function(data)
+    { 
+       if(data==undefined)
+       {
+         $scope.Trainer_nameStatus="";
+       }
+       else
+       {
+       var name={};
+       name.Trainer_name=data;
+       console.log("Trainer_name"+JSON.stringify(name));
+       trainerService.Ontrainernamecheck(title).then(function(response)
+       {
+        console.log(JSON.stringify(response));
+       if(response.data=="Exists")
+       {
+          $scope.Trainer_nameStatus="First Name Already Exists";
+          $scope.Trainer_nameStatusStyle="text-danger";
+       }
+       else
+       {
+          $scope.Trainer_nameStatus="Available";
+          $scope.Trainer_nameStatusStyle="text-success";
+       }
 
+       });
+
+     }
+    }
+// dupliacate check end
 
 var self = this;
+this.dis_skills=true;
+this.dis_subcompetency=true;
+
     self.querySearchuser=querySearchuser;
     self.searchuserChange=searchuserChange;
     self.selecteduserChange=selecteduserChange;
@@ -970,19 +1004,6 @@ var self = this;
     self.searchTypeChange=searchTypeChange;
     self.selectedTypeChange=selectedTypeChange;
 
-// Competency
-    self.querySearchCompetency   = querySearchCompetency;
-    self.selectedCompetencyChange = selectedCompetencyChange;
-    self.searchCompetencyChange   = searchCompetencyChange;
-    // Sub Competency
-    self.querySearchSubCompetency   = querySearchSubCompetency;
-    self.selectedSubCompetencyChange = selectedSubCompetencyChange;
-    self.searchSubCompetencyChange   = searchSubCompetencyChange;
-     // Skills
-    self.querySearchSkills   = querySearchSkills;
-    self.selectedSkillsChange = selectedSkillsChange;
-    self.searchSkillsChange   = searchSkillsChange;
- 
 
 function querySearchType (query) 
  {
@@ -1079,7 +1100,23 @@ function searchuserChange(text)
         };
 
     }
-// skills
+// Employee filter
+// Competency
+ this.dis_skills=true;
+ this.dis_subcompetency=true;
+
+    self.querySearchCompetency   = querySearchCompetency;
+    self.selectedCompetencyChange = selectedCompetencyChange;
+    self.searchCompetencyChange   = searchCompetencyChange;
+    // Sub Competency
+    self.querySearchSubCompetency   = querySearchSubCompetency;
+    self.selectedSubCompetencyChange = selectedSubCompetencyChange;
+    self.searchSubCompetencyChange   = searchSubCompetencyChange;
+     // Skills
+    self.querySearchSkills   = querySearchSkills;
+    self.selectedSkillsChange = selectedSkillsChange;
+    self.searchSkillsChange   = searchSkillsChange;
+
    $scope.getCompetencydata=function(getResponse)
    {
       $scope.CompetencyList=[];
@@ -1247,7 +1284,7 @@ function searchuserChange(text)
     }
   $scope.selectCompetency=[];
 
-// Employee filter
+
 
 //Tags
 self.tags=[];
