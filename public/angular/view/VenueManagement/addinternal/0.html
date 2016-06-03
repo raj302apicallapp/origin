@@ -5,9 +5,11 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Venue Name</label>
-        <input required name="venue" ng-model="carrymodel.venue">
+        <input required name="venue" ng-model="carrymodel.venue" md-maxlength="100" minlength="5" ng-change="checkVenueName(carrymodel.venue)">
         <div ng-messages="carrymodelForm.venue.$error">
           <div ng-message="required">Venue Name is Mandatory.</div>
+          <div ng-message="minlength">Venue is too short</div>
+          <div ng-message="maxlength">Venue is too long</div>
         </div>
       </md-input-container>
   </div>

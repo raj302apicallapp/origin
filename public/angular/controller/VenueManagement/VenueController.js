@@ -647,4 +647,16 @@ $scope.getWing=function(SelectedFloor,getResponse){
         return results;
       }
     }
+
+
+    $scope.checkVenueName=function(data)
+    {
+       if(angular.isDefined(data))
+       {
+        venueService.checkVenueName(data).then(function(response)
+        {
+           console.log(JSON.stringify(response));
+        });
+       }
+    }
 })
