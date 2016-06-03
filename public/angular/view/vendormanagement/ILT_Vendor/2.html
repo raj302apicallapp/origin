@@ -5,17 +5,19 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Pan Card</label>
-        <input required name="Pan_Card" ng-model="carrymodel.Pan_Card"  ng-change="pancardCheck()">
+        <input required name="Pan_Card" ng-model="carrymodel.Pan_Card" ng-change="checkPanCard(carrymodel.Pan_Card)" >
         <div ng-messages="carrymodelForm.Pan_Card.$error">
           <div ng-message="required">Pan Card is required.</div>
+          <div >{{pan_msg}}</div>
         </div>
+
       </md-input-container>
   </div>
 
     <div flex>
      <md-input-container class="md-block">
         <label>TIN Number</label>
-    <input required name="TIN_Number" ng-model="carrymodel.TIN_Number" style="text-transform: capitalize;" ng-change="tinnumberCheck()">
+    <input  name="TIN_Number" ng-model="carrymodel.TIN_Number" style="text-transform: capitalize;">
         <!-- <div ng-messages="carrymodelForm.TIN_Number.$error">
           <div ng-message="required">TIN Number is required.</div>
         </div> -->
@@ -30,7 +32,7 @@
   <div flex>
       <md-input-container class="md-block">
         <label>TAN Number</label>
-      <input required name="TAN_Number" ng-model="carrymodel.TAN_Number" style="text-transform: capitalize;" ng-change="tannumberCheck()">
+      <input required name="TAN_Number" ng-model="carrymodel.TAN_Number" style="text-transform: capitalize;">
         <!-- <div ng-messages="carrymodelForm.TAN_Number.$error">
           <div ng-message="required">TAN Number is required.</div>
         </div> -->
@@ -39,7 +41,7 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Service Tax Number</label>
-        <input required name="Service_Tax_Number" ng-model="carrymodel.Service_Tax_Number"style="text-transform: capitalize;" ng-change="servicetaxnumberCheck()">
+        <input required name="Service_Tax_Number" ng-model="carrymodel.Service_Tax_Number"style="text-transform: capitalize;">
         <!-- <div ng-messages="carrymodelForm.Service_Tax_Number.$error">
           <div ng-message="required">Service Tax Number is required.</div>
         </div> -->

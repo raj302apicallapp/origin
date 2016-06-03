@@ -147,7 +147,7 @@
           md-items="item in ctrl.querySearchTypes(ctrl.searchTypes)"
           md-item-text="item"
           md-min-length="0"
-          placeholder="Types">
+          placeholder="Venue Type">
         <md-item-template>
           <span md-highlight-text="ctrl.searchTypes" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
@@ -159,20 +159,11 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
 <div layout="row" layout-xs="column">
    <div flex>
       <md-input-container class="md-block">
        <md-checkbox ng-model="activestatus" ng-change="changeActiveStatus()" aria-label="Checkbox 1">
-           Show Inactive Course also
+           Show Inactive Venues
           </md-checkbox>
       </md-input-container>
   </div>

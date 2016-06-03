@@ -8,6 +8,10 @@ var ltags;
 // var tax=0;
 var checkcheck={};
 var Checktax={};
+var competencyarray=[];
+var duplicate_flag=false;
+var cert_duplicate=false;
+var certification_array=[];
 
 app.controller("vendorCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,vendorService)
 { 
@@ -24,6 +28,7 @@ $scope.types=['Equipment Vendor','ILT Vendor','ELearn Vendor','MLearn Vendor','S
     this.dis_subcompetency=true;
     $scope.isLoading=false;
     $scope.showCompetencytable=true;
+    $scope.autocompletefill=true;
 
     // Country
     self.querySearchCountry   = querySearchCountry;
@@ -998,6 +1003,7 @@ $scope.getCity=function(SelectedState,getResponse){
           this.dis_Floor=false;
             $scope.carrymodel.City=item;
             self.selectedCity=$scope.carrymodel.City;
+            $scope.autocompletefill=false;
   console.log("selectedCity::"+JSON.stringify($scope.carrymodel.City))
       $log.info('City changed to ' + JSON.stringify(item));
    }
@@ -1231,7 +1237,7 @@ $scope.getCity=function(SelectedState,getResponse){
      else if($location.path()=="/edit_equipement_vendor")
     {                                        
       console.log("edit vendor::"+JSON.stringify($scope.carrymodel));
-      vendorService.updateVendor($scope.carrymodel).then(function(response) 
+      vendorService.updateVendordatas($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -1378,113 +1384,6 @@ $scope.getCity=function(SelectedState,getResponse){
     }); 
   }
 
-$scope.changeProjector=function(){
-    checkcheck.Projector=$scope.carrymodel.Projector;
-  $scope.checkboxs();
-}
-$scope.changeProjector_Screen=function(){
-  checkcheck.Projector_Screen=$scope.carrymodel.Projector_Screen;
-  $scope.checkboxs();
-}
-$scope.changeAudio_Equipments=function(){
-   checkcheck.Audio_Equipments=$scope.carrymodel.Audio_Equipments;
-  $scope.checkboxs();
-}
-$scope.changePrinting_Photo_Copy_Machine=function(){
-    checkcheck.Printing_Photo_Copy_Machine=$scope.carrymodel.Printing_Photo_Copy_Machine;
-    $scope.checkboxs();
-}
-$scope.changechangeFlip_Board=function(){
-   checkcheck.changeFlip_Board=$scope.carrymodel.changeFlip_Board;
-  $scope.checkboxs();
-}
-
-  // check box 
-  $scope.checkboxs=function()
-  { 
-    console.log(JSON.stringify(checkcheck));
-    var arrcheck=[];
-    var getArrCheck=[];
-    var kjson=checkcheck;
-    for(var keyName in kjson)
-    {        
-     var key=keyName ;
-     var value= kjson[keyName];
-     arrcheck.push(value);
-    }
-      for(var i=0;i<arrcheck.length;i++)
-    {
-       console.log(arrcheck[i]);
-      if (arrcheck[i] == true) 
-       {
-         getArrCheck.push(arrcheck[i]);
-       }
-    }
-   console.log("Length::"+getArrCheck.length);
-    if (getArrCheck.length>=1) 
-    {
-        console.log("Now enable the button");
-        $scope.nexts=false;
-    }else
-    {
-        console.log("Disable the button now!");
-        $scope.nexts=true;
-    } 
-}
- // tax inforrmation
-
-$scope.pancardCheck=function()
-{
-   Checktax.Pan_Card=$scope.carrymodel.Pan_Card;
-   $scope.taxs();
-}
-$scope.tinnumberCheck=function()
-{
-  Checktax.TIN_Number=$scope.carrymodel.TIN_Number;
-  $scope.taxs();
-}
-$scope.tannumberCheck=function()
-{
-  Checktax.TAN_Number=$scope.carrymodel.TAN_Number;
-  $scope.taxs();
-}
-$scope.servicetaxnumberCheck=function()
-{
-  Checktax.Service_Tax_Number=$scope.carrymodel.Service_Tax_Number;
-  $scope.taxs();
-}
-
-$scope.taxs=function()
-  { 
-    console.log(JSON.stringify(Checktax));
-    var arrcheck=[];
-    var getArrCheck=[];
-    var kjson=Checktax;
-    for(var keyName in kjson)
-    {        
-     var key=keyName ;
-     var value= kjson[keyName];
-     arrcheck.push(value);
-    }
-      for(var i=0;i<arrcheck.length;i++)
-    {  console.log("arrcheck"+arrcheck.length)
-       console.log(arrcheck[i]);
-      if (arrcheck[i] !== " " || arrcheck[i] == "undefined" ) 
-       {
-         getArrCheck.push(arrcheck[i]);
-       }
-    }
-   console.log("Length::"+getArrCheck.length);
-    if (getArrCheck.length>=2) 
-    {
-        console.log("Now enable the button");
-        $scope.nextTax=false;
-    }else
-    {
-        console.log("Disable the button now!");
-        $scope.nextTax=true;
-    } 
-}
 //SORT
 $scope.vsortvendor=true;
 $scope.vendorSortIcon="arrow_drop_down";
@@ -1533,16 +1432,7 @@ $scope.sortlocation=function(){
 /*2*/
 
  /*ILT Vendor*/
- $scope.getCompetency=function()
- {  
-   vendorService.getCompetency().then(function(response) {
-   $scope.Competency=response.data;
-    competencyResponse=response.data;
-   $scope.getCompetencydata(response.data);
-    console.log("competencyResponse::"+JSON.stringify(competencyResponse));
-    }); 
-  }
-  $scope.getCompetency();
+ 
   
    /*bhuvanesh*/
    $scope.getCompetencydata=function(getResponse)
@@ -1710,10 +1600,46 @@ $scope.sortlocation=function(){
       $log.info('Skills changed to ' + JSON.stringify(item));
       // $scope.getBuilding(item,LocationResponse);
     }
+
+
+    $scope.getCompetency=function()
+ {  
+   vendorService.getCompetency().then(function(response) {
+   $scope.Competency=response.data;
+   if(duplicate_flag==true)
+   {
+    if(response.data.length>0)
+    {
+      for(var i=0;i<competencyarray.length;i++)
+      {
+        for(var j=0;j<$scope.Competency.length;j++)
+        {
+          
+          if(competencyarray[i].skills==$scope.Competency[j].skills)
+          {
+            console.log(competencyarray[i].skills)
+            console.log($scope.Competency[j].skills);
+            $scope.Competency[j].Checked=true;
+          }
+        }
+      }
+    }
+
+   }
+
+
+    competencyResponse=response.data;
+   $scope.getCompetencydata(response.data);
+    console.log("competencyResponse::"+JSON.stringify(competencyResponse));
+    }); 
+  }
+  $scope.getCompetency();
+
   $scope.selectCompetency=[];
  $scope.showAdvanced = function(ev) {
 
   $scope.carrymodel.addcomp=true;
+  duplicate_flag=true;
   console.log(JSON.stringify($scope.Competency));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
@@ -1722,14 +1648,14 @@ $scope.sortlocation=function(){
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
-      fullscreen: useFullScreen,
-      locals: {
-        items: $scope.Competency
-     }
+      fullscreen: useFullScreen
     })
     .then(function(answer) {
       console.log("ok"+JSON.stringify(answer));
-      $scope.carrymodel.selectCompetency_data=answer;
+      for(var i=0;i<answer.length;i++){
+         competencyarray.push(answer[i]);
+      }
+      $scope.carrymodel.selectCompetency_data=competencyarray;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -1785,6 +1711,7 @@ $scope.Competency_checkAll = function () {
   
   $scope.selectCertification=[];
  $scope.showAdvanced1 = function(ev) {
+   cert_duplicate=true;
   $scope.carrymodel.addcert=true;
   console.log(JSON.stringify($scope.Certification));
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -1798,7 +1725,12 @@ $scope.Competency_checkAll = function () {
     })
     .then(function(answer) {
       console.log("ok"+JSON.stringify(answer));
-      $scope.carrymodel.selectCertification_data=answer;
+      for(var i=0;i<answer.length;i++)
+      {
+          certification_array.push(answer[i]);
+      }
+       
+      $scope.carrymodel.selectCertification_data=certification_array;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -1868,6 +1800,22 @@ $scope.checkAll = function () {
   {
     vendorService.getCertification().then(function(response){
       $scope.Certification=response.data;
+      if(response.data.length>0)
+      {
+        if(cert_duplicate==true)
+        {
+          for(var i=0;i<certification_array.length;i++)
+          {
+            for(var j=0;j<$scope.Certification.length;j++)
+            {
+              if(certification_array[i].Certifying_Authority==$scope.Certification[j].Certifying_Authority)
+              {
+                 $scope.Certification[j].Checked=true;
+              }
+            }
+          }
+        }
+      }
       CertificateResponse=response.data;
      $scope.getCertifying_authoritydata(response.data)
     });
@@ -1981,7 +1929,146 @@ $scope.checkAll = function () {
 
 
 
+ $scope.initDatepicker = function(){
+        angular.element(".md-datepicker-button").each(function(){
+            var el = this;
+            var ip = angular.element(el).parent().find("input").bind('click', function(e){
+                angular.element(el).click();
+            });
+            angular.element(this).css('visibility', 'hidden');
+        });
+    };
+$scope.pincodeCheck=function(data)
+{
+  
+  if(angular.isDefined(data))
+  {
+  var check=isNaN(data);
+  console.log(check);
+  if(check==true)
+  {
+    $scope.entered_pincode="Pin/Zip Code Should be Numberic";
+
+  }
+  else
+  {
+    $scope.entered_pincode="";
+    if(angular.isDefined(data))
+  {
+    console.log("length"+data.length);
+    $scope.pincode=(data.length>6) ? "Pin/Zip Code Invaild" : "";
+  }
+  else
+  {
+    $scope.entered_pincode=""
+    $scope.pincode="";
+  }
+  }
+}
+else
+{
+  $scope.entered_pincode=""
+    $scope.pincode="";
+}
+}
 
 
+/*sort competency*/
+$scope.vsortcompetency=true;
+$scope.competencySortIcon="arrow_drop_down";
+$scope.sortcompetency=function(){
+  if ($scope.vsortcompetency==true) {
+    $scope.orderList = "competency";
+    $scope.vsortcompetency=false;
+    $scope.competencySortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-competency";
+    $scope.vsortcompetency=true;
+    $scope.competencySortIcon="arrow_drop_down";
+  }
+}
+/*sub competency*/
+$scope.vsortsubcompetency=true;
+$scope.subcompetencySortIcon="arrow_drop_down";
+$scope.sortsubcompetency=function(){
+  if ($scope.vsortsubcompetency==true) {
+    $scope.orderList = "sub_competency";
+    $scope.vsortsubcompetency=false;
+    $scope.subcompetencySortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-sub_competency";
+    $scope.vsortsubcompetency=true;
+    $scope.subcompetencySortIcon="arrow_drop_down";
+  }
+}
+
+/*skills*/
+$scope.vsortskills=true;
+$scope.skillsSortIcon="arrow_drop_down";
+$scope.sortskills=function(){
+  if ($scope.vsortskills==true) {
+    $scope.orderList = "skills";
+    $scope.vsortskills=false;
+    $scope.skillsSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-skills";
+    $scope.vsortskills=true;
+    $scope.skillsSortIcon="arrow_drop_down";
+  }
+}
+
+/*Certifying Authority*/
+$scope.vsortcertifying_authority=true;
+$scope.certifying_authority_SortIcon="arrow_drop_down";
+$scope.sortcertifying_authority=function(){
+  if ($scope.vsortcertifying_authority==true) {
+    $scope.orderList = "Certifying_Authority";
+    $scope.vsortcertifying_authority=false;
+    $scope.certifying_authority_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Certifying_Authority";
+    $scope.vsortcertifying_authority=true;
+    $scope.certifying_authority_SortIcon="arrow_drop_down";
+  }
+}
+
+/*certification*/
+ $scope.vsortcertification=true;
+$scope.certification_SortIcon="arrow_drop_down";
+$scope.sortcertification=function(){
+  if ($scope.vsortcertification==true) {
+    $scope.orderList = "Certification";
+    $scope.vsortcertification=false;
+    $scope.certification_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Certification";
+    $scope.vsortcertification=true;
+    $scope.certification_SortIcon="arrow_drop_down";
+  }
+}
+
+
+
+$scope.checkPanCard=function(data)
+{  
+  if(angular.isDefined(data))
+  {
+        if(data.length>=10)
+        {
+              var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+           if(regpan.test(data) == false)
+           {
+            $scope.pan_msg="Not Vaild Pan Number"
+           }
+            else
+           {
+             $scope.pan_msg=""
+           }
+        };
        
+  };
+}
+  
+
+
 }); 
