@@ -1,126 +1,74 @@
 <h5 style="text-align:center;padding-bottom:10px;">Schedule</h5>
 <form name="carrymodelForm" ng-controller="iltsessionCtrl">
-<!-- ROW 1 Starts -->
-
-
-
+<!-- start date picker start -->
 <div layout="row" layout-xs="column">
   <div flex>
-       <md-content>
-       
-      <label>Session Start Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <!-- <md-content>
-       <input type="text" datepicker-popup="{{format}}" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close"/> -->
-            <!-- <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button>
-        <md-datepicker datepicker-popup="{{format}}" ng-click="openStart()" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" </md-datepicker>
-            <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button> -->
-    <md-datepicker  ng-click="openStart()" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" md-placeholder="Enter date"
-        ></md-datepicker>
-        <!-- md-max-date="maxDate" -->
-      </md-content>
+      <md-content> 
+      <md-datepicker ng-model="carrymodel.cancelEndDate" md-placeholder="Session Start date"
+        md-min-date="minDate "></md-datepicker>
+        </md-content>
   </div>
 </div>
-<!-- ROW 1 Ends -->
-<!-- ROW 2 Starts -->
+<!-- start date picker end -->
+<!--End date picker start -->
 <div layout="row" layout-xs="column">
-  <div flex>
+ <div flex>
        <md-content>
-       
-      <label>Session End Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <md-content>
-       
-      <md-datepicker  ng-click="openEnd()" ng-model="end" is-open="endOpened" min="minEndDate" max="maxEndDate" datepicker-options="dateOptions" close-text="Close" md-placeholder="Enter date"></md-datepicker>
-      </md-content>
+       <md-datepicker ng-model="carrymodel.cancelEndDate" md-placeholder="SessionEnd date"
+        md-min-date="minDate"></md-datepicker>
+        </md-content>
   </div>
 </div>
-<!-- ROW 2 Ends -->
-<!-- ROW 3 Starts -->
+<!--End date picker end -->
+<!-- registered start date picker start -->
 <div layout="row" layout-xs="column">
   <div flex>
        <md-content>
-       
-      <label>Registration Start Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <md-content>
-       
-      <md-datepicker ng-model="carrymodel.regStartDate" md-placeholder="Enter date"
+       <md-datepicker ng-model="carrymodel.regStartDate" md-placeholder="RegistrationStart date"
         md-min-date="minregStartDate"></md-datepicker>
       </md-content>
   </div>
 </div>
-  <!-- ROW 3 Ends -->
-  <!-- ROW 4 Starts -->
-<div layout="row" layout-xs="column">
+<!-- registered start date picker end -->
+<!-- registered end date picker start -->
+  <div layout="row" layout-xs="column">
   <div flex>
        <md-content>
-       
-      <label>Registration End Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <md-content>
-       
-      <md-datepicker ng-model="carrymodel.regEndDate" md-placeholder="Enter date"
+       <md-datepicker ng-model="carrymodel.regEndDate" md-placeholder="RegistrationEnd date"
         md-min-date="minDate"></md-datepicker>
       </md-content>
   </div>
 </div>
-  <!-- ROW 4 Ends -->
-  <!-- ROW 5 Starts -->
-<div layout="row" layout-xs="column">
+<!-- registered end date picker end -->
+<!-- Cancelled start date picker start -->
+ <div layout="row" layout-xs="column">
   <div flex>
        <md-content>
-       
-      <label>Cancellation Start Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <md-content>
-       
-      <md-datepicker ng-model="carrymodel.cancelStartDate" md-placeholder="Enter date"
+       <md-datepicker ng-model="carrymodel.cancelStartDate" md-placeholder="CancelStart date"
         md-min-date="minDate"></md-datepicker>
       </md-content>
   </div>
 </div>
-  <!-- ROW 5 Ends -->
-  <!-- ROW 6 Starts -->
-<div layout="row" layout-xs="column">
+<!-- Cancelled start date picker end -->
+<!-- Cancelled end date picker start -->
+ <div layout="row" layout-xs="column">
   <div flex>
        <md-content>
-       
-      <label>Cancellation End Date</label>
-      </md-content>
-  </div>
-  <div flex>
-       <md-content>
-       
-      <md-datepicker ng-model="carrymodel.cancelEndDate" md-placeholder="Enter date"
+       <md-datepicker ng-model="carrymodel.cancelEndDate" md-placeholder="CancelEnd date"
         md-min-date="minDate"></md-datepicker>
       </md-content>
   </div>
 </div>
-  <!-- ROW 6 Ends -->
-  <div style="padding-bottom:2%"></div>
-  <!-- ROW last Starts -->
+ <!-- Cancelled end date picker end -->
+ <!-- next button start -->
+ <div style="padding-bottom:2%"></div>
 <div class="row">
-        
-          <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
-        
-           <md-button  ng-click="nextaction(carrymodel)"  ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
-        
-</div>
-<!-- ROW last Ends -->
+        <md-button  ng-click="nextaction(carrymodel)"  ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+       </div>
+<!-- next button End -->
 </form>
-
- <style type="text/css">
+<!-- start style for date picker -->
+<style type="text/css">
  .datepickerdemoBasicUsage {
   /** Demo styles for mdCalendar. */ }
   .datepickerdemoBasicUsage md-content {
@@ -128,6 +76,11 @@
   .datepickerdemoBasicUsage .validation-messages {
     font-size: 12px;
     color: #dd2c00;
-    margin: 10px 0 0 25px; }
-    </style>
+    margin: 10px 0 0 25px;
+    min-width:160px; }
+    .datepicker{
+      min-width:180px;
+    }
+   </style>
+<!-- end style for date picker -->
 

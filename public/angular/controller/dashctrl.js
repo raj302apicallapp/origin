@@ -145,6 +145,11 @@ else if($location.path()=="/addassessment")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/assignassessment")
+{
+  console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
 else if($location.path()=="/iltsession")
 {
   console.log("location path"+$location.path());
@@ -401,6 +406,13 @@ else if($localStorage.currentPath=="/addelearn"){
   console.log("addassessment");
     var a1=['Basic Info','Assessment Questions','Assessment Options'];
     var a2="angular/view/AssessmentManagement/Assessment/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+  }
+  else if($localStorage.currentPath=="/assignassessment"){
+  console.log("addassessment");
+    var a1=['Basic Info','Assessment Questions','Assessment Options','Assessment','Assignassessment'];
+    var a2="angular/view/Assign Assessment/";
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
   }
