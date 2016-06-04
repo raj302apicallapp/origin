@@ -5,14 +5,24 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Address 1</label>
-        <input required name="venue" ng-model="carrymodel.add1" aria-label="venue">
+        <input required name="address_1" ng-model="carrymodel.add1" aria-label="venue" md-maxlength="256" minlength="10">
+        <div ng-messages="carrymodelForm.address_1.$error">
+           <div ng-message="required">Address is required.</div>
+          <div ng-message="md-maxlength">Address too long!</div>
+          <div ng-message="minlength">Address too short!</div>
+      </div>
       </md-input-container>
   </div>
   <div style="width:2%"></div>
   <div flex>
        <md-input-container class="md-block">
         <label>Address 2</label>
-        <input required name="venue" ng-model="carrymodel.add2" aria-label="venue">
+        <input required name="address_2" ng-model="carrymodel.add2" aria-label="venue" md-maxlength="256" minlength="10">
+        <div ng-messages="carrymodelForm.address_2.$error">
+          <div ng-message="required">Address is required.</div>
+          <div ng-message="md-maxlength">Address too long!</div>
+          <div ng-message="minlength">Address too short!</div>
+        </div>
       </md-input-container>
   </div>
 </div>
@@ -88,7 +98,7 @@
 <!-- ROW 2 Ends -->
 <div style="padding-bottom:2%"></div>
 <!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
+<div layout="row" layout-xs="column" ng-show="showbuilding">
   <div flex>
       <md-autocomplete
           ng-disabled="!ctrl.selectedCity"
@@ -160,7 +170,11 @@
    <div flex>
       <md-input-container class="md-block">
         <label>Zip/Pin Code</label>
-        <input required name="venue" ng-model="carrymodel.pincode" aria-label="venue">
+        <input required name="pincode" ng-model="carrymodel.pincode" aria-label="venue" ng-pattern="/^([0-9]){6}?$/">
+        <div ng-messages="carrymodelForm.pincode.$error">
+          <div ng-message="required">Pin/Zip Code is required.</div>
+          <div ng-message="pattern">Invalid Pan Card</div>
+        </div>
       </md-input-container>
   </div>
  
@@ -173,7 +187,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button ng-disabled="!carrymodelForm.$valid || !ctrl.selectedCity"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

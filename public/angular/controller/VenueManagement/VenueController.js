@@ -5,7 +5,7 @@ var editableJSon={};
 var addJSon={};
 var LocationResponse=[];
 //Controller
-app.controller("venueCtrl",function($scope,$location,$localStorage,venueService,$routeParams,$q,$log){
+app.controller("venueCtrl",function($scope,$location,$localStorage,venueService,$routeParams,$q,$log,$filter){
 
     var self = this;
     self.simulateQuery = false;
@@ -36,13 +36,29 @@ app.controller("venueCtrl",function($scope,$location,$localStorage,venueService,
     self.querySearchWing   = querySearchWing;
     self.selectedWingChange = selectedWingChange;
     self.searchWingChange   = searchWingChange;
-
-
+       
+ if(angular.isDefined($scope.carrymodel))
+    {
+      self.selectedCountry=$scope.carrymodel.Country;
+      self.selectedState=$scope.carrymodel.State;
+      self.selectedCity=$scope.carrymodel.City;
+    }
     console.log("Venue controller triggered");
     
-    $scope.rooms=['Ball Room','Meeting Room'];
+    // $scope.rooms=['Ball Room','Meeting Room'];
+    if($location.path()=="/addinternalvenue" || $location.path()=="/editinternalvenue")
+    {
+     $scope.rooms=['Ball Room','Meeting Room','Conference Room','Training Room','Cafeteria Room'];
+      $scope.showbuilding=true;
 
-
+    }
+    else if($location.path()=="/addexternalvenue" || $location.path()=="/editexternalvenue")
+    {
+       $scope.rooms=['Meeting Room','Conference Room','Ball Room'];
+       $scope.showbuilding=false;
+    }
+   
+    $scope.types=["Internal","External"];
 
     self.types        = $scope.types;
     self.querySearchTypes   = querySearchTypes;
@@ -104,17 +120,32 @@ console.log("LocalStorage::"+$localStorage.editonlypass);
 
 
 //Active status
-$scope.changeActiveStatus=function(){
+$scope.changeActiveStatus=function(data){
 	// $scope.carrymodel.activestatus=!$scope.carrymodel.activestatus;
-	$scope.getVenue();
+	$scope.getVenue(data);
+ 
+
 }
 //getVenue list
-$scope.getVenue=function(){
+$scope.getVenue=function(data){
 	// console.log("activestatus"+$scope.carrymodel.activestatus);
 $scope.isLoading=true;
 venueService.getVenue(1).then(function(response) {
 $scope.getVenueList=response.data;
 console.log("Get Venue List::"+JSON.stringify($scope.getVenueList));
+  $scope.tempvenuelist=$scope.getVenueList;
+
+if(data == true)
+{ 
+  // $scope.getVenueList=($filter('filter')($scope.getVenueList, {venuestatus: 0 | 1}));
+       // $scope.Competencyfliter=$scope.Competency;
+       
+}
+else
+{
+   $scope.getVenueList=$scope.tempvenuelist;
+  $scope.getVenueList=($filter('filter')($scope.getVenueList, {venuestatus: 1 }));
+}
 $scope.isLoading=false;
 });
 
@@ -158,8 +189,9 @@ $scope.getVenue();
 }
 $scope.submitaction=function(addVenue){
 	if ($location.path()=="/addexternalvenue" || $location.path()=="/addinternalvenue") {
-		console.log("venu::"+venuetype);
-	addVenue.venuetype=venuetype;
+		
+	// addVenue.venuetype=venuetype;
+  console.log("venu::"+addVenue.venuetype);
 	console.log("ci"+JSON.stringify(addVenue));
   $scope.isLoading=true;
 venueService.addVenue(addVenue).then(function(response) {
@@ -183,6 +215,7 @@ if (response) {
 }
 $scope.activeVenue=function(item){
 var activeItem=item;
+
 console.log("Active/Inactive::"+JSON.stringify(activeItem));
 venueService.activeVenue(activeItem).then(function(response) {
 $scope.getVenue();
@@ -268,6 +301,7 @@ $scope.getCountry=function(getResponse){
 
 $scope.getState=function(SelectedCountry,getResponse){
 	console.log("Statte get::"+JSON.stringify(getResponse));
+  $scope.carrymodel.Country=SelectedCountry;
 	console.log("state Country get::"+SelectedCountry);
 	$scope.StateList=[];
 	for (var i = 0;i<getResponse.length;i++) {
@@ -284,6 +318,7 @@ $scope.getState=function(SelectedCountry,getResponse){
 }
 $scope.getCity=function(SelectedState,getResponse){
 	$scope.CityList=[];
+  $scope.carrymodel.State=SelectedState;
 	for (var i = 0;i<getResponse.length;i++) {
 		if (SelectedState==getResponse[i].State) {
 			console.log(SelectedState+"="+getResponse[i].State);
@@ -297,6 +332,7 @@ $scope.getCity=function(SelectedState,getResponse){
 }
 $scope.getBuilding=function(SelectedCity,getResponse){
 	$scope.BuildingList=[];
+  $scope.carrymodel.City=SelectedCity;
 	for (var i = 0;i<getResponse.length;i++) {
 		if (SelectedCity==getResponse[i].City) {
 			console.log(SelectedCity+"="+getResponse[i].City);
@@ -350,7 +386,7 @@ $scope.getWing=function(SelectedFloor,getResponse){
     function querySearchState (query) {
 	  console.log("state::"+query); 
 	  if (query==null || query=="") {
-	  	$scope.getState($scope.carrymodel.country,LocationResponse);
+	  	$scope.getState($scope.country,LocationResponse);
 	  }
 	  
 	  	var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
@@ -368,7 +404,7 @@ $scope.getWing=function(SelectedFloor,getResponse){
     function querySearchCity (query) {
 	  console.log("state::"+query); 
 	  if (query==null || query=="") {
-	  	$scope.getCity($scope.carrymodel.state,LocationResponse);
+	  	$scope.getCity($scope.state,LocationResponse);
 	  }
       var results = query ? self.Cities.filter( createFilterFor(query) ) : self.Cities,
           deferred;
@@ -383,7 +419,7 @@ $scope.getWing=function(SelectedFloor,getResponse){
     function querySearchBuilding (query) {
 	  console.log("state::"+query); 
 	  if (query==null || query=="") {
-	  	$scope.getBuilding($scope.carrymodel.city,LocationResponse);
+	  	$scope.getBuilding($scope.city,LocationResponse);
 	  }
       var results = query ? self.Buildings.filter( createFilterFor(query) ) : self.Buildings,
           deferred;
@@ -429,60 +465,61 @@ $scope.getWing=function(SelectedFloor,getResponse){
 
       $log.info('Text changed to ' + text);
       if (text=="") {
-      	self.selectedCountry=$scope.carrymodel.country="";
-      	self.searchCountry="";
-      	self.selectedState=$scope.carrymodel.state="";
+      	// self.selectedCountry=
+        // $scope.carrymodel.country="";
+      	// self.searchCountry="";
+      	self.selectedState="";
+        // $scope.carrymodel.state="";
       	self.searchState="";
-      	self.selectedCity=$scope.carrymodel.city="";
+      	self.selectedCity="";
+        // $scope.carrymodel.city="";
       	self.searchCity="";
-      	self.selectedBuilding=$scope.carrymodel.building="";
-      	self.searchBuilding="";
-      	self.selectedFloor=$scope.carrymodel.floor="";
-      	self.searchFloor="";
-        self.selectedWing=$scope.carrymodel.wing="";
-        self.searchWing="";
+      	// self.selectedBuilding=$scope.carrymodel.building="";
+      	// self.searchBuilding="";
+      	// self.selectedFloor=$scope.carrymodel.floor="";
+      	// self.searchFloor="";
+       //  self.selectedWing=$scope.carrymodel.wing="";
+       //  self.searchWing="";
        }
-       else{
-       	$scope.carrymodel.state=self.selectedState;
-      	$scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+         // else{
+         // 	$scope.carrymodel.state=self.selectedState;
+        	// $scope.carrymodel.city=self.selectedCity;
+         //  $scope.carrymodel.building=self.selectedBuilding;
+        	// $scope.carrymodel.floor=self.selectedFloor;
+         //  $scope.carrymodel.wing=self.selectedWing;
 
-       }
+         // }
     }
     function selectedCountryChange(item) {
       
         $scope.countryFilter=item;
       
       $log.info('Country changed to ' + JSON.stringify(item));
-      	$scope.carrymodel.country=self.selectedCountry;
-      	$scope.carrymodel.state=self.selectedState;
-      	$scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+        self.selectedCountry=item;
+        $scope.country=item;
+      
     }
     
     function searchStateChange(text) {
       $log.info('Text changed to ' + text);
       if (text=="") {
-      	self.selectedState=$scope.carrymodel.state="";
-      	self.searchState="";
-      	self.selectedCity=$scope.carrymodel.city="";
+      	// self.selectedState=$scope.carrymodel.state="";
+      	// self.searchState="";
+      	self.selectedCity="";
+        // $scope.carrymodel.city="";
       	self.searchCity="";
-      	self.selectedBuilding=$scope.carrymodel.building="";
-      	self.searchBuilding="";
-      	self.selectedFloor=$scope.carrymodel.floor="";
-      	self.searchFloor="";
-        self.selectedWing=$scope.carrymodel.wing="";
-        self.searchWing="";
+      	// self.selectedBuilding=$scope.carrymodel.building="";
+      	// self.searchBuilding="";
+      	// self.selectedFloor=$scope.carrymodel.floor="";
+      	// self.searchFloor="";
+       //  self.selectedWing=$scope.carrymodel.wing="";
+       //  self.searchWing="";
         }
        	else{
-      	$scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+      	// $scope.carrymodel.city=self.selectedCity;
+       //  $scope.carrymodel.building=self.selectedBuilding;
+      	// $scope.carrymodel.floor=self.selectedFloor;
+       //  $scope.carrymodel.wing=self.selectedWing;
        }
        
     }
@@ -490,54 +527,52 @@ $scope.getWing=function(SelectedFloor,getResponse){
       $scope.stateFilter=item;
       $log.info('State changed to ' + JSON.stringify(item));
       if (!angular.isDefined(item) || item==null) {
-      	$scope.getState($scope.carrymodel.country,LocationResponse);
+      	$scope.getState($scope.country,LocationResponse);
       }else{
       	$scope.getCity(item,LocationResponse);
       	
       }
-      	$scope.carrymodel.state=self.selectedState;
-      	$scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+      	$scope.state=self.selectedState;
+      	$scope.city=self.selectedCity;
+       //  $scope.carrymodel.building=self.selectedBuilding;
+      	// $scope.carrymodel.floor=self.selectedFloor;
+       //  $scope.carrymodel.wing=self.selectedWing;
 
     }
     function searchCityChange(text) {
       $log.info('Text changed to ' + text);
       if (text=="") {
-      	self.selectedCity=$scope.carrymodel.city="";
+      	self.selectedCity="";
+        // $scope.carrymodel.city="";
       	self.searchCity="";
-      	self.selectedBuilding=$scope.carrymodel.building="";
+      	self.selectedBuilding="";
+        // $scope.carrymodel.building="";
       	self.searchBuilding="";
-      	self.selectedFloor=$scope.carrymodel.floor="";
+      	self.selectedFloor="";
+        // $scope.carrymodel.floor="";
       	self.searchFloor="";
-        self.selectedWing=$scope.carrymodel.wing="";
+        self.selectedWing="";
+        // $scope.carrymodel.wing="";
         self.searchWing="";
        }
-       else{
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
-       }
        
-       $scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+       $scope.city=self.selectedCity;
+        
     }
     function selectedCityChange(item) {
       $scope.cityFilter=item;
+      $scope.city=item;
       $log.info('City changed to ' + JSON.stringify(item));
        if (!angular.isDefined(item) || item==null) {
-       	$scope.getCity($scope.carrymodel.state,LocationResponse);
+       	$scope.getCity($scope.state,LocationResponse);
       }else{
       	$scope.getBuilding(item,LocationResponse);
       	
       }
-      $scope.carrymodel.city=self.selectedCity;
-        $scope.carrymodel.building=self.selectedBuilding;
-      	$scope.carrymodel.floor=self.selectedFloor;
-        $scope.carrymodel.wing=self.selectedWing;
+      // $scope.carrymodel.city=self.selectedCity;
+      //   $scope.carrymodel.building=self.selectedBuilding;
+      // 	$scope.carrymodel.floor=self.selectedFloor;
+      //   $scope.carrymodel.wing=self.selectedWing;
     }
     function searchBuildingChange(text) {
       $log.info('Text changed to ' + text);
@@ -560,7 +595,7 @@ $scope.getWing=function(SelectedFloor,getResponse){
       $scope.buildingFilter=item;
       $log.info('City changed to ' + JSON.stringify(item));
       if (!angular.isDefined(item) || item==null) {
-        $scope.getBuilding($scope.carrymodel.city,LocationResponse);
+        $scope.getBuilding($scope.city,LocationResponse);
       }else{
         $scope.getFloor(item,LocationResponse);
       }
@@ -619,8 +654,9 @@ $scope.getWing=function(SelectedFloor,getResponse){
     function createFilterFor(query) {
       var lowercaseQuery = angular.lowercase(query);
       return function filterFn(res) {
+         res=angular.lowercase(res);
       	console.log("sj::"+lowercaseQuery);
-        return (res.indexOf(query) == 0);
+        return (res.search(lowercaseQuery) !== -1);
       };
   }
 
@@ -653,9 +689,13 @@ $scope.getWing=function(SelectedFloor,getResponse){
     {
        if(angular.isDefined(data))
        {
+         console.log(JSON.stringify(data));
         venueService.checkVenueName(data).then(function(response)
         {
            console.log(JSON.stringify(response));
+
+           $scope.venuemsg=response.data=="Available" ? "Available" : "Already Exist";
+           $scope.venuecolor=response.data=="Available" ? "text-success" : "text-danger"
         });
        }
     }

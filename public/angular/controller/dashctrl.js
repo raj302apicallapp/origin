@@ -214,15 +214,17 @@ else if($location.path()=="/add_mlearn_vendor")
 }
 else if($location.path()=="/addexternalvenue")
 {
-  $localStorage.currentPath=$location.path();
-  $localStorage.type="External";
+   $localStorage.type="External";
   $scope.carrymodel.venuetype="External";
+  $localStorage.currentPath=$location.path();
+ 
 }
 else if($location.path()=="/addinternalvenue")
-{
-  $localStorage.currentPath=$location.path();
+{  
   $localStorage.type="Internal";
   $scope.carrymodel.venuetype="Internal";
+  $localStorage.currentPath=$location.path();
+  
 }
 else if($location.path()=="/iladd")
 {
@@ -244,6 +246,7 @@ else if($location.path()=="/addtrainerexternal")
   $localStorage.currentPath=$location.path();
    $scope.carrymodel.trainertype=="Freelance";
  }
+ $localStorage.currentPath=$location.path();
 console.log("LocalStorage:"+$localStorage.currentPath);
 
 console.log("vendor type::"+$localStorage.type);
@@ -268,13 +271,21 @@ var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Appro
 var a2="angular/view/CourseManagement/addcourse/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
-}else if($localStorage.currentPath=="/addinternalvenue"){
+}
+else if($localStorage.currentPath=="/editinternalvenue" ){
+console.log("dfrefref");
 var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
 var a2="angular/view/VenueManagement/addinternal/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 } 
-else if($localStorage.currentPath=="/addexternalvenue"){
+else if($localStorage.currentPath=="/addinternalvenue" || $localStorage.currentPath=="/editinternalvenue" ){
+var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
+var a2="angular/view/VenueManagement/addinternal/";
+$scope.currentPath=a2;
+$scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
+} 
+else if($localStorage.currentPath=="/addexternalvenue" || $localStorage.currentPath=="/editexternalvenue"){
 var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
 var a2="angular/view/VenueManagement/addinternal/";
 $scope.currentPath=a2;

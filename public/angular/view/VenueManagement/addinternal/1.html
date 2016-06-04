@@ -5,7 +5,7 @@
 	
   <div flex>
      <md-checkbox ng-model="carrymodel.projector" aria-label="Checkbox 1">
-            Projector Available
+            <span><i class="material-icons">tv</i> </span> Projector Available
           </md-checkbox>  
   </div>
  
@@ -17,7 +17,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.whiteboard" aria-label="Checkbox 1">
-            Whiteboard Available
+            <span><i class="material-icons">tv</i> </span> Whiteboard Available
           </md-checkbox>
   </div>
  
@@ -28,7 +28,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.flipboard" aria-label="Checkbox 1">
-            Flipboard Available
+          <span><i class="material-icons">tv</i> </span>   Flipboard Available
           </md-checkbox>
   </div>
  
@@ -39,7 +39,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.internet" aria-label="Checkbox 1">
-            Internet Available
+           <span><i class="material-icons">network_wifi</i> </span> Internet Available
           </md-checkbox>
   </div>
  
@@ -52,7 +52,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+          <md-button ng-disabled="!carrymodel.projector && !carrymodel.whiteboard && !carrymodel.flipboard && !carrymodel.internet "  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

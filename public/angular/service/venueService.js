@@ -78,7 +78,11 @@ getCSCLocation:function(searchText){
       return promise;
 },
 checkVenueName:function(data){
-  var venue=$http.post('/checkVenueName',data).then(function(response)
+ 
+  var venuename={};
+  venuename.venue=data;
+  console.log(JSON.stringify(venuename));
+  var venue=$http.post('/checkVenueName',venuename).then(function(response)
   {
       return response;
   });
