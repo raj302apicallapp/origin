@@ -5,7 +5,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.Domestic_Travel" aria-label="Checkbox 1">
-            Domestic Travel-Air,Road,Train,Sea
+        <span><i class="material-icons">flight_takeoff</i><sapn>    Domestic Travel-Air,Road,Train,Sea
           </md-checkbox>  
   </div>
  
@@ -16,7 +16,7 @@
 
   <div flex>
      <md-checkbox ng-model="carrymodel.International_Travel" aria-label="Checkbox 1">
-            International Travel
+         <span><i class="material-icons">flight</i><sapn>   International Travel
           </md-checkbox>
   </div>
  
@@ -27,7 +27,7 @@
   
   <div flex>
   <md-checkbox ng-model="carrymodel.Hotel_Accomodation_Domestic" aria-label="Checkbox 1">
-            Hotel Accomodation-Domestic
+           <span><i class="material-icons">hotel</i><sapn> Hotel Accomodation-Domestic
           </md-checkbox>
   </div>
  
@@ -36,7 +36,7 @@
 <!-- ROW 4 Starts -->
   <div flex>
    <md-checkbox ng-model="carrymodel.Hotel_Accomodation_International" aria-label="Checkbox 1">
-            Hotel Accomodation-International
+         <span><i class="material-icons">hotel</i><sapn>   Hotel Accomodation-International
      </md-checkbox>
   </div>
  
@@ -44,7 +44,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
    <md-checkbox ng-model="carrymodel.Printing_Photo_Copy_Machine" aria-label="Checkbox 1">
-            Passport
+           <span><i class="material-icons">flight</i><sapn> Passport
      </md-checkbox>
   </div>
  
@@ -52,7 +52,7 @@
 
   <div flex>
    <md-checkbox ng-model="carrymodel.Visa" aria-label="Checkbox 1">
-            Visa
+          <span><i class="material-icons">flight</i><sapn>  Visa
      </md-checkbox>
   </div>
  
@@ -60,14 +60,14 @@
 <div layout="row" layout-xs="column">
   <div flex>
    <md-checkbox ng-model="carrymodel.Travel_Insurance" aria-label="Checkbox 1">
-            Travel Insurance
+          <span><i class="material-icons">directions_car</i><sapn>  Travel Insurance
      </md-checkbox>
   </div>
  
 
   <div flex>
    <md-checkbox ng-model="carrymodel.Foreign_Currency" aria-label="Checkbox 1">
-            Foreign Currency
+           <span><i class="material-icons">attach_money</i><sapn> Foreign Currency
      </md-checkbox>
   </div>
  
@@ -75,7 +75,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
    <md-checkbox ng-model="carrymodel.Cab_Services" aria-label="Checkbox 1">
-         Cab Services
+         <span><i class="material-icons">directions_car</i><sapn>Cab Services
      </md-checkbox>
   </div>
  
@@ -87,7 +87,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;" ng-disabled="!carrymodel.Domestic_Travel && !carrymodel.International_Travel && ! carrymodel.Hotel_Accomodation_Domestic && !carrymodel.Printing_Photo_Copy_Machine && ! carrymodel.Visa && !carrymodel.Travel_Insurance && !carrymodel.Foreign_Currency && ! carrymodel.Cab_Services ">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

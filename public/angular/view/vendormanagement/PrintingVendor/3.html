@@ -16,7 +16,7 @@
        <md-input-container class="md-block">
         <label>Middle Name</label>
         <input  name="middlename" ng-model="carrymodel.Middlename" aria-label="vendor" style="text-transform:capitalize">
-       
+        
       </md-input-container>
   </div>
   <div style="width:2%"></div>
@@ -36,10 +36,10 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Job Title</label>
-        <input required name="job_title" ng-model="carrymodel.Job_Title" aria-label="vendor">
-        <div ng-messages="carrymodelForm.job_title.$error">
+        <input  name="job_title" ng-model="carrymodel.Job_Title" aria-label="vendor">
+       <!--  <div ng-messages="carrymodelForm.job_title.$error">
           <div ng-message="required">Job Title is required.</div>
-        </div>
+        </div> -->
       </md-input-container style="text-transform:capitalize">
   </div>
   <div style="width:2%"></div>
@@ -48,10 +48,9 @@
       <label>Email ID</label>
        <input required type="email" name="emailid" ng-model="carrymodel.email_id"
                ng-pattern="/^.+@.+\..+$/" aria-label="vendor" />
-        <div ng-messages="carrymodelForm.emailid.$error" role="alert">
-          <div ng-message-exp="['required', 'pattern']">
-            Invalid Email.
-          </div>
+        <div ng-messages="carrymodelForm.emailid.$error">
+          <div ng-message="required">Email Is required</div>
+          <div ng-message="pattern">Invalid Email</div>
         </div>
 
       </md-input-container>
@@ -61,10 +60,10 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor" style="text-transform:capitalize" ng-change="pincodeCheck()">
+        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor"  ng-pattern="/^\d{10}$/">
         <div ng-messages="carrymodelForm.phonenumber.$error">
           <div ng-message="required">Phone Number is required.</div>
-          <div ng-message="required">{{entered_pincode}}</div>
+           <div ng-message="pattern">Must be a valid 10 digit phone number</div>
         </div>
       </md-input-container>
   </div>

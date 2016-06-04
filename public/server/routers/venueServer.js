@@ -165,5 +165,14 @@ db.CSCLocation.find(req.body,function(err,docs){
 	res.json(docs);
 });
 });
+
+
+router.post('/checkVenueName',function(req,res)
+{
+  db.venuemanagement.find({"venue":req.body},function(docs,err)
+  {
+     docs.length>0 ? res.json("") : res.json("");
+  });
+});
 //CSCLocation get ends
 module.exports=router;

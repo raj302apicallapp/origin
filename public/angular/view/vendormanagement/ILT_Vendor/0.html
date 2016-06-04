@@ -130,11 +130,10 @@
    <div flex style="padding: 22px;">
       <md-input-container class="md-block">
         <label>Pin/Zip Code</label>
-        <input required name="pincode" ng-model="carrymodel.Pincode" ng-change="pincodeCheck(carrymodel.Pincode)">
+        <input required name="pincode" ng-model="carrymodel.Pincode" ng-pattern="/^([0-9]){6}?$/">
         <div ng-messages="carrymodelForm.pincode.$error">
           <div ng-message="required">Pin/Zip Code is required.</div>
-          <div ng-meassge="required">{{entered_pincode}}</div>
-          <div ng-meassage="required">{{pincode}}</div>
+          <div ng-message="pattern">Invaild Pan Card</div>
         </div>
       </md-input-container>
   </div>
@@ -154,7 +153,7 @@
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
         <!-- ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity" -->
-           <md-button   ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

@@ -5,7 +5,7 @@
 	
   <div flex>
      <md-checkbox ng-model="carrymodel.Projector" aria-label="Checkbox 1" >
-            Projector 
+           <span><i class="material-icons">tv</i> </span> Projector 
         </md-checkbox>    
   </div>
  
@@ -17,7 +17,7 @@
   
   <div flex>
      <md-checkbox ng-model="carrymodel.Projector_Screen" aria-label="Checkbox 1">
-            Projector Screen
+            <span><i class="material-icons">tv</i> </span> Projector Screen
           </md-checkbox>
   </div>
  
@@ -29,7 +29,7 @@
   <div flex>
   <md-checkbox ng-model="carrymodel.Audio_Equipments" aria-label="Checkbox 1" 
   >
-            Audio Equipments
+         <span><i class="material-icons">volume_down</i> </span>   Audio Equipments
           </md-checkbox>
   </div>
  
@@ -38,8 +38,18 @@
 <!-- ROW 4 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
-   <md-checkbox ng-model="carrymodel.Printing_Photo_Copy_Machine" aria-label="Checkbox 1" >
-           Printing/Photo Copy Machine
+   <md-checkbox ng-model="carrymodel.Printing_Copy_Machine" aria-label="Checkbox 1" >
+          <span><i class="material-icons">print</i> </span>  Printing Copy Machine
+     </md-checkbox>
+  </div>
+ 
+</div>
+<!-- ROW 4 Ends -->
+<!-- ROW 4 Starts -->
+<div layout="row" layout-xs="column">
+  <div flex>
+   <md-checkbox ng-model="carrymodel.Photo_Copy_Machine" aria-label="Checkbox 1" >
+         <span><i class="material-icons">photo_camera</i> </span>  Photo Copy Machine
      </md-checkbox>
   </div>
  
@@ -49,7 +59,7 @@
 <div layout="row" layout-xs="column">
   <div flex>
  <md-checkbox ng-model="carrymodel.Flip_Board" aria-label="Checkbox 1" >
-           Flip Board
+          <span><i class="material-icons">laptop</i> </span> Flip Board
           </md-checkbox>
   </div>
  
@@ -62,7 +72,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;" ng-disabled="nexts">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" ng-disabled="!carrymodel.Projector && !carrymodel.Projector_Screen && !carrymodel.Audio_Equipments && !carrymodel.Printing_Copy_Machine && !carrymodel.Photo_Copy_Machine && !carrymodel.Flip_Board" type="button" class="md-raised md-primary" style="float:right;" ng-disabled="nexts">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

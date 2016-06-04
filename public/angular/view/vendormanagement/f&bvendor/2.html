@@ -5,18 +5,22 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Pan Card</label>
-        <input required name="Pan_Card" ng-model="carrymodel.Pan_Card" style="text-transform: capitalize;" ng-change="pancardCheck()">
+        <input required name="Pan_Card" ng-model="carrymodel.Pan_Card" ng-pattern="/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/">
         <div ng-messages="carrymodelForm.Pan_Card.$error">
           <div ng-message="required">Pan Card is required.</div>
+          <div ng-message="pattern">Invaild Pan Card</div>
         </div>
+
       </md-input-container>
   </div>
 
     <div flex>
      <md-input-container class="md-block">
         <label>TIN Number</label>
-    <input  name="TIN_Number" ng-model="carrymodel.TIN_Number" style="text-transform: capitalize;" ng-change="tinnumberCheck()">
-       
+    <input  name="TIN_Number" ng-model="carrymodel.TIN_Number" ng-pattern="/^([0-9]){11}?$/">
+        <div ng-messages="carrymodelForm.TIN_Number.$error">
+           <div ng-message="pattern">Invaild TIN Number</div>
+        </div>
       </md-input-container>
   </div>
   
@@ -28,16 +32,20 @@
   <div flex>
       <md-input-container class="md-block">
         <label>TAN Number</label>
-      <input  name="TAN_Number" ng-model="carrymodel.TAN_Number"  ng-change="tannumberCheck()">
-        
+      <input  name="TAN_Number" ng-model="carrymodel.TAN_Number" ng-pattern="/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/">
+        <div ng-messages="carrymodelForm.TAN_Number.$error">
+          <div ng-message="pattern">Invaild TAN Number</div>
+        </div>
       </md-input-container>
   </div>
   <div flex>
       <md-input-container class="md-block">
         <label>Service Tax Number</label>
-        <input required name="Service_Tax_Number" ng-model="carrymodel.Service_Tax_Number" ng-change="servicetaxnumberCheck()">
+        <input required name="Service_Tax_Number" ng-model="carrymodel.Service_Tax_Number" ng-pattern="/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){3}([0-9]){3}?$/">
         <div ng-messages="carrymodelForm.Service_Tax_Number.$error">
           <div ng-message="required">Service Tax Number is required.</div>
+            <div ng-message="pattern">Invaild Service Tax Number</div>
+        </div>
         </div>
       </md-input-container>
   </div>
@@ -51,7 +59,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;" ng-disabled="nextTax">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid " type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

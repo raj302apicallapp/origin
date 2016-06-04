@@ -54,27 +54,44 @@
             </md-select>
           </md-input-container>
   </div>
-  <div flex>
-      <md-input-container class="md-block"   flex-gt-sm>
-             <label>Select Language</label>
-            <md-select ng-model="carrymodel.language" aria-label="induration">
-              
-            <md-option value="C">C</md-option>
-              <md-option value="C++">C++</md-option>
-              <md-option  value="Java">Java</md-option>
-            </md-select>
-          </md-input-container>
-  </div>
+  
 </div>
+<div layout="row" layout-xs="column">
+  <div flex>
+       <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="false"
+           required md-input-name="language"
+          md-selected-item="ctrl.selectedLanguage"
+          md-search-text-change="ctrl.searchLanguageChange(ctrl.searchLanguage)"
+          md-search-text="ctrl.searchLanguage"
+          md-selected-item-change="ctrl.selectedLanguageChange(item)"
+         md-items="item in ctrl.querySearchLanguage(ctrl.searchLanguage)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Language">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchLanguage" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Language matching "{{ctrl.searchLanguage}}" were found.
+        </md-not-found>
+        <div ng-messages="carrymodelForm.language.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+      </md-autocomplete>
+  </div>
+
+  </div>
 <!-- ROW 2 Ends -->
 <!-- ROW 3 Starts -->
 <div class="row col-md-12">
 
-<choose-file layout="row">
-    <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
+<choose-file layout="row" style="padding-top:15px;">
+    <input id="fileInput"  accept=".png, .jpg, .jpeg" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
     <md-input-container flex class="md-block">
     <label>Course Image </label>
-      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files">
+      <input type="text"  accept=".png, .jpg, .jpeg" ng-model="carrymodel.localurl" disabled aria-label="files">
     </md-input-container>
     <div>
       <md-button ng-click="browseClick()" id="browsebtn" class="md-fab md-mini">
@@ -91,7 +108,7 @@
     </div>
   </choose-file>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  
 </div>
 <!-- ROW 3 Ends -->
 

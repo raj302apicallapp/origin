@@ -166,41 +166,41 @@ else if($location.path()=="/add_equipmentVendor")
 {
     $localStorage.type="Equipment Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Equipment Vendor";
 }
 else if($location.path()=="/add_ilt_vendor")
 {
     $localStorage.type="ILT Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="ILT Vendor";
 }
 else if($location.path()=="/add_stationary_vendor")
 {
   
     $localStorage.type="Stationary Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Stationary Vendor";
 }
 else if($location.path()=="/add_printing_vendor")
 {
   
     $localStorage.type="Printing Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Printing Vendor";
 }
 else if($location.path()=="/add_f&b_vendor")
 {
   
     $localStorage.type="f&b Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="f&b Vendor";
 }
 else if($location.path()=="/add_Travel_vendor")
 {
   
     $localStorage.type="Travel Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Travel Vendor";
 }
 /**/
 else if($location.path()=="/add_elearn_vendor")
@@ -208,14 +208,14 @@ else if($location.path()=="/add_elearn_vendor")
   
     $localStorage.type="ELearn Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="ELearn Vendor";
 }
 else if($location.path()=="/add_mlearn_vendor")
 {
   
     $localStorage.type="MLearn Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="MLearn Vendor";
 }
 else if($location.path()=="/addexternalvenue")
 {
@@ -251,8 +251,7 @@ else if($location.path()=="/addtrainerexternal")
  }
 console.log("LocalStorage:"+$localStorage.currentPath);
 
-console.log("vendor type::"+$localStorage.vendortype);
-console.log("trainer type::"+$localStorage.trainertype);
+console.log("vendor type::"+$localStorage.type);
 
 
  // $localStorage.currentPath=$location.path();

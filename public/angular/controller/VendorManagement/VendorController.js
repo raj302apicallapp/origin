@@ -2048,27 +2048,4 @@ $scope.sortcertification=function(){
 }
 
 
-
-$scope.checkPanCard=function(data)
-{  
-  if(angular.isDefined(data))
-  {
-        if(data.length>=10)
-        {
-              var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
-           if(regpan.test(data) == false)
-           {
-            $scope.pan_msg="Not Vaild Pan Number"
-           }
-            else
-           {
-             $scope.pan_msg=""
-           }
-        };
-       
-  };
-}
-  
-
-
 }); 
