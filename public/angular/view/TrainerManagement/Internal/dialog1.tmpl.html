@@ -24,65 +24,7 @@
   
        <!-- ROW 1 start -->
 <div layout="row" layout-xs="column">
- <div flex>
-  <md-autocomplete
-           md-no-cache="true"
-          md-selected-item="ctrl.selectedUser"
-          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
-          md-search-text="ctrl.searchUser"
-          md-selected-item-change="ctrl.selectedUserChange(item)"
-         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Name">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Fullname matching "{{ctrl.searchUser}}" were found.
-        </md-not-found>
-      </md-autocomplete> 
-  </div>
-  <div style="width:2%"></div>
-  <div flex>
-  <md-autocomplete
-           md-no-cache="true"
-          md-selected-item="ctrl.selectedUser"
-          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
-          md-search-text="ctrl.searchUser"
-          md-selected-item-change="ctrl.selectedUserChange(item)"
-         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="email">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Fullname matching "{{ctrl.searchUser}}" were found.
-        </md-not-found>
-      </md-autocomplete> 
-  </div>
-  <div style="width:2%"></div>
-  <div flex>
-  <md-autocomplete
-           md-no-cache="true"
-          md-selected-item="ctrl.selectedUser"
-          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
-          md-search-text="ctrl.searchUser"
-          md-selected-item-change="ctrl.selectedUserChange(item)"
-         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="phonenumber">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No User matching "{{ctrl.searchUser}}" were found.
-        </md-not-found>
-      </md-autocomplete> 
-  </div>
+
   <div style="width:2%"></div>
   <div flex>
       <md-autocomplete
