@@ -118,6 +118,7 @@ $scope.vendorSortIcon="arrow_drop_down";
 $scope.sortvendor=function(){
   if ($scope.vsortvendor==true) {
     $scope.orderList = "Firstname";
+    
     $scope.vsortvendor=false;
     $scope.vendorSortIcon="arrow_drop_up";
   }else{
@@ -127,31 +128,31 @@ $scope.sortvendor=function(){
   }
 }
 
-$scope.vsortType=true;
+$scope.vsorttype=true;
 $scope.typeSortIcon="arrow_drop_down";
 $scope.sorttype=function(){
 
-  if ($scope.vsortType==true) {
+  if ($scope.vsorttype==true) {
     $scope.orderList = "vendortype";
-    $scope.vsortType=false;
+    $scope.vsorttype=false;
     $scope.typeSortIcon="arrow_drop_up";
   }else{
     $scope.orderList = "-vendortype";
-    $scope.vsortType=true;
+    $scope.vsorttype=true;
     $scope.typeSortIcon="arrow_drop_down";
   }
 }
-$scope.vsortLocation=true;
+$scope.vsortlocation=true;
 $scope.locationSortIcon="arrow_drop_down";
 $scope.sortlocation=function(){
 
-  if ($scope.vsortLocation==true) {
+  if ($scope.vsortlocation==true) {
     $scope.orderList = "Country";
-    $scope.vsortLocation=false;
+    $scope.vsortlocation=false;
     $scope.locationSortIcon="arrow_drop_up";
   }else{
     $scope.orderList = "-Country";
-    $scope.vsortLocation=true;
+    $scope.vsortlocation=true;
     $scope.locationSortIcon="arrow_drop_down";
   }
 }
@@ -782,6 +783,44 @@ $scope.sorttype=function(){
   }
 }
 
- 
+ // date
+ {
+  $scope.start = new Date('11/20/13');
+  $scope.end = new Date();
+  
+  $scope.minStartDate = 0; //fixed date
+  $scope.maxStartDate = $scope.end; //init value
+  $scope.minEndDate = $scope.start; //init value
+  $scope.maxEndDate = $scope.end; //fixed date same as $scope.maxStartDate init value
+  
+  $scope.$watch('start', function(v){
+    $scope.minEndDate = v;
+  });
+  $scope.$watch('end', function(v){
+    $scope.maxStartDate = v;
+  });
+
+  $scope.openStart = function() {
+    $timeout(function() {
+      $scope.startOpened = true;
+    });
+  };
+
+  $scope.openEnd = function() {
+    $timeout(function() {
+      $scope.endOpened = true;
+    });
+  };
+
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+  };
+};
+
+
+
+
 
 });
+

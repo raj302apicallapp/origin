@@ -26,16 +26,8 @@
     <td>{{item.Firstname+item.Middlename+item.Lastname}}</td>
       <td>{{item.vendortype}}</td>
      <td>{{item.Country}}</td>
-
-
-
-    
-    
-   
-    <td class="actionclass"><md-button ng-click="removeVendor($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
-  </tr> 
-  
-  
+ <td class="actionclass"><md-button ng-click="removeVendor($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+  </tr>  
 </table>
   </div> 
 </div>
@@ -44,10 +36,10 @@
 <div style="padding-bottom:2%"></div>
 <!-- ROW last Starts -->
 <div class="row">
-        
-             <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
-        
-          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
-          </form>
+
+<md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+
+<md-button ng-disabled="!carrymodelForm.$valid"  ng-click="submitaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+</form>
 <!-- ROW last Ends -->
  <link href="assets/css/course.css" rel="stylesheet">

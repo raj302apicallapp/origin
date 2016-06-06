@@ -49,7 +49,6 @@ sendData.title = data;
     self.querySearchLanguage = querySearchLanguage;
     self.querySearchinternal   = querySearchinternal;
     self.querySearchvendor   = querySearchvendor;
-    self.querySearchEntity = querySearchEntity;
     self.querySearchGroup  = querySearchGroup;
     self.querySearchDepartment  = querySearchDepartment;
     self.querySearchFunction    = querySearchFunction;
@@ -117,7 +116,7 @@ function querySearchLanguage (query) {
     }
      function searchLanguageChange(text)
     {    
-      $scope.Language=OrganizationResponse;
+      $scope.Language=self.languageData;
               console.log('Text changed to ' + text);
        
     }
@@ -126,7 +125,7 @@ function querySearchLanguage (query) {
     $scope.selectedLanguagedata=item;
     if(item ==undefined)
     {    
-          $scope.Entity=OrganizationResponse;
+          $scope.Language = self.languageData;
            
            $scope.dis_group=true;
            $scope.dis_function=true;   
@@ -144,9 +143,9 @@ function querySearchLanguage (query) {
       { 
         
           $scope.dis_group=false;
-       $scope.carrymodel.Entity=item;
-      self.selectedEntity=item;
-       $scope.getGroupdata(self.selectedEntity,OrganizationResponse)
+       $scope.carrymodel.Language=item;
+      self.selectedLanguage=item;
+       $scope.getGroupdata(self.selectedLanguage,self.languageData)
      }
     }
 
@@ -544,10 +543,10 @@ function loadvendor() {
     }
     
     
-//Entity Fetch
-function querySearchEntity (query) {
+//Language Fetch
+function querySearchLanguage (query) {
       console.log("query::"+query);
-      var results = query ? self.entitys.filter( createFilterFor(query) ) : self.entitys,
+      var results = query ? self.languageData.filter( createFilterFor(query) ) : self.languageData,
           deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
@@ -896,5 +895,8 @@ function addElearnController($scope, $mdDialog) {
 
   
 }
+
+
+
 
 

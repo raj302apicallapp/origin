@@ -92,10 +92,10 @@
   <div class="row">
     <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
   </div> 
-<!-- ng-disabled="!carrymodel.selectcompetency" -->
+
   <div class="row">
       <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
-      <md-button   ng-click="nextaction(carrymodel)"    type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+      <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodel.selectcompetency"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
  </div>
 
 </form>

@@ -145,6 +145,11 @@ else if($location.path()=="/addassessment")
   console.log("location path"+$location.path());
     $localStorage.currentPath=$location.path();
 }
+else if($location.path()=="/assignassessment")
+{
+  console.log("location path"+$location.path());
+    $localStorage.currentPath=$location.path();
+}
 else if($location.path()=="/iltsession")
 {
   console.log("location path"+$location.path());
@@ -161,41 +166,41 @@ else if($location.path()=="/add_equipmentVendor")
 {
     $localStorage.type="Equipment Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Equipment Vendor";
 }
 else if($location.path()=="/add_ilt_vendor")
 {
     $localStorage.type="ILT Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="ILT Vendor";
 }
 else if($location.path()=="/add_stationary_vendor")
 {
   
     $localStorage.type="Stationary Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Stationary Vendor";
 }
 else if($location.path()=="/add_printing_vendor")
 {
   
     $localStorage.type="Printing Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Printing Vendor";
 }
 else if($location.path()=="/add_f&b_vendor")
 {
   
     $localStorage.type="f&b Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="f&b Vendor";
 }
 else if($location.path()=="/add_Travel_vendor")
 {
   
     $localStorage.type="Travel Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="Travel Vendor";
 }
 /**/
 else if($location.path()=="/add_elearn_vendor")
@@ -203,26 +208,28 @@ else if($location.path()=="/add_elearn_vendor")
   
     $localStorage.type="ELearn Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="ELearn Vendor";
 }
 else if($location.path()=="/add_mlearn_vendor")
 {
   
     $localStorage.type="MLearn Vendor";
     $localStorage.currentPath=$location.path();
-    $scope.carrymodel.vendortype=$localStorage.type;
+    $scope.carrymodel.vendortype="MLearn Vendor";
 }
 else if($location.path()=="/addexternalvenue")
 {
-  $localStorage.currentPath=$location.path();
-  $localStorage.type="External";
+   $localStorage.type="External";
   $scope.carrymodel.venuetype="External";
+  $localStorage.currentPath=$location.path();
+ 
 }
 else if($location.path()=="/addinternalvenue")
-{
-  $localStorage.currentPath=$location.path();
+{  
   $localStorage.type="Internal";
   $scope.carrymodel.venuetype="Internal";
+  $localStorage.currentPath=$location.path();
+  
 }
 else if($location.path()=="/iladd")
 {
@@ -244,6 +251,7 @@ else if($location.path()=="/addtrainerexternal")
   $localStorage.currentPath=$location.path();
    $scope.carrymodel.trainertype=="Freelance";
  }
+
  else if($location.path()=="/edittrainerinternal")
 {
    $localStorage.currentPath=$location.path();
@@ -259,10 +267,12 @@ else if($location.path()=="/edittrainerfreelance")
    $localStorage.currentPath=$location.path();
    $scope.carrymodel.trainertype=="Freelance"
 }
+
+ $localStorage.currentPath=$location.path();
+
 console.log("LocalStorage:"+$localStorage.currentPath);
 
-console.log("vendor type::"+$localStorage.vendortype);
-console.log("trainer type::"+$localStorage.trainertype);
+console.log("vendor type::"+$localStorage.type);
 
 
  // $localStorage.currentPath=$location.path();
@@ -284,13 +294,21 @@ var a1=['Basic Info','Pre/Post Work','TargetAudience','Competency & tags','Appro
 var a2="angular/view/CourseManagement/addcourse/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
-}else if($localStorage.currentPath=="/addinternalvenue"){
+}
+else if($localStorage.currentPath=="/editinternalvenue" ){
+console.log("dfrefref");
 var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
 var a2="angular/view/VenueManagement/addinternal/";
 $scope.currentPath=a2;
 $scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
 } 
-else if($localStorage.currentPath=="/addexternalvenue"){
+else if($localStorage.currentPath=="/addinternalvenue" || $localStorage.currentPath=="/editinternalvenue" ){
+var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
+var a2="angular/view/VenueManagement/addinternal/";
+$scope.currentPath=a2;
+$scope.ConfigureWizard(a1,a2);//a1,a2 are your parameters
+} 
+else if($localStorage.currentPath=="/addexternalvenue" || $localStorage.currentPath=="/editexternalvenue"){
 var a1=['Basic Info','Equipment Info','Location Info','Contact Info'];
 var a2="angular/view/VenueManagement/addinternal/";
 $scope.currentPath=a2;
@@ -416,6 +434,13 @@ else if($localStorage.currentPath=="/addelearn"){
   console.log("addassessment");
     var a1=['Basic Info','Assessment Questions','Assessment Options'];
     var a2="angular/view/AssessmentManagement/Assessment/";
+    $scope.currentPath=a2;
+    $scope.ConfigureWizard(a1,a2);
+  }
+  else if($localStorage.currentPath=="/assignassessment"){
+  console.log("addassessment");
+    var a1=['Basic Info','Assessment Questions','Assessment Options','Assessment','Assignassessment'];
+    var a2="angular/view/Assign Assessment/";
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
   }

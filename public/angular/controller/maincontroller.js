@@ -275,6 +275,12 @@ when('/addassessment',
     controller: 'dashctrl'  
 }).
 
+when('/assignassessment',
+  {
+    templateUrl: 'angular/view/wizard.html', 
+    controller: 'dashctrl'  
+}).
+
 //QuestionBank
 when('/addquestion',
 {
