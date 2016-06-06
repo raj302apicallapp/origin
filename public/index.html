@@ -56,7 +56,7 @@
 	<!-- Pagination -->
 <script src="angular/directives/dirPagination.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js"></script>
-	
+<script type="text/javascript" src="mylib/wraptable/table.js"></script>
 
 
 <!-- Vendor management -->
@@ -128,7 +128,7 @@
 
 
 <script src="angular/service/MasterService/masterdataService.js"></script>
-
+<script src="mylib/wraptable/tableService.js"></script>
 
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/iamisti/mdDataTable/master/dist/md-data-table-style.css">
 <script type="text/javascript" src="https://rawgit.com/iamisti/mdDataTable/master/dist/md-data-table.js"></script>
@@ -1008,74 +1008,37 @@ Device Management</a></li>
     </ul>
 
   </li>	
-
-
-<!-- Report Admin -->
-	<!-- /page kits -->
-
-							
-						</div>
-					</div>
-					<!-- /main navigation -->
-
-				</div>
+	</div>
+	</div>
+	<!-- /main navigation -->
+		</div>
 			</div>
 			<!-- Main sidebar Ends -->
-
-
 			<!-- Main content -->
 			<div class="content-wrapper">
-
-				<!-- Page header -->
-				<!-- <div class="page-header">
-					<div class="page-header-content">
-						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
-						</div>
-					</div>
-
-					<div class="breadcrumb-line">
-						<ul class="breadcrumb">
-							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li class="active">Dashboard</li>
-						</ul>
-					</div>
-				</div> -->
-				<!-- /page header -->
-
-
-				<!-- Content area -->
+			<!-- Content area -->
 				<div class="content">
-
-					<!-- Main charts -->
+				<!-- Main charts -->
 					<div class="row">
 						<!-- view -->
 					<div ng-view>
 					</div>
-						
 					</div>
 					<!-- /main charts -->
-
 					<!-- Footer -->
 					<div class="footer text-muted">
 						&copy; 2016. <a href="#">LMS</a>
 					</div>
 					<!-- /footer -->
-
 				</div>
 				<!-- /content area -->
-
 			</div>
 			<!-- /main content -->
-
 		</div>
 		<!-- /page content -->
-
 	</div>
 	<!-- /page container -->
-
 </body>
-
 
 <style type="text/css">
 .material-icons {

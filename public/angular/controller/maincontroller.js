@@ -113,11 +113,7 @@ when('/mastermOrganization',
   templateUrl:'angular/view/mOrganization/Content.html',
   controller:'organizationCtrl'
 }).
-when('/mEntity',
-{
-  templateUrl:'angular/view/MasterManagement/Organization/entity.html',
-  controller:'entityCtrl'
-}).
+
 when('/mGroup',
 {
   templateUrl:'angular/view/mOrganization/MasterPages/mGroup.html',
@@ -346,6 +342,11 @@ when('/announcements',
   controller: 'maincontroller'
 }).
 
+when('/mEntity',
+{
+  templateUrl:'mylib/wraptable/table.html',
+  controller:'entityCtrl'
+}).
 otherwise({
         redirectTo: '/'
       });

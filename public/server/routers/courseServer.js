@@ -18,9 +18,9 @@ router.use(session({
     saveUninitialized: true
 }));
 
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']);
+var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1jls', ['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']);
 
- var sess="";
+ var sess="";	
 
 router.post('/upload', function (req,res) {
 	console.log(req.body);
