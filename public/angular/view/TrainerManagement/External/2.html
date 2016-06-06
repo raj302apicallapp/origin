@@ -12,15 +12,21 @@
    <div flex>
       <table class="responstable">
   <tr>
-    <th>Vendor Name</th>
-    <th >Location</th>
+
+    <th data-th="vendor details" ng-click="sortvendorname()">Vendor Name<md-icon class="material-icons"><i class="material-icons">{{vendorname_SortIcon}}</i></md-icon></th>
+    <th ng-click="sortlocation()">Location<md-icon class="material-icons"><i class="material-icons">{{location_SortIcon}}</i></md-icon></th>
+    <th ng-click="sortvendortype()">Vendor Type<md-icon class="material-icons"><i class="material-icons">{{vendortype_SortIcon}}</i></md-icon></th>
+    
+    
     
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
   
   <tr ng-repeat="item in carrymodel.selectvendor">
-     <td>{{item.Firstname}}</td>
+    <td>{{item.Firstname+item.Middlename+item.Lastname}}</td>
+      <td>{{item.vendortype}}</td>
      <td>{{item.Country}}</td>
+
 
 
     

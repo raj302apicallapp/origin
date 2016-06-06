@@ -1,96 +1,103 @@
-<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5> 
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
+
 <form name="carrymodelForm" ng-controller="addTrainerCtrl as ctrl" ng-init="compInit()">
-<!-- ROW 1 Starts -->
-<div layout="row" layout-xs="column">
-<div flex>
-<h3></h3>
-   <md-button ng-click="showAdvancedCompetency($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Add Competency & Skills</md-button>
-</div>
-</div>
-<div layout="row" layout-xs="column">
 
-   <div flex>
-      <table class="responstable">
-  <tr>
-    <th>competency</th>
-    <th >Subcompetency</th>
-    <th>skills </th>
-    <th colspan="4" style="text-align:center;">Action</th>
-  </tr>
-  
-  <tr ng-repeat="item in carrymodel.selectcompetency | filter: example">
-     <td>{{item.competency}}</td>
-     <td>{{item.sub_competency}}</td>
-     <td>{{item.skills}}</td>
-
-    
-    
-   
-    <td class="actionclass"><md-button ng-click="removeCompetency($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
-  </tr> 
-  
-  
-</table>
-  </div> 
-</div>
-<!-- ROW 1 Ends -->
-
- <!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
-  <div flex ng-disabled="true">
-       <md-chips
-        ng-model="carrymodel.tags"
-        readonly="ctrl.readonly"
-        placeholder="Enter a tag"
-        delete-button-label="Remove Tag"
-        delete-hint="Press delete to remove tag"
-        secondary-placeholder="+Tag"
-        ></md-chips>
+  <div layout="row" layout-xs="column">
+      <div flex>
+          <h3></h3>
+             <md-button ng-click="showAdvancedCompetency($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Add Competency & Skills</md-button>
+      </div>
   </div>
-  
-</div>
-<!-- ROW 3 Ends -->
-<!-- ROW 4 Starts -->
-<div layout="row" layout-xs="column">
-<div flex>
-<h3></h3>
-   <md-button ng-click="showAdvancedCertification($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Pick Certification</md-button>
-</div>
-</div>
-<div layout="row" layout-xs="column">
 
-   <div flex>
+  <div style="padding-bottom:1%"></div>
+  <div layout="row" layout-xs="column" ng-init="perPagecom=5">
+    <div flex>
+        <md-input-container class="md-block" style="float:right">
+        <label style="text-style:bold;text-color:black">Item Per Page</label>
+        <input type="number"   ng-model="perPagecom">
+        </md-input-container>
+    </div>
+   </div>      
+  <div layout="row" layout-xs="column">
+      <div flex>
       <table class="responstable">
-  <tr>
-    <th>certifying Author</th>
-    <th >certification</th>
-    <th colspan="4" style="text-align:center;">Action</th>
-  </tr>
-  
-  <tr ng-repeat="item in carrymodel.selectcertification">
-    <td>{{item.Certifying_Authority}}</td>
-     <td>{{item.Certification}}</td>
-    
-    
-   
-    <td class="actionclass"><md-button ng-click="removeCertification($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
-  </tr> 
-  
-  
-</table>
+        <tr>
+          <th data-th="Competency details" ng-click="sortcompetency()">Competency<md-icon class="material-icons"><i class="material-icons">{{competencySortIcon}}</i></md-icon></th>
+          <th ng-click="sortsubcompetency()">Sub Competency<md-icon class="material-icons"><i class="material-icons">{{subcompetencySortIcon}}</i></md-icon></th>
+          <th ng-click="sortsskills()">Skill<md-icon class="material-icons"><i class="material-icons">{{skillsSortIcon}}</i></md-icon></th>
+
+          <th colspan="4" style="text-align:center;">Action</th>
+        </tr>
+
+        <tr ng-repeat="item in carrymodel.selectcompetency | filter: example | itemsPerPage : perPagecom">
+            <td>{{item.competency}}</td>
+            <td>{{item.sub_competency}}</td>
+            <td>{{item.skills}}</td>    
+            <td class="actionclass"><md-button ng-click="removeCompetency($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+        </tr> 
+      </table>
+    </div> 
+  </div>
+  <div class="row">
+    <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+    </div> 
+  <div style="padding-bottom:1%"></div>
+  <div layout="row" layout-xs="column" >
+<!-- ng-show="addskill" -->
+  <div flex >
+      <md-contact-chips
+        ng-model="carrymodel.tags"
+        md-contacts="ctrl.delayedQuerySearchTags($query)"
+        md-contact-name="name"
+        md-require-match="true"
+        md-highlight-flags="i"
+        filter-selected="ctrl.filterSelected"
+        placeholder="Tags"
+        secondary-placeholder="Tags">
+    </md-contact-chips>
   </div> 
 </div>
-<!-- ROW 4 Ends -->
+  <div style="padding-bottom:3%"></div>
+    <div layout="row" layout-xs="column">
+      <div flex>
+         <md-button ng-click="showAdvancedCertification($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Pick Certification</md-button>
+      </div>
+    </div>
+  <div layout="row" layout-xs="column" ng-init="perPages=5">
+    <div flex>
+        <md-input-container class="md-block" style="float:right">
+          <label style="text-style:bold;text-color:black">Item Per Page</label>
+          <input type="number"   ng-model="perPages">
+         </md-input-container>
+    </div>
+   </div>  
+  <div layout="row" layout-xs="column">
+   <div flex>
+        <table class="responstable">
+        <tr>
+           <th ng-click="sortcertifying_authority()"><span>Certifying Authority <md-icon class="material-icons"><i class="material-icons">{{certifying_authority_SortIcon}}</i></md-icon></span></th>
+          <th ng-click="sortcertification()">Certification<md-icon class="material-icons"><i class="material-icons">{{certification_SortIcon}}</i></md-icon></th>
+          <th colspan="4" style="text-align:center;">Action</th>
+        </tr>
+        
+        <tr ng-repeat="item in carrymodel.selectcertification | itemsPerPage: perPages | filter : certf">
+            <td>{{item.Certifying_Authority}}</td>
+            <td>{{item.Certification}}</td>
+            <td class="actionclass"><md-button ng-click="removeCertification($index)" aria-label="Info"><md-icon class="material-icons">cancel</md-icon></md-button></td>
+        </tr> 
+    </table>
+    </div> 
+  </div>
+
+  <div class="row">
+    <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  </div> 
+
+  <div class="row">
+      <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
+      <md-button   ng-click="submitaction(carrymodel)"  ng-disabled="!carrymodel.selectcompetency"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+ </div>
 
 </form>
-<div style="padding-bottom:2%"></div>
-<!-- ROW last Starts -->
-<div class="row">
-        
-          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
-        
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
-        
-</div>
-<!-- ROW last Ends -->
+
  <link href="assets/css/course.css" rel="stylesheet">

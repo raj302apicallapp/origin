@@ -206,7 +206,7 @@ when('/addtrainerfreelance',
 }).
 when('/edittrainerinternal',
 {
-   templateUrl: 'angular/view/wizard.html', 
+   templateUrl: 'angular/view/TrainerManagement/Internal/addtrainerinternal.html', 
   controller: 'dashctrl'
 }).
 when('/edittrainerexternal',

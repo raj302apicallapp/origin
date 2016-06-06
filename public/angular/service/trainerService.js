@@ -2,11 +2,13 @@ var app=angular.module('app');
 app.factory('trainerService',function ($http,$window) {
 return{
 
-    updatetrainerdatas:function(savedata){
+    updatetrainerdatamanage:function(savedata){
   
       console.log("trainerService"+JSON.stringify(savedata));
-    var promise = $http.post('/updateVendordatas',savedata).then(function(response){
+      
+    var promise = $http.post('/updatetrainerdatamanage',savedata).then(function(response){
         console.log("Service response"+JSON.stringify(response));
+        alert("fr"+JSON.stringify(response))
         return response;
       });
       return promise; 
@@ -14,7 +16,8 @@ return{
     },
 
 addTrainer:function(savedata){
-  savedata.trainerstatus=1;
+
+    savedata.trainerstatus=1;
      savedata.addeddate=new Date();
   var services = $http.post('/addtrainerdata',savedata).then(function(response)
   { 
@@ -37,6 +40,15 @@ Ontraineremailcheck:function(data)
 {
   console.log("data"+JSON.stringify(data))
   var email=$http.post('/Ontraineremailcheck',data).then(function(response)
+  {
+    return response;
+  });
+  return email;
+},
+Ontrainerphonecheck:function(data)
+{
+  console.log("data"+JSON.stringify(data))
+  var email=$http.post('/Ontrainerphonecheck',data).then(function(response)
   {
     return response;
   });
@@ -159,6 +171,16 @@ getVendor:function(activestatus){
       return promise; 
     }
   
+},
+getTags:function()
+{
+  var data=$http.get('/getTags').then(function(response)
+  {
+    return response;
+
+  });
+  
+  return data;
 },
 }
 });

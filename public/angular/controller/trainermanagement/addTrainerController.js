@@ -19,6 +19,7 @@ var cert_duplicate=false;
 var certification_array=[];
 var competencyarray=[];
 var Competency={};
+var skillarr=[];
 
 
 app.controller("addTrainerCtrl",function($scope,$location,$localStorage,$filter,$log,$mdDialog, $mdMedia,$q,$timeout,trainerService)
@@ -97,7 +98,9 @@ console.log("location path::"+$location.path());
              console.log("Trainer TYPE::"+trainertype)
         }
 
+
   }
+
    else if($location.path() == "/managetrainer")
   {
      
@@ -142,6 +145,16 @@ $scope.editTrainer=function(item)
       $localStorage.editonlypass="/edittrainerexternal";
       $localStorage.currentPath="/edittrainerexternal"
       $location.path("/edittrainerexternal");   
+      }
+      else if(editableJSon.trainertype=="Freelance")
+     {  
+     $localStorage.type="Freelance";
+      $scope.carrymodel=editableJSon;
+      // $scope.nexts=false;
+      console.log("edit Freelance trainertype::"+JSON.stringify(editableJSon));
+      $localStorage.editonlypass="/edittrainerfreelance";
+      $localStorage.currentPath="/edittrainerfreelance"
+      $location.path("/edittrainerfreelance");   
       }
    }
 //*****************************end edit function****************************************//
@@ -192,9 +205,9 @@ console.log("ok"+JSON.stringify(answer));
 for(var i=0;i<answer.length;i++){
 answerarr.push(answer[i]);
 }
-$scope.carrymodel.selectemployee=answerarr;
+$scope.carrymodel.trainer=answerarr;
 
-console.log("Answer::"+JSON.stringify($scope.carrymodel.selectemployee));
+console.log("Answer::"+JSON.stringify($scope.carrymodel.trainer));
 },function() {
 $scope.status = 'You cancelled the dialog.';
 });
@@ -287,6 +300,17 @@ console.log("activestatus"+activestatus);
 trainerService.getTrainer(activestatus).then(function(response) {
 
 $scope.getInternalTrainer=response.data;
+    JobfamilyResponse=response.data;
+    JobroleResponse=response.data;
+    TagsResponse=response.data;
+     OrganizationResponse=response.data;
+    // $scope.getEntitydata(response.data);
+ $scope.getJobfamilydata(response.data);
+ $scope.getTagss(response.data);
+ 
+    $scope.getEntitydata(response.data);
+    
+  
 
 
 $scope.isLoading=false;
@@ -322,7 +346,7 @@ $scope.activestatus=false;
 $scope.getTrainer();
 
 $scope.removeTrainer=function(vindex){
-      $scope.carrymodel.selectemployee.splice(vindex,1);
+      $scope.carrymodel.trainer.splice(vindex,1);
     }
 
 //***************************pick employee ends************************//
@@ -729,7 +753,18 @@ activestatus=$scope.activestatus;
 console.log("activestatus"+activestatus);
 trainerService.getVendor(activestatus).then(function(response) {
 
+  // vendortypeResponse=response.data;
+    // $scope.getEntitydata(response.data);
+ 
 $scope.getInternalVendor=response.data;
+ vendortypeResponse=response.data;
+$scope.getvendorTypedata(response.data);
+ 
+
+
+  LocationResponse=response.data;
+    $scope.getCountry(response.data);
+    // $scope.getCountryList(response.data);
 $scope.isLoading=false;
 if (prereqFlag==true) {
 
@@ -793,6 +828,7 @@ $scope.removeVendor=function(vindex){
           $scope.isLoading=true;
        
          $scope.getTrainerList=response.data;
+
          $scope.getTrainerType(response.data);
          trainerResponse=response.data;
          
@@ -858,8 +894,8 @@ $scope.removeVendor=function(vindex){
    }
    else if($location.path()=="/edittrainerinternal")
     {                                        
-      console.log("edit trainer::"+JSON.stringify($scope.carrymodel));
-      trainerService.updatetrainerdatas($scope.carrymodel).then(function(response) 
+     console.log("edit trainer::"+JSON.stringify($scope.carrymodel));
+      trainerService.updatetrainerdatamanage($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -870,7 +906,7 @@ $scope.removeVendor=function(vindex){
      else if($location.path()=="/edittrainerexternal")
     {                                        
       console.log("edit trainer::"+JSON.stringify($scope.carrymodel));
-      trainerService.updatetrainerdatas($scope.carrymodel).then(function(response) 
+      trainerService.updatetrainerdatamanage($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -881,7 +917,7 @@ $scope.removeVendor=function(vindex){
         else if($location.path()=="/edittrainerfreelance")
     {                                        
       console.log("edit trainer::"+JSON.stringify($scope.carrymodel));
-      trainerService.updatetrainerdatas($scope.carrymodel).then(function(response) 
+      trainerService.updatetrainerdatamanage($scope.carrymodel).then(function(response) 
       {
           console.log(response);
          if (response) {
@@ -925,6 +961,7 @@ $scope.removeVendor=function(vindex){
 // *********************** duplicate check ***************************//
   $scope.Ontraineremailcheck=function(data)
     { 
+
 if(data==undefined)
        {
          $scope.Trainer_emailStatus="";
@@ -936,7 +973,7 @@ if(data==undefined)
        console.log("Trainer_email"+JSON.stringify(email));
        trainerService.Ontraineremailcheck(email).then(function(response)
        {
-      console.log(JSON.stringify(response.data));
+      alert(JSON.stringify(response.data));
        if(response.data=="Exists")
        {
           $scope.Trainer_emailStatus="Email ID Already Exists";
@@ -952,11 +989,44 @@ if(data==undefined)
 
      }
     }
+
+$scope.Ontrainerphonecheck=function(data)
+    { 
+
+if(data==undefined)
+       {
+         $scope.Trainer_phoneStatus="";
+       }
+       else
+       {
+       var phone={};
+       phone.Trainer_phone=data;
+       console.log("Trainer_phone"+JSON.stringify(phone));
+       trainerService.Ontrainerphonecheck(phone).then(function(response)
+       {
+      alert(JSON.stringify(response.data));
+       if(response.data=="Exists")
+       {
+          $scope.Trainer_phoneStatus="Phone NumberAlready Exists";
+          $scope.Trainer_phoneStatusStyle="text-danger";
+       }
+       else
+       {
+          $scope.Trainer_phoneStatus="Available";
+          $scope.Trainer_phoneStatusStyle="text-success";
+       }
+
+       });
+
+     }
+    }
 //*********************** dupliacate check end ***********************//
 
 var self = this;
 this.dis_skills=true;
 this.dis_subcompetency=true;
+this.dis_Jobrole=true;
+
 
     // self.querySearchuser=querySearchuser;
     // self.searchuserChange=searchuserChange;
@@ -1330,26 +1400,826 @@ function searchTypeChange(text)
     }
 
 
+//******************************** ENTITY GROUP  FUNCTION DEPARTMENT ***************************//
+
+
+
+
+// ************************** JOB FAMILY JOB ROLE STARTS*********************************//
+
+
+
+    self.querySearchJobfamily   = querySearchJobfamily;
+    self.selectedJobfamilyChange = selectedJobfamilyChange;
+    self.searchJobfamilyChange   = searchJobfamilyChange;
+
+     
+ 
+
+   $scope.getJobfamilydata=function(getResponse)
+   {
+
+      $scope.JobfamilyList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {
+       console.log("datas::"+JSON.stringify(getResponse));
+       if ($scope.JobfamilyList.indexOf(getResponse[i].Jobfamily) == -1) 
+        {
+          // console.log("CompetencyList"+JSON.stringify($scope.CompetencyList.push(getResponse[i].competency)))
+         $scope.JobfamilyList.push(getResponse[i].Jobfamily);
+        }
+     }
+       console.log("Jobfamily List::"+$scope.JobfamilyList);
+      self.Jobfamilydata=$scope.JobfamilyList;
+   }
+
+   function querySearchJobfamily(query) 
+ {     
+  
+
+  console.log("datas::"+JSON.stringify(self.Jobfamilydata));
+      console.log("sr::"+query); 
+      var results = query ? self.Jobfamilydata.filter( createFilterFor(query) ) : self.Jobfamilydata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchJobfamilyChange(text)
+    {    $scope.Jobfamily=JobfamilyResponse;
+              $log.info('Text changed to ' + text);
+              // this.searchSubCompetency="";
+      
+    }
+  function selectedJobfamilyChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    if(item ==undefined)
+    {    
+          $scope.Jobfamily=JobfamilyResponse;
+         // self.subcompetency="";
+         
+         self.searchJobrole="";
+         
+         this.dis_Jobrole=true;
+         
+    }
+      else{
+        this.dis_Jobrole=false;
+      
+       $scope.Jobfamily=($filter('filter')($scope.Jobfamily, {Jobfamily: item}));
+       $scope.Jobfamilyfliter=$scope.Jobfamily;
+       console.log(JSON.stringify($scope.Jobfamily))
+       $scope.getJobroledata(item,JobfamilyResponse);
+       console.log();
+       $scope.org=item;
+       
+       ;
+       
+     }
+    }
+
+
+    self.querySearchJobrole   = querySearchJobrole;
+    self.selectedJobroleChange = selectedJobroleChange;
+    self.searchJobroleChange   = searchJobroleChange;
+    
+
+  
+    $scope.getJobroledata=function(selectedJobfamily,getResponse)
+    {    $scope.Jobfamily=$scope.Jobfamilyfliter;
+      console.log("selectedJobfamily::"+JSON.stringify(selectedJobfamily))
+    console.log("JobfamilyResponse"+JSON.stringify(getResponse))
+      // console.log("subcompetency competency get::"+selectedCompetency);
+      /*bhuvanesh*/
+      
+      $scope.JobroleList=[];
+      for (var i = 0;i<getResponse.length;i++) {
+        // console.log(selectedCompetency+"="+getResponse[i].competency);
+        if (selectedJobfamily==getResponse[i].Jobfamily) {
+          if ($scope.JobroleList.indexOf(getResponse[i].jobrole) == -1) {
+            $scope.JobroleList.push(getResponse[i].jobrole);
+            }
+        };
+        
+      };
+      self.Jobrole=$scope.JobroleList;
+      
+      console.log("Jobrole List::"+self.Jobrole);
+  }
+   
+   function querySearchJobrole (query) {
+    console.log("Jobrole::"+query); 
+      var results = query ? self.Jobrole.filter( createFilterFor(query) ) : self.Jobrole,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+    function searchJobroleChange(text) {
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedJobroleChange(item) {
+    if(item == undefined)
+    {  
+      $scope.Jobfamily=$scope.Jobfamilyfliter;
+        
+    } 
+   else{
+       self.selectedJobrole=item;
+      console.log("JobroleResponse"+JSON.stringify(self.selectedJobrole))
+      $scope.Jobfamily= ($filter('filter')($scope.Jobfamilyfliter,{jobrole:self.selectedJobrole})); 
+        $scope.Jobrolefilter=$scope.Jobfamily;
+      
+      $scope.org=item;
+     }
+    }
+
+
+
+// tags auto complete
+
+
+
+   self.querySearchTagss=querySearchTagss;
+    self.searchTagsChange=searchTagsChange;
+    self.selectedTagsChange=selectedTagsChange;
+
+
+ $scope.getTagss=function(getResponse)
+    {
+      $scope.tagsList=[];
+      
+      for(var i= 0;i<getResponse.length;i++)
+      {
+        if($scope.tagsList.indexOf(getResponse[i].tags) == -1)
+        {
+          $scope.tagsList.push(getResponse[i].tags);
+        }
+      }
+      console.log("tags List::"+$scope.tagsList);
+      self.tagsdatas=$scope.tagsList;
+    }
+function querySearchTagss (query) 
+ {
+      console.log("sr::"+query); 
+      var results = query ? self.tagdatas.filter( createFilterFor(query) ) : self.tagsdatas,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+  }
+function searchTagsChange(text) 
+  {
+      $log.info('Text changed to ' + text);
+   }
+  function selectedTagsChange(item) 
+    {
+      $log.info('Type changed to ' + JSON.stringify(item));  
+      if(item==undefined)
+      {
+        $scope.TagsList=TagsResponse;
+        
+       
+      }
+      else{
+        
+        
+      self.selectedTags=item;
+      console.log("SelectedTags::"+JSON.stringify(self.selectedTags))
+      $scope.gettagsList = ($filter('filter')($scope.TagsList, {tags: self.tags}));
+      $scope.tagsdatas=$scope.gettagsList;
+      // alert(JSON.stringify($scope.vendortypedatas));
+       console.log("Trainer Data"+JSON.stringify($scope.tagsdatas))
+       // $scope.getCountryList(item,vendorResponse);
+         $scope.org=item;
+     }
+    }
+
+// VENDOR TYPE AUTOCOMPLETE
+
+   self.querySearchVType=querySearchVType;
+    self.searchVTypeChange=searchVTypeChange;
+    self.selectedVTypeChange=selectedVTypeChange;
+
+$scope.getvendorTypedata=function(getResponse)
+    {
+      $scope.getvendortypeList=[];
+      
+      for(var i= 0;i<getResponse.length;i++)
+      {
+        if($scope.getvendortypeList.indexOf(getResponse[i].vendortype) == -1)
+        {
+          $scope.getvendortypeList.push(getResponse[i].vendortype);
+        }
+      }
+      console.log("vendor type List::"+JSON.stringify($scope.getvendortypeList));
+      self.vendortypedatas=$scope.getvendortypeList;
+    }
+
+function querySearchVType(query) 
+ {
+      console.log("sr::"+query); 
+      var results = query ? self.vendortypedatas.filter( createFilterFor(query) ) : self.vendortypedatas,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+  }
+function searchVTypeChange(text) 
+  {
+      $log.info('Text changed to ' + text);
+   }
+  function selectedVTypeChange(item) 
+    {
+      $log.info('Type changed to ' + JSON.stringify(item));  
+      if(item==undefined)
+      {
+        $scope.getvendortypeList=vendortypeResponse;
+        // this.dis_Country=true;
+       
+      }
+      else{
+        // this.dis_Country=false;
+        
+      self.selectedType=item;
+      console.log("SelectedType::"+JSON.stringify(self.selectedType))
+      $scope.getvendortypeList = ($filter('filter')($scope.getvendortypeList, {vendortype: self.selectedType}));
+      $scope.vendortypedatas=$scope.getvendortypeList;
+      // alert(JSON.stringify($scope.vendortypedatas));
+       console.log("vendor type Data"+JSON.stringify($scope.vendortypedatas))
+       $scope.ven=item;
+       // $scope.getCountryList(item,vendorResponse);
+     }
+    }
+
+// COUNTRY STATE CITY AUTOCOMPLETE
+
+ 
+    self.querySearchCountry   = querySearchCountry;
+    self.selectedCountryChange = selectedCountryChange;
+    self.searchCountryChange   = searchCountryChange;
+  
+    self.querySearchState   = querySearchState;
+    self.selectedStateChange = selectedStateChange;
+    self.searchStateChange   = searchStateChange;
+
+    self.querySearchCity   = querySearchCity;
+    self.selectedCityChange = selectedCityChange;
+    self.searchCityChange   = searchCityChange;
+
+   
+      
+$scope.getCountry=function(getResponse){
+  $scope.CountryList=[];
+  for (var i = 0;i<getResponse.length;i++) {
+    if ($scope.CountryList.indexOf(getResponse[i].Country) == -1) {
+    $scope.CountryList.push(getResponse[i].Country);
+    }
+  };
+  console.log("Country List::"+$scope.CountryList);
+  console.log("selectedItem");
+  self.countries=$scope.CountryList;
+
+}
+
+$scope.getState=function(SelectedCountry,getResponse){
+  
+  
+  console.log("Statte get::"+JSON.stringify(getResponse));
+  console.log("state Country get::"+SelectedCountry);
+  $scope.StateList=[];
+  for (var i = 0;i<getResponse.length;i++) {
+    console.log(SelectedCountry+"="+getResponse[i].Country);
+    if (SelectedCountry==getResponse[i].Country) {
+      if ($scope.StateList.indexOf(getResponse[i].State) == -1) {
+        $scope.StateList.push(getResponse[i].State);
+        }
+    };
+    
+  };
+  self.states=$scope.StateList;
+  console.log("State List::"+self.states);
+}
+$scope.getCity=function(SelectedState,getResponse){
+  $scope.CityList=[];
+  for (var i = 0;i<getResponse.length;i++) {
+    if (SelectedState==getResponse[i].State) {
+      console.log(SelectedState+"="+getResponse[i].State);
+      self.selectedState=$scope.State;
+    
+      if ($scope.CityList.indexOf(getResponse[i].City) == -1) {
+        $scope.CityList.push(getResponse[i].City);
+        }
+    };
+  };
+  self.Cities=$scope.CityList;
+  console.log("City List::"+$scope.CityList);
+}
+
+
+
+  function querySearchCountry (query) 
+ {
+      console.log("sr::"+query); 
+      var results = query ? self.countries.filter( createFilterFor(query) ) : self.countries,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+  }
+    function querySearchState (query) {
+    console.log("state::"+JSON.stringify(self.states)); 
+      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+    function querySearchCity (query) {
+    console.log("state::"+query);
+      var results = query ? self.Cities.filter( createFilterFor(query) ) : self.Cities,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+    function searchCountryChange(text) {
+       
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedCountryChange(item) {
+      if(item== undefined){
+        this.dis_City=true;
+       this.dis_State=true;
+
+      self.selectedState="";
+      self.searchState="";
+      self.selectedCity="";
+        self.searchCity="";
+      }
+    else{
+       // this.dis_City=false;
+       this.dis_State=false;
+      $log.info('Country changed to ' + JSON.stringify(item));
+      $scope.Country=item;
+      self.selectedCountry=$scope.Country;
+    
+console.log("SelectedCountry::"+JSON.stringify($scope.Country))
+       $scope.getState(item,LocationResponse);
+       $scope.ven=item;
+     }
+    }
+    
+    function searchStateChange(text) {
+      $log.info('Text changed to ' + text);
+
+    }
+    function selectedStateChange(item) {
+      console.log("changed states")
+      if(item == undefined)
+      {
+        this.dis_City=true;
+        self.selectedCity="";
+        self.searchCity="";
+      }
+      else
+      { 
+        this.dis_City=false;
+      $log.info('State changed to ' + JSON.stringify(item));
+            $scope.State=item;
+  console.log("SelectedState::"+JSON.stringify($scope.State))
+      $scope.getCity(item,LocationResponse);
+      $scope.ven=item;
+
+    }
+  }
+    function searchCityChange(text) {
+      $log.info('Text changed to ' + text);
+      
+    }
+    function selectedCityChange(item) {
+      if(item == undefined)
+      {   
+          this.dis_Building=true;
+          this.dis_Floor=true;
+           self.selectedBuilding="";
+        self.searchBuilding="";
+        self.selectedFloor="";
+        self.searchFloor="";
+      }
+      else{
+        this.dis_Building=false;
+          this.dis_Floor=false;
+            $scope.City=item;
+            self.selectedCity=$scope.City;
+            $scope.autocompletefill=false;
+  console.log("selectedCity::"+JSON.stringify($scope.City))
+      $log.info('City changed to ' + JSON.stringify(item));
+      $scope.ven=item;
+   }
+       }
+
+
+
+
+/// Organisation master
+
+$scope.dis_group=true;
+   $scope.dis_function=true;
+   $scope.dis_entity=false;
+   $scope.editentity=1;
+
+
+/*Org*/
+ 
+    // $scope.mOrganizationdata= $scope.mOrganization;
+    // $scope.contentdata();
+ 
+     self.querySearchEntity   = querySearchEntity;
+    self.selectedEntityChange = selectedEntityChange;
+    self.searchEntityChange   = searchEntityChange;
+    // Group
+    self.querySearchGroup   = querySearchGroup;
+    self.selectedGroupChange = selectedGroupChange;
+    self.searchGroupChange   = searchGroupChange;
+    // Function
+    self.querySearchFunction   = querySearchFunction;
+    self.selectedFunctionChange = selectedFunctionChange;
+    self.searchFunctionChange   = searchFunctionChange;
+
+
+  
+   /*bhuvanesh*/
+   $scope.getEntitydata=function(getResponse)
+   {
+      $scope.EntityList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {  
+       if ($scope.EntityList.indexOf(getResponse[i].Entity) == -1) 
+        {
+         $scope.EntityList.push(getResponse[i].Entity);
+        }
+     }
+       console.log("Entity List::"+$scope.EntityList);
+      self.Entitydata=$scope.EntityList;
+   }
+
+   function querySearchEntity (query) 
+ {     
+  console.log("datas::"+JSON.stringify(self.Entitydata));
+      console.log("sr::"+query); 
+       // query=UpperCase(query);
+      var results = query ? self.Entitydata.filter( createFilterFor(query) ) : self.Entitydata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchEntityChange(text)
+    {    
+      // $scope.Entity=OrganizationResponse;
+              console.log('Text changed to ' + text);
+       
+    }
+  function selectedEntityChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    $scope.selectedEntitydata=item;
+    if(item ==undefined)
+    {    
+          $scope.Entity=OrganizationResponse;
+           
+           $scope.dis_group=true;
+           $scope.dis_function=true;   
+           self.selectedGroup="";
+           self.searchGroup="";
+           $scope.GroupList="";
+           $scope.mOrg="";
+           self.selectedFunction="";
+          self.searchFunction="";
+
+    }
+   else
+      { 
+        if($scope.editfunction==0 || $scope.editdepartment==0)
+        {
+          $scope.dis_group=true;
+        }
+        else
+        {
+          $scope.dis_group=false;
+        }
+       
+      self.selectedEntity=item;
+       $scope.getGroupdata(self.selectedEntity,OrganizationResponse)
+        $scope.org = item;
+     }
+    }
+
+    /*Group*/
+     $scope.getGroupdata=function(Selecteditem,getResponse)
+   {
+    
+      $scope.GroupList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {  
+     
+      if(getResponse[i].Entity==Selecteditem)
+      { 
+
+        
+         if (getResponse[i].group) 
+          {  
+             console.log("Group length::"+JSON.stringify(getResponse[i].group.length))
+            for(j=0;j<getResponse[i].group.length;j++)
+            { 
+               console.log("group"+JSON.stringify(getResponse[i].group[j].group))
+              $scope.GroupList.push(getResponse[i].group[j].group);
+             }
+          }
+       }
+       console.log("Group List data::"+JSON.stringify($scope.GroupList));
+     }
+       
+
+       self.Groupdata=$scope.GroupList;
+   }
+
+   function querySearchGroup (query) 
+ {     
+  console.log("datas::"+JSON.stringify(self.Groupdata));
+      console.log("sr::"+query); 
+       // query=UpperCase(query);
+      var results = query ? self.Groupdata.filter( createFilterFor(query) ) : self.Groupdata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchGroupChange(text)
+    { 
+
+      $scope.Group=OrganizationResponse;
+      console.log('Text changed to ' + text);
+       
+    }
+  function selectedGroupChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    $scope.selectedGroupdata=item;
+    if(item ==undefined)
+    {    
+          $scope.Group=OrganizationResponse;   
+          self.selectedGroup="";
+          self.searchGroup="";
+          self.selectedFunction="";
+          self.searchFunction="";
+           $scope.dis_function=true; 
+    }
+   else
+      {  
+        if($scope.editfunction==0 || $scope.editdepartment==0)
+        {
+          $scope.dis_function=true;
+        }
+        else
+        {
+          $scope.dis_function=false; 
+        }
+           
+        $scope.selectedGroupdata=item;
+        self.selectedGroup=item;
+        $scope.getFunctiondata(self.selectedGroup,OrganizationResponse)
+        $scope.org = item;
+     }
+    }
+
+    /*Function*/
+     
+     $scope.getFunctiondata=function(Selecteditem,getResponse)
+   {  
+    console.log(JSON.stringify(Selecteditem))
+      $scope.FunctionList=[];
+       for (var i = 0;i<getResponse.length;i++)
+     {  
+      console.log("response data::"+JSON.stringify(getResponse[i])); 
+      if(getResponse[i].function)
+      {   
+        
+      console.log("function length::"+JSON.stringify(getResponse[i].function.length));
+           for(j=0;j<getResponse[i].function.length;j++)
+           { 
+            if(getResponse[i].function[j].group==Selecteditem)
+            {
+            $scope.FunctionList.push(getResponse[i].function[j].function);
+            }
+           }
+         
+       
+       }
+     }
+       console.log("Function List::"+JSON.stringify($scope.FunctionList));
+
+       self.Functiondata=$scope.FunctionList;
+   }
+
+   function querySearchFunction (query) 
+ {     
+  console.log("datas::"+JSON.stringify(self.Functiondata));
+      console.log("sr::"+query); 
+       // query=UpperCase(query);
+      var results = query ? self.Functiondata.filter( createFilterFor(query) ) : self.Functiondata,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    
+  }
+   function searchFunctionChange(text)
+    {    
+      $scope.Function=OrganizationResponse;
+     console.log('Text changed to ' + text); 
+    }
+  function selectedFunctionChange(item) {
+    console.log("Item"+JSON.stringify(item));
+    $scope.selectedFunctiondata=item;
+    if(item ==undefined)
+    {    
+          $scope.Function=OrganizationResponse;   
+    }
+   else
+      {
+        $scope.selectedFunctiondata=item;
+       self.selectedFunction=item;
+     }
+    }
+
+
+
+
 
 
 
 
 
 //Tags
-self.tags=[];
-var skillarr=[];
-self.item=[];
-$scope.compInit=function(){
-    if (!angular.isDefined($scope.carrymodel.tags)) {
-      $scope.carrymodel.tags=[];
-    }; 
-  }
-$scope.browseClick=function(){
-  $scope.kok=false;
-  console.log(JSON.stringify($scope.carrymodel));
+var pendingSearch, cancelSearch = angular.noop;
+    var cachedQuery, lastSearch;
+    self.allTags = loadTags();
+    self.Tags = [self.allTags[0]];
+    self.asyncSkills = [];
+    self.filterSelected = true;
+    self.querySearchTags = querySearchTags;
+    self.delayedQuerySearchTags = delayedQuerySearchTags;
+
+    function querySearchTags (criteria) {
+
+      cachedQuery = cachedQuery || criteria;
+
+      var k= cachedQuery ? self.allTags.filter(createFilterForTags(cachedQuery)) : [];
+      // console.log("k="+JSON.stringify(k));
+      // console.log("arr="+JSON.stringify(skillarr));
+
+      var arrUnique = unique(skillarr);
+         // console.log("sek:"+JSON.stringify(arrUnique));
+         $scope.carrymodel.tags=arrUnique;
+        
+      return k;
+    }
+    
+    function delayedQuerySearchTags(criteria) {
+      cachedQuery = criteria;
+      if ( !pendingSearch || !debounceSearch() )  {
+        cancelSearch();
+        return pendingSearch = $q(function(resolve, reject) {
+          cancelSearch = reject;
+          $timeout(function() {
+            resolve( self.querySearchTags() );
+            refreshDebounce();
+          }, Math.random() * 500, true)
+        });
+      }
+      return pendingSearch;
+    }
+    function refreshDebounce() {
+      lastSearch = 0;
+      pendingSearch = null;
+      cancelSearch = angular.noop;
+    }
+   
+    function debounceSearch() {
+      var now = new Date().getMilliseconds();
+      lastSearch = lastSearch || now;
+      return ((now - lastSearch) < 300);
+    }
+  
+
+var unique = function(origArr) {
+    var newArr = [],
+        origLen = origArr.length,
+        found, x, y;
+
+    for (x = 0; x < origLen; x++) {
+        found = undefined;
+        for (y = 0; y < newArr.length; y++) {
+            if (origArr[x] === newArr[y]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            newArr.push(origArr[x]);
+        }
+    }
+    return newArr;
 }
+function createFilterForTags(query) {
 
-
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(tags) {
+         if (angular.isDefined(tags.$$hashKey)) {
+          skillarr.push(tags);
+         };
+         // console.log(JSON.stringify(skillarr));
+        return (tags._lowername.indexOf(lowercaseQuery) != -1);
+      };
+    }
+    $scope.getTags=function()
+    {
+       trainerService.getTags().then(function(response)
+       {
+          if(response)
+          { console.log("response tags"+JSON.stringify(response.data))
+           
+              // $scope.getTagsList(response.data);
+          };
+       });
+    }
+  $scope.getTags();
+    function loadTags() {
+      // $scope.getTags();
+       // alert(JSON.stringify($scope.TagsList))
+      var ltags = [
+        'Tags 1',
+        'Tags 2',
+        'Tags 3',
+        'Tags 4',
+        'Tags 5'
+      ];
+      return ltags.map(function (c, index) {
+        var cParts = c.split(' ');
+        var tag = {
+          name: c
+        };
+        tag._lowername = tag.name.toLowerCase();
+        return tag;
+      });
+    }
 
 
 
@@ -1457,6 +2327,129 @@ $scope.sortmobile=function(){
     $scope.mobileSortIcon="arrow_drop_down";
   }
 }
+
+
+/*sort competency*/
+$scope.vsortcompetency=true;
+$scope.competencySortIcon="arrow_drop_down";
+$scope.sortcompetency=function(){
+  if ($scope.vsortcompetency==true) {
+    $scope.orderList = "competency";
+    $scope.vsortcompetency=false;
+    $scope.competencySortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-competency";
+    $scope.vsortcompetency=true;
+    $scope.competencySortIcon="arrow_drop_down";
+  }
+}
+/*sub competency*/
+$scope.vsortsubcompetency=true;
+$scope.subcompetencySortIcon="arrow_drop_down";
+$scope.sortsubcompetency=function(){
+  if ($scope.vsortsubcompetency==true) {
+    $scope.orderList = "sub_competency";
+    $scope.vsortsubcompetency=false;
+    $scope.subcompetencySortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-sub_competency";
+    $scope.vsortsubcompetency=true;
+    $scope.subcompetencySortIcon="arrow_drop_down";
+  }
+}
+
+/*skills*/
+$scope.vsortskills=true;
+$scope.skillsSortIcon="arrow_drop_down";
+$scope.sortsskills=function(){
+  if ($scope.vsortskills==true) {
+    $scope.orderList = "skills";
+    $scope.vsortskills=false;
+    $scope.skillsSortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-skills";
+    $scope.vsortskills=true;
+    $scope.skillsSortIcon="arrow_drop_down";
+  }
+}
+
+/*Certifying Authority*/
+$scope.vsortcertifying_authority=true;
+$scope.certifying_authority_SortIcon="arrow_drop_down";
+$scope.sortcertifying_authority=function(){
+  if ($scope.vsortcertifying_authority==true) {
+    $scope.orderList = "Certifying_Authority";
+    $scope.vsortcertifying_authority=false;
+    $scope.certifying_authority_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Certifying_Authority";
+    $scope.vsortcertifying_authority=true;
+    $scope.certifying_authority_SortIcon="arrow_drop_down";
+  }
+}
+
+/*certification*/
+ $scope.vsortcertification=true;
+$scope.certification_SortIcon="arrow_drop_down";
+$scope.sortcertification=function(){
+  if ($scope.vsortcertification==true) {
+    $scope.orderList = "Certification";
+    $scope.vsortcertification=false;
+    $scope.certification_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Certification";
+    $scope.vsortcertification=true;
+    $scope.certification_SortIcon="arrow_drop_down";
+  }
+}
+
+
+// vendor 
+
+ $scope.vsortvendorname=true;
+$scope.vendorname_SortIcon="arrow_drop_down";
+$scope.sortvendorname=function(){
+  if ($scope.vsortvendorname==true) {
+    $scope.orderList = "Firstname";
+    $scope.vsortvendorname=false;
+    $scope.vendorname_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Firstname";
+    $scope.vsortvendorname=true;
+    $scope.vendorname_SortIcon="arrow_drop_down";
+  }
+}
+
+ $scope.vsortlocation=true;
+$scope.location_SortIcon="arrow_drop_down";
+$scope.sortlocation=function(){
+  if ($scope.vsortlocation==true) {
+    $scope.orderList = "Country";
+    $scope.vsortlocation=false;
+    $scope.location_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-Country";
+    $scope.vsortlocation=true;
+    $scope.location_SortIcon="arrow_drop_down";
+  }
+}
+
+
+ $scope.vsortvendortype=true;
+$scope.vendortype_SortIcon="arrow_drop_down";
+$scope.sortvendortype=function(){
+  if ($scope.vsortvendortype==true) {
+    $scope.orderList = "vendortype";
+    $scope.vsortvendortype=false;
+    $scope.vendortype_SortIcon="arrow_drop_up";
+  }else{
+    $scope.orderList = "-vendortype";
+    $scope.vsortvendortype=true;
+    $scope.vendortype_SortIcon="arrow_drop_down";
+  }
+}
+
+
 
 
 function addTrainerController($scope, $mdDialog) {

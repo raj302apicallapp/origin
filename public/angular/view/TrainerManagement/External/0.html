@@ -5,7 +5,7 @@
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
-        <input required name="firstname" ng-model="carrymodel.selectemployee[0].firstname"  md-maxlength="35" minlength="0"aria-label="vendor"  style="text-transform:capitalize">
+        <input required name="firstname" ng-model="carrymodel.trainer[0].firstname"  md-maxlength="35" minlength="0"aria-label="vendor"  style="text-transform:capitalize">
         <div ng-messages="carrymodelForm.firstname.$error">
           <div ng-message="required">First Name is required.</div>
           <div ng-message="md-maxlength">First Name too long!</div>
@@ -18,7 +18,7 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Middle Name</label>
-        <input  name="middlename" ng-model="carrymodel.selectemployee[0].middlename" aria-label="vendor" style="text-transform:capitalize">
+        <input  name="middlename" ng-model="carrymodel.trainer[0].middlename" aria-label="vendor" style="text-transform:capitalize">
          </md-input-container>
   </div>
   </div>
@@ -27,7 +27,7 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Last Name</label>
-        <input required name="lastname" ng-model="carrymodel.selectemployee[0].lastname" md-maxlength="35" minlength="0" aria-label="vendor" style="text-transform:capitalize">
+        <input required name="lastname" ng-model="carrymodel.trainer[0].lastname" md-maxlength="35" minlength="0" aria-label="vendor" style="text-transform:capitalize">
         <div ng-messages="carrymodelForm.lastname.$error">
           <div ng-message="required">Last Name is required.</div>
           <div ng-message="md-maxlength">Last Name too long!</div>
@@ -44,8 +44,8 @@
  <div flex>
       <md-input-container class="md-block">
       <label>Email ID</label>
-       <input required type="email" name="email" ng-model="carrymodel.selectemployee[0].email" 
-               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" ng-change="Ontraineremailcheck(carrymodel.selectemployee[0].email)" />
+       <input required type="email" name="email" ng-model="carrymodel.trainer[0].email" 
+               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" ng-change="Ontraineremailcheck(carrymodel.trainer[0].email)" />
         <div ng-messages="carrymodelForm.email.$error">
           <div ng-message-exp="['required', 'pattern']">
             Invalid Email.
@@ -63,13 +63,16 @@
        <md-input-container class="md-block">
         <label>Phone Number</label>
 
-        <input  required  name="phonenum" type="tel"   ng-model="carrymodel.selectemployee[0].mobilenumber"  ng-minlength="10" ng-maxlength="10" ng-pattern="phoneNumbr"  />
+        <input  required  name="phonenum" type="tel"   ng-change="Ontrainerphonecheck(carrymodel.trainer[0].phonenumber)"ng-model="carrymodel.trainer[0].phonenumber"  ng-minlength="10" ng-maxlength="10" ng-pattern="phoneNumbr"  />
     
       <div  ng-Messages="carrymodelForm.phonenum.$error">
       <div ng-message="required">Phone Number  is required.</div>
       <div  ng-Message="minlength">Phone no not less that 10 char.</div>
       <div  ng-Message="maxlength" >Phone no not more than 11 char.</div>
-      <br><div   ng-message-exp="pattern">Please match pattern [+91-036-78658 || 91-036-78658]</div></div>
+      <br><div   ng-message-exp="pattern">Please match pattern [+91-036-78658 || 91-036-78658]</div>
+       <div class={{Trainer_phoneStatusStyle}}>{{Trainer_phoneStatus}}</div>
+      </div>
+
     </md-input-container>
   </div>
   <div style="width:2%"></div>
@@ -82,8 +85,8 @@
 <!-- ROW last Starts -->
 <div class="row">
         
-      
-          <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+       <!-- ng-disabled="!carrymodelForm.$valid" -->
+          <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

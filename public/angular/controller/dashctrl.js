@@ -244,6 +244,21 @@ else if($location.path()=="/addtrainerexternal")
   $localStorage.currentPath=$location.path();
    $scope.carrymodel.trainertype=="Freelance";
  }
+ else if($location.path()=="/edittrainerinternal")
+{
+   $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="Internal"
+}
+else if($location.path()=="/edittrainerexternal")
+{
+   $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="External"
+}
+else if($location.path()=="/edittrainerfreelance")
+{
+   $localStorage.currentPath=$location.path();
+   $scope.carrymodel.trainertype=="Freelance"
+}
 console.log("LocalStorage:"+$localStorage.currentPath);
 
 console.log("vendor type::"+$localStorage.vendortype);
@@ -372,7 +387,7 @@ else if($localStorage.currentPath=="/add_curriculum"){
     $scope.currentPath=a2;
     $scope.ConfigureWizard(a1,a2);
    }
-   else if($localStorage.currentPath == "/addtrainerfreelance")
+   else if($localStorage.currentPath == "/addtrainerfreelance" || $localStorage.currentPath=="/edittrainerfreelance")
   {   
     console.log("type::Freelance");
     var a1=['Basic Info','Competency Info','Vendor Info'];

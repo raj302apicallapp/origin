@@ -17,7 +17,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var collections=['register','mCompetency','mCertificate','vendormanagement','trainermanagement'];
+var collections=['user_management','mCompetency','mCertificate','vendormanagement','mTags','trainermanagement'];
 var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
 // var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var sess="";
@@ -61,14 +61,26 @@ router.post('/removeTrainermgnttype',function(req,res){
 router.post('/Ontraineremailcheck',function(req,res)
 {
   console.log(JSON.stringify(req.body));
-  db.trainermanagement.find({"email":req.body.email},function(err,docs)
+  db.trainermanagement.find({'trainer.email':req.body.trainer.email},function(err,docs)
   {
     console.log(JSON.stringify(docs));
-      docs.length==0 ?res.json("Not Exists") :res.json("Exists");
+      docs.length==0 ?res.json("Available") :res.json("Exists");
     
   });
 });
 
+// trainer reomve end
+router.post('/Ontrainerphonecheck',function(req,res)
+{
+  console.log(JSON.stringify(req.body));
+  db.trainermanagement.find({trainer:req.body.trainer},function(err,docs)
+  {
+    console.log(JSON.stringify(docs));
+      docs.length==0 ?res.json("Not Exists") :res.json("Exists");
+       console.log(JSON.stringify(docs));
+    
+  });
+});
 //Trainer-Remove Starts
 router.post('/removetrainer',function(req,res){
 	console.log("RemoveTrainer");
@@ -94,28 +106,29 @@ db.trainermanagement.update({"_id" :event_id	}, {$set: {trainerstatus:updatestat
 });
 });
 
-router.post('/updatetrainerdatas',function(req,res){
+router.post('/updatetrainerdatamanage',function(req,res){
 	console.log("UPDATE");
-console.log(req.body);
 var event_id=mongojs.ObjectId(req.body._id);
 db.trainermanagement.update({"_id" :event_id}, {$set: 
 {
 
 
-"selectemployee":req.body.selectemployee,
-
-"tags":req.body.tags,
-"selectcompetency":req.body.selectcompetency,
-"selectcertification":req.body.selectcertification,
-"trainertype":req.body.trainertype,
-"trainerstatus":req.body.trainerstatus,
-
-
+trainer:req.body.trainer,
+tags:req.body.tags,
+selectcompetency:req.body.selectcompetency,
+selectcertification:req.body.selectcertification,
+selectvendor:req.body.selectvendor,
+pannumber:req.body.pannumber,
+trainertype:req.body.trainertype,
+trainerstatus:req.body.trainerstatus,
+addeddate:req.body.addeddate,
+// "getTrainerList":req.body.getTrainerList[0],
 
 }
 
-},function(err,udocs){
-	res.json(udocs);
+},function(err,docs){
+	console.log("response"+JSON.stringify(docs));
+	res.json(docs);
 });
 });
 
@@ -123,7 +136,7 @@ db.trainermanagement.update({"_id" :event_id}, {$set:
 
 router.get('/gettrainer',function(req,res)
 {
-	db.register.find({},function(err,docs){
+	db.user_management.find({},function(err,docs){
 		console.log(JSON.stringify(docs));
 		res.json(docs);
 	});
@@ -131,7 +144,7 @@ router.get('/gettrainer',function(req,res)
 
 //get Trainer all  Starts(BOTH ACTIVE AND INACTIVE)
 router.get('/getalltrainer',function(req,res){
-db.register.find({},function(err,docs){
+db.user_management.find({},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
@@ -187,6 +200,13 @@ db.vendormanagement.find({},function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
+});
+
+router.get('/getTags',function(req,res){
+	db.mTags.find({},function(err,docs){
+		console.log("getTags"+JSON.stringify(docs));
+		res.json(docs);
+	});
 });
 //get Trainer all Ends
 router.post('/statustrainer',function(req,res){
