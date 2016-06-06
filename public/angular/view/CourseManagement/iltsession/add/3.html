@@ -1,25 +1,37 @@
 <h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5> 
 <form name="carrymodelForm" ng-controller="iltsessionCtrl as ctrl" ng-init="compInit()">
 <!-- ROW 1 Starts -->
+
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <!-- <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label>Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div> -->
+</div>
 <div layout="row" layout-xs="column">
 <div flex>
 <h3></h3>
    <md-button ng-click="showAdvancedVendor($event)" class="md-raised md-primary" style="float:right;" aria-label="Info">Pick Vendor</md-button>
 </div>
 </div>
+
 <div layout="row" layout-xs="column">
 
    <div flex>
       <table class="responstable">
   <tr>
-    <th>Vendor Name</th>
-    <th>Vendor Type</th>
-    <th >Location</th>
-    
+     <th data-th="Course details" ng-click="sortvendor()">Vendor Company<md-icon class="material-icons"><i class="material-icons">{{vendorSortIcon}}</i></md-icon></th>
+    <th ng-click="sorttype()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortlocation()">Location<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
     <th colspan="4" style="text-align:center;">Action</th>
+    
   </tr>
-  
-  <tr ng-repeat="item in carrymodel.selectvendor">
+  <tr dir-paginate="item in carrymodel.selectvendor | orderBy : orderList | filter:searchvendor | itemsPerPage: perPage
+   "></tr>
+  <tr ng-repeat="item in carrymodel.selectvendor" >
      <td>{{item.Firstname}}</td>
      <td>{{item.vendortype}}</td>
      <td>{{item.Country}}</td>
@@ -33,6 +45,8 @@
   
   
 </table>
+<dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+
   </div> 
 </div>
 
@@ -43,7 +57,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
         
-           <md-button  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

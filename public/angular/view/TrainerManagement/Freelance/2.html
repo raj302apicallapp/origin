@@ -7,9 +7,14 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Pan Number</label>
-        <input required name="pan" ng-model="carrymodel.pannumber" aria-label="pan">
+        <input required name="pan" ng-model="carrymodel.pannumber" aria-label="pan" ng-pattern="/^[A-Za-z]{5}\d{4}[A-Za-z]{1}$/">
+          <div ng-messages="carrymodelForm.pan.$error">
+           <div ng-message="required">Pan Card Number is required.</div>
+           
+           <div ng-message-exp="pattern">PAN card is not valid</div></div>
       </md-input-container>
   </div>
+
   
 </div>
 <!-- ROW 2 Ends -->

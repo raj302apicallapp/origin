@@ -5,18 +5,23 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Venue Name</label>
-        <input required name="venue" ng-model="carrymodel.venue">
+        <input required name="venue" ng-model="carrymodel.venue" md-maxlength="100" minlength="5" ng-change="checkVenueName(carrymodel.venue)">
         <div ng-messages="carrymodelForm.venue.$error">
-          <div ng-message="required">Venue Name is Mandatory.</div>
+          <div ng-message="required">Venue Name is Required.</div>
+          <div ng-message="minlength">Venue Name is too short</div>
+          <div ng-message="maxlength">Venue Name is too long</div>
         </div>
+        <div class={{venuecolor}}>{{venuemsg}}</div>
       </md-input-container>
   </div>
   <div flex>
      <md-input-container class="md-block">
         <label>Room Name</label>
-        <input required name="room" ng-model="carrymodel.room">
+        <input required name="room" ng-model="carrymodel.room" md-maxlength="100" minlength="1">
         <div ng-messages="carrymodelForm.room.$error">
-          <div ng-message="required">Room Name is Mandatory.</div>
+          <div ng-message="required">Room Name is Required.</div>
+          <div ng-message="minlength">Room Name Is too Short</div>
+          <div ng-message="maxlength">Room Name Is Too Long</div>
         </div>
       </md-input-container>
   </div>
@@ -27,10 +32,11 @@
   <div flex>
       <md-input-container class="md-block">
       	<label>Capacity</label>
-         <input ng-model="carrymodel.capacity" type="number" min="1" max="20" step="1" required name="capacity"/>
+         <input ng-model="carrymodel.capacity" type="number" min="5" max="500" step="1" required name="capacity"/>
          <div ng-messages="carrymodelForm.capacity.$error">
           <div ng-message="required">Capacity is Mandatory.</div>
-           <div ng-message="max">Capacity not exceed 20.</div>
+          <div ng-message="min">Capacity should not be below 5</div>
+           <div ng-message="max">Capacity should not exceed 500.</div>
         </div>
       </md-input-container>
   </div>

@@ -6,8 +6,9 @@ router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
 var collections = ["MasterVendorType", "MasterVendorSkillType","m_vendor_country","m_vendor_state"];
-var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
-// var db1 = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', );
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+
 /*MasterVendorSkillType*/
    /*Vendor type start*/
 
@@ -214,5 +215,8 @@ router.post('/addvendorstate',function(req,res){
   res.json(docs);
 });
 });
+
+
+
 
 module.exports=router;

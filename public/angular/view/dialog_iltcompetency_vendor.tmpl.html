@@ -1,9 +1,9 @@
  <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog" >
-  <form ng-controller="vendorCtrl as ctrl " ng-init="getCompetency()">
+  <form ng-controller="vendorCtrl as ctrl ">
     
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Competency Info</h2>
+        <h6>Pick Competency Info</h6>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           x
@@ -95,13 +95,14 @@
     <tr>
     <th><md-checkbox ng-model="selectedAll" ng-change="Competency_checkAll()" aria-label="Checkbox 1">
      </md-checkbox></th>
-    <th data-th="Course details"><span>Competency</span></th>
-    <th>Sub Competency</th>
-    <th>Skills</th>
+    <th data-th="Course details" ng-click="sortcompetency()">
+      <span>  Competency <md-icon class="material-icons"><i class="material-icons">{{competencySortIcon}}</i></md-icon></span></th>
+    <th ng-click="sortsubcompetency()">Sub Competency<md-icon class="material-icons"><i class="material-icons">{{subcompetencySortIcon}}</i></md-icon></th>
+    <th ng-click="sortskills()">Skills<md-icon class="material-icons"><i class="material-icons">{{skillsSortIcon}}</i></md-icon></th>
     </tr>
   
-    <tr dir-paginate="item in Competency | itemsPerPage: perPage">
-    <td><md-checkbox ng-change="Competency_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
+    <tr dir-paginate="item in Competency |orderBy:orderList |itemsPerPage: perPage">
+    <td><md-checkbox ng-change="Competency_checkOne($index)" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1" ng-disabled="item.Checked">
           </md-checkbox></td>
     <td>{{item.competency}}</td>
     <td>{{item.sub_competency}}</td>
@@ -114,7 +115,7 @@
 </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="Competency_saveAction()" style="margin-right:20px;">
+      <md-button ng-click="Competency_saveAction()" class="md-raised md-primary" style="float:right">
         Save
       </md-button>
     </md-dialog-actions>

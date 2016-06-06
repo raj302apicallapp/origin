@@ -5,21 +5,27 @@
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
-        <input required name="venue" ng-model="carrymodel.firstname" aria-label="venue">
+        <input required name="firstname" ng-model="carrymodel.firstname" aria-label="venue">
+        <div ng-messages="carrymodelForm.firstname.$error">
+          <div ng-message="required">First Name is required.</div>
+        </div>
       </md-input-container>
   </div>
   <div style="width:2%"></div>
   <div flex>
        <md-input-container class="md-block">
         <label>Middle Name</label>
-        <input required name="venue" ng-model="carrymodel.middlename" aria-label="venue">
+        <input  name="venue" ng-model="carrymodel.middlename" aria-label="venue">
       </md-input-container>
   </div>
   <div style="width:2%"></div>
   <div flex>
        <md-input-container class="md-block">
         <label>Last Name</label>
-        <input required name="venue" ng-model="carrymodel.lastname" aria-label="venue">
+        <input required name="lastname" ng-model="carrymodel.lastname" aria-label="venue">
+        <div ng-messages="carrymodelForm.lastname.$error">
+          <div ng-message="required">Last Name is required.</div>
+        </div>
       </md-input-container>
   </div>
 </div>
@@ -31,18 +37,21 @@
       <label>Email ID</label>
        <input required type="email" name="emailid" ng-model="carrymodel.emailid"
                ng-pattern="/^.+@.+\..+$/" aria-label="venue" />
-        <div ng-messages="carrymodelForm.emailid.$error" role="alert">
-          <div ng-message-exp="['required', 'pattern']">
-            Invalid Email.
+          <div ng-messages="carrymodelForm.emailid.$error" role="alert">
+            <div ng-message="required">E-mail id is Required</div>
+            <div ng-message="pattern">Invalid Email.</div>
           </div>
-        </div>
       </md-input-container>
   </div>
   <div style="width:2%"></div>
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="venue" ng-model="carrymodel.phonenumber" aria-label="venue">
+        <input required name="phonenumber" ng-model="carrymodel.phonenumber" aria-label="venue" ng-pattern="/^\d{10}$/">
+        <div ng-messages="carrymodelForm.phonenumber.$error">
+           <div ng-message="required">Phone Number is required.</div>
+          <div ng-message="pattern">Must be a valid 10 digit phone number</div>
+        </div>
       </md-input-container>
   </div>
   

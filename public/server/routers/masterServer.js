@@ -5,16 +5,16 @@ var bodyPaser=require('body-parser');
 router.use(bodyPaser.json())
 var http = require('http');
 var mongojs=require('mongojs');
-var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital','mLanguage'];
-var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
-
+var collections = ['mVenuetype','mTags','mSeatType','mRoomType','mEquipment','hospital','mLanguage','checkk'];
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 router.post('/addmaster',function(req,res)
 { 
        
-	var collection_name=req.body.collection_name;
+	// var collection_name=req.body.collection_name;
 	// console.log(JSON.stringify(collection_name))
 	
-	db[collection_name].insert(req.body.data,function(err,docs){
+	db.checkk.insert(req.body,function(err,docs){
 		console.log(JSON.stringify(docs));
 		res.json(docs);
 	});
@@ -32,6 +32,7 @@ router.post('/OnCheckExist',function(req,res)
 		
 		
 	});
+// res.json("hello")
 });
 
 //getLanguageMaster

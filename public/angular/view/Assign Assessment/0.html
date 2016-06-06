@@ -1,0 +1,132 @@
+<h5 style="text-align:center;padding-bottom:10px;">Basic Info</h5>
+
+<form name="carrymodelForm" ng-controller="addILTCourseCtrl">
+	<div layout="row" layout-xs="column">
+  
+     <div flex>
+      <md-input-container class="md-block">
+        <label>Search</label>
+        <input  ng-model="searchvendor">
+      
+      </md-input-container>
+  </div>
+  
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Type</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Type1</md-option>
+        <md-option value="2">Type2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+</div>
+
+
+<div layout="row" layout-xs="column">
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Competency</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Competency1</md-option>
+        <md-option value="2">Competency2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Sub Competency</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Sub Competency1</md-option>
+        <md-option value="2">SubCompetency2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+</div>
+</br>
+<div layout="row" layout-xs="column">
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Skills</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Skills1</md-option>
+        <md-option value="2">Skills2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Tags</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Tag1</md-option>
+        <md-option value="2">Tag2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+</div>
+</br>
+<div layout="row" layout-xs="column">
+  <div flex>
+       
+      <md-content>
+    <h4>Added From</h4>
+    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker> 
+      
+      </md-content>
+  </div>
+  <div flex>
+       <md-content>
+    <h4>Added To</h4>
+    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+  </div>
+</div>
+</br>
+
+<div layout="row" layout-xs="column">
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Added By</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">1</md-option>
+        <md-option value="2">2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+  <div flex>
+	 <md-input-container class="md-block">
+      <label>Language</label>
+      <md-select name="myModel" ng-model="myModel" required>
+        <md-option value="1">Language1</md-option>
+        <md-option value="2">Language2</md-option>
+      </md-select>
+  </md-input-container> 
+</div>
+</div>
+
+<div class="md-dialog-content">
+        
+    <table class="responstable">
+    <tr>
+    <!-- <th><md-checkbox ng-model="selectedAll" ng-change="checkAllVendor()" aria-label="Checkbox 1">
+          </md-checkbox></th> -->
+          <th data-th="Course details" ng-click="sortvendor()">Sl.NO<md-icon class="material-icons"><i class="material-icons">{{vendorSortIcon}}</i></md-icon></th>
+    <th ng-click="sorttype()">Assessment Name<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortlocation()">Type<md-icon class="material-icons"><i class="material-icons">{{locationSortIcon}}</i></md-icon></th>
+    <th>Actions</th>
+</tr>
+</table>
+</div>
+
+<div class="row">
+        
+          <!-- <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button> -->
+        
+           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        
+</div>
+<!-- ROW last Ends -->
+
+
+</form>
+
+ 

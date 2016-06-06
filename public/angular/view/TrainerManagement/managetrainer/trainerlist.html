@@ -1,64 +1,100 @@
-
-<form name="TrainerForm" ng-controller="manageTrainerCtrl as ctrl">
+<form name="CourseForm" ng-controller="addTrainerCtrl as ctrl" ng-init="getTrainermgmt()">
+<div layout="row" layout-xs="column">
+  
+     <div flex>
+      <md-input-container class="md-block">
+        <label>Search</label>
+        <input  ng-model="typeSelectedFilter">
+      
+      </md-input-container>
+  </div>
+  
+</div>
 <!-- ROW 1 Starts -->
 <div layout="row" layout-xs="column">
   <div flex>
-      <md-autocomplete
+  <md-autocomplete
           ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
+          md-no-cache="true"
           md-selected-item="ctrl.selectedType"
-          md-search-text-change="typeSelected(ctrl.selectedType)"
+          md-search-text-change="ctrl.searchTypeChange(ctrl.searchType)"
           md-search-text="ctrl.searchType"
-          md-selected-item-change="filterSelected(ctrl.selectedType)"
-          md-items="item in ctrl.querySearchType(ctrl.searchType)"
-          md-item-text="item.display"
+          md-selected-item-change="ctrl.selectedTypeChange(item)"
+         md-items="item in ctrl.querySearchType(ctrl.searchType)"
+          md-item-text="item"
           md-min-length="0"
-          placeholder="Type">
+          placeholder="Trainer Type">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchType" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchType" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No Type matching "{{ctrl.searchType}}" were found.
+          No TrainerType matching "{{ctrl.searchType}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
-<div flex>
-     <md-autocomplete
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
+ <div style="width:2%"></div>
+    
+
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
           md-selected-item="ctrl.selectedCompetency"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchCompetency)"
+          md-search-text-change="ctrl.searchCompetencyChange(ctrl.searchCompetency)"
           md-search-text="ctrl.searchCompetency"
-          md-selected-item-change="CompetencySelected(ctrl.selectedCompetency)"
-          md-items="item in ctrl.querySearchCompetency(ctrl.searchCompetency)"
-          md-item-text="item.display"
+          md-selected-item-change="ctrl.selectedCompetencyChange(item)"
+         md-items="item in ctrl.querySearchCompetency(ctrl.searchCompetency)"
+          md-item-text="item"
           md-min-length="0"
           placeholder="Competency">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
           No Competency matching "{{ctrl.searchCompetency}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
-<div flex>
+  <div style="width:2%"></div>
+  
+  <div flex>
       <md-autocomplete
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="ctrl.selectedsubcompetency"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchsubcompetency)"
-          md-search-text="ctrl.searchsubcompetency"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearchsubcompetency(ctrl.searchsubcompetency)"
-          md-item-text="item.display"
+          ng-disabled="ctrl.dis_subcompetency"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedSubCompetency"
+          md-search-text-change="ctrl.searchSubCompetencyChange(ctrl.searchSubCompetency)"
+          md-search-text="ctrl.searchSubCompetency"
+          md-selected-item-change="ctrl.selectedSubCompetencyChange(item)"
+          md-items="item in ctrl.querySearchSubCompetency(ctrl.searchSubCompetency)"
+          md-item-text="item"
           md-min-length="0"
-          placeholder="Sub Competency">
+          placeholder="SubCompetency">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchsubcompetency" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchSubCompetency" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No SubCompetency matching "{{ctrl.searchsubcompetency}}" were found.
+          No SubCompetency matching "{{ctrl.searchSubCompetency}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_skills"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedSkills"
+          md-search-text-change="ctrl.searchSkillsChange(ctrl.searchSkills)"
+          md-search-text="ctrl.searchSkills"
+          md-selected-item-change="ctrl.selectedSkillsChange(item)"
+          md-items="item in ctrl.querySearchSkills(ctrl.searchSkills)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Skills">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSkills" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Skills matching "{{ctrl.searchSkills}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
@@ -66,42 +102,99 @@
 </div>
 <div style="padding-bottom:2%"></div>
 <div layout="row" layout-xs="column">
+
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedJobfamily"
+          md-search-text-change="ctrl.searchJobfamilyChange(ctrl.searchJobfamily)"
+          md-search-text="ctrl.searchJobfamily"
+          md-selected-item-change="ctrl.selectedJobfamilyChange(item)"
+         md-items="item in ctrl.querySearchJobfamily(ctrl.searchJobfamily)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job family">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobfamily" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Jobfamily matching "{{ctrl.searchJobfamily}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_Jobrole"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedJobrole"
+          md-search-text-change="ctrl.searchJobroleChange(ctrl.searchjobrole)"
+          md-search-text="ctrl.searchjobrole"
+          md-selected-item-change="ctrl.selectedJobroleChange(item)"
+          md-items="item in ctrl.querySearchJobrole(ctrl.searchjobrole)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Role">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobrole" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Jobrole matching "{{ctrl.searchJobrole}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  </div>
+<div style="padding-bottom:2%"></div>
+<div layout="row" layout-xs="column">
 <div flex>
-    <md-checkbox ng-model="activestatus" ng-change="getCourse(activestatus)" aria-label="Checkbox 1">
-           Show Inactive Course also
+    <md-checkbox ng-model="activestatus" ng-change="getTrainermgmt(activestatus)" aria-label="Checkbox 1">
+           Show Inactive Trainers
           </md-checkbox>
    
 </div>
-
 </div>
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label>Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div>
+</div>
+
 <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
 <div layout="row" layout-xs="column">
 
-	 <div flex>
+   <div flex>
       <table class="responstable">
   <tr>
     
-    <th data-th="Course details" ng-click="sortTitle()">Course Title<md-icon class="material-icons"><i class="material-icons">{{titleSortIcon}}</i></md-icon></th>
-    <th ng-click="sortType()">Type<md-icon class="material-icons"><i class="material-icons">{{typeSortIcon}}</i></md-icon></th>
-    <th ng-click="sortDuration()">Duration<md-icon class="material-icons"><i class="material-icons">{{durationSortIcon}}</i></md-icon></th>
+    <th data-th="Trainer details" ng-click="sorttrainer()">Trainer Name<md-icon class="material-icons"><i class="material-icons">{{trainerSortIcon}}</i></md-icon></th>
+     <th ng-click="sorttrainertype()">Trainer Type<md-icon class="material-icons"><i class="material-icons">{{trainertypeSortIcon}}</i></md-icon></th>
+    <th ng-click="sortSkills()">Skills<md-icon class="material-icons"><i class="material-icons">{{trainerSkillsSortIcon}}</i></md-icon></th>
+   
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 
-  <tr dir-paginate="item in getILTCourse | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
-    
-    <td>{{item.title}}</td>
-     <td>{{item.coursetype}}</td>
-    <td>{{item.duration}}{{item.induration}}</td>
-   
-   <td class="actionclass" ng-hide="item.coursestatus"><md-button class="actionbtn" ng-click="activeCourse(item)" aria-label="Info"><i class="fa fa-eye-slash"></i></md-button></td>
-   <td class="actionclass" ng-show="item.coursestatus"><md-button class="actionbtn" ng-click="activeCourse(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons"><i class="material-icons">remove_red_eye</i></i></md-icon></md-button></td>
-   <td class="actionclass"><md-button ng-click="editCourse(item)" class="actionbtn" ng-click="" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">mode_edit</i></md-icon></md-button></td>
-    <td class="actionclass"><md-button class="actionbtn" ng-click="removeCourse(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">delete_forever</i></md-icon></md-button></td>
+
+
+  <tr   dir-paginate="item in getTrainerList | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage: perPage | filter: example | filter: org">  
+    <td>{{item.trainer[0].firstname +item.trainer[0].middlename+item.trainer[0].lastname}}</td>
+    <td>{{item.trainertype}}</td>
+    <td>{{item.selectcompetency[0].skills}}</td>   
+   <td class="actionclass" ng-hide="item.trainerstatus"><md-button class="actionbtn" ng-click="activeTrainer(item)" aria-label="Info"><i class="fa fa-eye-slash"></i></md-button></td>
+   <td class="actionclass" ng-show="item.trainerstatus"><md-button class="actionbtn" ng-click="activeTrainer(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons"><i class="material-icons">remove_red_eye</i></i></md-icon></md-button></td>
+   <td class="actionclass"><md-button ng-click="editTrainer(item)" class="actionbtn" ng-click="" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">mode_edit</i></md-icon></md-button></td>
+    <td class="actionclass"><md-button class="actionbtn" ng-click="removeTrainermgnt(item)" aria-label="Info"><md-icon class="material-icons"><i class="material-icons">delete_forever</i></md-icon></md-button></td>
   </tr>
   
   
 </table>
 <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+
   </div> 
 </div>
 <!-- ROW 1 Ends -->

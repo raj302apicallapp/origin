@@ -1,68 +1,36 @@
 <h5 style="text-align:center;padding-bottom:10px;">Design Info</h5>
 <form name="carrymodelForm" ng-controller="curriculumCtrl">
 
-  
+  <div layout="row" layout-align="center center" >
+  <div flex="16" style="padding: 15px">Section</div>
+  <div flex="16" style="padding: 15px">
+    <md-button  ng-click="addSections()" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
+  </div>
+  <div flex="16" style="padding: 15px">
+    <md-button  ng-click="removeCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+  </div>
+  <div flex="16" style="padding: 15px">Learning Activity</div>
+  <div flex="16" style="padding: 15px">
+    <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
+  </div>
+  <div flex="16" style="padding: 15px">
+    <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+  </div>
+</div>
       
-        <!-- class="responstable" -->
- <table class="table_white" > 
- <tr> 
- <td> 
-  <div flex>
-    
-    <h6 style="padding:15%">Section</h6>
-    
-   </div>
- </td>
- <td>
-    <div flex>
-     <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click="addCourses()" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
-      </md-input-container>
-  </div>
-</td>
-<td>
-  <div flex>
-     <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click="removeCourses()"  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
-      </md-input-container>
-  </div>
-   </td>
-   <td>
-    <div flex>
-      
-    <h6 style="padding:15%">Learning Activity</h6>
-  
-     </div>
-   </td>
-   <td>
-     <div flex>
-     <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">add_circle_outline</md-icon></md-button>
-      </md-input-container>
-  </div>
-</td>
-<td>
-  <div flex>
-     <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click=""  class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
-      </md-input-container>
-  </div>
-</td>
-</tr>
-</table>
+       <!--add  section name  -->
 
-    <div ng-repeat="(parentIndex,ChildCourse_data) in carrymodel.selectCourse_data" ng-init="rowIndex = $index" >
-    <!-- <div style="padding-bottom:2%"></div>   -->
+    <div ng-repeat="item in clickCount">
      <div layout="row" layout-xs="column" > 
     <div flex="20" >
       
-       <h6>{{parentIndex+1}}/{{carrymodel.Section_number}}</h6>
+       <h6>{{parentIndex+1}}/{{$index+1}}</h6>
       </div>
       <div flex="5"></div>
       <div flex="60">
           <md-input-container class="md-block" >
             <label>Section Name</label>
-            <input ng-model="carrymodel.section_name[parentIndex]" required name="sectionname">
+            <input ng-model="carrymodel.section_name[$index]" required name="sectionname">
             <div ng-messages="carrymodelForm.sectionname.$error">
    <div ng-message="required">Section Name is Required.</div>
            
@@ -71,8 +39,10 @@
         </div>
         <div flex="5"></div>
         <div flex="20" >
-       <h6>{{ (ChildCourse_data | filter :{Selected: true}).length}}/{{carrymodel.selectCourse_data[parentIndex].length}}</h6>
-
+       <h6>
+        m.c/t.c.c
+               </h6>
+    <!-- {{ (ChildCourse_data | filter :{Selected: true}).length}}/{{carrymodel.selectCourse_data[parentIndex].length}} -->
       </div>
       <!-- <div flex>
      <md-input-container class="md-block" flex-gt-sm="">
@@ -80,9 +50,10 @@
       </md-input-container>
   </div> -->
       <div flex>
-     <md-input-container class="md-block" flex-gt-sm="">
-       <md-button  ng-click="removeSection(parentIndex)" style="float:right" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
-      </md-input-container>
+       <md-input-container class="md-block" flex-gt-sm="">
+         <md-button  ng-click="removeSection($index)" style="float:right" class="md-raised md-primary" aria-label="Info"><md-icon class="material-icons">remove</md-icon></md-button>
+        </md-input-container>
+      </div>
   </div>
 </div>
   <!-- class="responstable" -->
@@ -112,7 +83,7 @@
         
           <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
           <!-- ng-disabled="!carrymodelForm.$valid" -->
-           <md-button  ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+           <md-button  ng-disabled="!carrymodelForm.$valid || !nxtshow"  ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->

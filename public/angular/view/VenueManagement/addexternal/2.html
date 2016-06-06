@@ -87,52 +87,7 @@
 </div>
 <!-- ROW 2 Ends -->
 <div style="padding-bottom:2%"></div>
-<!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
-  <div flex>
-      <md-autocomplete
-          ng-disabled="!ctrl.selectedCity"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedBuilding"
-          md-search-text-change="ctrl.searchBuildingChange(ctrl.searchBuilding)"
-          md-search-text="ctrl.searchBuilding"
-          md-selected-item-change="ctrl.selectedBuildingChange(item)"
-          md-items="item in ctrl.querySearchBuilding(ctrl.searchBuilding)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Building">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchBuilding" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Building matching "{{ctrl.searchBuilding}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-  </div>
-  <div style="width:2%"></div>
-  <div flex>
-      <md-autocomplete
-          ng-disabled="!ctrl.selectedBuilding"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedFloor"
-          md-search-text-change="ctrl.searchFloorChange(ctrl.searchFloor)"
-          md-search-text="ctrl.searchFloor"
-          md-selected-item-change="ctrl.selectedFloorChange(item)"
-          md-items="item in ctrl.querySearchFloor(ctrl.searchFloor)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Floor">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchFloor" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Floor matching "{{ctrl.searchFloor}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-  </div>
-</div>
 <!-- ROW 3 Ends -->
-<div style="padding-bottom:4%"></div>
 <!-- ROW 4 Starts -->
 <div layout="row" layout-xs="column">
   

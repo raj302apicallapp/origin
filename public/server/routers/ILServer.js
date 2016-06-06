@@ -17,7 +17,9 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['mCompetency','informalLearning']);
+var collections=['mCompetency','informalLearning']
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
  var sess="";
 
 router.post('/upload', function (req,res) {

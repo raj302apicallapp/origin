@@ -17,10 +17,17 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+<<<<<<< HEAD
 
 var db = mongojs('mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1jls', ['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']);
 
  var sess="";	
+=======
+var collections=['course_management','mProgramCoordinator','EGDFmaster','JRmaster','competency']
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+ var sess="";
+>>>>>>> 404a11ed2cd7f2d9799f78997dc3c6c11ef7507a
 
 router.post('/upload', function (req,res) {
 	console.log(req.body);

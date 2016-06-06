@@ -13,8 +13,13 @@ router.use(session({
     saveUninitialized: true
 }));
 var collections=['vendormanagement','CSCLocation','mCompetency','mCertificate','mTags'];
+<<<<<<< HEAD
 // var db = mongojs('mongodb://54.169.235.125:27017/flms', collections);
 var db=mongojs("mongodb://arun:123@ds023398.mlab.com:23398/heroku_461p1jls",collections)
+=======
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', collections);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
+>>>>>>> 404a11ed2cd7f2d9799f78997dc3c6c11ef7507a
  var sess="";
 
 
@@ -273,6 +278,16 @@ db.CSCLocation.find(req.body,function(err,docs){
 	res.json(docs);
 });
 });
+router.post('/OnVendorCompanyCheck',function(req,res)
+{
+  console.log(JSON.stringify(req.body));
+  db.vendormanagement.find({"Vendor_Company":req.body.vendor_company},function(err,docs)
+  {
+    console.log(JSON.stringify(docs));
+      docs.length==0 ?res.json("Not Exists") :res.json("Exists");
+    
+  });
+});
 
 router.get('/getTags',function(req,res){
 	db.mTags.find({},function(err,docs){
@@ -361,4 +376,6 @@ db.vendormanagement.update({"_id" :event_id}, {$set:
 	res.json(udocs);
 });
 });
+
+
 module.exports=router;

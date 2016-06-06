@@ -200,6 +200,21 @@ when('/addtrainerfreelance',
   templateUrl: 'angular/view/TrainerManagement/Freelance/addtrainerfreelance.html', 
   controller: 'dashctrl'
 }).
+when('/edittrainerinternal',
+{
+   templateUrl: 'angular/view/TrainerManagement/Internal/addtrainerinternal.html', 
+  controller: 'dashctrl'
+}).
+when('/edittrainerexternal',
+{
+   templateUrl: 'angular/view/wizard.html',
+  controller: 'dashctrl'
+}).
+when('/edittrainerfreelance',
+{
+   templateUrl: 'angular/view/wizard.html',
+  controller: 'dashctrl'
+}).
 when('/managetrainer',
 {
   templateUrl: 'angular/view/TrainerManagement/managetrainer/trainerlist.html', 
@@ -251,6 +266,12 @@ when('/managecourse',
   controller: 'dashctrl'
 }).
 when('/addassessment',
+  {
+    templateUrl: 'angular/view/wizard.html', 
+    controller: 'dashctrl'  
+}).
+
+when('/assignassessment',
   {
     templateUrl: 'angular/view/wizard.html', 
     controller: 'dashctrl'  

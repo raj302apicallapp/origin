@@ -5,9 +5,12 @@
   <div flex>
       <md-input-container class="md-block">
         <label>First Name</label>
-        <input required name="firstname" ng-model="carrymodel.Firstname" aria-label="vendor" style="text-transform:capitalize">
+        <input required name="firstname" ng-model="carrymodel.trainer[0].firstname"  md-maxlength="35" minlength="0"aria-label="vendor"  style="text-transform:capitalize">
         <div ng-messages="carrymodelForm.firstname.$error">
           <div ng-message="required">First Name is required.</div>
+          <div ng-message="md-maxlength">First Name too long!</div>
+          <div ng-message="minlength">First Name too short!</div>
+          
         </div>
       </md-input-container>
   </div>
@@ -15,7 +18,7 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Middle Name</label>
-        <input  name="middlename" ng-model="carrymodel.Middlename" aria-label="vendor" style="text-transform:capitalize">
+        <input  name="middlename" ng-model="carrymodel.trainer[0].middlename" aria-label="vendor" style="text-transform:capitalize">
          </md-input-container>
   </div>
   </div>
@@ -24,9 +27,11 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Last Name</label>
-        <input required name="lastname" ng-model="carrymodel.Lastname" aria-label="vendor" style="text-transform:capitalize">
+        <input required name="lastname" ng-model="carrymodel.trainer[0].lastname" md-maxlength="35" minlength="0" aria-label="vendor" style="text-transform:capitalize">
         <div ng-messages="carrymodelForm.lastname.$error">
           <div ng-message="required">Last Name is required.</div>
+          <div ng-message="md-maxlength">Last Name too long!</div>
+          <div ng-message="minlength">Last Name too short!</div>
         </div>
       </md-input-container>
   </div>
@@ -39,12 +44,13 @@
  <div flex>
       <md-input-container class="md-block">
       <label>Email ID</label>
-       <input required type="email" name="emailid" ng-model="carrymodel.email_id"
-               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" />
-        <div ng-messages="carrymodelForm.emailid.$error" role="alert">
+       <input required type="email" name="email" ng-model="carrymodel.trainer[0].email" 
+               ng-pattern="/^.+@.+\..+$/" aria-label="vendor" ng-change="Ontraineremailcheck(carrymodel.selectemployee[0].email)" />
+        <div ng-messages="carrymodelForm.email.$error">
           <div ng-message-exp="['required', 'pattern']">
             Invalid Email.
           </div>
+          <div class={{Trainer_emailStatusStyle}}>{{Trainer_emailStatus}}</div>
         </div>
 
       </md-input-container>
@@ -56,11 +62,15 @@
   <div flex>
        <md-input-container class="md-block">
         <label>Phone Number</label>
-        <input required name="phonenumber" ng-model="carrymodel.Phonenumber" aria-label="vendor" style="text-transform:capitalize">
-        <div ng-messages="carrymodelForm.phonenumber.$error">
-          <div ng-message="required">Phone Number is required.</div>
-        </div>
-      </md-input-container>
+
+        <input  required  name="phonenum" type="tel"   ng-model="carrymodel.trainer[0].phonenumber"  ng-minlength="10" ng-maxlength="10" ng-pattern="phoneNumbr"  />
+    
+      <div  ng-Messages="carrymodelForm.phonenum.$error">
+      <div ng-message="required">Phone Number  is required.</div>
+      <div  ng-Message="minlength">Phone no not less that 10 char.</div>
+      <div  ng-Message="maxlength" >Phone no not more than 11 char.</div>
+      <br><div   ng-message-exp="pattern">Please match pattern [+91-036-78658 || 91-036-78658]</div></div>
+    </md-input-container>
   </div>
   <div style="width:2%"></div>
    <div flex>
@@ -72,8 +82,7 @@
 <!-- ROW last Starts -->
 <div class="row">
         
-          <md-button ng-click="prevaction(carrymodel)" type="button" class="md-raised md-primary">Previous</md-button>
-        
+      
           <md-button ng-disabled="!carrymodelForm.$valid"  ng-click="nextaction(carrymodel)" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>

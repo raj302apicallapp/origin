@@ -17,8 +17,9 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-var db = mongojs('mongodb://54.169.235.125:27017/flms', ['venuemanagement','CSCLocation']);
-
+var collections=['venuemanagement','CSCLocation'];
+var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', ['venuemanagement','CSCLocation']);
+// var db = mongojs('mongodb://gopi:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
  var sess="";
 
 router.post('/upload', function (req,res) {
@@ -163,6 +164,17 @@ db.CSCLocation.find(req.body,function(err,docs){
 	console.log(docs);
 	res.json(docs);
 });
+});
+
+
+router.post('/checkVenueName',function(req,res)
+{
+	console.log(JSON.stringify(req.body));
+  db.venuemanagement.find({"venue":req.body.venue},function(err,docs)
+  {
+     docs.length==0 ? res.json("Available") : res.json("Exists");
+     // res.json(docs);
+  });
 });
 //CSCLocation get ends
 module.exports=router;

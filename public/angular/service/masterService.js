@@ -9,7 +9,17 @@ addSingleMaster:function(tablename,savedata){
       });
       // Return the promise to the controller
       return promise;
-}
+},
+//get getLanguageMaster
+  getLanguageMaster:function(){
+      console.log("getLanguageMaster");
+  var promise = $http.get('/getLanguageMaster').then(function(response){
+        console.log("Service response"+JSON.stringify(response));
+        return response;
+      });
+      // Return the promise to the controller
+      return promise; 
+},
 	}
 
 });

@@ -1,6 +1,38 @@
 
 <form name="CourseForm" ng-controller="venueCtrl as ctrl" ng-init="getVenue()"> 
 <div layout="row" layout-xs="column">
+  
+     <div flex>
+      <md-input-container class="md-block">
+        <label>Search</label>
+        <input  ng-model="searchvenue">
+      
+      </md-input-container>
+     </div>
+</div>
+<div style="padding-bottom:2%"></div>
+<div layout="row" layout-xs="column">
+  <div flex>
+      <md-autocomplete
+          ng-disabled="false"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedTypes"
+          md-search-text-change="ctrl.searchTypesChange(ctrl.searchTypes)"
+          md-search-text="ctrl.searchTypes"
+          md-selected-item-change="ctrl.selectedTypesChange(item)"
+          md-items="item in ctrl.querySearchTypes(ctrl.searchTypes)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Venue Type">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchTypes" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Types matching "{{ctrl.searchTypes}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+    <div style="width:2%"></div>
  <div flex>
   <!-- md-floating-label="Country"  -->
       <md-autocomplete
@@ -64,115 +96,17 @@
         </md-not-found>
       </md-autocomplete>
   </div>
-</div>
-<!-- ROW 2 Ends -->
-<div style="padding-bottom:2%"></div>
-<!-- ROW 3 Starts -->
-<div layout="row" layout-xs="column">
-  <div flex>
-      <md-autocomplete
-          ng-disabled="!ctrl.selectedCity"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedBuilding"
-          md-search-text-change="ctrl.searchBuildingChange(ctrl.searchBuilding)"
-          md-search-text="ctrl.searchBuilding"
-          md-selected-item-change="ctrl.selectedBuildingChange(item)"
-          md-items="item in ctrl.querySearchBuilding(ctrl.searchBuilding)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Building">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchBuilding" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Building matching "{{ctrl.searchBuilding}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-  </div>
-  <div style="width:2%"></div>
-  <div flex>
-      <md-autocomplete
-          ng-disabled="!ctrl.selectedBuilding"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedFloor"
-          md-search-text-change="ctrl.searchFloorChange(ctrl.searchFloor)"
-          md-search-text="ctrl.searchFloor"
-          md-selected-item-change="ctrl.selectedFloorChange(item)"
-          md-items="item in ctrl.querySearchFloor(ctrl.searchFloor)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Floor">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchFloor" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Floor matching "{{ctrl.searchFloor}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-  </div>
-  <div style="width:2%"></div>
-  <div flex>
-      <md-autocomplete
-          ng-disabled="!ctrl.selectedFloor"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedWing"
-          md-search-text-change="ctrl.searchWingChange(ctrl.searchWing)"
-          md-search-text="ctrl.searchWing"
-          md-selected-item-change="ctrl.selectedWingChange(item)"
-          md-items="item in ctrl.querySearchWing(ctrl.searchWing)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Wing">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchWing" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Wing matching "{{ctrl.searchWing}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-  </div>
-</div>
-<!-- ROW 3 Ends -->
+ </div> 
 <div style="padding-bottom:2%"></div>
 <!--Row 4 Starts -->
-<div layout="row" layout-xs="column">
-<div flex>
-      <md-autocomplete
-          ng-disabled="false"
-          md-no-cache="true"
-          md-selected-item="ctrl.selectedTypes"
-          md-search-text-change="ctrl.searchTypesChange(ctrl.searchTypes)"
-          md-search-text="ctrl.searchTypes"
-          md-selected-item-change="ctrl.selectedTypesChange(item)"
-          md-items="item in ctrl.querySearchTypes(ctrl.searchTypes)"
-          md-item-text="item"
-          md-min-length="0"
-          placeholder="Types">
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchTypes" md-highlight-flags="^i">{{item}}</span>
-        </md-item-template>
-        <md-not-found>
-          No Types matching "{{ctrl.searchTypes}}" were found.
-        </md-not-found>
-      </md-autocomplete>
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
 
 
 <div layout="row" layout-xs="column">
    <div flex>
       <md-input-container class="md-block">
-       <md-checkbox ng-model="activestatus" ng-change="changeActiveStatus()" aria-label="Checkbox 1">
-           Show Inactive Course also
+       <md-checkbox ng-model="venuestatus" ng-change="changeActiveStatus(venuestatus)" aria-label="Checkbox 1">
+           Show Inactive Venues
           </md-checkbox>
       </md-input-container>
   </div>
@@ -189,7 +123,7 @@
     <th colspan="4" style="text-align:center;">Action</th>
   </tr>
 
-  <tr dir-paginate="item in getVenueList | orderBy:orderList | filter:countryFilter | filter:stateFilter | filter:cityFilter | filter:buildingFilter | filter:floorFilter | filter:wingFilter | filter:changeTypeFilter | itemsPerPage:5">
+  <tr dir-paginate="item in getVenueList | orderBy:orderList | filter:searchvenue | filter:countryFilter | filter:stateFilter | filter:cityFilter | filter:buildingFilter | filter:floorFilter |  filter:wingFilter | filter:changeTypeFilter | itemsPerPage:5">
     <td>{{item.venue}}</td>
      <td>{{item.room}}</td>
     <td>{{item.venuetype}}</td>

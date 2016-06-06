@@ -1,5 +1,6 @@
-<md-dialog aria-label="Pre-Requisite"  ng-cloak >
-  <form ng-controller="addTrainerCtrl as ctrl" class="autocompletedemoInsideDialog">
+ <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog" >
+  <form ng-controller="addTrainerCtrl as ctrl ">
+    
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Pick Trainer</h2>
@@ -10,60 +11,285 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-    <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
-  <div class="md-dialog-content">
+    <div class="md-dialog-content">
+     <!-- ROW 1 start -->
+<!--  -->
+
+<div layout="row" layout-xs="column" ng-init="getOrganization()">
+ <div flex>
   
-       <!-- ROW 1 start -->
-<div layout="row" layout-xs="column">
+
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_entity"
+          md-selected-item="ctrl.selectedEntity"
+          md-search-text-change="ctrl.searchEntityChange(ctrl.searchEntity)"
+          md-search-text="ctrl.searchEntity"
+          md-selected-item-change="ctrl.selectedEntityChange(item)"
+         md-items="item in ctrl.querySearchEntity(ctrl.searchEntity)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Entity">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchEntity" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Entity matching "{{ctrl.searchEntity}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+<div style="width:2%"></div>
  <div flex>
   
       <md-autocomplete
            md-no-cache="true"
-          md-selected-item="ctrl.selectedUser"
-          md-search-text-change="ctrl.searchUserChange(ctrl.searchUser)"
-          md-search-text="ctrl.searchUser"
-          md-selected-item-change="ctrl.selectedUserChange(item)"
-         md-items="item in ctrl.querySearchUser(ctrl.searchUser)"
+           ng-disabled="dis_group"
+          md-selected-item="ctrl.selectedGroup"
+          md-search-text-change="ctrl.searchGroupChange(ctrl.searchGroup)"
+          md-search-text="ctrl.searchGroup"
+          md-selected-item-change="ctrl.selectedGroupChange(item)"
+         md-items="item in ctrl.querySearchGroup(ctrl.searchGroup)"
           md-item-text="item"
           md-min-length="0"
-          placeholder="User">
+          placeholder="Group">
         <md-item-template>
-          <span md-highlight-text="ctrl.searchUser" md-highlight-flags="^i">{{item}}</span>
+          <span md-highlight-text="ctrl.searchGroup" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
         <md-not-found>
-          No User matching "{{ctrl.searchUser}}" were found.
+          No Group matching "{{ctrl.searchGroup}}" were found.
         </md-not-found>
       </md-autocomplete>
   </div>
+<div style="width:2%"></div>
+ <div flex>
   
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_function"
+          md-selected-item="ctrl.selectedFunction"
+          md-search-text-change="ctrl.searchFunctionChange(ctrl.searchFunction)"
+          md-search-text="ctrl.searchFunction"
+          md-selected-item-change="ctrl.selectedFunctionChange(item)"
+         md-items="item in ctrl.querySearchFunction(ctrl.searchFunction)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Function">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchFunction" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Function matching "{{ctrl.searchFunction}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+           ng-disabled="dis_Department"
+          md-selected-item="ctrl.selectedDepartment"
+          md-search-text-change="ctrl.searchDepartmentChange(ctrl.searchDepartment)"
+          md-search-text="ctrl.searchDepartment"
+          md-selected-item-change="ctrl.selectedDepartmentChange(item)"
+         md-items="item in ctrl.querySearchDepartment(ctrl.searchDepartment)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Department">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchDepartment" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Department matching "{{ctrl.searchDepartment}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
 </div>
+<!-- row 3 end -->
+<div style="padding-bottom:2%"></div>
+
+<div layout="row" layout-xs="column">
+ <div flex>
+  
+
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedCompetency"
+          md-search-text-change="ctrl.searchCompetencyChange(ctrl.searchCompetency)"
+          md-search-text="ctrl.searchCompetency"
+          md-selected-item-change="ctrl.selectedCompetencyChange(item)"
+         md-items="item in ctrl.querySearchCompetency(ctrl.searchCompetency)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Competency">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCompetency" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Competency matching "{{ctrl.searchCompetency}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_subcompetency"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedSubCompetency"
+          md-search-text-change="ctrl.searchSubCompetencyChange(ctrl.searchSubCompetency)"
+          md-search-text="ctrl.searchSubCompetency"
+          md-selected-item-change="ctrl.selectedSubCompetencyChange(item)"
+          md-items="item in ctrl.querySearchSubCompetency(ctrl.searchSubCompetency)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Sub Competency">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSubCompetency" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No SubCompetency matching "{{ctrl.searchSubCompetency}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_skills"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedSkills"
+          md-search-text-change="ctrl.searchSkillsChange(ctrl.searchSkills)"
+          md-search-text="ctrl.searchSkills"
+          md-selected-item-change="ctrl.selectedSkillsChange(item)"
+          md-items="item in ctrl.querySearchSkills(ctrl.searchSkills)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Skills">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchSkills" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Skills matching "{{ctrl.searchSkills}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+
+  <div style="width:2%"></div>
+<div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedTags"
+          md-search-text-change="ctrl.searchTagsChange(ctrl.searchTags)"
+          md-search-text="ctrl.searchTagsy"
+          md-selected-item-change="ctrl.selectedTagsChange(item)"
+         md-items="item in ctrl.querySearchTagss(ctrl.searchTags)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Tags">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchTags" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Tags matching "{{ctrl.searchTags}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  </div>
+  <div style="padding-bottom:1%"></div>
+<div layout="row" layout-xs="column">
+
+ <div flex>
+  
+      <md-autocomplete
+           md-no-cache="true"
+          md-selected-item="ctrl.selectedJobfamily"
+          md-search-text-change="ctrl.searchJobfamilyChange(ctrl.searchJobfamily)"
+          md-search-text="ctrl.searchJobfamily"
+          md-selected-item-change="ctrl.selectedJobfamilyChange(item)"
+         md-items="item in ctrl.querySearchJobfamily(ctrl.searchJobfamily)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job family">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobfamily" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Jobfamily matching "{{ctrl.searchJobfamily}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+  
+  <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_Jobrole"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedJobrole"
+          md-search-text-change="ctrl.searchJobroleChange(ctrl.searchjobrole)"
+          md-search-text="ctrl.searchjobrole"
+          md-selected-item-change="ctrl.selectedJobroleChange(item)"
+          md-items="item in ctrl.querySearchJobrole(ctrl.searchjobrole)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Job Role">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchJobrole" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Jobrole matching "{{ctrl.searchJobrole}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  </div>
+  <div style="width:2%"></div>
+
+
+
+
+
 <!-- row 1 end -->
 <div style="padding-bottom:1%"></div>
+<!-- row 2 start -->
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label style="text-style:bold;text-color:black">Item Per Page</label>
+        <input type="number"   ng-model="perPage">
+        
+      </md-input-container>
+  </div>
+ </div>      
+    
     <table class="responstable">
     <tr>
-    <th><md-checkbox ng-model="selectedAll" ng-change="checkAll()" aria-label="Checkbox 1">
-          </md-checkbox></th>
-    <th data-th="Trainer details" ng-click="sortTitle()">Full Name<md-icon class="material-icons"><i class="material-icons">{{nameSortIcon}}</i></md-icon></th>
-    <th ng-click="sortType()">Email<md-icon class="material-icons"><i class="material-icons">{{emailSortIcon}}</i></md-icon></th>
-    <th ng-click="sortDuration()">Phone Number<md-icon class="material-icons"><i class="material-icons">{{phonenumberSortIcon}}</i></md-icon></th>
-    
+      <th><md-checkbox ng-model="selectedAll" ng-change="checkAll()" aria-label="Checkbox 1">
+      </md-checkbox></th>
+      <th data-th="Trainer details" ng-click="sortName()">Full Name<md-icon class="material-icons"><i class="material-icons">{{nameSortIcon}}</i></md-icon></th>
+      <th ng-click="sortemail()">Email<md-icon class="material-icons"><i class="material-icons">{{emailSortIcon}}</i></md-icon></th>
+      <th ng-click="sortphone()">Phone Number<md-icon class="material-icons"><i class="material-icons">{{phoneSortIcon}}</i></md-icon></th>
+
     </tr>
   
-    <tr dir-paginate="item in getInternalTrainer | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+    <tr dir-paginate="item in getInternalTrainer | itemsPerPage: perPage  | orderBy:orderList | filter:typeSelectedFilter  | filter: example | filter: org" >
     <td><md-checkbox ng-change="checkOne($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
-          </md-checkbox></td>
-    <td>{{item.firstname +" "+item.lastname}}</td>
-     <td>{{item.email}}</td>
-    <td>{{item.mobilenumber}}</td>
+    </md-checkbox></td>
+    <td>{{item.firstname +item.middlename+item.lastname}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.phonenumber}}</td>
     </tr> 
   </table>
-  <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
-  </div>
+
+ <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  
+</div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="saveActionemployee()" style="margin-right:20px;">
+      <md-button ng-click="saveActionemployee()" class="md-raised md-primary"  style="margin-right:20px;">
         Save
       </md-button>
     </md-dialog-actions>
   </form>
+  
 </md-dialog>
+

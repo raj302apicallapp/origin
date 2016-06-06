@@ -5,18 +5,23 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Vendor Company</label>
-        <input required name="vendor_company" ng-model="carrymodel.Vendor_Company" style="text-transform: capitalize;">
+        <input required name="vendor_company" ng-model="carrymodel.Vendor_Company" md-maxlength="256" minlength="10" ng-change="OnVendorTitleCheck(carrymodel.Vendor_Company)">
         <div ng-messages="carrymodelForm.vendor_company.$error">
           <div ng-message="required">Vendor Company is required.</div>
+          <div ng-message="md-maxlength">Vendor Company too long!</div>
+          <div ng-message="minlength">Vendor Company too short!</div>
         </div>
+           <div class={{Vendor_CompanyStatusStyle}}>{{Vendor_CompanyStatus}}</div>
       </md-input-container>
   </div>
   <div flex>
      <md-input-container class="md-block">
         <label>Address 1</label>
-    <input required name="address_1" ng-model="carrymodel.Address_1" style="text-transform: capitalize;">
+    <input required name="address_1" ng-model="carrymodel.Address_1" md-maxlength="256" minlength="10">
         <div ng-messages="carrymodelForm.address_1.$error">
           <div ng-message="required">Address is required.</div>
+          <div ng-message="md-maxlength">Address too long!</div>
+          <div ng-message="minlength">Address too short!</div>
         </div>
       </md-input-container>
   </div>
@@ -27,9 +32,11 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Address 2</label>
-      <input required name="address_2" ng-model="carrymodel.Address_2"style="text-transform: capitalize;">
+      <input required name="address_2" ng-model="carrymodel.Address_2" md-maxlength="256" minlength="10">
         <div ng-messages="carrymodelForm.address_2.$error">
           <div ng-message="required">Address is required.</div>
+          <div ng-message="md-maxlength">Address too long!</div>
+          <div ng-message="minlength">Address too short!</div>
         </div>
       </md-input-container>
   </div>
@@ -37,7 +44,7 @@
    <div flex>
       <md-input-container class="md-block">
         <label>Land Mark</label>
-        <input required name="landmark" ng-model="carrymodel.Landmark"style="text-transform: capitalize;">
+        <input  name="landmark" ng-model="carrymodel.Landmark" >
       </md-input-container>
   </div>
 </div>
@@ -91,6 +98,8 @@
   <div style="width:2%"></div>
   <div flex>
       <md-autocomplete
+           required
+          md-input-name="city"
           ng-disabled="ctrl.dis_City"
           md-no-cache="true"
           md-selected-item="ctrl.selectedCity"
@@ -104,6 +113,9 @@
         <md-item-template>
           <span md-highlight-text="ctrl.searchCity" md-highlight-flags="^i">{{item}}</span>
         </md-item-template>
+        <div ng-messages="carrymodelForm.city.$error">
+          <div ng-message="required">City is required.</div>
+        </div>
         <md-not-found>
           No City matching "{{ctrl.searchCity}}" were found.
         </md-not-found>
@@ -113,39 +125,64 @@
 
 <div style="padding-bottom:2%"></div>
 <!-- Row 4 start -->
-<div class="row" layout-xs="column">
-  <div flex>
+<div layout="row" layout-xs="column">
+ 
+   <div flex style="padding: 22px;">
       <md-input-container class="md-block">
-        <label>Pin Code</label>
-        <input required name="pincode" ng-model="carrymodel.Pincode">
+        <label>Pin/Zip Code</label>
+        <input required name="pincode" ng-model="carrymodel.Pincode" ng-pattern="/^([0-9]){6}?$/">
         <div ng-messages="carrymodelForm.pincode.$error">
-          <div ng-message="required">Pin Code is required.</div>
+          <div ng-message="required">Pin/Zip Code is required.</div>
+          <div ng-message="pattern">Invaild Pan Card</div>
         </div>
       </md-input-container>
   </div>
-
-  <div flex>
-    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Empanelment Date "  required name="empanelment_date" ng-change="date()">
-    <div ng-messages="carrymodelForm.empanelment_date.$error">
-          <div ng-message="required">Empanelment Date is required.</div>
-    </div>
+    
+  <div flex ng-init="initDatepicker()">
+    <md-datepicker  ng-model="Empanelment_Date" md-placeholder="Empanelment Date " ng-change="date()" class="md-block">
+    
   </md-datepicker>
     
   </div>
+ 
 </div>
-<!-- Row 4 send -->
  
   <div style="padding-bottom:2%"></div>
   <!-- ROW last Starts -->
-<div class="row">
+<div class="row" >
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
-        
-           <md-button  ng-disabled="!carrymodelForm.$valid" ng-click="nextaction(carrymodel)"   type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+        <!-- ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity" -->
+           <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid || !ctrl.searchCity"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
 </form>
+<style>
+ /*.md-datepicker-input-container {
+  width: 100%;
+  margin-left: 0px;
+}*/
 
+
+.inputdemoBasicUsage .md-datepicker-button {
+  width: 36px;
+}
+.inputdemoBasicUsage .md-datepicker-input-container {
+  margin-left: 2px;
+}
+.md-datepicker-input-container {
+  display: block;
+}
+.md-datepicker-input[placeholder] {
+  color=red;
+}
+.padding-top-0 {
+  padding-top: 0px;
+}
+.padding-bottom-0 {
+  padding-bottom: 0px;
+}
  
 
+</style>

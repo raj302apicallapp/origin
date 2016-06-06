@@ -1,8 +1,9 @@
-<md-dialog aria-label="Pre-Requisite"  ng-cloak >
-  <form ng-controller="addTrainerCtrl">
+ <md-dialog aria-label="Pre-Requisite"  ng-cloak="" class="autocompletedemoInsideDialog" >
+  <form ng-controller="addTrainerCtrl as ctrl ">
+    
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Pick Certification</h2>
+        <h2>Pick Competency</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           x
@@ -10,34 +11,94 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-    <div id="feedLoading" ng-show="isLoading" text-align="center" style="padding-left:45%;width:10%;"><img src="assets/img/balls.svg"/></div>
-  <div class="md-dialog-content">
+    <div class="md-dialog-content">
+     <!-- ROW 1 start -->
+<div layout="row" layout-xs="column">
+ <div flex>
+    <md-autocomplete
+         md-no-cache="true"
+         md-selected-item="ctrl.selectedCertifying_authority"
+          md-search-text-change="ctrl.searchCertifying_authorityChange(ctrl.searchCertifying_authority)"
+          md-search-text="ctrl.searchCertifying_authority"
+          md-selected-item-change="ctrl.selectedCertifying_authorityChange(item)"
+         md-items="item in ctrl.querySearchCertifying_authority(ctrl.searchCertifying_authority)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Certifying_authority">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCertifying_authority" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Certifying_authority matching "{{ctrl.searchCertifying_authority}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+  </div>
+  <div style="width:2%"></div>
+ <div flex>
+      <md-autocomplete
+          ng-disabled="ctrl.dis_Certification"
+          md-no-cache="true"
+          md-selected-item="ctrl.selectedCertification"
+          md-search-text-change="ctrl.searchCertificationChange(ctrl.searchCertification)"
+          md-search-text="ctrl.searchCertification"
+          md-selected-item-change="ctrl.selectedCertificationChange(item)"
+          md-items="item in ctrl.querySearchCertification(ctrl.searchCertification)"
+          md-item-text="item"
+          md-min-length="0"
+          placeholder="Certification">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchCertification" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No Certification matching "{{ctrl.searchCertification}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+      
+  </div>
+</div>
+<!-- row 1 end -->
+<div style="padding-bottom:1%"></div>
+<!-- row 2 start -->
+<div layout="row" layout-xs="column" ng-init="perPage=5">
+  <div flex>
+      <md-input-container class="md-block" style="float:right">
+        <label style="text-style:bold;text-color:black">Item Per Page</label>
+        <input type="number"   ng-model="perPage">
         
+      </md-input-container>
+  </div>
+ </div>      
+    
     <table class="responstable">
     <tr>
     <th><md-checkbox ng-model="selectedAll" ng-change="checkAllCertf()" aria-label="Checkbox 1">
           </md-checkbox></th>
-    <th data-th="Certification details" ng-click="sortcertification()">Certifying Author<md-icon class="material-icons"><i class="material-icons">{{certfyingauthorSortIcon}}</i></md-icon></th>
-    <th ng-click="sortscertification()">Certification<md-icon class="material-icons"><i class="material-icons">{{certificationSortIcon}}</i></md-icon></th>
     
+        <th ng-click="sortcertifying_authority()"><span>Certifying Authority <md-icon class="material-icons"><i class="material-icons">{{certifying_authority_SortIcon}}</i></md-icon></span></th>
+    <th ng-click="sortcertification()">Certification<md-icon class="material-icons"><i class="material-icons">{{certification_SortIcon}}</i></md-icon></th>
     </tr>
+
   
-    <tr dir-paginate="item in getInternalCertification | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:5">
+
+    <tr dir-paginate="item in getInternalCertification | orderBy:orderList | filter:typeSelectedFilter | itemsPerPage:perPage | filter : certf">
     <td><md-checkbox ng-change="checkOneCertf($index)" ng-disabled="item.Checked" class="checkid" ng-model="item.Selected" aria-label="Checkbox 1">
           </md-checkbox></td>
     <td>{{item.Certifying_Authority}}</td>
      <td>{{item.Certification}}</td>
       
-    
     </tr> 
   </table>
-  <dir-pagination-controls templateurl="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
-  </div>
+
+ <dir-pagination-controls template-url="angular/directives/dirPagination.tpl.html" style="float:right"></dir-pagination-controls>
+  
+</div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="saveActionCertification()" style="margin-right:20px;">
+      <md-button ng-click="saveActionCertification()" class="md-raised md-primary" style="margin-right:20px;">
         Save
       </md-button>
     </md-dialog-actions>
   </form>
+  
 </md-dialog>
+

@@ -13,8 +13,7 @@ addVendor:function(savedata){
    return services;
 },
 
-getVendor:function(activestatus){
-  console.log("Service::"+activestatus);
+getVendor:function(){
   if (activestatus==false) {
     var promise = $http.get('/getVendordata').then(function(response){
         console.log("Service response"+JSON.stringify(response));
@@ -116,7 +115,16 @@ getTags:function()
   });
   
   return data;
-}
+},
+OnVendorTitleCheck:function(data)
+{
+  console.log("data"+JSON.stringify(data))
+  var title=$http.post('/OnVendorCompanyCheck',data).then(function(response)
+  {
+    return response;
+  });
+  return title;
+},
 
 }
 });

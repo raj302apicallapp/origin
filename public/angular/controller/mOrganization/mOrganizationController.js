@@ -961,12 +961,14 @@ $scope.mOrganizationdata= $scope.mOrganization;
      {  
       for(var j=0;j<$scope.mOrganizationdata[i].mgroup.length;j++)
       {   
-
+           
         if($scope.mOrganizationdata[i].mgroup[j].mgroup==data.mgroup)
         {    
+
+          alert(JSON.stringify($scope.mOrganizationdata[i].mgroup[j]))
           $scope.mOrganizationdata[i].mgroup.splice(j, 1);
           j--;
-            
+          alert(JSON.stringify($scope.mOrganizationdata[i].mgroup))  
         };
 
       }

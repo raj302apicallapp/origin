@@ -5,9 +5,11 @@
   <div flex>
       <md-input-container class="md-block">
         <label>Curriculum Name</label>
-        <input required name="curriculum" ng-model="carrymodel.curriculum_name">
+        <input  name="curriculum" ng-model="carrymodel.curriculum_name"  required md-maxlength="10" minlength="4">
         <div ng-messages="carrymodelForm.curriculum.$error">
           <div ng-message="required">Curriculum Name is Required.</div>
+          <div ng-message="md-maxlength">That's too long!</div>
+          <div ng-message="minlength">That's too short!</div>
         </div>
       </md-input-container>
   </div>
@@ -35,7 +37,7 @@
 <choose-file layout="row">
     <input id="fileInput" ng-disabled="kok" type="file" class="ng-hide" aria-label="fileInput">
     <md-input-container flex class="md-block">
-      <input type="text" ng-model="carrymodel.localurl" disabled aria-label="files" required name="image_url" >
+      <input type="text" accept=".png, .jpg, .jpeg" ng-model="carrymodel.localurl" disabled aria-label="files" required name="image_url"  placeholder="Upload Image"   >
       <div ng-messages="carrymodelForm.image_url.$error">
    <div ng-message="required">Curriculum Image is Required.</div>
            
@@ -58,13 +60,17 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </div>
+<div  ng-show="carrymodel.filePath" class="text-success" >
+  <div class="text-center">
+    Image Uploaded SuceessFully</div>
+  </div>
   <!-- ROW 3 Ends -->
   
   <div layout="row" layout-xs="column">
   <div flex>
       <md-input-container class="md-block">
         <label>Curriculum Owner</label>
-      <input ng-model="carrymodel.curriculum_owner"  rows="" md-select-on-focus=""  required name="curriculum_owner">
+      <input ng-model="carrymodel.curriculum_owner"  rows="" md-select-on-focus=""  required name="curriculum_owner" ng-disabled="dis_curriculumowner">
          <div ng-messages="carrymodelForm.curriculum_owner.$error">
    <div ng-message="required">Curriculum Owner is Required.</div>
            
@@ -80,8 +86,8 @@
 <div class="row">
         
           <!-- <md-button ng-click="prevaction(addcourse)" type="button" class="md-raised md-primary">Previous</md-button> -->
-          <!-- ng-disabled="!carrymodelForm.$valid" -->
-           <md-button   ng-click="nextaction(carrymodel)" ng-disabled="!carrymodelForm.$valid" type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
+          <!-- ng-disabled="!carrymodelForm.$valid " -->
+                    <md-button   ng-click="nextaction(carrymodel)"  type="button" class="md-raised md-primary" style="float:right;">{{nextName}}</md-button>
         
 </div>
 <!-- ROW last Ends -->
