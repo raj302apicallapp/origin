@@ -1,0 +1,86 @@
+<!-- http://onehungrymind.com/build-a-full-page-angularjs-slideshow/ -->
+<div layout="column">
+  <div flex="50" id="slider" class="slider">
+  	<div class="container slider" bg-Image style="width:'100%'">
+  		<img ng-repeat="slide in slides" class="slide" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+  	</div>
+  </div>
+  <div flex="50">
+  	<div layout="row">
+  		<div flex="50">
+        <md-content>
+        <md-card>
+        <md-card-content>
+        <h1 style="text-align:center;color: #cc3600">OPERATE YOUR BULB</h1>
+
+     <md-slider-container >
+      <md-icon md-svg-icon="device:brightness-low"></md-icon>
+      <md-slider ng-model="valueofbulb" aria-label="Disabled 1" flex md-discrete ng-disabled="!isbulbActive"></md-slider>
+
+      <md-input-container>
+        <input flex type="number" ng-model="valueofbulb" aria-label="green" aria-controls="green-slider">
+      </md-input-container>
+    </md-slider-container>
+
+    <h1 style="color: #cc3600">switch control for bulb</h1>
+    <div layout="row" ng-init="isbulbActive=false">
+      <div flex>
+    <md-switch ng-model="isbulbActive" aria-label="Finished?">
+  {{isbulbActive}}
+</md-switch>
+</div>
+<div flex>
+  value={{isbulbActive}}
+</div>
+</div>
+
+<md-button class="md-accent md-raised">flicker</md-button>
+
+  </md-card-content>
+
+
+      </md-card>
+      </md-content>
+    </div>
+  		<div flex="50">
+        <md-content>
+        <md-card>
+        <md-card-content>
+       <h1 style="text-align:center;color: #cc3600">OPERATE YOUR FAN</h1>
+       <md-slider-container >
+      <md-icon md-svg-icon="device:brightness-low"></md-icon>
+      <md-slider ng-model="valueoffan" aria-label="Disabled 1" flex md-discrete ng-disabled="!isfanActive"></md-slider>
+
+      <md-input-container>
+        <input flex type="number" ng-model="valueoffan" aria-label="green" aria-controls="green-slider">
+      </md-input-container>
+    </md-slider-container>
+
+    <div layout="row"><h1 style="color: #cc3600">switch control for fan</h1></div>
+
+    <div layout="row" ng-init="isfanActive=false">
+      <div flex>
+    <md-switch ng-model="isfanActive" aria-label="Finished?">
+  {{isfanActive}}
+</md-switch>
+</div>
+<div flex>
+  value={{isfanActive}}
+</div>
+</div>
+
+  </md-card-content>
+
+
+      </md-card>
+      </md-content>
+    </div>
+  	</div>
+</div>
+</div>
+<style>
+#slider{
+width: 1000px;
+height: 350px;
+}
+</style>
