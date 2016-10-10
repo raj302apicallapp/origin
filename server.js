@@ -20,6 +20,7 @@ var bodyPaser=require('body-parser');
 var http = require('http');
 var mongojs=require('mongojs');
 var collections=['register'];
+var gpio = require('rpi-gpio');
 
 // python code execution starts here
 //this code takes time to execute. Try another if possible. name is python code 1
@@ -123,6 +124,15 @@ app.post('/glowbulbon', function(req, res)
 {
   console.log("glowbulb on is called");
   console.log(req.body);
+  gpio.setup(7, gpio.DIR_OUT, write);
+ 
+function write() {
+    gpio.write(7, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+}
+
 });
 app.post('/glowbulboff', function(req, res)
 {
@@ -140,15 +150,6 @@ app.post('/glowfanoff', function(req, res)
   console.log("glowfan off is called");
   console.log(req.body);
 });
+ 
 
-var gpio = require('rpi-gpio');
- 
-gpio.setup(7, gpio.DIR_OUT, write);
- 
-function write() {
-    gpio.write(7, true, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}
 
