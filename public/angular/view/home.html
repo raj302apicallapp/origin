@@ -25,7 +25,7 @@
     <h1 style="color: #cc3600">switch control for bulb</h1>
     <div layout="row" ng-init="isbulbActive=false">
       <div flex>
-    <md-switch ng-model="isbulbActive" aria-label="Finished?">
+    <md-switch ng-model="isbulbActive" aria-label="Finished?" ng-change="bulbcontrol()">
   {{isbulbActive}}
 </md-switch>
 </div>
@@ -60,7 +60,7 @@
 
     <div layout="row" ng-init="isfanActive=false">
       <div flex>
-    <md-switch ng-model="isfanActive" aria-label="Finished?">
+    <md-switch ng-model="isfanActive" aria-label="Finished?" ng-change="fancontrol()">
   {{isfanActive}}
 </md-switch>
 </div>
