@@ -21,18 +21,9 @@ var http = require('http');
 var mongojs=require('mongojs');
 var collections=['register'];
 
-// python code starts here
-
-// var PythonShell = require('python-shell');
-
-// PythonShell.run('test.py', function (err) {
-//   if (err) throw err;
-//   console.log('finished');
-// });
-
-
+// python code execution starts here
+//this code takes time to execute. Try another if possible. name is python code 1
 var PythonShell = require('python-shell');
-shell.send('message');
 
 var options = {
   mode: 'text',
@@ -47,9 +38,8 @@ PythonShell.run('test.py', options, function (err, results) {
   console.log(results);
 });
 
-
-// var PythonShell = require('python-shell');
-
+//execution of python code 2 starts here. Its not tested yet.
+// python code 2 starts here with comment.
 // var options = {
 //   mode: 'text',
 //   pythonPath: 'C:\Users\rajeev\AppData\Local\Programs\Python\Python35-32',
@@ -69,11 +59,51 @@ PythonShell.run('test.py', options, function (err, results) {
 //   if (err) throw err;
 //   console.log('finished');
 // });
+//execution of python code 2 ends here.
 
-// var spawn = require("child_process").spawn;
+//var spawn = require("child_process").spawn;
 
+// // On Windows Only ...
+// const spawn = require('child_process').spawn;
+// const bat = spawn('cmd.exe', ['/c', 'my.bat']);
 
-// python code ends here
+// bat.stdout.on('data', (data) => {
+//   console.log(data);
+// });
+
+// bat.stderr.on('data', (data) => {
+//   console.log(data);
+// });
+
+// bat.on('exit', (code) => {
+//   console.log(`Child exited with code ${code}`);
+// });
+
+// // On Windows Only ...
+// const spawn = require('child_process').spawn;
+// const bat = spawn('cmd.exe', ['/c', 'my.bat']);
+
+// bat.stdout.on('data', (data) => {
+//   console.log(data);
+// });
+
+// bat.stderr.on('data', (data) => {
+//   console.log(data);
+// });
+
+// bat.on('exit', (code) => {
+//   console.log(`Child exited with code ${code}`);
+// });
+
+const spawn = require('child_process').spawn;
+
+const child = spawn(process.argv[0], ['test.py'], {
+  detached: true,
+  stdio: 'ignore'
+});
+
+child.unref();
+
 // var db = mongojs('mongodb://dev.frugaltek.com:27017/flms', ['register']);
  // var db = mongojs('mongodb://bhuvanesh:123@ds023398.mlab.com:23398/heroku_461p1j1s', collections);
 var port = Number(process.env.PORT || 3000)
