@@ -28,11 +28,11 @@ var PythonShell = require('python-shell');
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Users/rajeev/AppData/Local/Programs/Python/Python35-32/python.exe',
-  pythonOptions: ['-u'],
+  //pythonPath: '/usr/lib/python2.7',
+  pythonOptions: ['-u']
 };
 
-PythonShell.run('test.py', options, function (err, results) {
+PythonShell.run('first.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
@@ -124,14 +124,13 @@ app.post('/glowbulbon', function(req, res)
 {
   console.log("glowbulb on is called");
   console.log(req.body);
-  gpio.setup(7, gpio.DIR_OUT, write);
- 
-function write() {
-    gpio.write(7, true, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}
+
+  PythonShell.run('first.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
 
 });
 app.post('/glowbulboff', function(req, res)
