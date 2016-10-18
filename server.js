@@ -1,14 +1,14 @@
-// (function() {
-//     var childProcess = require("child_process");
-//     var oldSpawn = childProcess.spawn;
-//     function mySpawn() {
-//         console.log('spawn called');
-//         console.log(arguments);
-//         var result = oldSpawn.apply(this, arguments);
-//         return result;
-//     }
-//     childProcess.spawn = mySpawn;
-// })();
+(function() {
+    var childProcess = require("child_process");
+    var oldSpawn = childProcess.spawn;
+    function mySpawn() {
+        console.log('spawn called');
+         console.log(arguments);
+        var result = oldSpawn.apply(this, arguments);
+    return result;
+  }
+   childProcess.spawn = mySpawn;
+ })();
 
 
 var express=require('express');
@@ -20,24 +20,24 @@ var bodyPaser=require('body-parser');
 var http = require('http');
 var mongojs=require('mongojs');
 var collections=['register'];
-var gpio = require('rpi-gpio');
+//var gpio = require('rpi-gpio');
 
 // python code execution starts here
 //this code takes time to execute. Try another if possible. name is python code 1
-// var PythonShell = require('python-shell');
+var PythonShell = require('python-shell');
 
-// var options = {
-//   mode: 'text',
-//   pythonPath: 'C:/Users/rajeev/AppData/Local/Programs/Python/Python35-32/python.exe',
-//   pythonOptions: ['-u'],
-// };
+var options = {
+  mode: 'text',
+  pythonPath: 'C:/Users/rajeev/AppData/Local/Programs/Python/Python35-32/python.exe',
+  pythonOptions: ['-u'],
+};
 
-// PythonShell.run('test.py', options, function (err, results) {
-//   if (err) throw err;
-//   // results is an array consisting of messages collected during execution
-//   console.log("finished executing python script");
-//   console.log(results);
-// });
+PythonShell.run('test.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
 
 //execution of python code 2 starts here. Its not tested yet.
 // python code 2 starts here with comment.
