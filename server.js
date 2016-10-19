@@ -29,7 +29,7 @@ var PythonShell = require('python-shell');
 var options = {
   mode: 'text',
   //pythonPath: '/usr/lib/python2.7',
-  pythonOptions: ['-u']
+  //pythonOptions: ['-u']
 };
 
 
@@ -127,9 +127,10 @@ app.listen(port,'0.0.0.0', function(){
 app.post('/glowbulbon', function(req, res)
 {
   console.log("glowbulb on is called");
-  console.log(req.body);
+  //console.log(req.body);
+  var PythonShell = require('python-shell');
 
-  PythonShell.run('bulbon.py', options, function (err, results) {
+  PythonShell.run('bulbon.py', function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
@@ -140,8 +141,8 @@ app.post('/glowbulbon', function(req, res)
 app.post('/glowbulboff', function(req, res)
 {
   console.log("glowbulb off is called");
-  console.log(req.body);
-  PythonShell.run('bulboff.py', options, function (err, results) {
+  //console.log(req.body);
+  PythonShell.run('bulboff.py', function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");

@@ -1,9 +1,10 @@
 import RPi.GPIO as GPIO
 import time
-for i in range(0,10):
-	GPIO.output(16,True)
-	time.sleep(0.5)
-	GPIO.output(16,False)
-	time.sleep(0.5)
-print "Done"
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(16,GPIO.OUT)
+for x in range(1,3):
+  GPIO.output(16,True)
+  time.sleep(.5)
+  GPIO.output(16,False)
+  time.sleep(.5)
 GPIO.cleanup()
