@@ -1,14 +1,14 @@
-(function() {
-    var childProcess = require("child_process");
-    var oldSpawn = childProcess.spawn;
-    function mySpawn() {
-        console.log('spawn called');
-         console.log(arguments);
-        var result = oldSpawn.apply(this, arguments);
-    return result;
-  }
-   childProcess.spawn = mySpawn;
- })();
+// (function() {
+//     var childProcess = require("child_process");
+//     var oldSpawn = childProcess.spawn;
+//     function mySpawn() {
+//         console.log('spawn called');
+//          console.log(arguments);
+//         var result = oldSpawn.apply(this, arguments);
+//     return result;
+//   }
+//    childProcess.spawn = mySpawn;
+//  })();
 
 
 var express=require('express');
@@ -120,7 +120,7 @@ app.use(session({
 }));
 
 app.use('/', express.static(__dirname+'/public'));
-app.listen(port,'0.0.0.0', function(){
+app.listen(port,function(){
 })
 
 
@@ -128,7 +128,6 @@ app.post('/glowbulbon', function(req, res)
 {
   console.log("glowbulb on is called");
   //console.log(req.body);
-  var PythonShell = require('python-shell');
 
   PythonShell.run('bulbon.py', function (err, results) {
   if (err) throw err;
@@ -136,7 +135,7 @@ app.post('/glowbulbon', function(req, res)
   console.log("finished executing python script");
   console.log(results);
 });
-
+res.json("done");
 });
 app.post('/glowbulboff', function(req, res)
 {
@@ -148,17 +147,19 @@ app.post('/glowbulboff', function(req, res)
   console.log("finished executing python script");
   console.log(results);
 });
+res.json("done");
 });
 app.post('/bulbflicker', function(req, res)
 {
   console.log("bulbflicker is called");
-  console.log(req.body);
+  //console.log(req.body);
   PythonShell.run('bulbflicker.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
   console.log(results);
 });
+res.json("done");
 });
 app.post('/glowfanon', function(req, res)
 {
