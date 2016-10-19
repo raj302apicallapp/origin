@@ -76,6 +76,12 @@ $scope.bulboff = function()
        });
 
 }
+$scope.bulbflicker = function()
+{
+  $http.post('/bulbflicker').success(function(response){
+         console.log(response);
+       });
+}
 $scope.fancontrol = function()
 {
   if($scope.isfanActive == true)
