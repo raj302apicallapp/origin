@@ -60,6 +60,22 @@ $scope.bulbcontrol = function()
        });
   }
 }
+$scope.bulbon = function()
+{
+  console.log("bulbon called");
+  $http.post('/glowbulbon').success(function(response){
+         console.log(response);
+       });
+
+}
+$scope.bulboff = function()
+{
+  console.log("bulboff called");
+  $http.post('/glowbulboff').success(function(response){
+         console.log(response);
+       });
+
+}
 $scope.fancontrol = function()
 {
   if($scope.isfanActive == true)

@@ -32,12 +32,16 @@ var options = {
   pythonOptions: ['-u']
 };
 
-PythonShell.run('first.py', options, function (err, results) {
-  if (err) throw err;
-  // results is an array consisting of messages collected during execution
-  console.log("finished executing python script");
-  console.log(results);
-});
+
+
+// PythonShell.run('first.py', options, function (err, results) {
+//   if (err) throw err;
+//   // results is an array consisting of messages collected during execution
+//   console.log("finished executing python script");
+//   console.log(results);
+// });
+
+
 
 //execution of python code 2 starts here. Its not tested yet.
 // python code 2 starts here with comment.
@@ -116,7 +120,7 @@ app.use(session({
 }));
 
 app.use('/', express.static(__dirname+'/public'));
-app.listen(port,function(){
+app.listen(port,'0.0.0.0', function(){
 })
 
 
