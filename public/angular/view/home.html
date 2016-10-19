@@ -1,12 +1,12 @@
 <!-- http://onehungrymind.com/build-a-full-page-angularjs-slideshow/ -->
-<div layout="column">
+<div layout="column" layout-xs="column">
   <!-- <div flex="50" id="slider" class="slider">
   	<div class="container slider" bg-Image style="width:'100%'">
   		<img ng-repeat="slide in slides" class="slide" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
   	</div>
   </div> -->
-  <div flex="50">
-  	<div layout="row">
+  <!-- <div flex="50"> -->
+  	<div layout="row" layout-xs="column">
   		<div flex="50">
         <md-content>
         <md-card>
@@ -30,13 +30,17 @@
 </md-switch>
 </div>
 <div flex>
-  <md-button class="md-raised" ng-click="bulbon()">on</md-button>
-  <md-button class="md-raised" ng-click="bulboff()">off</md-button>
-  </div>
-<div flex>
   value={{isbulbActive}}
 </div>
 </div>
+<div flex layout="row" layout-xs="column">
+  <div flex>
+  <md-button class="md-raised" ng-click="bulbon()">on</md-button>
+</div>
+<div flex>
+  <md-button class="md-raised" ng-click="bulboff()">off</md-button>
+</div>
+  </div>
 
 <md-button class="md-accent md-raised" ng-click="bulbflicker()">flicker</md-button>
 
@@ -80,7 +84,7 @@
       </md-content>
     </div>
   	</div>
-</div>
+<!-- </div> -->
 </div>
 <style>
 #slider{

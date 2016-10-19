@@ -120,7 +120,7 @@ app.use(session({
 }));
 
 app.use('/', express.static(__dirname+'/public'));
-app.listen(port,function(){
+app.listen(port,'0.0.0.0',function(){
 })
 
 
