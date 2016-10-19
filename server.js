@@ -125,7 +125,7 @@ app.post('/glowbulbon', function(req, res)
   console.log("glowbulb on is called");
   console.log(req.body);
 
-  PythonShell.run('first.py', options, function (err, results) {
+  PythonShell.run('bulbon.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
@@ -137,6 +137,12 @@ app.post('/glowbulboff', function(req, res)
 {
   console.log("glowbulb off is called");
   console.log(req.body);
+  PythonShell.run('bulboff.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
 });
 app.post('/glowfanon', function(req, res)
 {

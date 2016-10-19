@@ -48,7 +48,6 @@ $scope.bulbcontrol = function()
 {
   if($scope.isbulbActive == true)
   {
-    alert("bulb is switched on");
     console.log("value of bulb is"+$scope.isbulbActive);
      $http.post('/glowbulbon').success(function(response){
          console.log(response);
@@ -56,7 +55,6 @@ $scope.bulbcontrol = function()
   }
   if($scope.isbulbActive == false)
   {
-    alert("bulb is switched off");
     $http.post('/glowbulboff').success(function(response){
          console.log(response);
        });
@@ -66,7 +64,6 @@ $scope.fancontrol = function()
 {
   if($scope.isfanActive == true)
   {
-    alert("fan is switched on");
     console.log("value of bulb is"+$scope.isbulbActive);
      $http.post('/glowfanon').success(function(response){
          console.log(response);
@@ -74,7 +71,6 @@ $scope.fancontrol = function()
   }
   if($scope.isfanActive == false)
   {
-    alert("bulb is switched off");
     $http.post('/glowfanoff').success(function(response){
          console.log(response);
        });
