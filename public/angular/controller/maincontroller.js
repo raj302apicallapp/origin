@@ -45,6 +45,11 @@ $scope.setCurrentSlideIndex = setCurrentSlideIndex;
 $scope.isCurrentSlideIndex = isCurrentSlideIndex;
 loadSlides();
 
+$scope.myDate = new Date();
+$scope.minDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth(),
+      $scope.myDate.getDate());
 var test;
 $scope.countdownstatus = true;
 $scope.countupstatus = true;
@@ -71,6 +76,7 @@ $scope.disablesetcountdowntimer = true;
 $scope.disableflickeron = false;
 $scope.disableflickeroff = true;
 $scope.disabletimerbutton = false;
+$scope.disableactualtimerbutton = false;
 $scope.statusoffulltimer = function(){
   $scope.flickerstatus = true;
   $scope.bulbonbuttonstatus = true;
@@ -160,6 +166,8 @@ $scope.countuptimerbutton = function()
 }
 $scope.activatedatetime = function()
 {
+  $scope.disableactualtimerbutton = true;
+  $scope.counterbuttonstatus = true;
   $scope.datetimestatus = false;
 }
 $scope.bulbcontrol = function()
@@ -282,6 +290,10 @@ function executebulbon()
 function executebulboff()
 {
   console.log("executebulboff function is called after finish");
+}
+$scope.datepickerselected = function()
+{
+  console.log("today's date is"+$scope.myDate);
 }
 
 

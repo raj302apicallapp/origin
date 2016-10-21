@@ -55,7 +55,7 @@
   <md-button class="md-raised" ng-click="counterbutton()">Counter</md-button>
 </div>
 <div flex ng-hide="actualtimestatus">
-  <md-button class="md-raised" ng-click="activatedatetime()">Actual Time</md-button>
+  <md-button class="md-raised" ng-click="activatedatetime()" ng-disabled="disableactualtimerbutton">Actual Time</md-button>
 </div>
 <div flex ng-hide="countdownstatus">
   <md-button class="md-raised" ng-click="countdowntimerbutton()" ng-disabled="disablecountdown">Countdown</md-button>
@@ -94,11 +94,12 @@
   </div>
 
   <div layout="row" layout-xs="column" ng-hide="datetimestatus">
+    <div flex>
+    <md-datepicker ng-model="myDate" md-placeholder="Enter date"
+            md-min-date="minDate" md-max-date="maxDate" ng-change="datepickerselected()"></md-datepicker>
+          </div>
    <div flex>
-    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-   </div>
-   <div flex>
-    <input type="time">
+    <input type="time" ng-model="enteredtime">
   </div>
 </div>
 
