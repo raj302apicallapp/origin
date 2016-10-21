@@ -210,7 +210,7 @@ $scope.bulboff = function()
          console.log(response);
          $scope.disableonbutton = false;
          $scope.disabledoffbutton = true;
-         scope.bulbsliderstatus = true;
+         $scope.bulbsliderstatus = true;
        });
 
 }
