@@ -295,12 +295,12 @@ function countdown()
 }
 function executebulboff()
 {
-  console.log("executebulbon function is called after finish");
+  console.log("executebulboff function is called after finish");
   $scope.bulboff();
 }
 function executebulbon()
 {
-  console.log("executebulboff function is called after finish");
+  console.log("executebulbon function is called after finish");
   $scope.bulbon();
 }
 $scope.datepickerselected = function()

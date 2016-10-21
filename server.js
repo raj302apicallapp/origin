@@ -35,12 +35,12 @@ var options = {
 
 
 
- PythonShell.run('test01.py', options, function (err, results) {
-   if (err) throw err;
-   // results is an array consisting of messages collected during execution
-   console.log("finished executing python script");
-   console.log(results);
- });
+ // PythonShell.run('test01.py', options, function (err, results) {
+ //   if (err) throw err;
+ //   // results is an array consisting of messages collected during execution
+ //   console.log("finished executing python script");
+ //   console.log(results);
+ // });
 
 
 //execution of python code 2 starts here. Its not tested yet.
