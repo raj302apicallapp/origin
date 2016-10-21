@@ -26,11 +26,12 @@ var collections=['register'];
 //this code takes time to execute. Try another if possible. name is python code 1
 var PythonShell = require('python-shell');
 
-var options = {
-  mode: 'text',
-  //pythonPath: '/usr/lib/python2.7',
-  //pythonOptions: ['-u']
-};
+// var options = {
+//   mode: 'text',
+//   //pythonPath: '/usr/lib/python2.7',
+//   //pythonOptions: ['-u']
+//   args: [30]
+// };
 
 
 

@@ -256,7 +256,7 @@ $scope.setcountdown = function()
       else
         {
           $scope.countingdown = $scope.countingdown;
-        }}, 100, $scope.countdownvalue);
+        }}, 1000, $scope.countdownvalue);
   test.then(executebulbon);
 }
 $scope.setcountup = function()
@@ -273,7 +273,7 @@ $scope.setcountup = function()
     {
       $scope.countingup = $scope.countingup;
     }
-},100,$scope.countupvalue);
+},1000,$scope.countupvalue);
   test1.then(executebulboff);
 }
 $scope.$on('$destroy',function(){
@@ -296,6 +296,10 @@ $scope.datepickerselected = function()
   console.log("today's date is"+$scope.myDate);
 }
 
+
+//functionality for led 1 starts here.
+
+//functionality for led1 ends here
 
     // $scope.currentDate = new Date();
     // this.showDatePicker = function(ev) {
