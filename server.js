@@ -154,7 +154,7 @@ app.post('/bulbflicker', function(req, res)
 {
   console.log("bulbflicker is called");
   //console.log(req.body);
-  PythonShell.run('bulbflicker.py', options, function (err, results) {
+  PythonShell.run('bulbflickeron.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
@@ -166,7 +166,7 @@ app.post('/bulbflickeroff', function(req, res)
 {
   console.log("bulbflicker off is called");
   //console.log(req.body);
-  PythonShell.run('bulboff.py', options, function (err, results) {
+  PythonShell.run('bulbflickeroff.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
