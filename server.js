@@ -161,6 +161,18 @@ app.post('/bulbflicker', function(req, res)
 });
 res.json("done");
 });
+app.post('/bulbflickeroff', function(req, res)
+{
+  console.log("bulbflicker off is called");
+  //console.log(req.body);
+  PythonShell.run('bulboff.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
 app.post('/glowfanon', function(req, res)
 {
   console.log("glowfan on is called");

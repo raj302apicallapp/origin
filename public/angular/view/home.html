@@ -1,13 +1,13 @@
 <!-- http://onehungrymind.com/build-a-full-page-angularjs-slideshow/ -->
-<div layout="column" layout-xs="column">
+<!-- <div layout="column" layout-xs="row"> -->
   <!-- <div flex="50" id="slider" class="slider">
   	<div class="container slider" bg-Image style="width:'100%'">
   		<img ng-repeat="slide in slides" class="slide" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
   	</div>
   </div> -->
   <!-- <div flex="50"> -->
-  	<div layout="row" layout-xs="column">
-  		<div flex="50">
+  	<div layout="row" layout-xs="row">
+  		<div flex>
         <md-content>
         <md-card>
         <md-card-content>
@@ -17,32 +17,96 @@
       <md-icon md-svg-icon="device:brightness-low"></md-icon>
       <md-slider ng-model="valueofbulb" aria-label="Disabled 1" flex md-discrete ng-disabled="!isbulbActive"></md-slider>
 
-      <md-input-container>
+      <!-- <md-input-container>
         <input flex type="number" ng-model="valueofbulb" aria-label="green" aria-controls="green-slider">
-      </md-input-container>
+      </md-input-container> -->
     </md-slider-container>
-
+    <div flex layout="row" layout-xs="column" layout padding>
+    <div flex=80>
     <h1 style="color: #cc3600">switch control for bulb</h1>
-    <div layout="row" ng-init="isbulbActive=false">
-      <div flex>
-    <md-switch ng-model="isbulbActive" aria-label="Finished?" ng-change="bulbcontrol()">
-  {{isbulbActive}}
-</md-switch>
-</div>
-<div flex>
-  value={{isbulbActive}}
-</div>
+  </div>
+  <div flex ng-hide="countindownstatus">
+    <font size="100" style="color:green">{{countingdown}}</font>
+  </div>
+  <div flex ng-hide="countingupstatus">
+    <font size="100" style="color:green">{{countingup}}</font>
+  </div>
 </div>
 <div flex layout="row" layout-xs="column">
-  <div flex>
-  <md-button class="md-raised" ng-click="bulbon()">on</md-button>
+  <div flex ng-hide="bulbonbuttonstatus">
+  <md-button class="md-raised" ng-click="bulbon()" ng-disabled="disableonbutton">on</md-button>
 </div>
-<div flex>
-  <md-button class="md-raised" ng-click="bulboff()">off</md-button>
+<div flex ng-hide="bulboffbuttonstatus">
+  <md-button class="md-raised" ng-click="bulboff()" ng-disabled="disabledoffbutton">off</md-button>
+</div>
+<div flex ng-hide="timerbuttonstatus">
+  <md-button class="md-raised" ng-click="statusoffulltimer()" ng-disabled="disabletimerbutton">Timer</md-button>
+</div>
+<div flex ng-hide="flickerstatus">
+<md-button class="md-accent md-raised" ng-click="bulbflicker()" ng-disabled="disableflickeron">Flicker On</md-button>
+</div>
+<div flex ng-hide="flickerstatus">
+<md-button class="md-accent md-raised" ng-click="bulbflickeroff()" ng-disabled="disableflickeroff">Flicker Off</md-button>
 </div>
   </div>
 
-<md-button class="md-accent md-raised" ng-click="bulbflicker()">flicker</md-button>
+  <div flex layout="row" layout-xs="column" ng-hide="fulltimerstatus">
+  <div flex ng-hide="counterbuttonstatus" >
+  <md-button class="md-raised" ng-click="counterbutton()">Counter</md-button>
+</div>
+<div flex ng-hide="actualtimestatus">
+  <md-button class="md-raised" ng-click="activatedatetime()">Actual Time</md-button>
+</div>
+<div flex ng-hide="countdownstatus">
+  <md-button class="md-raised" ng-click="countdowntimerbutton()" ng-disabled="disablecountdown">Countdown</md-button>
+</div>
+<div flex ng-hide="countupstatus">
+  <md-button class="md-raised" ng-click="countuptimerbutton()" ng-disabled="disablecountup">Countup</md-button>
+</div>
+
+<div flex ng-hide="cancelcountstatus">
+  <md-button class="md-raised" ng-click="cancelcounterbutton()" ng-disabled="disablecounterbutton">Cancel Counter</md-button>
+</div>
+  </div>
+
+  <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountdownstatus">
+    <div flex>
+    <md-input-container>
+  <label>Count Down value in Minute</label>
+  <input type="text" ng-model="countdownvalue" required md-maxlength="10">
+</md-input-container>
+</div>
+  <div flex>
+    <md-button class="md-raised" ng-click="setcountdown()" ng-disabled="disablesetcountdowntimer">set countdown timer</md-button>
+  </div>
+  </div>
+
+   <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountupstatus">
+    <div flex>
+    <md-input-container>
+  <label>Count Up value in Minute</label>
+  <input type="text" ng-model="countupvalue" required md-maxlength="10">
+</md-input-container>
+</div>
+  <div flex>
+    <md-button class="md-raised" ng-click="setcountup()">set countup timer</md-button>
+  </div>
+  </div>
+
+  <div layout="row" layout-xs="column" ng-hide="datetimestatus">
+   <div flex>
+    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+   </div>
+   <div flex>
+    <input type="time">
+  </div>
+</div>
+
+  <div flex ng-hide="cancelalltimerstatus">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+  <md-button class="md-raised" ng-click="cancelalltimer()" >Cancel timer</md-button>
+</section>
+</div>
 
   </md-card-content>
 
@@ -50,7 +114,7 @@
       </md-card>
       </md-content>
     </div>
-  		<div flex="50">
+  		<div flex>
         <md-content>
         <md-card>
         <md-card-content>
@@ -59,9 +123,9 @@
       <md-icon md-svg-icon="device:brightness-low"></md-icon>
       <md-slider ng-model="valueoffan" aria-label="Disabled 1" flex md-discrete ng-disabled="!isfanActive"></md-slider>
 
-      <md-input-container>
+      <!-- <md-input-container>
         <input flex type="number" ng-model="valueoffan" aria-label="green" aria-controls="green-slider">
-      </md-input-container>
+      </md-input-container> -->
     </md-slider-container>
 
     <div layout="row"><h1 style="color: #cc3600">switch control for fan</h1></div>
@@ -71,9 +135,6 @@
     <md-switch ng-model="isfanActive" aria-label="Finished?" ng-change="fancontrol()">
   {{isfanActive}}
 </md-switch>
-</div>
-<div flex>
-  value={{isfanActive}}
 </div>
 </div>
 
@@ -85,10 +146,20 @@
     </div>
   	</div>
 <!-- </div> -->
-</div>
+<!-- </div> -->
 <style>
 #slider{
 width: 1000px;
 height: 350px;
 }
+
+input[type=number] {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
 </style>
