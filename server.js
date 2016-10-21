@@ -185,6 +185,352 @@ app.post('/glowfanoff', function(req, res)
   console.log("glowfan off is called");
   console.log(req.body);
 });
+
+app.post('/glowled1', function(req, res)
+{
+  console.log("glowled1 on is called");
+  //console.log(req.body);
+
+  PythonShell.run('glowled1.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/led1off', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('led1off.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/flickerled1on', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('flickerled1on.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/flickerled2off', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('flickerled2off.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
  
 
+ app.post('/brightbulb0', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb0.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb10', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb10.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb20', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb20.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb30', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb30.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb40', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb40.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb50', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb50.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb60', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb60.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb70', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb70.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb80', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb80.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb90', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb90.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/brightbulb100', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('brightbulb100.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+
+
+ // call correspoding python scripts to vary brightness for led1
+ app.post('/1led0', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb0.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led10', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb10.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led20', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb20.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led30', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb30.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led40', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb40.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led50', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb50.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led60', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb60.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led70', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb70.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led80', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb80.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led90', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb90.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+ app.post('/1led100', function(req, res)
+{
+  console.log("off led1 is called");
+  //console.log(req.body);
+
+  PythonShell.run('bulb100.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
 
