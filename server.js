@@ -151,9 +151,15 @@ res.json("done");
 });
 app.post('/bulbflicker', function(req, res)
 {
+  var optionsflickeron = {
+  mode: 'text',
+  //pythonPath: '/usr/lib/python2.7',
+  //pythonOptions: ['-u'],
+   args: [10]
+};
   console.log("bulbflicker is called");
   //console.log(req.body);
-  PythonShell.run('bulbflickeron.py', options, function (err, results) {
+  PythonShell.run('bulbflickeron.py', optionsflickeron, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
@@ -163,9 +169,15 @@ res.json("done");
 });
 app.post('/bulbflickeroff', function(req, res)
 {
+  var optionsflickeroff = {
+  mode: 'text',
+  //pythonPath: '/usr/lib/python2.7',
+  //pythonOptions: ['-u'],
+   args: [20]
+};
   console.log("bulbflicker off is called");
   //console.log(req.body);
-  PythonShell.run('bulbflickeroff.py', options, function (err, results) {
+  PythonShell.run('bulbflickeroff.py', optionsflickeroff, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log("finished executing python script");
