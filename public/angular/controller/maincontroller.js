@@ -473,7 +473,7 @@ $scope.setcountdownled2 = function()
 {
   $scope.led2on();
   $scope.countindownstatusled2 = false;
-  $scope.countingdownled2 = $scope.countindownstatusled2;
+  $scope.countingdownled2 = $scope.countdownvalueled2;
   ledoff2 = $interval(function() 
     {if($scope.countingdownled2>0)
       {
