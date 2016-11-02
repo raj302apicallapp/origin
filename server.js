@@ -185,6 +185,63 @@ app.post('/bulbflickeroff', function(req, res)
 });
 res.json("done");
 });
+
+app.post('/glowled1', function(req, res)
+{
+  console.log("glowled1 on is called");
+  //console.log(req.body);
+
+  PythonShell.run('led1on.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/led1off', function(req, res)
+{
+  console.log("led1off on is called");
+  //console.log(req.body);
+
+  PythonShell.run('led1off.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/glowled2', function(req, res)
+{
+  console.log("glowled2 on is called");
+  //console.log(req.body);
+
+  PythonShell.run('led2on.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
+app.post('/led2off', function(req, res)
+{
+  console.log("led2off on is called");
+  //console.log(req.body);
+
+  PythonShell.run('led2off.py', function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log("finished executing python script");
+  console.log(results);
+});
+res.json("done");
+});
+
 app.post('/glowfanon', function(req, res)
 {
   console.log("glowfan on is called");

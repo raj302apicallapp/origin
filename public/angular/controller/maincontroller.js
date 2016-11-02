@@ -403,6 +403,22 @@ $scope.led1off = function()
        });
 
 }
+$scope.led2on = function()
+{
+  $scope.led2sliderstatus = false;
+  console.log("bulbon called");
+  $http.post('/glowled2').success(function(response){
+         console.log(response);
+       });
+}
+$scope.led2off = function()
+{
+  $scope.led2sliderstatus = true;
+  $http.post('/led2off').success(function(response){
+         console.log(response);
+       });
+
+}
 $scope.cancelcountdowntimerled1 = function()
 {
   $scope.inputcountdownstatusled1 = true;
