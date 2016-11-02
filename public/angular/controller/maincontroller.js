@@ -383,7 +383,7 @@ $scope.countdownled1 = function()
 {
   $scope.inputcountdownstatusled1 = false;
 }
-$scope.countdownled1 = function()
+$scope.countupled1 = function()
 {
   $scope.inputcountupstatusled1 = false;
 }
