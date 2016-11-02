@@ -492,7 +492,7 @@ $scope.setcountupled2 = function()
   $scope.led2off();
   $scope.countingupstatusled2 = false;
   $scope.countingupled2 = 0;
-   ledon1 = $interval(function(){
+   ledon2 = $interval(function(){
     if($scope.countingupled2<$scope.countupvalueled2)
     {
       $scope.countingupled2 = $scope.countingupled2+1;
@@ -502,7 +502,7 @@ $scope.setcountupled2 = function()
       $scope.countingupled2 = $scope.countingupled2;
     }
 },1000,$scope.countupvalueled2);
-  ledon1.then(onled2);
+  ledon2.then(onled2);
 }
 
 
@@ -543,6 +543,24 @@ $scope.cancelcountuptimerled1 = function()
   $scope.countingupstatusled1 = true;
   $scope.countingdownled1 = null;
   $scope.countingupled1 = null;
+}
+$scope.cancelcountdowntimerled2 = function()
+{
+  $scope.inputcountdownstatusled2 = true;
+  $interval.cancel(ledoff2);
+  $scope.countindownstatusled2 = true;
+  $scope.countingupstatusled2 = true;
+  $scope.countingdownled2 = null;
+  $scope.countingupled2 = null;
+}
+$scope.cancelcountuptimerled2 = function()
+{
+  $scope.inputcountupstatusled2 = true;
+  $interval.cancel(ledon2);
+  $scope.countindownstatusled2 = true;
+  $scope.countingupstatusled2 = true;
+  $scope.countingdownled2 = null;
+  $scope.countingupled2 = null;
 }
 $scope.flickerled1on = function()
 {
