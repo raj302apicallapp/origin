@@ -387,6 +387,14 @@ $scope.countupled1 = function()
 {
   $scope.inputcountupstatusled1 = false;
 }
+$scope.countdownled2 = function()
+{
+  $scope.inputcountdownstatusled2 = false;
+}
+$scope.countupled2 = function()
+{
+  $scope.inputcountupstatusled2 = false;
+}
 $scope.led1on = function()
 {
   $scope.led1sliderstatus = false;
@@ -460,6 +468,42 @@ $scope.setcountupled1 = function()
 },1000,$scope.countupvalueled1);
   ledon1.then(onled1);
 }
+
+$scope.setcountdownled2 = function()
+{
+  $scope.led2on();
+  $scope.countindownstatusled2 = false;
+  $scope.countingdownled2 = $scope.countindownstatusled2;
+  ledoff2 = $interval(function() 
+    {if($scope.countingdownled2>0)
+      {
+        $scope.countingdownled2 = $scope.countingdownled2-1;
+      }
+      else
+        {
+          $scope.countingdownled2 = $scope.countingdownled2;
+        }}, 1000, $scope.countdownvalueled2);
+  ledoff2.then(off2ed1);
+}
+$scope.setcountupled2 = function()
+{
+  $scope.led2off();
+  $scope.countingupstatusled2 = false;
+  $scope.countingupled2 = 0;
+   ledon1 = $interval(function(){
+    if($scope.countingupled2<$scope.countupvalueled2)
+    {
+      $scope.countingupled2 = $scope.countingupled2+1;
+    }
+    else
+    {
+      $scope.countingupled2 = $scope.countingupled2;
+    }
+},1000,$scope.countupvalueled2);
+  ledon1.then(onled2);
+}
+
+
 function offled1()
 {
   console.log("glow led 1 is called");
@@ -469,6 +513,16 @@ function onled1()
 {
   console.log("off led 1 is called");
   $scope.led1on();
+}
+function offled2()
+{
+  console.log("glow led 1 is called");
+  $scope.led2off();
+}
+function onled2()
+{
+  console.log("off led 1 is called");
+  $scope.led2on();
 }
 $scope.cancelcountdowntimerled1 = function()
 {

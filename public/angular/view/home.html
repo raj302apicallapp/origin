@@ -233,11 +233,11 @@
       <md-slider ng-model="valueofbulb" aria-label="Disabled 1" flex md-discrete ng-disabled="!isbulbActive" min="0" max="100" step="10"></md-slider>
     </md-slider-container>
     <div flex layout="row" layout-xs="column" layout padding>
-  <div flex ng-hide="countindownstatusled1">
-    <font size="100" style="color:green">{{countingdownled1}}</font>
+  <div flex ng-hide="countindownstatusled2">
+    <font size="100" style="color:green">{{countingdownled2}}</font>
   </div>
-  <div flex ng-hide="countingupstatus">
-    <font size="100" style="color:green">{{countingupled1}}</font>
+  <div flex ng-hide="countingupstatusled2">
+    <font size="100" style="color:green">{{countingupled2}}</font>
   </div>
 </div>
 <div flex layout="row" layout-xs="column">
@@ -248,10 +248,10 @@
   <md-button class="md-raised" ng-click="led2off()">off</md-button>
 </div>
 <div flex >
-  <md-button class="md-raised" ng-click="statusoffulltimer()" ng-disabled="disabletimerbutton">countdown</md-button>
+  <md-button class="md-raised" ng-click="countdownled2()" ng-disabled="disablecountdownled1">countdown</md-button>
 </div>
 <div flex >
-  <md-button class="md-raised" ng-click="statusoffulltimer()" ng-disabled="disabletimerbutton">countup</md-button>
+  <md-button class="md-raised" ng-click="countupled2()" ng-disabled="disablecountdownled1">countup</md-button>
 </div>
 <div flex ng-hide="flickerstatusled2">
 <md-button class="md-raised">Flicker On</md-button>
@@ -261,33 +261,33 @@
 </div>
   </div>
 
-  <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountdownstatus">
+  <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountdownstatusled2">
     <div flex>
     <md-input-container>
   <label>Count Down value in Minute</label>
-  <input type="text" ng-model="countdownvalue" required md-maxlength="10">
+  <input type="text" ng-model="countdownvalueled2" required md-maxlength="10">
 </md-input-container>
 </div>
   <div flex>
-    <md-button class="md-raised" ng-click="setcountdown()" ng-disabled="disablesetcountdowntimer">set countdown timer</md-button>
+    <md-button class="md-raised" ng-click="setcountdownled2()" ng-disabled="disablesetcountdowntimerled2">set countdown timer</md-button>
   </div>
   </div>
 
-   <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountupstatus">
+   <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountupstatusled2">
     <div flex>
     <md-input-container>
   <label>Count Up value in Minute</label>
-  <input type="text" ng-model="countupvalue" required md-maxlength="10">
+  <input type="text" ng-model="countupvalueled2" required md-maxlength="10">
 </md-input-container>
 </div>
   <div flex>
-    <md-button class="md-raised" ng-click="setcountup()">set countup timer</md-button>
+    <md-button class="md-raised" ng-click="setcountupled2()">set countup timer</md-button>
   </div>
   </div>
 
   <div flex ng-hide="cancelalltimerstatus">
     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-  <md-button class="md-raised" ng-click="cancelalltimer()" >Cancel timer</md-button>
+  <md-button class="md-raised" ng-click="cancelalltimerled2()" >Cancel timer</md-button>
 </section>
 </div>
 
