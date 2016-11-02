@@ -483,7 +483,7 @@ $scope.setcountdownled2 = function()
         {
           $scope.countingdownled2 = $scope.countingdownled2;
         }}, 1000, $scope.countdownvalueled2);
-  ledoff2.then(off2ed1);
+  ledoff2.then(offled2);
 }
 $scope.setcountupled2 = function()
 {
