@@ -271,6 +271,9 @@
   <div flex>
     <md-button class="md-raised" ng-click="setcountdownled2()" ng-disabled="disablesetcountdowntimerled2">set countdown timer</md-button>
   </div>
+  <div flex>
+    <md-button class="md-raised" ng-click="cancelcountdowntimerled1()">cancel</md-button>
+  </div>
   </div>
 
    <div flex layout="row" layout-xs="column" layout padding ng-hide="inputcountupstatusled2">
@@ -283,13 +286,10 @@
   <div flex>
     <md-button class="md-raised" ng-click="setcountupled2()">set countup timer</md-button>
   </div>
+  <div flex>
+    <md-button class="md-raised" ng-click="cancelcountdowntimerled1()">cancel</md-button>
   </div>
-
-  <div flex ng-hide="cancelalltimerstatus">
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-  <md-button class="md-raised" ng-click="cancelalltimerled2()" >Cancel timer</md-button>
-</section>
-</div>
+  </div>
 
   </md-card-content>
 
